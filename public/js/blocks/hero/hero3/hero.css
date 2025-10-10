@@ -1,0 +1,219 @@
+/************ font style start ************/
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter&family=Jost:wght@200&family=Kanit:wght@200&family=Kodchasan&family=Nunito+Sans:opsz@6..12&family=Philosopher&family=Roboto:wght@300;400&family=Secular+One&family=Signika&family=Titillium+Web&family=Ubuntu:ital,wght@0,400;1,300&family=Ysabeau+Infant&display=swap");
+
+* {
+ font-family: "Titillium Web", sans-serif;
+}
+
+/************ font style end ************/
+
+/************** bootstrap start  *******************/
+* {
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+ scroll-behavior: smooth;
+}
+
+.wrapper {
+ max-width: 1266px;
+ margin: 0 auto;
+}
+
+.text_center {
+ text-align: center;
+}
+
+.text_right {
+ text-align: right;
+}
+
+.text_left {
+ text-align: left;
+}
+
+.display_flex {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.column_reverse {
+ flex-direction: column-reverse;
+}
+
+.column_column {
+ flex-direction: column;
+}
+
+.row_reverse {
+ flex-direction: row-reverse;
+}
+
+.row_row {
+ flex-direction: row;
+}
+
+.align_items_center {
+ align-items: center;
+}
+
+.align_items_right {
+ align-items: flex-end;
+}
+
+.align_items_left {
+ align-items: flex-start;
+}
+
+.justify_content_center {
+ justify-content: center;
+}
+
+.justify_content_left {
+ justify-content: left;
+}
+
+.justify_content_right {
+ justify-content: right;
+}
+
+.flex_width_2_container>*,
+.flex_width_2 {
+ flex: 0 0 50%;
+}
+
+.flex_width_3_container>*,
+.flex_width_3 {
+ flex: 0 0 33.33%;
+}
+
+.flex_width_4 {
+ flex: 0 0 25%;
+}
+
+.flex_width_5 {
+ flex: 0 0 20%;
+}
+
+.flex_width_6 {
+ flex: 0 0 16.666666%;
+}
+
+ul li {
+ list-style: none;
+}
+
+button {
+ border: none;
+ cursor: pointer;
+ background-color: transparent;
+}
+
+a {
+ text-decoration: none;
+}
+
+@media screen and (max-width: 992px) {
+ .flex_width_100_in_large {
+  flex: 0 0 100%;
+ }
+}
+
+@media screen and (max-width: 768px) {
+ .flex_width_100_in_mid {
+  flex: 0 0 100%;
+ }
+}
+
+@media screen and (max-width: 500px) {
+ .flex_width_100_in_small {
+  flex: 0 0 100%;
+ }
+}
+
+/************** bootstrap end  *******************/
+
+/* ---------- root start---------- */
+
+:root {
+ --primary-color: rgb(82, 55, 134);
+ --secondray-color: #2d2d2d;
+ --white_color: #ffff;
+ --color_black: #000000;
+ --main_section-heading-color: #fafafa;
+ --main_section-sub-heading-color: rgb(244, 241, 250);
+ --main_section-sh-description-color: #808080;
+ --descriptions_heading-color: #141414;
+ --descriptions_paragraph-color: #5a5a5a;
+ --hr_color: #f3f3f3;
+ --button_color: #fff;
+ --main_con_back_color: rgba(32, 29, 41, 0.904);
+ --button_back-color: #ffffff00;
+ --button_border-color: 1px solid #fff;
+ --icon_color: var(--primary-color);
+ --icon_font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+/* ---------- root end---------- */
+
+/******* main code start  *********/
+.highlight_box_id_3 {
+ position: relative;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-color: var(--main_con_back_color);
+ background-blend-mode: darken;
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container {
+ padding: 80px 25px;
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container .under_main-heading h2 {
+ font-size: 42px;
+ font-weight: 300;
+ max-width: 750px;
+ width: 100%;
+ margin: 0 auto;
+ color: var(--main_section-heading-color);
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container .under_sub-heading span {
+ font-size: 17px;
+ display: block;
+ margin: 0 auto;
+ padding: 15px 10px;
+ max-width: 750px;
+ width: 100%;
+ color: var(--main_section-sub-heading-color);
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container .button_con {
+ padding: 20px 20px 30px;
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container .button_con button {
+ padding: 15px 40px;
+ font-size: 16.5px;
+ background-color: var(--button_back-color);
+ color: var(--button_color);
+ border: var(--button_border-color);
+}
+
+.highlight_box_id_3 .highlight_id_3-main-container button:hover {
+ background-color: var(--primary-color);
+ border: 1px solid transparent;
+}
+
+@media screen and (max-width: 355px) {
+ .highlight_box_id_3 .highlight_id_3-main-container .under_main-heading h2 {
+  font-size: 32px;
+ }
+
+ .highlight_box_id_3 .highlight_id_3-main-container .under_sub-heading span {
+  font-size: 14px;
+ }
+}
+
+/******* main code end  *********/
