@@ -6,10 +6,6 @@ use App\Http\Controllers\PageController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::post('/admin/components/save', [ComponentController::class, 'save']);
 Route::get('/admin/components/list', [ComponentController::class, 'list']);
@@ -23,6 +19,8 @@ Route::get('/builder', function () {
 
 
 Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+Route::get('/', [PageController::class, 'index'])->name('pages.index');
+
 
 Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
 
