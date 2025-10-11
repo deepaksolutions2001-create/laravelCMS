@@ -1,31 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
-  // === Initialize GrapesJS ===
-  const editor = grapesjs.init({
-    container: '#gjs',
-    height: '100%',
-    fromElement: true,
-    storageManager: false,
-    blockManager: { appendTo: '#blocks' },
-    layerManager: { appendTo: '#layers' },
-    styleManager: { appendTo: '#styles' },
-    canvas: {
-      styles: [
-        'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css'
-      ],
-    },
-  });
 
-  const bm = editor.BlockManager;
-
-  // === Helper to load HTML + CSS and merge ===
-  async function loadBlockFiles(htmlPath, cssPath) {
-    const [html, css] = await Promise.all([
-      fetch(htmlPath).then(res => res.text()),
-      fetch(cssPath).then(res => res.text())
-    ]);
-    return `<style>${css}</style>\n${html}`;
-  }
 
   // === Dynamically load all component blocks to spefici availble ===
   const heroBlocks = [];
@@ -62,6 +37,179 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.warn(`⚠️ Hero ${i} not found or failed to load.`);
     }
   }
+  // === All Blocks (same as before) ===
+  const blocks = [
+    { id: 'text', label: 'Text', category: 'Basic', content: '<p>Insert text here...</p>' },
+    { id: 'heading', label: 'Heading', category: 'Basic', content: '<h1>Heading</h1>' },
+    { id: 'button', label: 'Button', category: 'Basic', content: '<button>Click me</button>' },
+
+    { id: 'image', label: 'Image', category: 'Media', content: { type: 'image' } },
+    { id: 'video', label: 'Video', category: 'Media', content: '<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%;"></video>' },
+    { id: 'map', label: 'Google Map', category: 'Media', content: '<iframe src="https://maps.google.com/maps?q=London&t=&z=13&ie=UTF8&iwloc=&output=embed" style="width:100%; height:300px;" frameborder="0"></iframe>' },
+
+    // ✅ Section block (droppable container)
+    {
+      id: 'section',
+      label: 'Section',
+      category: 'Layout',
+      content: {
+        tagName: 'section',
+        attributes: { style: 'padding:40px; background:#eee; min-height:120px; border:1px dashed #ccc;' },
+        components: '<div style="text-align:center; color:#888;">Drop content here</div>',
+        droppable: true,
+        draggable: true,
+      },
+    },
+
+    // ✅ 2 Columns layout
+    {
+      id: 'row-cols-2',
+      label: '2 Columns',
+      category: 'Layout',
+      content: {
+        tagName: 'div',
+        attributes: { style: 'display:flex; gap:10px; min-height:100px; border:1px dashed #bbb; padding:10px;' },
+        components: [
+          {
+            tagName: 'div',
+            attributes: { style: 'flex:1; padding:10px; border:1px dashed #ccc; min-height:100px;' },
+            components: '<div style="text-align:center; color:#888;">Drop here (Left)</div>',
+            droppable: true,
+          },
+          {
+            tagName: 'div',
+            attributes: { style: 'flex:1; padding:10px; border:1px dashed #ccc; min-height:100px;' },
+            components: '<div style="text-align:center; color:#888;">Drop here (Right)</div>',
+            droppable: true,
+          },
+        ],
+        droppable: true,
+      },
+    },
+
+    // ✅ 3 Columns layout
+    {
+      id: 'row-cols-3',
+      label: '3 Columns',
+      category: 'Layout',
+      content: {
+        tagName: 'div',
+        attributes: { style: 'display:flex; gap:10px; min-height:100px; border:1px dashed #bbb; padding:10px;' },
+        components: [
+          {
+            tagName: 'div',
+            attributes: { style: 'flex:1; padding:10px; border:1px dashed #ccc; min-height:100px;' },
+            components: '<div style="text-align:center; color:#888;">Drop here (1)</div>',
+            droppable: true,
+          },
+          {
+            tagName: 'div',
+            attributes: { style: 'flex:1; padding:10px; border:1px dashed #ccc; min-height:100px;' },
+            components: '<div style="text-align:center; color:#888;">Drop here (2)</div>',
+            droppable: true,
+          },
+          {
+            tagName: 'div',
+            attributes: { style: 'flex:1; padding:10px; border:1px dashed #ccc; min-height:100px;' },
+            components: '<div style="text-align:center; color:#888;">Drop here (3)</div>',
+            droppable: true,
+          },
+        ],
+        droppable: true,
+      },
+    },
+    // ✅ Updated list block uses the new editable-list type
+    { id: 'list', label: 'List', category: 'Text', content: { type: 'editable-list' } },
+
+    { id: 'quote', label: 'Quote', category: 'Text', content: '<blockquote>Quote content here</blockquote>' },
+    { id: 'table', label: 'Table', category: 'Advanced', content: '<table border="1" cellpadding="5"><tr><td>Row</td><td>Data</td></tr></table>' },
+
+    {
+      id: 'accordion',
+      label: 'Accordion',
+      category: 'Advanced',
+      content: `
+      <div>
+        <button onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block')">Toggle</button>
+        <div style="display:none; padding:10px; border:1px solid #ccc;">Accordion content</div>
+      </div>`
+    },
+
+    { id: 'form', label: 'Form', category: 'Forms', content: '<form><input type="text" placeholder="Name"><br><input type="email" placeholder="Email"><br><button>Submit</button></form>' },
+    { id: 'input', label: 'Input', category: 'Forms', content: '<input type="text" placeholder="Your name">' },
+    { id: 'textarea', label: 'Textarea', category: 'Forms', content: '<textarea placeholder="Your message"></textarea>' },
+
+    { id: 'card', label: 'Card', category: 'UI', content: '<div style="border:1px solid #ccc; padding:15px; border-radius:6px;"><h4>Card Title</h4><p>Card description goes here.</p><button>Read More</button></div>' },
+    { id: 'navbar', label: 'Navbar', category: 'UI', content: '<nav style="display:flex; background:#333; color:white; padding:10px;"><div style="flex:1;">Logo</div><div><a href="#" style="color:white; margin:0 10px;">Home</a><a href="#" style="color:white;">About</a></div></nav>' },
+    { id: 'footer', label: 'Footer', category: 'UI', content: '<footer style="background:#222; color:white; padding:20px; text-align:center;"><p>Copyright © 2025</p></footer>' },
+    { id: 'alert', label: 'Alert Box', category: 'UI', content: '<div style="padding:10px; background:#f9c; color:#333;">Alert message</div>' },
+    { id: 'badge', label: 'Badge', category: 'UI', content: '<span style="padding:5px 10px; background:#3498db; color:white; border-radius:10px;">Badge</span>' },
+    { id: 'progress', label: 'Progress Bar', category: 'UI', content: '<div style="background:#ddd; height:20px;"><div style="width:60%; height:100%; background:#2ecc71;"></div></div>' },
+  ];
+
+
+  // === Initialize GrapesJS ===
+  const editor = grapesjs.init({
+    container: '#gjs',
+    height: '100%',
+    fromElement: true,
+    storageManager: false,
+    panels: { defaults: [] },
+    blockManager: { appendTo: '#blocks' },
+    layerManager: { appendTo: '#layers' },
+    styleManager: { appendTo: '#styles' },
+    // Keep styles and traits managers
+    traitManager: { appendTo: '.traits-container' },
+    selectorManager: { appendTo: '.classes-container' },
+    canvas: {
+      styles: ['https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css'],
+    },
+    plugins: ['gjs-code-editor'], // ✅ Required
+    pluginsOpts: {
+      'gjs-code-editor': {
+        theme: 'material',
+        editHtml: 1,
+        editCss: 1,
+        split: 1,
+        modalTitle: 'Edit HTML & CSS',
+      },
+    },
+    /* blockManager: {
+      appendTo: "#sidebar",
+      blocks: [
+        ...blocks, ...heroBlocks, ...aboutBlocks
+      ]
+    } */
+
+  });
+
+  window.editor = editor; // 
+
+
+  // ✅ Make <section> globally droppable and visible when empty
+  editor.DomComponents.addType('section', {
+    model: {
+      defaults: {
+        droppable: true,
+        editable: true,
+        highlightable: true,
+        draggable: '*:not(section)', // avoid nesting sections inside each other
+        attributes: { style: 'min-height:80px; border:1px dashed #ccc;' },
+      },
+    },
+  });
+
+  const bm = editor.BlockManager;
+
+  // === Helper to load HTML + CSS and merge ===
+  async function loadBlockFiles(htmlPath, cssPath) {
+    const [html, css] = await Promise.all([
+      fetch(htmlPath).then(res => res.text()),
+      fetch(cssPath).then(res => res.text())
+    ]);
+    return `<style>${css}</style>\n${html}`;
+  }
+
 
 
   // === ✅ Custom editable list component ===
@@ -120,48 +268,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
   });
 
-  // === All Blocks (same as before) ===
-  const blocks = [
-    { id: 'text', label: 'Text', category: 'Basic', content: '<p>Insert text here...</p>' },
-    { id: 'heading', label: 'Heading', category: 'Basic', content: '<h1>Heading</h1>' },
-    { id: 'button', label: 'Button', category: 'Basic', content: '<button>Click me</button>' },
-
-    { id: 'image', label: 'Image', category: 'Media', content: { type: 'image' } },
-    { id: 'video', label: 'Video', category: 'Media', content: '<video controls src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%;"></video>' },
-    { id: 'map', label: 'Google Map', category: 'Media', content: '<iframe src="https://maps.google.com/maps?q=London&t=&z=13&ie=UTF8&iwloc=&output=embed" style="width:100%; height:300px;" frameborder="0"></iframe>' },
-
-    { id: 'section', label: 'Section', category: 'Layout', content: '<section style="padding:40px; background:#eee;">Section</section>' },
-    { id: 'row-cols-2', label: '2 Columns', category: 'Layout', content: '<div style="display:flex;"><div style="flex:1; padding:10px;">Left</div><div style="flex:1; padding:10px;">Right</div></div>' },
-    { id: 'row-cols-3', label: '3 Columns', category: 'Layout', content: '<div style="display:flex;"><div style="flex:1; padding:10px;">1</div><div style="flex:1; padding:10px;">2</div><div style="flex:1; padding:10px;">3</div></div>' },
-
-    // ✅ Updated list block uses the new editable-list type
-    { id: 'list', label: 'List', category: 'Text', content: { type: 'editable-list' } },
-
-    { id: 'quote', label: 'Quote', category: 'Text', content: '<blockquote>Quote content here</blockquote>' },
-    { id: 'table', label: 'Table', category: 'Advanced', content: '<table border="1" cellpadding="5"><tr><td>Row</td><td>Data</td></tr></table>' },
-
-    {
-      id: 'accordion',
-      label: 'Accordion',
-      category: 'Advanced',
-      content: `
-      <div>
-        <button onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block')">Toggle</button>
-        <div style="display:none; padding:10px; border:1px solid #ccc;">Accordion content</div>
-      </div>`
-    },
-
-    { id: 'form', label: 'Form', category: 'Forms', content: '<form><input type="text" placeholder="Name"><br><input type="email" placeholder="Email"><br><button>Submit</button></form>' },
-    { id: 'input', label: 'Input', category: 'Forms', content: '<input type="text" placeholder="Your name">' },
-    { id: 'textarea', label: 'Textarea', category: 'Forms', content: '<textarea placeholder="Your message"></textarea>' },
-
-    { id: 'card', label: 'Card', category: 'UI', content: '<div style="border:1px solid #ccc; padding:15px; border-radius:6px;"><h4>Card Title</h4><p>Card description goes here.</p><button>Read More</button></div>' },
-    { id: 'navbar', label: 'Navbar', category: 'UI', content: '<nav style="display:flex; background:#333; color:white; padding:10px;"><div style="flex:1;">Logo</div><div><a href="#" style="color:white; margin:0 10px;">Home</a><a href="#" style="color:white;">About</a></div></nav>' },
-    { id: 'footer', label: 'Footer', category: 'UI', content: '<footer style="background:#222; color:white; padding:20px; text-align:center;"><p>Copyright © 2025</p></footer>' },
-    { id: 'alert', label: 'Alert Box', category: 'UI', content: '<div style="padding:10px; background:#f9c; color:#333;">Alert message</div>' },
-    { id: 'badge', label: 'Badge', category: 'UI', content: '<span style="padding:5px 10px; background:#3498db; color:white; border-radius:10px;">Badge</span>' },
-    { id: 'progress', label: 'Progress Bar', category: 'UI', content: '<div style="background:#ddd; height:20px;"><div style="width:60%; height:100%; background:#2ecc71;"></div></div>' },
-  ];
 
 
   // here we create hero block
@@ -245,5 +351,62 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!PAGE_ID) return alert("PAGE_ID not set.");
     window.open(`/preview/${PAGE_ID}`, '_blank');
   };
+
+  // === Handle Publish Button ===
+  document.getElementById('btn-publish').addEventListener('click', function () {
+    if (!PAGE_ID) {
+      alert('Please save the page before publishing.');
+      return;
+    }
+
+    const html = editor.getHtml();
+    const css = editor.getCss();
+    const title = document.getElementById('page-title').value;
+
+    fetch(`/pages/${PAGE_ID}/publish`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+      },
+      body: JSON.stringify({
+        title,
+        html,
+        css,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Page published successfully!');
+          console.log('Published URL:', data.url);
+          window.open(data.url, '_blank');
+        } else {
+          alert('⚠️ Failed to publish page.');
+        }
+      })
+      .catch(err => {
+        console.error('Publish error:', err);
+        alert('Error while publishing.');
+      });
+  });
+
+
 });
+editor.on('component:selected', () => {
+  document.querySelector('.custom-sidebar').style.display = 'block';
+});
+
+editor.on('canvas:drop', () => {
+  document.querySelector('.custom-sidebar').style.display = 'block';
+});
+
+editor.on('canvas:click', (ev) => {
+  if (!editor.getSelected()) {
+    document.querySelector('.custom-sidebar').style.display = 'none';
+  }
+});
+
+
+
 

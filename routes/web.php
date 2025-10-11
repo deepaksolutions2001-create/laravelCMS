@@ -29,3 +29,4 @@ Route::get('/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edi
 Route::post('/pages/{id}/save', [PageController::class, 'save'])->name('pages.save');
 
 Route::get('/preview/{id}', [PageController::class, 'preview'])->name('pages.preview');
+Route::post('/pages/{id}/publish', [PageController::class, 'publish'])->name('pages.publish');

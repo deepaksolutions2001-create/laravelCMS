@@ -223,26 +223,30 @@ html {
  background: #2980b9;
 }
 
-/* Builder container */
+/* Main builder layout */
 #builder-wrap {
  display: flex;
- height: calc(100% - 50px);
+ width: 100%;
+ height: calc(100vh - 50px);
+ background: #1e1e1e;
 }
 
-/* GrapesJS canvas */
+/* Editor area (GrapesJS canvas) */
 #gjs {
  flex: 1;
- height: 100%;
- border-right: 1px solid #ccc;
+ /* take full space left of sidebar */
+ background: #fff;
+ min-height: 100%;
+ overflow: auto;
 }
 
-/* Sidebar for blocks, layers, styles */
 #sidebar {
  width: 320px;
- background: #f4f4f4;
+ /* adjust as needed or remove if you want hidden */
+ background: #111;
+ border-left: 2px solid #333;
  display: flex;
  flex-direction: column;
- border-left: 1px solid #ccc;
 }
 
 #sidebar-nav {
@@ -282,4 +286,221 @@ html {
 #blocks {
  display: block;
  /* Show blocks tab by default */
+}
+
+/* Main builder layout */
+#builder-wrap {
+ display: flex;
+ width: 100%;
+ height: calc(100vh - 50px);
+ background: #1e1e1e;
+}
+
+/* GrapesJS Editor Canvas */
+/* Editor area (GrapesJS canvas) */
+#gjs {
+ flex: 1;
+ /* take full space left of sidebar */
+ background: #fff;
+ min-height: 100%;
+ overflow: auto;
+}
+
+#sidebar {
+ width: 320px;
+ /* adjust as needed or remove if you want hidden */
+ background: #111;
+ border-left: 2px solid #333;
+ display: flex;
+ flex-direction: column;
+}
+
+/* Sidebar tabs (Blocks / Layers / Styles) */
+#sidebar-nav {
+ display: flex;
+ justify-content: space-around;
+ background: #222;
+ border-bottom: 1px solid #444;
+}
+
+#sidebar-nav button {
+ flex: 1;
+ padding: 10px;
+ color: #fff;
+ background: #222;
+ border: none;
+ cursor: pointer;
+ font-weight: 600;
+ text-transform: uppercase;
+}
+
+#sidebar-nav button.active {
+ background: #444;
+}
+
+/* Panels inside sidebar */
+#blocks,
+#layers,
+#styles {
+ flex: 1;
+ overflow-y: auto;
+ padding: 10px;
+ background: #000;
+}
+
+/* === Block Panel Styling === */
+.gjs-block-category {
+ background: #000;
+ border: 1px solid #222;
+ border-radius: 8px;
+ margin-bottom: 10px;
+ padding: 6px;
+}
+
+.gjs-block-category .gjs-title {
+ color: #fff;
+ font-weight: bold;
+ text-transform: uppercase;
+}
+
+.gjs-block {
+ background: #111;
+ color: #fff;
+ border: 1px solid #444;
+ border-radius: 8px;
+ padding: 10px;
+ text-align: center;
+ cursor: pointer;
+ margin: 6px;
+ transition: background 0.2s, transform 0.2s;
+}
+
+.gjs-block:hover {
+ background: #333;
+ transform: scale(1.05);
+}
+
+/* === Top Bar === */
+#topbar {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 8px 12px;
+ background: #111;
+ color: #fff;
+ border-bottom: 2px solid #333;
+}
+
+#page-title {
+ background: #222;
+ border: none;
+ padding: 6px 10px;
+ color: #fff;
+ border-radius: 6px;
+}
+
+#btn-preview,
+#btn-save {
+ background: #444;
+ border: none;
+ color: #fff;
+ padding: 6px 10px;
+ border-radius: 6px;
+ cursor: pointer;
+}
+
+#btn-preview:hover,
+#btn-save:hover {
+ background: #666;
+}
+
+/* Hide GrapesJS default left panel */
+.gjs-pn-panel {
+ display: none !important;
+}
+
+/* Hide sidebar completely if you want full width */
+#sidebar.hidden {
+ display: none;
+}
+
+/* === FIX LEFT BLACK AREA === */
+
+/* Hide all GrapesJS default side/top panels */
+.gjs-pn-panels,
+.gjs-pn-commands,
+.gjs-pn-views-container {
+ display: none !important;
+}
+
+/* Make canvas container fill entire width */
+.gjs-editor,
+.gjs-cv-canvas,
+.gjs-frame-wrapper {
+ width: 100% !important;
+ height: 100% !important;
+ background: #fff !important;
+}
+
+/* Remove gray or black left overlay panel */
+.gjs-cv-canvas {
+ background: #fff !important;
+ left: 0 !important;
+}
+
+/* Ensure iframe inside GrapesJS fills space */
+.gjs-frame {
+ width: 100% !important;
+ height: 100% !important;
+ background: #fff !important;
+ border: none !important;
+}
+
+/* Optional: remove leftover margins or dark shadows */
+.gjs-editor-cont {
+ background: #fff !important;
+ margin: 0 !important;
+ padding: 0 !important;
+}
+
+.custom-sidebar {
+ position: absolute;
+ right: 0;
+ top: 60px;
+ width: 300px;
+ height: calc(100% - 60px);
+ background: #1e1e1e;
+ color: #fff;
+ overflow-y: auto;
+ padding: 10px;
+ border-left: 1px solid #333;
+ z-index: 10;
+}
+
+.panel-section {
+ margin-bottom: 20px;
+}
+
+.panel-section h4 {
+ margin-bottom: 10px;
+ color: #fff;
+ font-size: 14px;
+ border-bottom: 1px solid #333;
+ padding-bottom: 5px;
+}
+
+#btn-save {
+ background: #444;
+}
+
+#btn-save:hover {
+ background: #555;
+}
+
+#btn-publish {
+ background: #16a34a;
+}
+
+#btn-publish:hover {
+ background: #15803d;
 }
