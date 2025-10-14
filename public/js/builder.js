@@ -237,7 +237,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-  // ✅ Loads full-page components (saved with raw HTML + CSS, no wrapping)
   function loadPageComponents(editor) {
     fetch('/admin/components/list', { cache: 'no-store' })
       .then(res => res.json())
@@ -245,24 +244,28 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!data.success || !Array.isArray(data.components)) return;
 
         const bm = editor.BlockManager;
-
-        // 🔍 Filter: load only those categorized as 'page_component'
         const pageComponents = data.components.filter(
-          comp => comp.category === 'Page Components'
+          comp => (comp.category || '').trim() === 'Page Components'
         );
 
         pageComponents.forEach(comp => {
-          // 🧠 Combine HTML + CSS in one content block (no extra wrapping)
-          const content = `
+          // ✅ Each block content stores the DB ID
+          const wrappedHtml = `
+<div class="page-component-wrapper" data-db-id="${comp.id}">
+  ${comp.html || ''}
+</div>
 <style>${comp.css || ''}</style>
-${comp.html || ''}
         `;
 
           bm.add(`page-${comp.id}`, {
             label: comp.name || `Page Component ${comp.id}`,
             category: '📄 Page Components',
             attributes: { class: 'fa fa-layer-group' },
-            content: content,
+            content: wrappedHtml,
+
+            // ✅ Optional: Add custom metadata to help you later
+            componentId: comp.id, // internal GrapesJS metadata
+            componentName: comp.name,
           });
         });
 
@@ -270,7 +273,6 @@ ${comp.html || ''}
       })
       .catch(err => console.error('❌ Error loading page components:', err));
   }
-
   // ============================================================
   // 🧱 INITIALIZE GRAPESJS EDITOR
   // ============================================================
@@ -696,26 +698,64 @@ ${comp.html || ''}
 
     return await response.json();
   }
+  let isSaving = false;
   async function savePageAsComponent(url) {
-    const html = editor.getHtml();
-    const css = editor.getCss();
+    if (isSaving) return; // prevent double-fire
+    isSaving = true;
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: document.getElementById('page-title').value,
-        category: 'Page Components',
-        html,
-        css,
-      }),
-    });
+    try {
+      const html = editor.getHtml();
+      const css = editor.getCss();
 
-    return await response.json();
+      // 🔍 Try 1: Get ID from hidden input
+      let id = document.getElementById('component-id')?.value || null;
+
+      // 🔍 Try 2: If not found, look inside the canvas for a wrapped component
+      if (!id) {
+        const wrapper = editor.getWrapper();
+        const comp = wrapper.find('.page-component-wrapper')[0];
+        if (comp) {
+          const attrs = comp.getAttributes();
+          id = attrs['data-db-id'] || null;
+          console.log('📦 Auto-detected component ID from canvas:', id);
+        }
+      }
+
+      const name = (document.getElementById('page-title')?.value || 'Untitled Page').trim();
+
+      console.log('🧩 Saving Component:', { id, name });
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          category: 'Page Components',
+          html,
+          css,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data?.id) {
+        document.getElementById('component-id').value = data.id;
+      }
+
+      alert(data.message || 'Component saved');
+    } catch (e) {
+      console.error(e);
+      alert('Save failed');
+    } finally {
+      isSaving = false;
+    }
   }
+
 
   // // ✅ Save
   // document.getElementById('btn-save').onclick = async () => {

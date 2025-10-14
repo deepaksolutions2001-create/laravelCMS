@@ -43,19 +43,46 @@ class ComponentController extends Controller
 
 public function savePageAsComponent(Request $request)
 {
-    
-        $component = new Component();
-        $component->name = $request->input('name',$component->name);
-        $component->category = $request->input('category',$component->category); // 🔧 remove accidental spaces
-        $component->html = $request->input('html');
-          $component->css = $request->input('css', $component->css);
+    try {
+        // 1️⃣ Get id if provided
+        $id = $request->input('id');
 
-       // Save all changes to the database
+        // 2️⃣ Find existing component or create new
+        $component = $id ? Component::find($id) : new Component();
+
+        if (!$component) {
+            $component = new Component();
+        }
+
+        // 3️⃣ Assign values (fallback to existing if not provided)
+        $component->name = $request->input('name', $component->name);
+        $component->category = $request->input('category', $component->category ?? 'Page Components');
+        $component->html = $request->input('html', $component->html);
+
+        // 4️⃣ Handle CSS (store as JSON string if array/object)
+        $css = $request->input('css');
+        if (is_array($css) || is_object($css)) {
+            $css = json_encode($css);
+        }
+        $component->css = $css;
+
+        // 5️⃣ Save component
         $component->save();
 
-        // Return JSON response to confirm success
-        return response()->json(['success' => true]);
-
+        // 6️⃣ Return response with saved ID
+        return response()->json([
+            'success' => true,
+            'id' => $component->id,
+            'message' => $id ? '✅ Component updated successfully.' : '✨ New component created successfully.'
+        ]);
+    } catch (\Throwable $e) {
+        // 7️⃣ Handle errors safely
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
 }
 
 

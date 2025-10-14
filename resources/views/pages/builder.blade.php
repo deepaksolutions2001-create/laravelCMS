@@ -100,7 +100,8 @@
       placeholder="Page title..."
       class="border rounded px-3 py-2 w-1/2 focus:ring focus:ring-indigo-300"
     />
-
+      <!-- 👇 Add this hidden field just below -->
+<input type="hidden" id="component-id" value="">
     <!-- Control Buttons -->
     <div class="space-x-2">
      <button id="btn-html-view" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-500">
