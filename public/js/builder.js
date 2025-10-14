@@ -12,6 +12,8 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
 
+
+
   // ============================================================
   // 🧠 PREFILL META FIELDS IF META_DATA EXISTS
   // ============================================================
@@ -205,7 +207,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // ✅ FIXED VERSION — Ensures loaded components retain CSS correctly
   function loadCustomComponents(editor) {
-    fetch('/admin/components/list')
+    fetch('/admin/components/list', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => {
         if (!data.success || !Array.isArray(data.components)) return;
@@ -232,6 +234,43 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
       .catch(err => console.error('Error loading components:', err));
   }
+
+
+
+  // ✅ Loads full-page components (saved with raw HTML + CSS, no wrapping)
+  function loadPageComponents(editor) {
+    fetch('/admin/components/list', { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success || !Array.isArray(data.components)) return;
+
+        const bm = editor.BlockManager;
+
+        // 🔍 Filter: load only those categorized as 'page_component'
+        const pageComponents = data.components.filter(
+          comp => comp.category === 'Page Components'
+        );
+
+        pageComponents.forEach(comp => {
+          // 🧠 Combine HTML + CSS in one content block (no extra wrapping)
+          const content = `
+<style>${comp.css || ''}</style>
+${comp.html || ''}
+        `;
+
+          bm.add(`page-${comp.id}`, {
+            label: comp.name || `Page Component ${comp.id}`,
+            category: '📄 Page Components',
+            attributes: { class: 'fa fa-layer-group' },
+            content: content,
+          });
+        });
+
+        console.log('✅ Page components loaded:', pageComponents.length);
+      })
+      .catch(err => console.error('❌ Error loading page components:', err));
+  }
+
   // ============================================================
   // 🧱 INITIALIZE GRAPESJS EDITOR
   // ============================================================
@@ -347,6 +386,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
   loadCustomComponents(editor);
+  loadPageComponents(editor);
 
   editor.Commands.add('save-component', {
     run(editor) {
@@ -656,12 +696,81 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     return await response.json();
   }
+  async function savePageAsComponent(url) {
+    const html = editor.getHtml();
+    const css = editor.getCss();
 
-  // ✅ Save
-  document.getElementById('btn-save').onclick = async () => {
-    const result = await savePageData(`/pages/${PAGE_ID}/save`);
-    if (result.success) alert('✅ Page saved successfully!');
-  };
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: document.getElementById('page-title').value,
+        category: 'Page Components',
+        html,
+        css,
+      }),
+    });
+
+    return await response.json();
+  }
+
+  // // ✅ Save
+  // document.getElementById('btn-save').onclick = async () => {
+  //   const result = await savePageData(`/pages/${PAGE_ID}/save`);
+  //   if (result.success) alert('✅ Page saved successfully!');
+  // };
+
+  // ============================================================
+  // 💾 SAVE MODAL LOGIC — FIXED (runs outside editor.on('load'))
+  // ============================================================
+
+  const modal = document.getElementById("saveOptionModal");
+  const btnSave = document.getElementById("btn-save");
+  const saveAsPageBtn = document.getElementById("saveAsPage");
+  const saveAsComponentBtn = document.getElementById("saveAsComponent");
+  const cancelSaveBtn = document.getElementById("cancelSave");
+
+  if (!btnSave || !modal) {
+    console.error("❌ Save button or modal not found in DOM!");
+  } else {
+    // ✅ Show/Hide helpers
+    const showModal = () => {
+      console.log("✅ Save button listener attached");
+      modal.classList.add("show");
+      modal.style.alignItems = "center";
+      modal.style.justifyContent = "center";
+    };
+    const hideModal = () => (modal.classList.remove("show"));
+
+    // 🟢 Show modal when Save clicked
+    btnSave.addEventListener("click", (e) => {
+      e.preventDefault();
+      showModal();
+    });
+
+    // 🔴 Close on cancel
+    cancelSaveBtn?.addEventListener("click", hideModal);
+
+    // 🟣 Handle Save as Page
+    saveAsPageBtn?.addEventListener("click", async () => {
+      hideModal();
+      const result = await savePageData(`/pages/${PAGE_ID}/save`);
+      if (result.success) alert('✅ Page saved successfully!');
+    });
+
+    // 🟠 Handle Save as Component
+    saveAsComponentBtn?.addEventListener("click", async () => {
+      hideModal();
+      const result = await savePageAsComponent('/admin/components/saveAsComponent');
+      if (result.success) alert('✅ Page As Component saved successfully!');
+    });
+  }
+
+
+
 
   // ✅ Preview
   document.getElementById('btn-preview').onclick = async () => {
@@ -718,3 +827,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
 }); // End DOMContentLoaded
+
+
+

@@ -181,6 +181,20 @@
     </div>
   </div>
 
+
+  <div id="saveOptionModal" class="modal" style="display:none;">
+  <div class="modal-content" style="background:#2c2c2c;color:#fff;padding:20px;border-radius:8px;max-width:400px;margin:auto;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);">
+    <h3>Save Options</h3>
+    <p>How would you like to save this?</p>
+    <div style="display:flex;gap:10px;margin-top:15px;">
+      <button id="saveAsPage" class="btn btn-primary">Save as Page</button>
+      <button id="saveAsComponent" class="btn btn-secondary">Save as Component</button>
+      <button id="cancelSave" class="btn btn-danger">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
   <!-- 🧠 Pass Page + Meta Data to JS -->
   <script>
     window.PAGE_ID = {{ $page->id }};

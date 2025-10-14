@@ -29,4 +29,6 @@ Route::post('/pages/{id}/publish', [PageController::class, 'publish'])->name('pa
 
 
 Route::post('/admin/components/save', [ComponentController::class, 'save']);
+Route::post('/admin/components/saveAsComponent', [ComponentController::class, 'savePageAsComponent']);
 Route::get('/admin/components/list', [ComponentController::class, 'list']);
+
