@@ -504,3 +504,17 @@ html {
 #btn-publish:hover {
  background: #15803d;
 }
+
+.CodeMirror {
+ width: 100% !important;
+ height: 100% !important;
+}
+
+#codeModal .CodeMirror {
+ font-family: 'Fira Code', 'Courier New', monospace;
+ font-size: 14px;
+ background: #1e1e1e;
+ color: #d4d4d4;
+ border-radius: 8px;
+ height: 80vh;
+}
