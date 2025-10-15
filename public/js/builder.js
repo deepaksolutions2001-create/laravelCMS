@@ -244,9 +244,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!data.success || !Array.isArray(data.components)) return;
 
         const bm = editor.BlockManager;
-        const pageComponents = data.components.filter(
-          comp => (comp.category || '').trim() === 'Page Components'
-        );
+
 
         pageComponents.forEach(comp => {
           // ✅ Each block content stores the DB ID
@@ -258,7 +256,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         `;
 
           bm.add(`page-${comp.id}`, {
-            label: comp.name || `Page Component ${comp.id}`,
+            label: comp.name || `Page Components ${comp.id}`,
             category: '📄 Page Components',
             attributes: { class: 'fa fa-layer-group' },
             content: wrappedHtml,
@@ -704,7 +702,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     isSaving = true;
 
     try {
-      const html = editor.getHtml();
+      const html = cleanHtml(editor.getHtml());
       const css = editor.getCss();
 
       // 🔍 Try 1: Get ID from hidden input
@@ -754,6 +752,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     } finally {
       isSaving = false;
     }
+  }
+
+  // Utility function
+  function cleanHtml(html) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Remove meta, title, link tags
+    tempDiv.querySelectorAll('meta, title, link').forEach(el => el.remove());
+
+    return tempDiv.innerHTML;
   }
 
 
@@ -827,6 +836,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (result.url) window.open(result.url, '_blank');
     }
   };
+
+
 
   // === HTML View Button ===
   document.getElementById('btn-html-view').addEventListener('click', () => {

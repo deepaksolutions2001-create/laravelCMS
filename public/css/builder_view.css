@@ -625,3 +625,18 @@ html {
   opacity: 1;
  }
 }
+
+.page-component-wrapper {
+ position: relative;
+}
+
+.page-component-wrapper::before {
+ display: none !important;
+ /* hides label if you used pseudo-element */
+}
+
+/* hide raw text nodes if any remain */
+.page-component-wrapper {
+ color: transparent;
+ font-size: 0;
+}

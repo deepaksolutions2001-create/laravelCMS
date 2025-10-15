@@ -128,27 +128,7 @@ button {
 
 /************** bootstrap end  *******************/
 
-/* ---------- root start---------- */
-
-:root {
- --primary-color: rgb(255 65 108);
- --secondray-color: #2d2d2d;
- --asscent-color: rgb(156, 156, 156);
- --white_color: #ffff;
- --color_black: #000;
- --main_section-heading-color: #fdfdfd;
- --main_section-sub-heading-color: #ebebeb;
- --main_section-sh-description-color: #808080;
- --descriptions_heading-color: #000;
- --descriptions_paragraph-color: #747474;
- --ab_box-background-color: var(--secondray-color);
- --icon_color: var(--primary-color);
- --hr_color: var(--primary-color);
- --image_box-background-color: #00000085;
- --list-style-color-hidden: #d3d3d3;
- --list-style-color-show: #f5f5f5;
- --icon_font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
-}
+/* ---------- replaced root variables with actual colors ---------- */
 
 .about_box_id-1 .ab_bx_id_1-back-image {
  background-position: center;
@@ -160,7 +140,7 @@ button {
  width: 100%;
  padding: 50px 30px;
  background-blend-mode: darken;
- background-color: var(--image_box-background-color);
+ background-color: #00000085;
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section {
@@ -169,12 +149,11 @@ button {
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin {
- background-color: var(--ab_box-background-color);
+ background-color: #2d2d2d;
  padding: 40px 45px;
  border-radius: 8px;
  max-width: 600px;
  margin: 0 5% auto auto;
- /* color: var(--white_color); */
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-under_main-heading {
@@ -184,13 +163,13 @@ button {
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-under_main-heading h2 {
  padding-left: 10px;
  font-size: 32px;
- color: var(--main_section-heading-color);
+ color: #fdfdfd;
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-under_main-heading .ab_bx_id_1-hr-tag {
  height: 2px;
  width: 70px;
- background-color: var(--hr_color);
+ background-color: rgb(255 65 108);
  margin: 8px 0px;
 }
 
@@ -202,7 +181,7 @@ button {
  border-radius: 50%;
  position: relative;
  bottom: 10px;
- background-color: var(--secondray-color);
+ background-color: #2d2d2d;
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-under_main-heading .ab_bx_id_1-hr-tag .under_circle::before {
@@ -211,11 +190,11 @@ button {
  height: 8px;
  width: 8px;
  border-radius: 50%;
- border: 2px solid var(--primary-color);
+ border: 2px solid rgb(255 65 108);
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-under_sub_heading p {
- color: var(--main_section-sub-heading-color);
+ color: #ebebeb;
  padding-bottom: 30px;
  font-size: 17px;
 }
@@ -238,17 +217,17 @@ button {
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-und_lists .show .under-icon span {
- color: var(--icon_color);
- font-variation-settings: var(--icon_font-variation-settings);
+ color: rgb(255 65 108);
+ font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-und_lists .show:hover .under-icon span {
- color: var(--asscent-color);
+ color: rgb(156, 156, 156);
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-und_lists .show .under-text span {
  cursor: pointer;
- color: var(--list-style-color-show);
+ color: #f5f5f5;
  font-size: 20px;
 }
 
@@ -256,11 +235,10 @@ button {
  height: 0;
  opacity: 0;
  transition: all 0.3s linear;
- /* display: none; */
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-und_lists .under_list .hidden p {
- color: var(--list-style-color-hidden);
+ color: #d3d3d3;
  font-size: 14px;
 }
 
@@ -270,7 +248,7 @@ button {
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-button button {
  background-color: transparent;
- color: var(--white_color);
+ color: #ffff;
  padding: 15px 35px;
  font-size: 15px;
  border-radius: 80px;
@@ -289,18 +267,19 @@ button {
  border-radius: 80px;
  transition: all 0.25s ease-in-out;
  z-index: -1;
- background-color: var(--primary-color);
+ background-color: rgb(255 65 108);
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-button button:hover::before {
  transform: scale(0.8) translateX(100%);
-
- /* border: 1px solid var(--primary-color); */
 }
 
 .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin .ab_bx_id_1-button button:hover {
- border: 1px solid var(--primary-color);
+ border: 1px solid rgb(255 65 108);
 }
+
+/* Media queries remain same */
+
 
 @media screen and (max-width: 950px) {
  .about_box_id-1 .ab_bx_id_1-back-image .ab_bx_id_1-sider-section .ab_bx_id_1-under-sectoin {

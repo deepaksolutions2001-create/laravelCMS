@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -29,6 +30,7 @@ class PageController extends Controller
             'title' => 'Untitled Page',
             'html' => '',
             'css' => '',
+            'slug'=>'Untitled Page',
             'status' => 'draft', // Default status
         ]);
 
@@ -69,6 +71,11 @@ class PageController extends Controller
         $page->meta_og_image = $request->input('meta_og_image', $page->meta_og_image);
         $page->meta_custom = $request->input('meta_custom', $page->meta_custom);
 
+        
+
+        // Generate clean filename using slug of page title
+        $page->slug = Str::slug($page->title ?: 'untitled') . '.html';
+        
         // Save all changes to the database
         $page->save();
 
@@ -125,7 +132,7 @@ class PageController extends Controller
         }
 
         // Generate clean filename using slug of page title
-        $filename = \Str::slug($page->title ?: 'untitled') . '.html';
+        $filename = Str::slug($page->title ?: 'untitled') . '.html';
         $filePath = $path . '/' . $filename;
 
         // Build complete HTML structure with meta + CSS + content
