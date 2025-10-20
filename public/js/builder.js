@@ -10,6 +10,52 @@
  *  - Save, Preview, and Publish logic for pages
  */
 
+
+async function loadBlockFiles(htmlPath, cssPath = null) {
+  try {
+
+
+    const html = await fetch(htmlPath).then(res => res.text());
+
+
+
+    // If CSS path is provided, scope it (for older blocks)
+    if (cssPath) {
+      const css = await fetch(cssPath).then(res => res.text());
+      const blockId = htmlPath.split('/').slice(-2, -1)[0];
+      const scopedClass = `block-${blockId}`;
+      const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
+        if (selector.trim().startsWith('@')) return match;
+        return `${brace} .${scopedClass} ${selector}`;
+      });
+      return `<style>${scopedCss}</style>\n<div class="${scopedClass}">\n${html}\n</div>`;
+    }
+
+    // Single-file Tailwind block → just return raw HTML (includes JS)
+    return html;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+async function loadComponents(arr, pathname, labelname, times) {
+  for (let i = 1; i <= times; i++) {
+    try {
+      const content = await loadBlockFiles(`/js/blocks/${pathname}/${pathname}${i}/${pathname}.html`, `/js/blocks/${pathname}/${pathname}${i}/${pathname}.css`);
+      arr.push({
+        id: `${pathname}${i}`,
+        label: `${labelname} ${i}`,
+        category: `UI/${labelname}`,
+        content,
+
+      });
+    } catch (err) {
+      console.warn(`⚠️ ${labelname} ${i} not found or failed to load.`);
+    }
+  }
+  return arr
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
 
 
@@ -50,44 +96,46 @@ document.addEventListener("DOMContentLoaded", async function () {
   // 📦 LOAD DYNAMIC BLOCKS (Hero, About, etc.)
   // ============================================================
 
-  const heroBlocks = [];
-  const aboutBlocks = [];
-  const contact_form_Blocks = [];
-  const teamBlocks = [];
+  let heroBlocks = [];
+  let aboutBlocks = [];
+  let contact_form_Blocks = [];
+  let teamBlocks = [];
 
   // Load Hero blocks dynamically (hero1..hero3)
-  for (let i = 1; i <= 3; i++) {
-    try {
-      const content = await loadBlockFiles(`/js/blocks/hero/hero${i}/hero.html`, `/js/blocks/hero/hero${i}/hero.css`);
-      heroBlocks.push({
-        id: `hero${i}`,
-        label: `Hero ${i}`,
-        category: 'UI/Hero',
-        content,
+  heroBlocks = await loadComponents(heroBlocks, 'hero', 'Hero', 3)
+  // for (let i = 1; i <= 3; i++) {
+  //   try {
+  //     const content = await loadBlockFiles(`/js/blocks/hero/hero${i}/hero.html`, `/js/blocks/hero/hero${i}/hero.css`);
+  //     heroBlocks.push({
+  //       id: `hero${i}`,
+  //       label: `Hero ${i}`,
+  //       category: 'UI/Hero',
+  //       content,
 
-      });
-    } catch (err) {
-      console.warn(`⚠️ Hero ${i} not found or failed to load.`);
-    }
-  }
+  //     });
+  //   } catch (err) {
+  //     console.warn(`⚠️ Hero ${i} not found or failed to load.`);
+  //   }
+  // }
 
   // Load About blocks dynamically (about1..about3)
   // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
   // so we keep that exact behavior here (no logic change).
-  for (let i = 1; i <= 3; i++) {
-    try {
-      const content = await loadBlockFiles(`/js/blocks/about/about${i}/about.html`, `/js/blocks/about/about${i}/about.css`);
-      aboutBlocks
-        .push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
-          id: `about${i}`,
-          label: `About ${i}`,
-          category: 'UI/About',
-          content,
-        });
-    } catch (err) {
-      console.warn(`⚠️ About ${i} not found or failed to load.`);
-    }
-  }
+  aboutBlocks = await loadComponents(aboutBlocks, 'about', 'About', 3)
+  // for (let i = 1; i <= 3; i++) {
+  //   try {
+  //     const content = await loadBlockFiles(`/js/blocks/about/about${i}/about.html`, `/js/blocks/about/about${i}/about.css`);
+  //     aboutBlocks
+  //       .push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
+  //         id: `about${i}`,
+  //         label: `About ${i}`,
+  //         category: 'UI/About',
+  //         content,
+  //       });
+  //   } catch (err) {
+  //     console.warn(`⚠️ About ${i} not found or failed to load.`);
+  //   }
+  // }
 
   // Load contact form blocks dynamically (contact form 1..form 2)
   // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
@@ -578,24 +626,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // }
 
 
-  async function loadBlockFiles(htmlPath, cssPath = null) {
-    const html = await fetch(htmlPath).then(res => res.text());
 
-    // If CSS path is provided, scope it (for older blocks)
-    if (cssPath) {
-      const css = await fetch(cssPath).then(res => res.text());
-      const blockId = htmlPath.split('/').slice(-2, -1)[0];
-      const scopedClass = `block-${blockId}`;
-      const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
-        if (selector.trim().startsWith('@')) return match;
-        return `${brace} .${scopedClass} ${selector}`;
-      });
-      return `<style>${scopedCss}</style>\n<div class="${scopedClass}">\n${html}\n</div>`;
-    }
-
-    // Single-file Tailwind block → just return raw HTML (includes JS)
-    return html;
-  }
 
   // ============================================================
   // 🧩 CUSTOM EDITABLE LIST COMPONENT
