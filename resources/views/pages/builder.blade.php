@@ -79,6 +79,24 @@
 
   <!-- 🎨 Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script>
+  tailwind.config = {
+  theme: { extend: {} },
+  safelist: [
+    'hover:bg-blue-500',
+    'hover:text-white',
+    'hover:scale-105',
+    'transition',
+    'duration-300',
+    'ease-in-out',
+    'hover:bg-purple-500',
+    'hover:bg-pink-500',
+    'hover:bg-yellow-500',
+    'hover:bg-gray-700',
+    'hover:bg-indigo-500',
+    'hover:bg-green-500'
+  ]
+}; -->
 
   <script>
     // === Pass Laravel Blade variables into JavaScript ===

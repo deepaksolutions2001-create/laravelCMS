@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const heroBlocks = [];
   const aboutBlocks = [];
   const contact_form_Blocks = [];
+  const teamBlocks = [];
 
   // Load Hero blocks dynamically (hero1..hero3)
   for (let i = 1; i <= 3; i++) {
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         label: `Hero ${i}`,
         category: 'UI/Hero',
         content,
+
       });
     } catch (err) {
       console.warn(`⚠️ Hero ${i} not found or failed to load.`);
@@ -75,12 +77,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   for (let i = 1; i <= 3; i++) {
     try {
       const content = await loadBlockFiles(`/js/blocks/about/about${i}/about.html`, `/js/blocks/about/about${i}/about.css`);
-      heroBlocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
-        id: `about${i}`,
-        label: `About ${i}`,
-        category: 'UI/About',
-        content,
-      });
+      aboutBlocks
+        .push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
+          id: `about${i}`,
+          label: `About ${i}`,
+          category: 'UI/About',
+          content,
+        });
     } catch (err) {
       console.warn(`⚠️ About ${i} not found or failed to load.`);
     }
@@ -92,10 +95,29 @@ document.addEventListener("DOMContentLoaded", async function () {
   for (let i = 1; i <= 5; i++) {
     try {
       const content = await loadBlockFiles(`/js/blocks/contact_form/contact_form${i}/contact_form.html`, `/js/blocks/contact_form/contact_form${i}/contact_form.css`);
-      heroBlocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
+      contact_form_Blocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
         id: `contact_form${i}`,
         label: `Conatct_Form${i}`,
         category: 'UI/Contact_Form',
+        content,
+      });
+    } catch (err) {
+      console.warn(`⚠️ About ${i} not found or failed to load.`);
+    }
+  }
+
+
+
+  // Load team blocks dynamically (team 1..team ...)
+  // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
+  // so we keep that exact behavior here (no logic change).
+  for (let i = 1; i <= 4; i++) {
+    try {
+      const content = await loadBlockFiles(`/js/blocks/team/team${i}/team.html`);
+      teamBlocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
+        id: `team${i}`,
+        label: `Team${i}`,
+        category: 'UI/Team',
         content,
       });
     } catch (err) {
@@ -227,6 +249,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             category: comp.category || 'Custom Components',
             attributes: { class: 'fa fa-cube' },
             content: wrappedHtml,
+            preview: `<div style="width:200px;transform:scale(0.5);transform-origin:top left;">${comp.html}</div>`
+
           });
         });
 
@@ -245,29 +269,36 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const bm = editor.BlockManager;
 
-
-        pageComponents.forEach(comp => {
-          // ✅ Each block content stores the DB ID
-          const wrappedHtml = `
+        data.components.forEach(comp => {
+          // Wrap HTML
+          let wrappedHtml = `
 <div class="page-component-wrapper" data-db-id="${comp.id}">
   ${comp.html || ''}
 </div>
-<style>${comp.css || ''}</style>
-        `;
+`;
+
+          // Include CSS if it exists (traditional component)
+          if (comp.css && comp.css.trim().length > 0) {
+            wrappedHtml += `<style>${comp.css}</style>`;
+          }
+
+          // Include JS if it exists (Tailwind component with behavior)
+          if (comp.js && comp.js.trim().length > 0) {
+            wrappedHtml += `<script>${comp.js}</script>`;
+          }
 
           bm.add(`page-${comp.id}`, {
             label: comp.name || `Page Components ${comp.id}`,
             category: '📄 Page Components',
             attributes: { class: 'fa fa-layer-group' },
             content: wrappedHtml,
-
-            // ✅ Optional: Add custom metadata to help you later
-            componentId: comp.id, // internal GrapesJS metadata
+            componentId: comp.id,
             componentName: comp.name,
+            preview: `<div style="width:200px;transform:scale(0.5);transform-origin:top left;">${comp.html}</div>`,
           });
         });
 
-        console.log('✅ Page components loaded:', pageComponents.length);
+        console.log('✅ Page components loaded:', data.components.length);
       })
       .catch(err => console.error('❌ Error loading page components:', err));
   }
@@ -524,26 +555,46 @@ document.addEventListener("DOMContentLoaded", async function () {
   // ⚙️ HELPER FUNCTION - Load HTML + CSS together
   // ============================================================
 
-  async function loadBlockFiles(htmlPath, cssPath) {
-    const [html, css] = await Promise.all([
-      fetch(htmlPath).then(res => res.text()),
-      fetch(cssPath).then(res => res.text())
-    ]);
+  // async function loadBlockFiles(htmlPath, cssPath) {
+  //   const [html, css] = await Promise.all([
+  //     fetch(htmlPath).then(res => res.text()),
+  //     fetch(cssPath).then(res => res.text())
+  //   ]);
 
-    // 🧠 Generate a unique class per block based on its folder name
-    const blockId = htmlPath.split('/').slice(-2, -1)[0]; // e.g. hero1
-    const scopedClass = `block-${blockId}`;
+  //   // 🧠 Generate a unique class per block based on its folder name
+  //   const blockId = htmlPath.split('/').slice(-2, -1)[0]; // e.g. hero1
+  //   const scopedClass = `block-${blockId}`;
 
-    // 🪄 Wrap the HTML in a unique container
-    const wrappedHtml = `<div class="${scopedClass}">\n${html}\n</div>`;
+  //   // 🪄 Wrap the HTML in a unique container
+  //   const wrappedHtml = `<div class="${scopedClass}">\n${html}\n</div>`;
 
-    // 🪄 Prefix all CSS selectors with the unique class to isolate scope
-    const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
-      if (selector.trim().startsWith('@')) return match; // keep @media/@keyframes untouched
-      return `${brace} .${scopedClass} ${selector}`;
-    });
+  //   // 🪄 Prefix all CSS selectors with the unique class to isolate scope
+  //   const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
+  //     if (selector.trim().startsWith('@')) return match; // keep @media/@keyframes untouched
+  //     return `${brace} .${scopedClass} ${selector}`;
+  //   });
 
-    return `<style>${scopedCss}</style>\n${wrappedHtml}`;
+  //   return `<style>${scopedCss}</style>\n${wrappedHtml}`;
+  // }
+
+
+  async function loadBlockFiles(htmlPath, cssPath = null) {
+    const html = await fetch(htmlPath).then(res => res.text());
+
+    // If CSS path is provided, scope it (for older blocks)
+    if (cssPath) {
+      const css = await fetch(cssPath).then(res => res.text());
+      const blockId = htmlPath.split('/').slice(-2, -1)[0];
+      const scopedClass = `block-${blockId}`;
+      const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
+        if (selector.trim().startsWith('@')) return match;
+        return `${brace} .${scopedClass} ${selector}`;
+      });
+      return `<style>${scopedCss}</style>\n<div class="${scopedClass}">\n${html}\n</div>`;
+    }
+
+    // Single-file Tailwind block → just return raw HTML (includes JS)
+    return html;
   }
 
   // ============================================================
@@ -613,10 +664,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Keep the original sequence and redundancies exactly as provided
   blocks.forEach(block => bm.add(block.id, block));
   heroBlocks.forEach(block => bm.add(block.id, block));
-  blocks.forEach(block => bm.add(block.id, block));
+  //blocks.forEach(block => bm.add(block.id, block));
   aboutBlocks.forEach(block => bm.add(block.id, block));
-  blocks.forEach(block => bm.add(block.id, block));
+  //blocks.forEach(block => bm.add(block.id, block));
   contact_form_Blocks.forEach(block => bm.add(block.id, block));
+  //here add team block
+  teamBlocks.forEach(block => bm.add(block.id, block));
 
   // Combine UI/Hero category into UI (visual grouping) — preserved
   editor.on('load', () => {
@@ -665,6 +718,42 @@ document.addEventListener("DOMContentLoaded", async function () {
     editor.setStyle(PAGE_CSS);
   }
 
+  // here we show preview of compoent 
+  editor.BlockManager.getAll().forEach(block => {
+    const el = block.get('el');
+
+    if (el) {
+      // Create a preview popup
+      const previewPopup = document.createElement('div');
+      previewPopup.classList.add('block-preview-popup');
+      previewPopup.innerHTML = block.get('preview') || ''; // HTML preview or <img>
+      document.body.appendChild(previewPopup);
+
+      el.addEventListener('mouseenter', e => {
+        if (!block.get('preview')) return;
+
+        previewPopup.style.display = 'block';
+        previewPopup.style.left = e.pageX + 10 + 'px';
+        previewPopup.style.top = e.pageY + 10 + 'px';
+      });
+
+      el.addEventListener('mousemove', e => {
+        previewPopup.style.left = e.pageX + 10 + 'px';
+        previewPopup.style.top = e.pageY + 10 + 'px';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        previewPopup.style.display = 'none';
+      });
+    }
+  });
+
+  // here we end preview of compoent 
+
+
+
+
+
   // ============================================================
   // 💾 SAVE, PREVIEW, AND PUBLISH FUNCTIONS
   // ============================================================
@@ -698,30 +787,31 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   let isSaving = false;
   async function savePageAsComponent(url) {
-    if (isSaving) return; // prevent double-fire
+    if (isSaving) return;
     isSaving = true;
 
     try {
       const html = cleanHtml(editor.getHtml());
-      const css = editor.getCss();
+      const css = editor.getCss ? editor.getCss() : ''; // get CSS if editor provides it
+      const js = editor.getJs ? editor.getJs() : '';    // get JS if editor provides it
 
-      // 🔍 Try 1: Get ID from hidden input
       let id = document.getElementById('component-id')?.value || null;
-
-      // 🔍 Try 2: If not found, look inside the canvas for a wrapped component
-      if (!id) {
-        const wrapper = editor.getWrapper();
-        const comp = wrapper.find('.page-component-wrapper')[0];
-        if (comp) {
-          const attrs = comp.getAttributes();
-          id = attrs['data-db-id'] || null;
-          console.log('📦 Auto-detected component ID from canvas:', id);
-        }
-      }
-
       const name = (document.getElementById('page-title')?.value || 'Untitled Page').trim();
 
-      console.log('🧩 Saving Component:', { id, name });
+      console.log('🧩 Saving Component:', { id, name, html, css, js });
+
+      const payload = {
+        id,
+        name,
+        category: 'Page Components',
+        html,
+        js,
+      };
+
+      // Only include CSS if it exists
+      if (css && css.trim().length > 0) {
+        payload.css = css;
+      }
 
       const response = await fetch(url, {
         method: 'POST',
@@ -730,13 +820,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          id,
-          name,
-          category: 'Page Components',
-          html,
-          css,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
@@ -745,7 +829,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById('component-id').value = data.id;
       }
 
-      alert(data.message || 'Component saved');
+      alert(data.message || 'Component saved successfully');
     } catch (e) {
       console.error(e);
       alert('Save failed');
@@ -753,6 +837,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       isSaving = false;
     }
   }
+
 
   // Utility function
   function cleanHtml(html) {

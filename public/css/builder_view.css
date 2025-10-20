@@ -640,3 +640,27 @@ html {
  color: transparent;
  font-size: 0;
 }
+
+
+
+
+
+
+
+.block-preview-popup {
+ position: absolute;
+ display: none;
+ z-index: 9999;
+ background: #fff;
+ border: 1px solid #ddd;
+ padding: 5px;
+ border-radius: 8px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+ max-width: 250px;
+ pointer-events: none;
+}
+
+.block-preview-popup img {
+ width: 100%;
+ border-radius: 6px;
+}

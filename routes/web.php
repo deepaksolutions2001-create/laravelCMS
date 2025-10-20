@@ -34,3 +34,4 @@ Route::get('/admin/components/list', [ComponentController::class, 'list']);
 Route::get('/admin/components/list/{id}', [ComponentController::class, 'listId']);
 
 
+Route::view('/test', 'test2');
