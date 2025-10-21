@@ -65,7 +65,7 @@ class PageController extends Controller
         $page->status = $request->input('status', 'draft');
 
         // ✅ Update meta fields if provided
-        $page->meta_title = $request->input('meta_title', $page->meta_title);
+        $page->meta_title = $request->input('meta_title', $page->title);
         $page->meta_description = $request->input('meta_description', $page->meta_description);
         $page->meta_keywords = $request->input('meta_keywords', $page->meta_keywords);
         $page->meta_og_image = $request->input('meta_og_image', $page->meta_og_image);
@@ -110,7 +110,7 @@ class PageController extends Controller
         $page->status = 'published';
 
         // ✅ Update meta information
-        $page->meta_title = $request->input('meta_title', $page->meta_title);
+        $page->meta_title = $request->input('meta_title', $page->title);
         $page->meta_description = $request->input('meta_description', $page->meta_description);
         $page->meta_keywords = $request->input('meta_keywords', $page->meta_keywords);
         $page->meta_og_image = $request->input('meta_og_image', $page->meta_og_image);

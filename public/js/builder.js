@@ -10,14 +10,11 @@
  *  - Save, Preview, and Publish logic for pages
  */
 
-
+//here we  fetch html and css content.
 async function loadBlockFiles(htmlPath, cssPath = null) {
   try {
 
-
     const html = await fetch(htmlPath).then(res => res.text());
-
-
 
     // If CSS path is provided, scope it (for older blocks)
     if (cssPath) {
@@ -38,10 +35,16 @@ async function loadBlockFiles(htmlPath, cssPath = null) {
   }
 }
 
-async function loadComponents(arr, pathname, labelname, times) {
+//here we get data from file path and fetch and store file content to laod data
+async function loadComponents(arr, pathname, labelname, times, val) {
+
   for (let i = 1; i <= times; i++) {
     try {
-      const content = await loadBlockFiles(`/js/blocks/${pathname}/${pathname}${i}/${pathname}.html`, `/js/blocks/${pathname}/${pathname}${i}/${pathname}.css`);
+      if (val == 1) {
+        content = await loadBlockFiles(`/js/blocks/${pathname}/${pathname}${i}/${pathname}.html`, `/js/blocks/${pathname}/${pathname}${i}/${pathname}.css`);
+      } else {
+        content = await loadBlockFiles(`/js/blocks/${pathname}/${pathname}${i}/${pathname}.html`);
+      }
       arr.push({
         id: `${pathname}${i}`,
         label: `${labelname} ${i}`,
@@ -57,8 +60,6 @@ async function loadComponents(arr, pathname, labelname, times) {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-
-
 
   // ============================================================
   // 🧠 PREFILL META FIELDS IF META_DATA EXISTS
@@ -92,91 +93,22 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // ============================================================
-  // 📦 LOAD DYNAMIC BLOCKS (Hero, About, etc.)
-  // ============================================================
 
+  ///here declare block 
   let heroBlocks = [];
   let aboutBlocks = [];
   let contact_form_Blocks = [];
   let teamBlocks = [];
 
-  // Load Hero blocks dynamically (hero1..hero3)
-  heroBlocks = await loadComponents(heroBlocks, 'hero', 'Hero', 3)
-  // for (let i = 1; i <= 3; i++) {
-  //   try {
-  //     const content = await loadBlockFiles(`/js/blocks/hero/hero${i}/hero.html`, `/js/blocks/hero/hero${i}/hero.css`);
-  //     heroBlocks.push({
-  //       id: `hero${i}`,
-  //       label: `Hero ${i}`,
-  //       category: 'UI/Hero',
-  //       content,
-
-  //     });
-  //   } catch (err) {
-  //     console.warn(`⚠️ Hero ${i} not found or failed to load.`);
-  //   }
-  // }
-
-  // Load About blocks dynamically (about1..about3)
-  // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
-  // so we keep that exact behavior here (no logic change).
-  aboutBlocks = await loadComponents(aboutBlocks, 'about', 'About', 3)
-  // for (let i = 1; i <= 3; i++) {
-  //   try {
-  //     const content = await loadBlockFiles(`/js/blocks/about/about${i}/about.html`, `/js/blocks/about/about${i}/about.css`);
-  //     aboutBlocks
-  //       .push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
-  //         id: `about${i}`,
-  //         label: `About ${i}`,
-  //         category: 'UI/About',
-  //         content,
-  //       });
-  //   } catch (err) {
-  //     console.warn(`⚠️ About ${i} not found or failed to load.`);
-  //   }
-  // }
-
-  // Load contact form blocks dynamically (contact form 1..form 2)
-  // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
-  // so we keep that exact behavior here (no logic change).
-  for (let i = 1; i <= 5; i++) {
-    try {
-      const content = await loadBlockFiles(`/js/blocks/contact_form/contact_form${i}/contact_form.html`, `/js/blocks/contact_form/contact_form${i}/contact_form.css`);
-      contact_form_Blocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
-        id: `contact_form${i}`,
-        label: `Conatct_Form${i}`,
-        category: 'UI/Contact_Form',
-        content,
-      });
-    } catch (err) {
-      console.warn(`⚠️ About ${i} not found or failed to load.`);
-    }
-  }
+  ///here we call function  to get html and css code  from internlly component
+  heroBlocks = await loadComponents(heroBlocks, 'hero', 'Hero', 3, 1)
+  aboutBlocks = await loadComponents(aboutBlocks, 'about', 'About', 3, 1)
+  contact_form_Blocks = await loadComponents(contact_form_Blocks, 'contact_form', 'ContactForm', 5, 1)
+  teamBlocks = await loadComponents(teamBlocks, 'team', 'Team', 4, 0)
 
 
 
-  // Load team blocks dynamically (team 1..team ...)
-  // NOTE: preserved original logic: these were pushed into heroBlocks in the original file,
-  // so we keep that exact behavior here (no logic change).
-  for (let i = 1; i <= 4; i++) {
-    try {
-      const content = await loadBlockFiles(`/js/blocks/team/team${i}/team.html`);
-      teamBlocks.push({ // ⚠️ Intentionally pushing to heroBlocks to preserve original behavior
-        id: `team${i}`,
-        label: `Team${i}`,
-        category: 'UI/Team',
-        content,
-      });
-    } catch (err) {
-      console.warn(`⚠️ About ${i} not found or failed to load.`);
-    }
-  }
-
-
-  // ============================================================
   // 🧩 BASE BLOCKS (Default GrapesJS components)
-  // ============================================================
 
   const blocks = [
     // === Basic ===
@@ -285,21 +217,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         const bm = editor.BlockManager;
 
         data.components.forEach(comp => {
-          // 🧠 Create a wrapper that keeps CSS scoped inside GrapesJS Canvas
-          const wrappedHtml = `<div>
+          if (comp.category == 'Custom Components') {
+            // 🧠 Create a wrapper that keeps CSS scoped inside GrapesJS Canvas
+            const wrappedHtml = `<div>
   <style>${comp.css || ''}</style>
   ${comp.html}</div>
 `;
 
 
-          bm.add(comp.name, {
-            label: comp.name,
-            category: comp.category || 'Custom Components',
-            attributes: { class: 'fa fa-cube' },
-            content: wrappedHtml,
-            preview: `<div style="width:200px;transform:scale(0.5);transform-origin:top left;">${comp.html}</div>`
+            bm.add(comp.name, {
+              label: comp.name,
+              category: comp.category || 'Custom Components',
+              attributes: { class: 'fa fa-cube' },
+              content: wrappedHtml,
+              preview: `<div style="width:200px;transform:scale(0.5);transform-origin:top left;">${comp.html}</div>`
 
-          });
+            });
+          }
         });
 
         console.log('✅ Custom components loaded:', data.components.length);
@@ -318,38 +252,46 @@ document.addEventListener("DOMContentLoaded", async function () {
         const bm = editor.BlockManager;
 
         data.components.forEach(comp => {
-          // Wrap HTML
-          let wrappedHtml = `
-<div class="page-component-wrapper" data-db-id="${comp.id}">
+          if (comp.category == 'Page Components') {
+            // Wrap HTML
+            let wrappedHtml = `
+<div class="page-component-wrapper" data-db-id="${comp.id}" Cname="${comp.name}">
   ${comp.html || ''}
 </div>
 `;
 
-          // Include CSS if it exists (traditional component)
-          if (comp.css && comp.css.trim().length > 0) {
-            wrappedHtml += `<style>${comp.css}</style>`;
-          }
+            // Include CSS if it exists (traditional component)
+            if (comp.css && comp.css.trim().length > 0) {
+              wrappedHtml += `<style>${comp.css}</style>`;
+            }
 
-          // Include JS if it exists (Tailwind component with behavior)
-          if (comp.js && comp.js.trim().length > 0) {
-            wrappedHtml += `<script>${comp.js}</script>`;
-          }
+            // Include JS if it exists (Tailwind component with behavior)
+            if (comp.js && comp.js.trim().length > 0) {
+              wrappedHtml += `<script>${comp.js}</script>`;
+            }
 
-          bm.add(`page-${comp.id}`, {
-            label: comp.name || `Page Components ${comp.id}`,
-            category: '📄 Page Components',
-            attributes: { class: 'fa fa-layer-group' },
-            content: wrappedHtml,
-            componentId: comp.id,
-            componentName: comp.name,
-            preview: `<div style="width:200px;transform:scale(0.5);transform-origin:top left;">${comp.html}</div>`,
-          });
+            bm.add(`page-${comp.id}`, {
+              label: comp.name || `Page Components ${comp.id}`,
+              category: '📄 Page Components',
+              attributes: { class: 'fa fa-file' },
+              content: wrappedHtml,
+              componentId: comp.id,
+              componentName: comp.name,
+              preview: `<div style="width:200px; transform: scale(0.5); transform-origin: top left;">${comp.html}</div>`,
+              hoverPreview: wrappedHtml, // ✅ critical for hover
+            });
+          }
         });
 
         console.log('✅ Page components loaded:', data.components.length);
+        console.log('✅ Page components id:', data.components.id);
+
       })
       .catch(err => console.error('❌ Error loading page components:', err));
   }
+
+
+
   // ============================================================
   // 🧱 INITIALIZE GRAPESJS EDITOR
   // ============================================================
@@ -375,6 +317,31 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     },
   });
+  // expose editor globally as in original code
+  window.editor = editor;
+
+  function enableBlockHoverPreview(editor) {
+    // Loop through all block manager items
+    editor.BlockManager.getAll().forEach(block => {
+      const el = block.get('el'); // DOM element
+      if (!el) return;
+
+      // Use Tippy.js to attach a hover tooltip
+      tippy(el, {
+        content: block.get('hoverPreview') || block.get('preview') || '<em>No preview</em>',
+        allowHTML: true,
+        interactive: true,
+        maxWidth: 400,
+        placement: 'right',
+        delay: [150, 50],
+        theme: 'light-border',
+      });
+    });
+  }
+
+
+
+
   function openCodeModal(title, code, mode) {
     const modalEl = document.createElement('div');
     modalEl.style.cssText = `
@@ -464,6 +431,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       modalEl.remove();
     });
   }
+
+
   loadCustomComponents(editor);
   loadPageComponents(editor);
 
@@ -577,8 +546,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     editor.runCommand('save-component');
   });
 
-  // expose editor globally as in original code
-  window.editor = editor;
+
 
   // ============================================================
   // 🧩 DEFINE CUSTOM COMPONENTS
@@ -598,33 +566,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   const bm = editor.BlockManager;
-
-  // ============================================================
-  // ⚙️ HELPER FUNCTION - Load HTML + CSS together
-  // ============================================================
-
-  // async function loadBlockFiles(htmlPath, cssPath) {
-  //   const [html, css] = await Promise.all([
-  //     fetch(htmlPath).then(res => res.text()),
-  //     fetch(cssPath).then(res => res.text())
-  //   ]);
-
-  //   // 🧠 Generate a unique class per block based on its folder name
-  //   const blockId = htmlPath.split('/').slice(-2, -1)[0]; // e.g. hero1
-  //   const scopedClass = `block-${blockId}`;
-
-  //   // 🪄 Wrap the HTML in a unique container
-  //   const wrappedHtml = `<div class="${scopedClass}">\n${html}\n</div>`;
-
-  //   // 🪄 Prefix all CSS selectors with the unique class to isolate scope
-  //   const scopedCss = css.replace(/(^|\})\s*([^{]+)/g, (match, brace, selector) => {
-  //     if (selector.trim().startsWith('@')) return match; // keep @media/@keyframes untouched
-  //     return `${brace} .${scopedClass} ${selector}`;
-  //   });
-
-  //   return `<style>${scopedCss}</style>\n${wrappedHtml}`;
-  // }
-
 
 
 
@@ -740,6 +681,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     tabButtons[name].onclick = () => showTab(name);
   });
 
+
+
+
   // ============================================================
   // 🧾 LOAD PAGE DATA (if editing existing page)
   // ============================================================
@@ -748,42 +692,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     editor.setComponents(PAGE_HTML);
     editor.setStyle(PAGE_CSS);
   }
-
-  // here we show preview of compoent 
-  editor.BlockManager.getAll().forEach(block => {
-    const el = block.get('el');
-
-    if (el) {
-      // Create a preview popup
-      const previewPopup = document.createElement('div');
-      previewPopup.classList.add('block-preview-popup');
-      previewPopup.innerHTML = block.get('preview') || ''; // HTML preview or <img>
-      document.body.appendChild(previewPopup);
-
-      el.addEventListener('mouseenter', e => {
-        if (!block.get('preview')) return;
-
-        previewPopup.style.display = 'block';
-        previewPopup.style.left = e.pageX + 10 + 'px';
-        previewPopup.style.top = e.pageY + 10 + 'px';
-      });
-
-      el.addEventListener('mousemove', e => {
-        previewPopup.style.left = e.pageX + 10 + 'px';
-        previewPopup.style.top = e.pageY + 10 + 'px';
-      });
-
-      el.addEventListener('mouseleave', () => {
-        previewPopup.style.display = 'none';
-      });
-    }
-  });
-
-  // here we end preview of compoent 
-
-
-
-
 
   // ============================================================
   // 💾 SAVE, PREVIEW, AND PUBLISH FUNCTIONS
@@ -823,23 +731,34 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const html = cleanHtml(editor.getHtml());
-      const css = editor.getCss ? editor.getCss() : ''; // get CSS if editor provides it
-      const js = editor.getJs ? editor.getJs() : '';    // get JS if editor provides it
+      const css = editor.getCss ? editor.getCss() : '';
+      const js = editor.getJs ? editor.getJs() : '';
 
+      // 🔍 1️⃣ Try to detect DB ID from hidden input
       let id = document.getElementById('component-id')?.value || null;
-      const name = (document.getElementById('page-title')?.value || 'Untitled Page').trim();
+
+
+      // 🔍 2️⃣ If not found, check inside editor content for data-db-id
+      if (!id) {
+        const wrapper = editor.getWrapper();
+        const dbWrapper = wrapper.find('.page-component-wrapper')[0]; // GrapesJS node
+        if (dbWrapper) {
+          id = dbWrapper.getAttributes()['data-db-id'] || null;
+        }
+      }
+
+      const name = (document.getElementById('component-name')?.value || 'Untitled component').trim();
 
       console.log('🧩 Saving Component:', { id, name, html, css, js });
 
       const payload = {
-        id,
+        id, // ✅ ensures Laravel knows which record to update
         name,
         category: 'Page Components',
         html,
         js,
       };
 
-      // Only include CSS if it exists
       if (css && css.trim().length > 0) {
         payload.css = css;
       }
@@ -856,8 +775,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const data = await response.json();
 
+      // ✅ Store back updated ID in hidden field (for next edit)
       if (data?.id) {
-        document.getElementById('component-id').value = data.id;
+        let idInput = document.getElementById('component-id');
+        if (!idInput) {
+          idInput = document.createElement('input');
+          idInput.type = 'hidden';
+          idInput.id = 'component-id';
+          document.body.appendChild(idInput);
+        }
+        idInput.value = data.id;
       }
 
       alert(data.message || 'Component saved successfully');
@@ -869,18 +796,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-
-  // Utility function
+  // Utility
   function cleanHtml(html) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
-
-    // Remove meta, title, link tags
     tempDiv.querySelectorAll('meta, title, link').forEach(el => el.remove());
-
     return tempDiv.innerHTML;
   }
-
 
   // // ✅ Save
   // document.getElementById('btn-save').onclick = async () => {
@@ -992,6 +914,44 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (sidebar) sidebar.style.display = 'none';
     }
   });
+
+  function enableBlockHoverPreview(editor) {
+    const bmContainer = document.querySelector('.gjs-blocks-c');
+    if (!bmContainer) return;
+
+    const previewBox = document.createElement('div');
+    previewBox.style.cssText = `
+    position: fixed; top: 20px; right: 20px;
+    z-index:9999; width:400px; height:300px;
+    overflow:auto; display:none; pointer-events:none;
+    background:#fff;border:1px solid #ddd;border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:10px;
+  `;
+    document.body.appendChild(previewBox);
+
+    const observer = new MutationObserver(() => {
+      bmContainer.querySelectorAll('.gjs-block').forEach(blockEl => {
+        if (blockEl.dataset.hoverAttached) return;
+        blockEl.dataset.hoverAttached = true;
+        const block = editor.BlockManager.get(blockEl.getAttribute('data-id'));
+        if (!block) return;
+
+        blockEl.addEventListener('mouseenter', () => {
+          previewBox.innerHTML = `<div style="transform:scale(0.5); transform-origin:top left;">${block.get('hoverPreview') || block.get('content')}</div>`;
+          previewBox.style.display = 'block';
+        });
+        blockEl.addEventListener('mousemove', e => {
+          previewBox.style.left = e.pageX + 10 + 'px';
+          previewBox.style.top = e.pageY + 10 + 'px';
+        });
+        blockEl.addEventListener('mouseleave', () => previewBox.style.display = 'none');
+      });
+    });
+
+    observer.observe(bmContainer, { childList: true, subtree: true });
+  }
+
+  enableBlockHoverPreview(editor);
 
 }); // End DOMContentLoaded
 

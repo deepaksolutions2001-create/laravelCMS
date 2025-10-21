@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Page Builder</title>
+<!-- !-- Tailwind CSS for canvas --> 
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<!-- Tippy.js for hover previews (optional, better than custom div) -->
+<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
 <!-- CodeMirror (for syntax highlighting & formatting) -->
 <link
   rel="stylesheet"
@@ -13,6 +20,11 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/dracula.min.css"
 />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.9/beautify-html.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.9/beautify-css.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
@@ -25,6 +37,7 @@
   <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" />
   <link rel="stylesheet" href="/css/hero.css" />
   <link rel="stylesheet" href="/css/builder_view.css" />
+
 
   <style>
     /* Customize GrapesJS panel width */
@@ -120,6 +133,8 @@
     />
       <!-- 👇 Add this hidden field just below -->
 <input type="hidden" id="component-id" value="">
+<input type="hidden" id="component-name" value="">
+
     <!-- Control Buttons -->
     <div class="space-x-2">
      <button id="btn-html-view" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-500">
@@ -222,7 +237,7 @@
 
     // ✅ Pass meta fields for reloading into the Meta tab
     window.META_DATA = {
-      title: @json($page->meta_title),
+      title: @json($page->title),
       description: @json($page->meta_description),
       keywords: @json($page->meta_keywords),
       og_image: @json($page->meta_og_image),
