@@ -1,0 +1,247 @@
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<section id="boto-slider" class="relative w-full bg-white text-slate-900">
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+
+  <!-- top bar -->
+  <div class="grid grid-cols-3 items-center">
+   <!-- left socials -->
+   <div class="flex items-center gap-4 text-slate-600">
+    <a href="#" class="hover:text-slate-900 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+    <a href="#" class="hover:text-slate-900 transition"><i class="fa-brands fa-twitter text-sm"></i></a>
+    <a href="#" class="hover:text-slate-900 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+   </div>
+
+   <!-- site title -->
+   <h1 class="justify-self-center text-2xl sm:text-3xl font-semibold tracking-tight">#Boto</h1>
+
+   <!-- right actions -->
+   <div class="justify-self-end flex items-center gap-5 text-slate-700">
+    <button class="hover:text-slate-900 transition" aria-label="search">
+     <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button class="hover:text-slate-900 transition" aria-label="cart">
+     <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+   </div>
+  </div>
+
+  <!-- nav -->
+  <nav class="mt-6">
+   <ul class="flex justify-center gap-8 sm:gap-10 text-xs sm:text-sm tracking-wide text-slate-700">
+    <li><a href="#" class="pb-1 border-b-2 border-green-600 text-slate-900">HOME</a></li>
+    <li><a href="#" class="hover:text-slate-900 transition">ABOUT</a></li>
+    <li><a href="#" class="hover:text-slate-900 transition">GALLERY</a></li>
+    <li><a href="#" class="hover:text-slate-900 transition">BLOG</a></li>
+    <li><a href="#" class="hover:text-slate-900 transition">CONTACT</a></li>
+   </ul>
+  </nav>
+
+  <!-- slider container -->
+  <div class="mt-8 sm:mt-10 lg:mt-12 relative">
+   <!-- gallery viewport -->
+   <div class="overflow-hidden relative">
+    <!-- track -->
+    <div id="boto-track" class="flex transition-transform duration-700 ease-out will-change-transform">
+     <!-- slide 1 -->
+     <div class="flex items-stretch gap-6 sm:gap-8 shrink-0 w-full justify-center">
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[26rem] sm:w-[34rem] lg:w-[38rem] aspect-[16/9]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1544986581-efac024faf62?q=80&w=1600&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+     </div>
+
+     <!-- slide 2 -->
+     <div class="flex items-stretch gap-6 sm:gap-8 shrink-0 w-full justify-center">
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[26rem] sm:w-[34rem] lg:w-[38rem] aspect-[16/9]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+     </div>
+
+     <!-- slide 3 -->
+     <div class="flex items-stretch gap-6 sm:gap-8 shrink-0 w-full justify-center">
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[26rem] sm:w-[34rem] lg:w-[38rem] aspect-[16/9]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1600&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+      <figure
+       class="boto-item overflow-hidden bg-slate-100 shadow-sm shrink-0 w-[16rem] sm:w-[20rem] lg:w-[22rem] aspect-[3/4]">
+       <img class="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop" alt="">
+      </figure>
+     </div>
+    </div>
+   </div>
+
+   <!-- navigation arrows -->
+   <button id="boto-prev"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white shadow-lg rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all duration-300 backdrop-blur-sm">
+    <i class="fa-solid fa-chevron-left text-lg"></i>
+   </button>
+
+   <button id="boto-next"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white shadow-lg rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all duration-300 backdrop-blur-sm">
+    <i class="fa-solid fa-chevron-right text-lg"></i>
+   </button>
+
+   <!-- dots indicator -->
+   <div class="flex justify-center gap-2 mt-8" id="boto-dots">
+    <button class="w-2 h-2 rounded-full bg-slate-800 transition-all duration-300"></button>
+    <button class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"></button>
+    <button class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"></button>
+   </div>
+
+   <!-- play/pause button -->
+   <button id="boto-toggle"
+    class="absolute bottom-4 left-4 z-10 w-10 h-10 bg-white/90 hover:bg-white shadow-lg rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all duration-300 backdrop-blur-sm">
+    <i class="fa-solid fa-pause text-sm"></i>
+   </button>
+  </div>
+ </div>
+
+ <!-- slider script -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#boto-slider');
+   const track = root.querySelector('#boto-track');
+   const slides = Array.from(track.children);
+   const prev = root.querySelector('#boto-prev');
+   const next = root.querySelector('#boto-next');
+   const dots = Array.from(root.querySelectorAll('#boto-dots button'));
+   const toggle = root.querySelector('#boto-toggle');
+   const toggleIcon = toggle.querySelector('i');
+
+   let index = 0;
+   let autoPlay = true;
+   let interval;
+
+   // entrance animation
+   const items = root.querySelectorAll('.boto-item');
+   items.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(14px) scale(0.985)';
+    el.style.transition = 'opacity 500ms ease, transform 600ms cubic-bezier(.2,.8,.2,1)';
+    setTimeout(() => {
+     el.style.opacity = '1';
+     el.style.transform = 'translateY(0) scale(1)';
+    }, 90 * i + 120);
+   });
+
+   function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+     dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === index ? 'bg-slate-800' : 'bg-slate-300 hover:bg-slate-400'
+      }`;
+    });
+   }
+
+   function step(dir) {
+    index = (index + dir + slides.length) % slides.length;
+    render();
+   }
+
+   function goToSlide(i) {
+    index = i;
+    render();
+   }
+
+   function startAutoPlay() {
+    if (interval) clearInterval(interval);
+    interval = setInterval(() => {
+     if (autoPlay) step(1);
+    }, 4000);
+   }
+
+   function toggleAutoPlay() {
+    autoPlay = !autoPlay;
+    toggleIcon.className = autoPlay ? 'fa-solid fa-pause text-sm' : 'fa-solid fa-play text-sm';
+    if (autoPlay) {
+     startAutoPlay();
+    } else {
+     clearInterval(interval);
+    }
+   }
+
+   // event listeners
+   prev.addEventListener('click', () => step(-1));
+   next.addEventListener('click', () => step(1));
+   toggle.addEventListener('click', toggleAutoPlay);
+
+   dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goToSlide(i));
+   });
+
+   // keyboard navigation
+   window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === ' ') { e.preventDefault(); toggleAutoPlay(); }
+   });
+
+   // pause on hover
+   root.addEventListener('mouseenter', () => {
+    if (autoPlay) clearInterval(interval);
+   });
+
+   root.addEventListener('mouseleave', () => {
+    if (autoPlay) startAutoPlay();
+   });
+
+   // swipe support
+   let startX = 0, dragging = false;
+   track.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    startX = e.clientX;
+    track.setPointerCapture(e.pointerId);
+    if (autoPlay) clearInterval(interval);
+   });
+
+   track.addEventListener('pointerup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    if (autoPlay) startAutoPlay();
+   });
+
+   // initialize
+   render();
+   startAutoPlay();
+  })();
+ </script>
+</section>

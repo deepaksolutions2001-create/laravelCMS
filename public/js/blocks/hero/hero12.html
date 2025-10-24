@@ -1,0 +1,101 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<!-- Hero: Premium CBD Products (with exact-style button) -->
+<section class="relative w-full overflow-hidden">
+ <!-- Background image -->
+ <div class="absolute inset-0">
+  <img src="https://the7.io/cbd/wp-content/uploads/sites/104/2022/12/art-top-005.jpg" alt="CBD products"
+   class="h-full w-full object-cover" />
+  <div class="absolute inset-0 bg-emerald-900/20"></div>
+ </div>
+
+ <!-- Content -->
+ <div
+  class="relative mx-auto w-[92%] max-w-7xl min-h-[56vh] md:min-h-[68vh] flex flex-col items-center justify-center text-center">
+  <h1 class="text-white font-extrabold tracking-[.08em] leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+   <span class="block">SEVEN VITAL</span>
+  </h1>
+  <p class="mt-3 md:mt-4 text-white/95 font-semibold tracking-wide text-xl md:text-3xl">
+   PREMIUM CBD PRODUCTS
+  </p>
+
+  <!-- Exact-look button -->
+  <a href="#popular" class="mt-7 inline-flex items-center justify-center
+                rounded-md
+                bg-lime-900/70 hover:bg-lime-800/80
+                text-white font-semibold
+                text-base md:text-lg
+                px-8 py-3
+                w-[260px] md:w-[300px]
+                shadow-md transition">
+   View popular products
+  </a>
+
+  <!-- Feature strip -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4">
+   <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-white">
+    <div class="flex items-center justify-center gap-2 text-sm md:text-base">
+     <i class="fa-solid fa-arrow-up h-5 w-5 text-white/90"></i>
+     Gentle extraction
+    </div>
+    <div class="flex items-center justify-center gap-2 text-sm md:text-base">
+     <i class="fa-solid fa-seedling h-5 w-5 text-white/90"></i>
+     100% organic farming
+    </div>
+    <div class="flex items-center justify-center gap-2 text-sm md:text-base">
+     <i class="fa-solid fa-circle-check h-5 w-5 text-white/90"></i>
+     Carefully tested
+    </div>
+    <div class="flex items-center justify-center gap-2 text-sm md:text-base">
+     <i class="fa-solid fa-check h-5 w-5 text-white/90"></i>
+     Certified quality
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- Optional entrance animation -->
+<style>
+ @keyframes rise {
+  from {
+   opacity: 0;
+   transform: translateY(18px);
+  }
+
+  to {
+   opacity: 1;
+   transform: none;
+  }
+ }
+
+ section .cta-animate {
+  opacity: 0;
+  transform: translateY(18px);
+ }
+
+ section.loaded .cta-animate {
+  animation: rise .7s cubic-bezier(.2, .8, .2, 1) .16s both;
+ }
+</style>
+<script>
+ // Add 'loaded' to hero for reveal
+ (() => {
+  const hero = document.currentScript.closest('section');
+  hero.querySelector('a').classList.add('cta-animate');
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => { if (e.isIntersecting) hero.classList.add('loaded'); });
+  }, { threshold: 0.3 });
+  io.observe(hero);
+ })();
+</script>

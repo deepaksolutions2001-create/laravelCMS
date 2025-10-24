@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Page Builder</title>
-<!-- !-- Tailwind CSS for canvas --> 
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<!-- Tippy.js for hover previews (optional, better than custom div) -->
-<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap"
+  rel="stylesheet">
 
 <!-- CodeMirror (for syntax highlighting & formatting) -->
 <link
@@ -20,8 +18,6 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/dracula.min.css"
 />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-
 
 
 
@@ -37,6 +33,10 @@
   <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" />
   <link rel="stylesheet" href="/css/hero.css" />
   <link rel="stylesheet" href="/css/builder_view.css" />
+<script>
+  // A real CSS file URL (not the Play CDN script) for the GrapesJS iframe
+  window.APP_CSS = 'https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/dist/tailwind.min.css';
+</script>
 
 
   <style>
@@ -187,6 +187,9 @@
         <label class="block text-sm text-gray-400 mb-1">Meta Description</label>
         <textarea id="meta-description" class="w-full px-2 py-1 rounded text-black" rows="3"></textarea>
 
+        <label class="block text-sm text-gray-400 mb-1">Meta Fokus Keyword</label>
+        <textarea id="meta-fokus-keyword" class="w-full px-2 py-1 rounded text-black" rows="3"></textarea>
+
         <label class="block text-sm text-gray-400 mb-1">Meta Keywords</label>
         <input id="meta-keywords" type="text" class="w-full px-2 py-1 rounded text-black">
 
@@ -240,6 +243,7 @@
       title: @json($page->title),
       description: @json($page->meta_description),
       keywords: @json($page->meta_keywords),
+      fokus_keyword: @json($page->meta_fokus_keyword),
       og_image: @json($page->meta_og_image),
       custom: @json($page->meta_custom),
     };

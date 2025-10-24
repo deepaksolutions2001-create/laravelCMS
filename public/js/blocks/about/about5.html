@@ -1,0 +1,97 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<!-- Google Fonts (kept) -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Playfair+Display:wght@700&display=swap"
+  rel="stylesheet">
+
+<section class="w-full min-h-screen bg-orange-50 flex items-center px-0 py-0 font-['Montserrat',sans-serif]">
+  <div
+    class="w-full max-w-[1350px] grid grid-cols-1 lg:grid-cols-2 gap-x-0 mx-auto px-3 pt-6 pb-0 min-h-[760px] items-center">
+    <!-- Left: Illustration -->
+    <div class="flex items-end justify-center lg:justify-end py-10 lg:py-2">
+      <img src="https://websitedemos.net/travel-agency-04/wp-content/uploads/sites/1521/2025/03/image-6.png"
+        alt="Travel Collage" class="max-h-[625px] lg:max-h-[700px] w-auto object-contain select-none"
+        draggable="false" />
+    </div>
+
+    <!-- Right Content Column -->
+    <div class="flex flex-col justify-center items-start md:pl-14 pl-0">
+      <span
+        class="uppercase px-6 py-[6px] bg-white text-orange-400 text-base font-semibold rounded-full mb-6 mt-1 shadow tracking-[.08em]">
+        About Us
+      </span>
+
+      <h2
+        class="text-neutral-900 font-extrabold text-[2.5rem] sm:text-[2.9rem] md:text-[3.28rem] leading-[1.08] mb-5 text-left"
+        style="font-family:'Playfair Display',serif;">
+        Your Journey, Our Passion
+      </h2>
+
+      <p class="text-neutral-700 max-w-[530px] mb-3 leading-snug">
+        We believe that travel is more than just visiting new places; it's about creating memories, experiencing diverse
+        cultures, and discovering the wonders of the world. With years of experience in the travel industry, our
+        dedicated
+        team is committed to providing exceptional travel experiences tailored to your unique desires and needs.
+      </p>
+
+      <ul class="flex flex-col gap-2 text-lg mb-7">
+        <li class="flex items-center font-bold text-neutral-900">
+          <i class="fa-solid fa-check w-5 h-5 mr-2 text-orange-600"></i>
+          Budget-Friendly
+        </li>
+        <li class="flex items-center font-bold text-neutral-900">
+          <i class="fa-solid fa-check w-5 h-5 mr-2 text-orange-600"></i>
+          Luxurious Getaways
+        </li>
+        <li class="flex items-center font-bold text-neutral-900">
+          <i class="fa-solid fa-check w-5 h-5 mr-2 text-orange-600"></i>
+          Trusted Local Guides
+        </li>
+      </ul>
+
+      <!-- Video + Button Row -->
+      <div class="flex flex-row items-center w-full gap-7 mb-6">
+        <!-- Video Thumbnail with Play Overlay -->
+        <div
+          class="relative w-[124px] h-[124px] md:w-[146px] md:h-[124px] rounded-2xl shadow-lg overflow-hidden flex-none">
+          <img src="https://websitedemos.net/travel-agency-04/wp-content/uploads/sites/1521/2025/03/home-journey2.jpg"
+            alt="Play Video" class="w-full h-full object-cover" />
+          <button class="absolute inset-0 flex items-center justify-center focus:outline-none">
+            <span class="w-12 h-12 flex rounded-full bg-white opacity-90 items-center justify-center shadow-2xl">
+              <i class="fa-solid fa-play text-orange-600 text-2xl ml-1"></i>
+            </span>
+          </button>
+        </div>
+
+        <button
+          class="ml-3 bg-orange-500 text-white py-3 px-12 rounded-xl text-lg font-bold shadow hover:bg-orange-600 focus:outline-none transition-all duration-150 flex items-center gap-2">
+          Learn More <i class="fa-solid fa-arrow-right text-base"></i>
+        </button>
+      </div>
+
+      <!-- Rating & Avatars Row -->
+      <div class="flex items-center gap-3 mt-0">
+        <img class="w-11 h-11 rounded-full object-cover border-2 border-white shadow -ml-1"
+          src="https://randomuser.me/api/portraits/men/22.jpg" />
+        <img class="w-11 h-11 rounded-full object-cover border-2 border-white shadow -ml-3"
+          src="https://randomuser.me/api/portraits/women/27.jpg" />
+        <span class="ml-2 text-amber-400 text-[1.12rem] font-bold flex items-center gap-1">
+          4.7 Star Rating
+          <i class="fa-solid fa-star text-amber-400 text-xl"></i>
+        </span>
+        <span class="text-neutral-600 text-[0.92rem] font-medium ml-2">Based on 3,571 Reviews</span>
+      </div>
+    </div>
+  </div>
+</section>

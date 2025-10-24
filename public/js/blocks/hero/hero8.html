@@ -1,0 +1,69 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="relative w-full min-h-[700px] flex flex-col justify-center">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://websitedemos.net/roofing-agency-02/wp-content/uploads/sites/883/2021/06/hero-section-min.jpg"
+      alt="Roofing background" class="w-full h-full object-cover" />
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/45"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 pt-28 flex flex-col">
+    <div class="flex flex-col items-start justify-center">
+      <h1 class="text-white font-extrabold text-4xl md:text-5xl lg:text-6xl leading-tight mb-2"
+        style="font-family: 'Inter', sans-serif;">
+        We are Commercial<br />
+        Roofing Experts
+      </h1>
+      <div class="text-white font-semibold text-lg mb-4 mt-4">Roofing Problem? Call 24Hr Emergency Service</div>
+
+      <a href="tel:12345678"
+        class="inline-flex items-center px-6 py-3 mt-3 rounded bg-rose-500 text-white text-base font-semibold transition hover:bg-rose-600 shadow">
+        <i class="fa-solid fa-phone w-5 h-5 mr-3"></i>
+        +1 2345 678
+      </a>
+    </div>
+  </div>
+
+  <!-- Form Card - half inside & half outside hero -->
+  <div class="relative z-20 max-w-5xl w-full mx-auto">
+    <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-28 w-full max-w-4xl">
+      <div class="bg-white rounded-xl shadow-xl flex flex-col md:flex-row items-center w-full py-8 px-6 md:px-10">
+        <!-- Left service blurb -->
+        <div class="flex-1 mb-5 md:mb-0 min-w-[210px]">
+          <p class="text-rose-500 font-bold text-base mb-1">Quick Service Request</p>
+          <p class="text-slate-900 font-extrabold text-2xl sm:text-3xl" style="font-family: 'Inter', sans-serif;">
+            Send Inspection Request
+          </p>
+        </div>
+
+        <!-- Inputs & button -->
+        <form class="flex-1 flex flex-col md:flex-row items-center gap-4 w-full">
+          <input type="text" placeholder="Enter your full name"
+            class="w-full md:w-48 px-4 py-3 rounded border border-gray-200 focus:outline-none focus:border-rose-500 transition text-base" />
+          <input type="text" placeholder="Phone number"
+            class="w-full md:w-44 px-4 py-3 rounded border border-gray-200 focus:outline-none focus:border-rose-500 transition text-base" />
+          <button type="submit"
+            class="w-full md:w-32 px-8 py-3 rounded bg-rose-500 text-white font-bold transition hover:bg-rose-600 shadow">
+            SEND
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add spacing below so content doesn't overlap on small screens -->
+  <div class="h-32 md:h-40 lg:h-40"></div>
+</section>

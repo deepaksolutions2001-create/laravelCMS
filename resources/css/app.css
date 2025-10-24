@@ -1,0 +1,10 @@
+/* resources/css/app.css (Tailwind v4) */
+@import "tailwindcss";
+
+/* Tell Tailwind v4 where to scan for class names (Blade, cached views, JS) */
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+/* Your custom CSS can live here as normal CSS if needed */

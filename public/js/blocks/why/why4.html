@@ -1,0 +1,143 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="w-full bg-white py-20">
+  <div class="max-w-6xl mx-auto px-2">
+    <!-- Section Title -->
+    <div class="text-cyan-500 font-bold text-lg text-center mb-2 animate-fadeIn">WHY CHOOSE US</div>
+    <div class="font-bold text-2xl md:text-4xl text-slate-900 text-center mb-3 animate-fadeIn">
+      We Are Here to Grow Your<br />
+      Business Exponentially
+    </div>
+    <div class="w-20 border-b-4 border-cyan-500 mx-auto mb-2 animate-fadeIn"></div>
+
+    <!-- Grid Layout for Cards and Image -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center mt-10">
+      <!-- Left Column -->
+      <div class="flex flex-col gap-14 h-full justify-between">
+        <!-- Card 1 -->
+        <div class="group flex flex-row items-center gap-6 animate-slideLeft">
+          <span
+            class="bg-cyan-500 rounded-lg w-16 h-16 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110">
+            <i class="fa-solid fa-award text-white text-[36px]" aria-hidden="true"></i>
+          </span>
+          <div>
+            <div class="font-bold text-lg md:text-xl text-slate-900 mb-1">Best In Industry</div>
+            <div class="text-slate-600 text-base md:text-lg leading-relaxed">
+              Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="group flex flex-row items-center gap-6 animate-slideLeft" style="animation-delay:.15s">
+          <span
+            class="bg-cyan-500 rounded-lg w-16 h-16 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110">
+            <i class="fa-solid fa-trophy text-white text-[36px]" aria-hidden="true"></i>
+          </span>
+          <div>
+            <div class="font-bold text-lg md:text-xl text-slate-900 mb-1">Award Winning</div>
+            <div class="text-slate-600 text-base md:text-lg leading-relaxed">
+              Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Image -->
+      <div class="flex justify-center items-center animate-fadeIn">
+        <img src="https://demo.htmlcodex.com/1858/startup-website-template/img/feature.jpg" alt="Business Team"
+          class="mx-auto rounded-lg shadow-xl object-cover w-full h-[330px] md:w-[340px] md:h-[320px]" />
+      </div>
+
+      <!-- Right Column -->
+      <div class="flex flex-col gap-14 h-full justify-between">
+        <!-- Card 3 -->
+        <div class="group flex flex-row items-center gap-6 animate-slideRight">
+          <span
+            class="bg-cyan-500 rounded-lg w-16 h-16 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110">
+            <i class="fa-solid fa-user-tie text-white text-[36px]" aria-hidden="true"></i>
+          </span>
+          <div>
+            <div class="font-bold text-lg md:text-xl text-slate-900 mb-1">Professional Staff</div>
+            <div class="text-slate-600 text-base md:text-lg leading-relaxed">
+              Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="group flex flex-row items-center gap-6 animate-slideRight" style="animation-delay:.15s">
+          <span
+            class="bg-cyan-500 rounded-lg w-16 h-16 flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110">
+            <i class="fa-solid fa-headset text-white text-[36px]" aria-hidden="true"></i>
+          </span>
+          <div>
+            <div class="font-bold text-lg md:text-xl text-slate-900 mb-1">24/7 Support</div>
+            <div class="text-slate-600 text-base md:text-lg leading-relaxed">
+              Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animations (unchanged) -->
+  <style>
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(25px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+
+    @keyframes slideLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-50px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0)
+      }
+    }
+
+    .animate-slideLeft {
+      animation: slideLeft 1.3s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+
+    @keyframes slideRight {
+      0% {
+        opacity: 0;
+        transform: translateX(50px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0)
+      }
+    }
+
+    .animate-slideRight {
+      animation: slideRight 1.3s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+  </style>
+</section>

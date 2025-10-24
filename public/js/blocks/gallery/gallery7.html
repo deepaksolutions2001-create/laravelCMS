@@ -1,0 +1,196 @@
+<!-- CDNs directly above the section -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<section id="apnGallery" class="w-full bg-white text-zinc-900">
+ <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+  <!-- Heading -->
+  <div class="text-center">
+   <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold uppercase tracking-wide">Gallery</h2>
+   <div class="mx-auto mt-2 h-1 w-10 bg-orange-500 rounded"></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm">
+   <button
+    class="apn-tab active inline-flex items-center gap-2 rounded px-3 py-1.5 uppercase tracking-wide bg-orange-500 text-white shadow-sm"
+    data-filter="all">
+    <i class="fa-solid fa-layer-group text-xs"></i> ALL
+   </button>
+   <button
+    class="apn-tab inline-flex items-center gap-2 rounded px-3 py-1.5 uppercase tracking-wide bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
+    data-filter="recognitions">
+    <i class="fa-solid fa-trophy text-orange-500"></i> Recognitions
+   </button>
+   <button
+    class="apn-tab inline-flex items-center gap-2 rounded px-3 py-1.5 uppercase tracking-wide bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
+    data-filter="team">
+    <i class="fa-solid fa-people-group text-orange-500"></i> Team Activities
+   </button>
+   <button
+    class="apn-tab inline-flex items-center gap-2 rounded px-3 py-1.5 uppercase tracking-wide bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
+    data-filter="tally">
+    <i class="fa-solid fa-calendar-check text-orange-500"></i> Tally Prime Events
+   </button>
+  </div>
+
+  <!-- Grid -->
+  <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+   <!-- Row 1 -->
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200"
+    data-cat="recognitions">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=1200" alt="Award stage" />
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="team">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200" alt="Team activity" />
+    <figcaption class="pointer-events-none absolute left-3 bottom-3 rounded bg-black/60 px-2 py-1 text-xs text-white">
+     Team Activities</figcaption>
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="team">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1200" alt="Celebration" />
+   </figure>
+
+   <!-- Row 2 -->
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="tally">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?q=80&w=1200" alt="Conference 1" />
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200"
+    data-cat="recognitions">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1485217988980-11786ced9454?q=80&w=1200" alt="Awardees" />
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="tally">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200" alt="Conference 2" />
+   </figure>
+
+   <!-- Row 3 -->
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="team">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200" alt="Office party" />
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200"
+    data-cat="recognitions">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1515165562835-c3b8c2e0b4c1?q=80&w=1200" alt="Stage photo" />
+   </figure>
+
+   <figure class="apn-card group relative overflow-hidden rounded-md bg-zinc-50 ring-1 ring-zinc-200" data-cat="tally">
+    <img class="h-52 sm:h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+     src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1200" alt="Event hall" />
+   </figure>
+  </div>
+ </div>
+
+ <!-- Modal Lightbox -->
+ <div id="apnLightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+  <button class="absolute top-5 right-6 text-white/90 hover:text-white text-2xl" data-close>
+   <i class="fa-solid fa-xmark"></i>
+  </button>
+  <button class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white/90 hover:text-white text-2xl" data-prev>
+   <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white/90 hover:text-white text-2xl"
+   data-next>
+   <i class="fa-solid fa-chevron-right"></i>
+  </button>
+  <div class="mx-4 md:mx-10 max-w-5xl w-full">
+   <div class="relative overflow-hidden rounded-lg shadow-2xl ring-1 ring-white/10">
+    <img class="w-full max-h-[80vh] object-contain opacity-0 scale-[0.98] transition-all duration-300 ease-out"
+     data-image alt="Preview" />
+   </div>
+  </div>
+ </div>
+
+ <!-- JS for tabs, reveal, and lightbox -->
+ <script>
+  (function () {
+   const root = document.getElementById('apnGallery');
+   const tabs = root.querySelectorAll('.apn-tab');
+   const cards = root.querySelectorAll('.apn-card');
+
+   // Filter logic
+   tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+     tabs.forEach(b => b.classList.remove('bg-orange-500', 'text-white', 'shadow-sm', 'active'));
+     btn.classList.add('bg-orange-500', 'text-white', 'shadow-sm', 'active');
+     const cat = btn.getAttribute('data-filter');
+     cards.forEach(card => {
+      const show = cat === 'all' || card.getAttribute('data-cat') === cat;
+      card.style.transition = 'opacity 300ms ease, transform 300ms ease';
+      if (show) {
+       card.classList.remove('hidden');
+       requestAnimationFrame(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1)';
+       });
+      } else {
+       card.style.opacity = '0';
+       card.style.transform = 'scale(0.98)';
+       setTimeout(() => card.classList.add('hidden'), 260);
+      }
+     });
+    });
+   });
+
+   // Scroll reveal
+   const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+     if (entry.isIntersecting) {
+      const el = entry.target;
+      el.classList.add('translate-y-0', 'opacity-100');
+      el.classList.remove('translate-y-4', 'opacity-0');
+      io.unobserve(el);
+     }
+    });
+   }, { threshold: 0.2 });
+   cards.forEach(c => {
+    c.classList.add('opacity-0', 'translate-y-4', 'transition', 'duration-700', 'ease-out');
+    io.observe(c);
+   });
+
+   // Lightbox
+   const overlay = root.querySelector('#apnLightbox');
+   const img = overlay.querySelector('[data-image]');
+   const btnPrev = overlay.querySelector('[data-prev]');
+   const btnNext = overlay.querySelector('[data-next]');
+   const btnClose = overlay.querySelector('[data-close]');
+   const allImages = Array.from(cards).map(card => card.querySelector('img').src);
+   let idx = 0;
+
+   function openAt(i) {
+    idx = (i + allImages.length) % allImages.length;
+    img.style.opacity = '0';
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+    img.onload = () => { img.style.opacity = '1'; img.style.transform = 'scale(1)'; };
+    img.src = allImages[idx];
+   }
+   function close() {
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+    img.src = '';
+   }
+   btnPrev.addEventListener('click', () => openAt(idx - 1));
+   btnNext.addEventListener('click', () => openAt(idx + 1));
+   btnClose.addEventListener('click', close);
+   overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+   window.addEventListener('keydown', (e) => {
+    if (overlay.classList.contains('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') openAt(idx - 1);
+    if (e.key === 'ArrowRight') openAt(idx + 1);
+   });
+   cards.forEach((card, i) => card.addEventListener('click', () => openAt(i)));
+  })();
+ </script>
+</section>

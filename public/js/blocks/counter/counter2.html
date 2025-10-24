@@ -1,0 +1,105 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="stats-v2" class="relative">
+  <!-- Background with dark overlay -->
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style="background-image: url('https://picsum.photos/800/600?random=403');"
+  ></div>
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-16">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Our Happy Client -->
+      <article class="text-center">
+        <div class="mx-auto flex items-end justify-center gap-3">
+          <span class="grid h-10 w-10 place-items-center text-white">
+            <i class="fa-solid fa-heart text-2xl"></i>
+          </span>
+          <span class="counter text-5xl font-extrabold text-indigo-400" data-target="460">0</span>
+        </div>
+        <p class="mt-2 text-sm tracking-wide text-slate-100">OUR HAPPY CLINET</p>
+      </article>
+
+      <!-- Project Done -->
+      <article class="text-center">
+        <div class="mx-auto flex items-end justify-center gap-3">
+          <span class="grid h-10 w-10 place-items-center text-white">
+            <i class="fa-solid fa-rocket text-2xl"></i>
+          </span>
+          <span class="counter text-5xl font-extrabold text-indigo-400" data-target="60">0</span>
+        </div>
+        <p class="mt-2 text-sm tracking-wide text-slate-100">PROJECT DONE</p>
+      </article>
+
+      <!-- Experience Staff -->
+      <article class="text-center">
+        <div class="mx-auto flex items-end justify-center gap-3">
+          <span class="grid h-10 w-10 place-items-center text-white">
+            <i class="fa-solid fa-dumbbell text-2xl"></i>
+          </span>
+          <span class="counter text-5xl font-extrabold text-indigo-400" data-target="30">0</span>
+        </div>
+        <p class="mt-2 text-sm tracking-wide text-slate-100">EXPERIENCE STUFF</p>
+      </article>
+
+      <!-- Ongoing Projects -->
+      <article class="text-center">
+        <div class="mx-auto flex items-end justify-center gap-3">
+          <span class="grid h-10 w-10 place-items-center text-white">
+            <i class="fa-solid fa-shield-halved text-2xl"></i>
+          </span>
+          <span class="counter text-5xl font-extrabold text-indigo-400" data-target="5500">0</span>
+        </div>
+        <p class="mt-2 text-sm tracking-wide text-slate-100">ONGOINIG PROJECTS</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Counter JS (scoped) -->
+  <script>
+    (() => {
+      const section = document.getElementById('stats-v2');
+      const counters = Array.from(section.querySelectorAll('.counter'));
+      let started = false;
+
+      function animate() {
+        counters.forEach((el) => {
+          const target = Number(el.getAttribute('data-target')) || 0;
+          const steps = Math.min(100, target);
+          const inc = Math.max(1, Math.ceil(target / steps));
+          let val = 0;
+          function tick() {
+            val = Math.min(target, val + inc);
+            el.textContent = val;
+            if (val < target) requestAnimationFrame(tick);
+          }
+          tick();
+        });
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && !started) {
+              started = true;
+              animate();
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(section);
+    })();
+  </script>
+</section>

@@ -1,0 +1,117 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Add Font Awesome CDN in your HTML <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Reasons To Choose Us - dark section with 3 feature cards and CTA chip -->
+<!-- Uses Tailwind + Font Awesome (icons). Load FA once in <head>. -->
+
+<section class="w-full bg-slate-950 py-16 md:py-20">
+ <div class="mx-auto w-[92%] max-w-7xl">
+  <!-- Top row: eyebrow + heading + CTA -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+   <div>
+    <p class="text-emerald-400 font-semibold tracking-wide">WHY CHOOSE US?</p>
+    <h2 class="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+     Reasons To Choose Us
+    </h2>
+   </div>
+
+   <!-- CTA chip -->
+   <a href="#"
+    class="self-start md:self-auto inline-flex items-center rounded-lg bg-emerald-700 hover:bg-emerald-600 active:bg-emerald-800 text-white font-semibold px-5 py-3 shadow">
+    All Categories
+   </a>
+  </div>
+
+  <!-- Divider -->
+  <div class="mt-6 h-px w-full bg-white/10"></div>
+
+  <!-- Features grid -->
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+   <!-- Card 1 -->
+   <article class="group relative">
+    <!-- icon with soft blob -->
+    <div class="relative flex items-center gap-4">
+     <div class="relative grid h-14 w-14 place-items-center rounded-lg bg-yellow-500/10 text-yellow-400">
+      <i class="fa-solid fa-house-chimney text-2xl"></i>
+      <span class="pointer-events-none absolute -right-2 -top-2 h-10 w-10 rounded-full bg-white/5"></span>
+     </div>
+    </div>
+
+    <h3 class="mt-5 text-xl font-semibold text-white">Excellent Reputation</h3>
+    <p class="mt-3 text-slate-400 max-w-[420px]">
+     Lorem ipsum dolor sit consectetur sed eiusmod tempor.
+    </p>
+
+    <!-- subtle divider for desktop like screenshot -->
+    <span class="hidden md:block absolute right-0 top-0 h-full w-px bg-white/10"></span>
+   </article>
+
+   <!-- Card 2 -->
+   <article class="group relative">
+    <div class="relative flex items-center gap-4">
+     <div class="relative grid h-14 w-14 place-items-center rounded-lg bg-emerald-500/10 text-emerald-400">
+      <i class="fa-solid fa-user-tie text-2xl"></i>
+      <span class="pointer-events-none absolute -right-2 -top-2 h-10 w-10 rounded-full bg-white/5"></span>
+     </div>
+    </div>
+
+    <h3 class="mt-5 text-xl font-semibold text-white">Best Local Agents</h3>
+    <p class="mt-3 text-slate-400 max-w-[420px]">
+     Lorem ipsum dolor sit consectetur sed eiusmod tempor.
+    </p>
+
+    <span class="hidden md:block absolute right-0 top-0 h-full w-px bg-white/10"></span>
+   </article>
+
+   <!-- Card 3 -->
+   <article class="group">
+    <div class="relative flex items-center gap-4">
+     <div class="relative grid h-14 w-14 place-items-center rounded-lg bg-rose-500/10 text-rose-400">
+      <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
+      <span class="pointer-events-none absolute -right-2 -top-2 h-10 w-10 rounded-full bg-white/5"></span>
+     </div>
+    </div>
+
+    <h3 class="mt-5 text-xl font-semibold text-white">Personalized Service</h3>
+    <p class="mt-3 text-slate-400 max-w-[420px]">
+     Lorem ipsum dolor sit consectetur sed eiusmod tempor.
+    </p>
+   </article>
+  </div>
+ </div>
+</section>
+
+<!-- Subtle entrance animations -->
+<style>
+ @keyframes floatUp {
+  from {
+   opacity: 0;
+   transform: translateY(14px);
+  }
+
+  to {
+   opacity: 1;
+   transform: none;
+  }
+ }
+
+ section [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+ }
+
+ section [data-reveal].show {
+  animation: floatUp .55s cubic-bezier(.2, .8, .2, 1) both;
+ }
+</style>
+<script>
+ // Add data-reveal to items (optional) for animation
+ (() => {
+  const sect = document.currentScript.previousElementSibling.previousElementSibling; // <section>
+  const cards = sect?.querySelectorAll('article');
+  cards?.forEach((c, i) => { c.setAttribute('data-reveal', ''); c.style.animationDelay = `${0.08 * i}s`; });
+  const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); }), { threshold: .15 });
+  cards?.forEach(c => io.observe(c));
+ })();
+</script>

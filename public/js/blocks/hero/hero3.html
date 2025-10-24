@@ -1,0 +1,53 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="relative w-full h-[90vh] min-h-[520px] flex items-center overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0 w-full h-full -z-10">
+    <img src="https://websitedemos.net/gardening-and-landscape-02/wp-content/uploads/sites/1520/2025/03/hero-bg.jpg"
+      class="w-full h-full object-cover object-center" alt="Garden background" />
+    <div class="absolute inset-0 bg-black opacity-25"></div>
+  </div>
+
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-stretch px-5 md:px-20 pt-10 pb-5 md:pt-20 md:pb-14 h-full">
+    <!-- Left text block -->
+    <div class="flex-1 flex flex-col justify-center md:pt-10 md:pb-20">
+      <h1 class="text-white  text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-5"
+        style="font-family:'Montserrat',sans-serif;">
+        Create Stunning<br>
+        outdoor Gardens<br>
+        with Expert Care
+      </h1>
+      <div class="text-white/85 text-base md:text-[1.11rem] font-medium mb-8 pl-1">
+        Discover the Art of Sustainable and Beautiful Landscapes
+      </div>
+      <div class="flex gap-4 items-center mt-1">
+        <a class="bg-yellow-300 hover:bg-yellow-400 text-stone-700 font-semibold text-base py-3 px-7 rounded-full shadow-lg transition-all focus:outline-none outline-none"
+          href="#">
+          Get a Free Quote
+        </a>
+        <a class="border border-white/60 text-white font-semibold text-base py-3 px-8 rounded-full transition-all hover:bg-white/10"
+          href="#">
+          Call Us Now
+        </a>
+      </div>
+    </div>
+    <!-- Right: Stretch person image (optional, currently commented) -->
+    <!-- <div class="flex-1 flex items-end justify-end md:pt-8 pb-0 h-full">
+      <img src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=600&q=80"
+        alt="Gardener"
+        class="h-full max-h-[90vh] w-auto max-w-[460px] min-w-[210px] object-cover object-center rounded-[2.3rem] shadow-2xl hidden md:block"
+        style="min-height:320px;" />
+    </div> -->
+  </div>
+</section>

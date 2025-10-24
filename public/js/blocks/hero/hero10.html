@@ -1,0 +1,122 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section
+  class="relative flex flex-col-reverse lg:flex-row items-center max-w-7xl mx-auto min-h-[600px] px-5 py-16 md:py-24 overflow-x-hidden"
+  style="background-image:url('https://i.ibb.co/zTzS7SsM/new-cover-1.jpg'); background-repeat:no-repeat; background-size:cover;">
+  <!-- Left: Headline + text -->
+  <div class="w-full lg:w-7/12 z-10">
+    <div class="mb-4 text-amber-500 font-extrabold tracking-widest text-[1rem] uppercase animate-fadein-slow">Cilantro
+      Tours</div>
+    <h1 class="font-black text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-neutral-900 animate-fadein-down">
+      Your Perfect Tours<br>
+      <span class="text-amber-500">Around the World</span><br>
+      Start Here!
+    </h1>
+    <p class="text-lg text-neutral-600 max-w-xl mb-8 animate-fadein">Join our group and individual tours to Europe and
+      Asia.
+      Enjoy your vacations and get amazing emotions!</p>
+    <div class="flex gap-6 animate-fadein-up">
+      <button
+        class="bg-amber-500 hover:bg-amber-400 text-white font-bold px-8 py-3 rounded-md text-base shadow-md transition">Book
+        a Tour</button>
+      <button
+        class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-md text-base shadow-md transition">Contact
+        Us</button>
+    </div>
+  </div>
+
+  <!-- Animate -->
+  <style>
+    @keyframes fadein-down {
+      from {
+        opacity: 0;
+        transform: translateY(-32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .animate-fadein-down {
+      animation: fadein-down 1s .1s both;
+    }
+
+    @keyframes fadein-up {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .animate-fadein-up {
+      animation: fadein-up 1s .2s both;
+    }
+
+    @keyframes fadein-slow {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-fadein-slow {
+      animation: fadein-slow 1.7s both;
+    }
+
+    @keyframes bgpop {
+      from {
+        scale: .85;
+        opacity: .4
+      }
+
+      to {
+        scale: 1;
+        opacity: 1
+      }
+    }
+
+    .animate-bgpop {
+      animation: bgpop 1.2s .1s cubic-bezier(.17, .67, .51, 1.42) both;
+    }
+
+    @keyframes draw {
+      from {
+        stroke-dasharray: 120;
+        stroke-dashoffset: 120;
+        opacity: 0;
+      }
+
+      to {
+        stroke-dasharray: 120;
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+
+    .animate-draw {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 0;
+      animation: draw 1.3s ease-in forwards;
+    }
+  </style>
+</section>

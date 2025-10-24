@@ -1,0 +1,192 @@
+<!-- CDNs directly above the section -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<section id="blogSlider" class="w-full bg-stone-200 text-zinc-900">
+ <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+  <!-- Heading -->
+  <div class="text-center">
+   <h2 class="text-3xl md:text-4xl font-semibold">Our Blog</h2>
+   <div class="mx-auto mt-3 h-[2px] w-16 bg-zinc-700"></div>
+  </div>
+
+  <!-- Slider -->
+  <div class="relative mt-10">
+   <!-- Controls -->
+   <button type="button" aria-label="Previous" data-prev
+    class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/80 text-zinc-800 ring-1 ring-zinc-300 hover:bg-white">
+    <i class="fa-solid fa-chevron-left"></i>
+   </button>
+   <button type="button" aria-label="Next" data-next
+    class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-white/80 text-zinc-800 ring-1 ring-zinc-300 hover:bg-white">
+    <i class="fa-solid fa-chevron-right"></i>
+   </button>
+
+   <!-- Viewport -->
+   <div id="viewport" class="overflow-hidden scroll-smooth snap-x snap-mandatory">
+    <!-- Track -->
+    <ul id="track" class="flex gap-10 px-2">
+     <!-- Slide 1 -->
+     <li class="slide snap-center basis-full md:basis-1/2 lg:basis-1/3 shrink-0">
+      <article data-panel class="group text-center transition-all duration-300 ease-out">
+       <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800" alt="Post 1"
+        class="mx-auto h-56 w-72 object-cover rounded" />
+       <h3 class="mt-6 text-lg font-semibold">Post 1 Headline</h3>
+       <p class="mt-3 text-sm text-zinc-600 max-w-xs mx-auto">Sample small text. Lorem ipsum dolor sit amet.</p>
+       <p class="mt-4 text-xs text-zinc-400">Wed Jul 22 2020</p>
+       <a href="#"
+        class="mt-4 inline-flex items-center gap-2 rounded bg-stone-400 px-4 py-2 text-white hover:bg-stone-500 active:scale-95 transition">
+        <i class="fa-solid fa-book-open text-white/90"></i> Read More
+       </a>
+      </article>
+     </li>
+
+     <!-- Slide 2 -->
+     <li class="slide snap-center basis-full md:basis-1/2 lg:basis-1/3 shrink-0">
+      <article data-panel class="group text-center transition-all duration-300 ease-out">
+       <img src="https://images.unsplash.com/photo-1505843431674-59cebb6b1056?q=80&w=800" alt="Post 2"
+        class="mx-auto h-56 w-72 object-cover rounded" />
+       <h3 class="mt-6 text-lg font-semibold">Post 2 Headline</h3>
+       <p class="mt-3 text-sm text-zinc-600 max-w-xs mx-auto">Sample small text. Lorem ipsum dolor sit amet.</p>
+       <p class="mt-4 text-xs text-zinc-400">Wed Jul 22 2020</p>
+       <a href="#"
+        class="mt-4 inline-flex items-center gap-2 rounded bg-stone-400 px-4 py-2 text-white hover:bg-stone-500 active:scale-95 transition">
+        <i class="fa-solid fa-book-open text-white/90"></i> Read More
+       </a>
+      </article>
+     </li>
+
+     <!-- Slide 3 -->
+     <li class="slide snap-center basis-full md:basis-1/2 lg:basis-1/3 shrink-0">
+      <article data-panel class="group text-center transition-all duration-300 ease-out">
+       <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=800" alt="Post 3"
+        class="mx-auto h-56 w-72 object-cover rounded" />
+       <h3 class="mt-6 text-lg font-semibold">Post 3 Headline</h3>
+       <p class="mt-3 text-sm text-zinc-600 max-w-xs mx-auto">Sample small text. Lorem ipsum dolor sit amet.</p>
+       <p class="mt-4 text-xs text-zinc-400">Wed Jul 22 2020</p>
+       <a href="#"
+        class="mt-4 inline-flex items-center gap-2 rounded bg-stone-400 px-4 py-2 text-white hover:bg-stone-500 active:scale-95 transition">
+        <i class="fa-solid fa-book-open text-white/90"></i> Read More
+       </a>
+      </article>
+     </li>
+
+     <!-- Slide 4 (optional) -->
+     <li class="slide snap-center basis-full md:basis-1/2 lg:basis-1/3 shrink-0">
+      <article data-panel class="group text-center transition-all duration-300 ease-out">
+       <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" alt="Post 4"
+        class="mx-auto h-56 w-72 object-cover rounded" />
+       <h3 class="mt-6 text-lg font-semibold">Post 4 Headline</h3>
+       <p class="mt-3 text-sm text-zinc-600 max-w-xs mx-auto">Sample small text. Lorem ipsum dolor sit amet.</p>
+       <p class="mt-4 text-xs text-zinc-400">Wed Jul 22 2020</p>
+       <a href="#"
+        class="mt-4 inline-flex items-center gap-2 rounded bg-stone-400 px-4 py-2 text-white hover:bg-stone-500 active:scale-95 transition">
+        <i class="fa-solid fa-book-open text-white/90"></i> Read More
+       </a>
+      </article>
+     </li>
+    </ul>
+   </div>
+
+   <!-- Dots -->
+   <div class="mt-6 flex items-center justify-center gap-2" id="dots"></div>
+  </div>
+ </div>
+
+ <!-- JS: center-aware white panel + slider controls -->
+ <script>
+  (function () {
+   const root = document.getElementById('blogSlider');
+   const viewport = root.querySelector('#viewport');
+   const slides = Array.from(root.querySelectorAll('.slide'));
+   const panels = slides.map(s => s.querySelector('[data-panel]'));
+   const btnPrev = root.querySelector('[data-prev]');
+   const btnNext = root.querySelector('[data-next]');
+   const dotsWrap = root.querySelector('#dots');
+
+   // Create dots
+   slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'h-2.5 w-2.5 rounded-full bg-zinc-400/60 hover:bg-zinc-600 transition';
+    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    b.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center' }));
+    dotsWrap.appendChild(b);
+   });
+
+   let rafId = null;
+   function updateActive() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+     rafId = null;
+
+     // Center of container
+     const centerX = viewport.scrollLeft + viewport.clientWidth / 2;
+
+     // Find slide whose center is closest to container center
+     let best = 0, bestDist = Infinity;
+     slides.forEach((s, i) => {
+      const slideCenter = s.offsetLeft + s.offsetWidth / 2;
+      const dist = Math.abs(slideCenter - centerX);
+      if (dist < bestDist) { bestDist = dist; best = i; }
+     });
+
+     // Apply white raised panel to the centered slide only
+     const activeClasses = ['bg-white', 'px-6', 'py-7', 'rounded-md', 'shadow-lg', 'ring-1', 'ring-zinc-200'];
+     panels.forEach((p, i) => {
+      if (i === best) activeClasses.forEach(c => p.classList.add(c));
+      else activeClasses.forEach(c => p.classList.remove(c));
+     });
+
+     // Dot state
+     Array.from(dotsWrap.children).forEach((d, i) => {
+      d.classList.toggle('bg-zinc-800', i === best);
+      d.classList.toggle('bg-zinc-400/60', i !== best);
+     });
+
+     // Show arrows on md+
+     if (window.innerWidth >= 768) {
+      btnPrev.classList.remove('hidden');
+      btnNext.classList.remove('hidden');
+     } else {
+      btnPrev.classList.add('hidden');
+      btnNext.classList.add('hidden');
+     }
+    });
+   }
+
+   function stepSize() {
+    if (window.innerWidth >= 1024) return viewport.clientWidth / 3;
+    if (window.innerWidth >= 768) return viewport.clientWidth / 2;
+    return viewport.clientWidth;
+   }
+
+   btnPrev?.addEventListener('click', () => viewport.scrollBy({ left: -stepSize(), behavior: 'smooth' }));
+   btnNext?.addEventListener('click', () => viewport.scrollBy({ left: stepSize(), behavior: 'smooth' }));
+
+   viewport.addEventListener('scroll', updateActive, { passive: true });
+   window.addEventListener('resize', updateActive);
+
+   // Initial reveal animation and first sync
+   const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+     if (entry.isIntersecting) {
+      slides.forEach((s, i) => {
+       s.style.opacity = 0;
+       s.style.transform = 'translateY(8px)';
+       setTimeout(() => {
+        s.style.transition = 'opacity 600ms ease, transform 600ms ease';
+        s.style.opacity = 1;
+        s.style.transform = 'translateY(0)';
+       }, 90 * i);
+      });
+      updateActive();
+      io.disconnect();
+     }
+    });
+   }, { threshold: 0.2 });
+   io.observe(viewport);
+
+   updateActive();
+  })();
+ </script>
+</section>

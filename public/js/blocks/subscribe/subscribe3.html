@@ -1,0 +1,115 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+
+
+<!-- Newsletter Banner Component -->
+<section class="relative w-full flex justify-center items-center bg-slate-50 py-12 overflow-hidden">
+ <!-- Soft geometric background (SVG pattern, no hex colors) -->
+ <svg class="pointer-events-none absolute inset-0 -z-10 text-slate-200/60" aria-hidden="true">
+  <defs>
+   <pattern id="diamondMesh" width="90" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect x="0" y="0" width="44" height="44" fill="currentColor" opacity="0.35"></rect>
+   </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#diamondMesh)"></rect>
+ </svg>
+
+ <div class="w-[92%] max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+  <!-- Left copy -->
+  <div data-reveal="left" class="max-w-3xl">
+   <p class="text-sm uppercase tracking-widest text-slate-500 font-medium mb-3">
+    Subscribe Newsletter
+   </p>
+   <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-slate-900">
+    Stay Updated with<br class="hidden md:block" />
+    the Latest News!
+   </h2>
+  </div>
+
+  <!-- Right form -->
+  <div data-reveal="right" class="flex md:justify-end">
+   <form class="w-full md:w-[560px] lg:w-[640px]" onsubmit="event.preventDefault(); newsletterPulse();">
+    <!-- Dark input bar with white button (shape + ring to match image) -->
+    <div
+     class="flex items-center bg-slate-800 rounded-lg shadow-lg ring-2 ring-slate-900/30 px-3 md:px-4 py-2 md:py-2.5">
+     <input type="email" required placeholder="Enter Email Address"
+      class="peer flex-1 bg-transparent text-slate-100 placeholder-slate-400 outline-none text-sm md:text-base px-2 md:px-3 py-2" />
+     <button id="subscribeBtn" type="submit"
+      class="ml-2 rounded-md bg-white text-slate-800 text-sm md:text-base font-semibold px-4 md:px-5 py-2 ring-1 ring-slate-300 shadow-sm hover:shadow transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0">
+      Subscribe Now
+     </button>
+    </div>
+    <!-- subtle focus glow -->
+    <div
+     class="h-1 w-full rounded-b-lg bg-gradient-to-r from-transparent via-slate-300/0 to-transparent opacity-0 peer-focus:opacity-100 transition">
+    </div>
+   </form>
+  </div>
+ </div>
+</section>
+
+<!-- Minimal reveal + interaction animations -->
+<style>
+ @keyframes fadeInLeft {
+  from {
+   opacity: 0;
+   transform: translateX(-28px);
+  }
+
+  to {
+   opacity: 1;
+   transform: translateX(0);
+  }
+ }
+
+ @keyframes fadeInRight {
+  from {
+   opacity: 0;
+   transform: translateX(28px);
+  }
+
+  to {
+   opacity: 1;
+   transform: translateX(0);
+  }
+ }
+
+ [data-reveal="left"].is-visible {
+  animation: fadeInLeft .8s cubic-bezier(.22, .8, .2, 1) both;
+ }
+
+ [data-reveal="right"].is-visible {
+  animation: fadeInRight .8s cubic-bezier(.22, .8, .2, 1) both;
+ }
+</style>
+
+<script>
+ // Reveal on scroll
+ (() => {
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.18 });
+  els.forEach(el => io.observe(el));
+ })();
+
+ // Button pulse on submit
+ function newsletterPulse() {
+  const btn = document.getElementById('subscribeBtn');
+  btn.style.transformOrigin = 'center';
+  btn.animate(
+   [{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }],
+   { duration: 260, easing: 'cubic-bezier(.2,.8,.2,1)' }
+  );
+ }
+</script>

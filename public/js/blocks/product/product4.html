@@ -1,0 +1,203 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="w-full bg-white py-10 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <div class="text-pink-400 font-semibold mb-2 tracking-widest">.. Featured List ..</div>
+      <h2 class="text-4xl md:text-5xl font-bold font-sans text-neutral-900">
+        Explore Destination
+        <span class="inline-block align-middle ml-2">
+          <span class="w-2 h-2 inline-block bg-amber-400 rounded-full"></span>
+          <span class="w-2 h-2 inline-block bg-rose-500 rounded-full ml-1"></span>
+          <span class="w-2 h-2 inline-block bg-amber-300 rounded-full ml-1"></span>
+        </span>
+      </h2>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 justify-center">
+      <!-- Card 1 -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden w-[400px] h-[540px] mx-auto flex flex-col justify-between transition-transform duration-300 hover:scale-105 animate-fadeInUp">
+        <div class="relative h-[260px] w-full flex-shrink-0">
+          <img src="https://fioxen.vercel.app/assets/images/listing/listing-grid-1.jpg" alt="Food Corner"
+            class="w-full h-full object-cover object-center" />
+          <span
+            class="absolute left-1/2 -translate-x-1/2 top-6 bg-pink-500 text-white font-bold text-xs px-5 py-2 rounded-t-md shadow-lg z-20">FEATURED</span>
+        </div>
+        <div
+          class="flex items-center justify-between px-6 py-3 bg-amber-300 relative -mt-3 rounded-b-xl z-10 shadow-lg w-[90%] mx-auto">
+          <div class="flex items-center gap-2 text-rose-600 font-bold">
+            <span class="bg-white rounded-full p-1 flex items-center justify-center drop-shadow-md">
+              <i class="fa-solid fa-utensils text-[22px]" aria-hidden="true"></i>
+            </span>
+            Restaurant
+          </div>
+          <span class="bg-green-400 text-white text-xs px-4 py-1 font-bold rounded">OPEN</span>
+        </div>
+        <div class="p-6 space-y-1">
+          <div class="font-bold text-xl text-neutral-900">Food Corner</div>
+          <div class="flex items-center gap-2">
+            <span class="flex text-rose-600 text-base">★ ★ ★ ☆ ☆</span>
+            <span class="text-gray-500 text-xs font-normal">(02 Reviews)</span>
+          </div>
+          <div class="font-bold text-lg text-neutral-900 mt-2">$05.00 - $80.00</div>
+          <div class="flex items-center gap-2 text-gray-400 text-sm mt-2">
+            <i class="fa-solid fa-phone w-4 h-4" aria-hidden="true"></i>
+            +98 (265) 3652 - 05
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t px-6 py-4 text-sm text-gray-400">
+          <span class="flex items-center gap-1">
+            <i class="fa-solid fa-location-dot text-rose-600" aria-hidden="true"></i>
+            California, USA
+          </span>
+          <span class="flex items-center gap-1 cursor-pointer hover:text-pink-500 transition">
+            <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+            Save
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden w-[400px] h-[540px] mx-auto flex flex-col justify-between transition-transform duration-300 hover:scale-105 animate-fadeInUp delay-200">
+        <div class="relative h-[260px] w-full flex-shrink-0">
+          <img src="https://fioxen.vercel.app/assets/images/listing/listing-grid-2.jpg" alt="Central History"
+            class="w-full h-full object-cover object-center" />
+          <span
+            class="absolute left-1/2 -translate-x-1/2 top-6 bg-pink-500 text-white font-bold text-xs px-5 py-2 rounded-t-md shadow-lg z-20">FEATURED</span>
+        </div>
+        <div
+          class="flex items-center justify-between px-6 py-3 bg-amber-300 relative -mt-3 rounded-b-xl z-10 shadow-lg w-[90%] mx-auto">
+          <div class="flex items-center gap-2 text-rose-600 font-bold">
+            <span class="bg-white rounded-full p-1 flex items-center justify-center drop-shadow-md">
+              <i class="fa-solid fa-landmark text-[22px]" aria-hidden="true"></i>
+            </span>
+            Museums
+          </div>
+          <span class="bg-green-400 text-white text-xs px-4 py-1 font-bold rounded">OPEN</span>
+        </div>
+        <div class="p-6 space-y-1">
+          <div class="font-bold text-xl text-neutral-900">Central History</div>
+          <div class="flex items-center gap-2">
+            <span class="flex text-rose-600 text-base">★ ★ ★ ☆ ☆</span>
+            <span class="text-gray-500 text-xs font-normal">(02 Reviews)</span>
+          </div>
+          <div class="font-bold text-lg text-neutral-900 mt-2">$05.00 - $80.00</div>
+          <div class="flex items-center gap-2 text-gray-400 text-sm mt-2">
+            <i class="fa-solid fa-phone w-4 h-4" aria-hidden="true"></i>
+            +98 (265) 3652 - 05
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t px-6 py-4 text-sm text-gray-400">
+          <span class="flex items-center gap-1">
+            <i class="fa-solid fa-location-dot text-rose-600" aria-hidden="true"></i>
+            California, USA
+          </span>
+          <span class="flex items-center gap-1 cursor-pointer hover:text-pink-500 transition">
+            <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+            Save
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="bg-white rounded-2xl shadow-lg overflow-hidden w-[400px] h-[540px] mx-auto flex flex-col justify-between transition-transform duration-300 hover:scale-105 animate-fadeInUp delay-400">
+        <div class="relative h-[260px] w-full flex-shrink-0">
+          <img src="https://fioxen.vercel.app/assets/images/listing/listing-grid-3.jpg" alt="Xtream Gym"
+            class="w-full h-full object-cover object-center" />
+          <span
+            class="absolute left-1/2 -translate-x-1/2 top-6 bg-pink-500 text-white font-bold text-xs px-5 py-2 rounded-t-md shadow-lg z-20">FITNESS</span>
+        </div>
+        <div
+          class="flex items-center justify-between px-6 py-3 bg-amber-300 relative -mt-3 rounded-b-xl z-10 shadow-lg w-[90%] mx-auto">
+          <div class="flex items-center gap-2 text-rose-600 font-bold">
+            <span class="bg-white rounded-full p-1 flex items-center justify-center drop-shadow-md">
+              <i class="fa-solid fa-dumbbell text-[22px]" aria-hidden="true"></i>
+            </span>
+            Fitness
+          </div>
+          <span class="bg-red-400 text-white text-xs px-4 py-1 font-bold rounded">CLOSE</span>
+        </div>
+        <div class="p-6 space-y-1">
+          <div class="font-bold text-xl text-neutral-900">Xtream Gym</div>
+          <div class="flex items-center gap-2">
+            <span class="flex text-rose-600 text-base">★ ★ ★ ☆ ☆</span>
+            <span class="text-gray-500 text-xs font-normal">(02 Reviews)</span>
+          </div>
+          <div class="font-bold text-lg text-neutral-900 mt-2">$05.00 - $80.00</div>
+          <div class="flex items-center gap-2 text-gray-400 text-sm mt-2">
+            <i class="fa-solid fa-phone w-4 h-4" aria-hidden="true"></i>
+            +98 (265) 3652 - 05
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t px-6 py-4 text-sm text-gray-400">
+          <span class="flex items-center gap-1">
+            <i class="fa-solid fa-location-dot text-rose-600" aria-hidden="true"></i>
+            California, USA
+          </span>
+          <span class="flex items-center gap-1 cursor-pointer hover:text-pink-500 transition">
+            <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+            Save
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animations (kept) -->
+  <style>
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.9s cubic-bezier(.57, .1, .59, .98) both;
+    }
+
+    .delay-200 {
+      animation-delay: .2s;
+    }
+
+    .delay-400 {
+      animation-delay: .4s;
+    }
+
+    @keyframes downIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-downIn {
+      animation: downIn 0.7s cubic-bezier(.57, .1, .59, .98);
+    }
+  </style>
+</section>

@@ -1,0 +1,268 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section id="gallery-v4" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+ <!-- Top -->
+ <div class="text-center mb-8">
+  <h2 class="inline-grid place-items-center text-3xl sm:text-4xl font-semibold text-slate-900 bg-white px-2 relative">
+   Latest Works
+  </h2>
+  <hr class="mx-auto mt-3 h-1 w-48 bg-emerald-600 border-0" />
+  <span class="block mx-auto max-w-3xl mt-4 text-base sm:text-lg leading-7 text-slate-600">
+   Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta laboriosam modi iure mollitia aliquid consequuntur
+   maxime, asperiores tempore!
+  </span>
+ </div>
+
+ <!-- Filters -->
+ <div class="mt-6">
+  <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-3" id="gallery-filters">
+   <li data-filter="All"
+    class="cursor-pointer text-lg text-slate-600 hover:text-emerald-600 transition relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-emerald-600 after:transition-all data-[active=true]:text-emerald-600 data-[active=true]:after:w-8">
+    All</li>
+   <li data-filter="Printing"
+    class="cursor-pointer text-lg text-slate-600 hover:text-emerald-600 transition relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-emerald-600 after:transition-all">
+    Printing</li>
+   <li data-filter="Web"
+    class="cursor-pointer text-lg text-slate-600 hover:text-emerald-600 transition relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-emerald-600 after:transition-all">
+    Web</li>
+   <li data-filter="Illustration"
+    class="cursor-pointer text-lg text-slate-600 hover:text-emerald-600 transition relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-emerald-600 after:transition-all">
+    Illustration</li>
+   <li data-filter="Media"
+    class="cursor-pointer text-lg text-slate-600 hover:text-emerald-600 transition relative after:absolute after:left-1/2 after:-bottom-1 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-emerald-600 after:transition-all">
+    Media</li>
+  </ul>
+ </div>
+
+ <!-- Grid -->
+ <div id="gallery-grid" class="mt-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+   <!-- Card template (repeat with different tags) -->
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Web"]'>
+    <img src="https://picsum.photos/800/600?random=901" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Illustration"]'>
+    <img src="https://picsum.photos/800/600?random=902" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Illustration"]'>
+    <img src="https://picsum.photos/800/600?random=903" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Web"]'>
+    <img src="https://picsum.photos/800/600?random=904" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Illustration"]'>
+    <img src="https://picsum.photos/800/600?random=905" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Printing"]'>
+    <img src="https://picsum.photos/800/600?random=906" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Media"]'>
+    <img src="https://picsum.photos/800/600?random=907" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Printing"]'>
+    <img src="https://picsum.photos/800/600?random=908" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+
+   <figure class="group relative overflow-hidden rounded-md bg-slate-100" data-tags='["All","Media"]'>
+    <img src="https://picsum.photos/800/600?random=909" alt="Work item"
+     class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+    <button type="button"
+     class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 transition grid place-items-center text-white text-sm">
+     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2"><i
+       class="fa-solid fa-magnifying-glass"></i> View</span>
+    </button>
+   </figure>
+  </div>
+ </div>
+
+ <!-- Lightbox -->
+ <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/70">
+  <!-- Close -->
+  <button type="button" id="lb-close"
+   class="absolute top-3 right-3 grid h-10 w-10 place-items-center rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition">
+   <i class="fa-solid fa-xmark text-xl"></i>
+  </button>
+
+  <!-- Image -->
+  <div class="h-full w-full grid place-items-center px-4">
+   <img id="lb-image" src="" alt="Preview"
+    class="max-h-[85vh] max-w-[90vw] object-contain rounded-md ring-1 ring-white/20" />
+  </div>
+
+  <!-- Nav -->
+  <button type="button" id="lb-prev"
+   class="absolute left-3 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full bg-emerald-600 text-white hover:bg-white hover:text-slate-900 transition">
+   <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button type="button" id="lb-next"
+   class="absolute right-3 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full bg-emerald-600 text-white hover:bg-white hover:text-slate-900 transition">
+   <i class="fa-solid fa-chevron-right"></i>
+  </button>
+ </div>
+
+ <!-- Scoped JS -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#gallery-v4');
+   if (!root) return;
+
+   const filters = Array.from(root.querySelectorAll('#gallery-filters li'));
+   const cards = Array.from(root.querySelectorAll('#gallery-grid figure'));
+   const lightbox = root.querySelector('#lightbox');
+   const lbImg = root.querySelector('#lb-image');
+   const btnClose = root.querySelector('#lb-close');
+   const btnPrev = root.querySelector('#lb-prev');
+   const btnNext = root.querySelector('#lb-next');
+
+   // Set default active filter
+   const setActiveFilter = (el) => {
+    filters.forEach(f => {
+     f.setAttribute('data-active', f === el ? 'true' : 'false');
+     if (f === el) f.classList.add('after:w-8');
+     else f.classList.remove('after:w-8');
+    });
+   };
+   setActiveFilter(filters[0]);
+
+   // Filter logic
+   function applyFilter(tag) {
+    cards.forEach(card => {
+     const tags = JSON.parse(card.getAttribute('data-tags') || '[]');
+     const show = tag === 'All' || tags.includes(tag);
+     card.classList.toggle('hidden', !show);
+    });
+   }
+   applyFilter('All');
+
+   filters.forEach(f => {
+    f.addEventListener('click', () => {
+     const tag = f.getAttribute('data-filter');
+     setActiveFilter(f);
+     applyFilter(tag);
+    });
+   });
+
+   // Build visible index list
+   function visibleCards() {
+    return cards.filter(c => !c.classList.contains('hidden'));
+   }
+
+   // Lightbox logic
+   let currentIndex = 0;
+   function openAt(index) {
+    const vis = visibleCards();
+    currentIndex = Math.max(0, Math.min(index, vis.length - 1));
+    const img = vis[currentIndex].querySelector('img');
+    if (!img) return;
+    lbImg.src = img.src;
+    lightbox.classList.remove('hidden');
+   }
+   function close() {
+    lightbox.classList.add('hidden');
+   }
+   function next() {
+    const vis = visibleCards();
+    currentIndex = (currentIndex + 1) % vis.length;
+    lbImg.src = vis[currentIndex].querySelector('img').src;
+   }
+   function prev() {
+    const vis = visibleCards();
+    currentIndex = (currentIndex - 1 + vis.length) % vis.length;
+    lbImg.src = vis[currentIndex].querySelector('img').src;
+   }
+
+   // Click handlers on cards
+   cards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+     // Ensure clicks inside figure open lightbox
+     const vis = visibleCards();
+     const indexInVis = vis.indexOf(card);
+     openAt(indexInVis < 0 ? 0 : indexInVis);
+    });
+   });
+
+   // Controls
+   btnClose.addEventListener('click', close);
+   btnNext.addEventListener('click', next);
+   btnPrev.addEventListener('click', prev);
+
+   // Close on backdrop click
+   lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) close();
+   });
+
+   // Keyboard support
+   document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+   });
+  })();
+ </script>
+</section>

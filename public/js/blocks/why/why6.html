@@ -1,0 +1,132 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Add Font Awesome CDN in your HTML <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Why choose our company -->
+<section class="w-full bg-white py-16 md:py-20">
+  <div class="mx-auto w-[92%] max-w-6xl">
+    <!-- Title -->
+    <h2 class="text-center text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+      Why choose our company
+    </h2>
+
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14 items-start">
+      <!-- Left column: two features -->
+      <div class="space-y-12">
+        <!-- Feature 1 -->
+        <div data-reveal class="flex gap-5">
+          <div class="mt-1 text-emerald-600">
+            <!-- team icon (users) -->
+            <i class="fa-solid fa-user-group h-8 w-8 text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Brilliant team</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Maecenas gravida lacus luctus nec tique eget sed, viverra at sapie ngrav id nec dolor
+              suscipit rist ique eget - malesuada sed viverra.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div data-reveal class="flex gap-5">
+          <div class="mt-1 text-emerald-600">
+            <!-- loop/experience icon (arrows-rotate) -->
+            <i class="fa-solid fa-arrows-rotate h-8 w-8 text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Rich experience</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Dolor sit amet - on sectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper
+              mattis, pulvinar dapibus glavrida.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle column: two features -->
+      <div class="space-y-12">
+        <!-- Feature 3 -->
+        <div data-reveal class="flex gap-5">
+          <div class="mt-1 text-emerald-600">
+            <!-- 24/7 support icon (clock) -->
+            <i class="fa-regular fa-clock h-8 w-8 text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">24/7 online support</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Nullam arcu on sec tetur adipiscing elit. Ut elit tellus, luctus nec tique eget sed,
+              viverra at sapie ngrav ida lacus nec dolor suscipit faucibus.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div data-reveal class="flex gap-5">
+          <div class="mt-1 text-emerald-600">
+            <!-- price icon (dollar-sign) -->
+            <i class="fa-solid fa-dollar-sign h-8 w-8 text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Affordable prices</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Etiam sit amet viverra at sapien gravida nec dolor suscipit convallis erat. Class aptent
+              taciti sociosqu ad litora torquent per conubia!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: quote card -->
+      <aside data-reveal class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-8 md:p-10">
+        <div class="flex justify-center">
+          <img
+            src="https://the7.io/elementor-business/wp-content/uploads/sites/89/elementor/thumbs/3-2-1-oog1pthotm2l1rtpd9yemm3n1pzowgm9h0mcd4ekqw.jpg"
+            alt="CEO" class="h-28 w-28 rounded-full object-cover ring-2 ring-white shadow" />
+        </div>
+        <blockquote class="mt-6 text-center text-slate-700 leading-relaxed">
+          “Thoughts are things! And powerful things at that, when mixed with definiteness of purpose,
+          and burning desire, can be translated into riches.”
+        </blockquote>
+        <div class="mt-6 text-center">
+          <p class="font-semibold text-slate-900">Alexandra Blackfire</p>
+          <p class="text-emerald-600">Co‑founder, CEO</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Subtle reveal animation for each block -->
+<style>
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-reveal].is-visible {
+    animation: rise .65s cubic-bezier(.2, .8, .2, 1) both;
+  }
+</style>
+<script>
+  // Reveal on scroll
+  (() => {
+    const blocks = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.15 });
+    blocks.forEach(b => io.observe(b));
+  })();
+</script>

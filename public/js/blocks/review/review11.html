@@ -1,0 +1,123 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Add Font Awesome CDN in your HTML <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Clients & Testimonials Section -->
+<section class="w-full bg-white py-16 md:py-20">
+ <div class="mx-auto w-[92%] max-w-6xl">
+  <!-- Heading with underline -->
+  <div class="text-center">
+   <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
+    Clients & Testimonials
+   </h2>
+   <div class="mx-auto mt-3 h-1 w-28 bg-cyan-500"></div>
+  </div>
+
+  <!-- Testimonials grid -->
+  <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+   <!-- Card 1 -->
+   <article data-reveal class="flex flex-col">
+    <!-- Quote mark -->
+    <div class="text-5xl leading-none text-slate-200 mb-3">“</div>
+    <p class="text-slate-700 leading-relaxed">
+     Super service! Quisque quis loremipsum dolor ex mattis, euismod mauris eget, scelerisque
+     sapien. Lorem ipsum dolor sit lorem ipsum amet! Thanx!
+    </p>
+    <!-- Author -->
+    <div class="mt-6 flex items-center gap-4">
+     <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/p0003-60x60.jpg" alt="John Doe"
+      class="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow" />
+     <div>
+      <p class="font-semibold text-slate-900">John Doe</p>
+      <p class="text-cyan-600 text-sm">regular user</p>
+     </div>
+    </div>
+   </article>
+
+   <!-- Card 2 -->
+   <article data-reveal class="flex flex-col">
+    <div class="text-5xl leading-none text-slate-200 mb-3">“</div>
+    <p class="text-slate-700 leading-relaxed">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+     ullamcorper mattis, pulvinar dapibus leo.
+    </p>
+    <div class="mt-6 flex items-center gap-4">
+     <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/p0001-60x60.jpg"
+      alt="Stefan Freeman" class="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow" />
+     <div>
+      <p class="font-semibold text-slate-900">Stefan Freeman</p>
+      <p class="text-cyan-600 text-sm">new customer</p>
+     </div>
+    </div>
+   </article>
+
+   <!-- Card 3 -->
+   <article data-reveal class="flex flex-col">
+    <div class="text-5xl leading-none text-slate-200 mb-3">“</div>
+    <p class="text-slate-700 leading-relaxed">
+     Curabitur cursus sapien sed porta dapibus. Quisque quis loremipsum dolor ex mattis, euismod
+     mauris eget, scelerisque sapien lorem…
+     <a href="#" class="text-cyan-600 hover:underline">read more</a>
+    </p>
+    <div class="mt-6 flex items-center gap-4">
+     <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/p0008-60x60.jpg" alt="Betty Black"
+      class="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow" />
+     <div>
+      <p class="font-semibold text-slate-900">Betty Black</p>
+      <p class="text-cyan-600 text-sm">regular customer</p>
+     </div>
+    </div>
+   </article>
+  </div>
+
+  <!-- Logos row -->
+  <div class="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l005-364x273.png" alt="brand 1"
+    class="h-50px md:h-50" />
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l004-364x273.png" alt="brand 2"
+    class="h-50 md:h-50" />
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l006-364x273.png" alt="brand 3"
+    class="h-50 md:h-50" />
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l007-364x273.png" alt="brand 4"
+    class="h-50 md:h-50" />
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l003-364x273.png" alt="brand 5"
+    class="h-50 md:h-50" />
+   <img src="https://the7.io/wpbakery-starter/wp-content/uploads/sites/61/2020/01/l001-364x273.png" alt="brand 6"
+    class="h-50 md:h-50" />
+  </div>
+ </div>
+</section>
+
+<!-- Subtle reveal animation -->
+<style>
+ @keyframes rise {
+  from {
+   opacity: 0;
+   transform: translateY(20px);
+  }
+
+  to {
+   opacity: 1;
+   transform: none;
+  }
+ }
+
+ [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+ }
+
+ [data-reveal].is-visible {
+  animation: rise .7s cubic-bezier(.2, .8, .2, 1) both;
+ }
+</style>
+<script>
+ // Observer for reveal on scroll
+ (() => {
+  const nodes = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.15 });
+  nodes.forEach(n => io.observe(n));
+ })();
+</script>

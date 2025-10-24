@@ -1,0 +1,80 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="relative bg-cyan-50 overflow-hidden w-full">
+  <!-- Curve SVG background, right (kept) -->
+  <div class="absolute right-0 top-0 w-[900px] h-[600px] z-0 pointer-events-none">
+    <svg viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <path fill="#d9f7fa" fill-opacity="0.85"
+        d="M650,0 C900,0 900,600 700,600 C550,600 240,350 0,400 C130,0 400,0 650,0 Z" />
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 pt-20 pb-14 flex flex-col lg:flex-row items-center relative z-10">
+    <!-- Left: Content -->
+    <div class="flex-1 max-w-xl text-left mb-12 lg:mb-0">
+      <p class="text-base font-semibold tracking-wider text-slate-500 mb-3">Play. explore. learn.</p>
+
+      <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-700 leading-tight mb-6"
+        style="font-family: 'Inter', sans-serif;">
+        A safe and joyful <br />
+        place for your<br />
+        lovely children
+      </h1>
+
+      <p class="text-slate-500 text-lg mb-8">
+        Donec scelerisque neque integer nulla habitant nec sem nam bibendum arcu
+        rhoncus in consequat.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
+        <button class="bg-gray-700 text-white font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-800 transition">
+          Enroll your kid
+        </button>
+
+        <div class="flex items-center gap-2">
+          <div class="flex text-amber-400 text-xl gap-1">
+            <!-- 5 yellow stars via Font Awesome -->
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+          </div>
+          <span class="text-amber-400 text-lg font-semibold ml-2">4.8</span>
+          <span class="text-slate-500 text-sm ml-1">rating on Google</span>
+        </div>
+      </div>
+
+      <hr class="w-full border-slate-200 my-6" />
+
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-400 text-white">
+          <i class="fa-solid fa-phone text-white text-xl" aria-hidden="true"></i>
+        </span>
+        <span class="text-slate-700 text-xl font-medium">
+          (123) 456-7890
+        </span>
+      </div>
+    </div>
+
+    <!-- Right: Images (kept positioning/overlap) -->
+    <div class="flex-1 relative flex items-start justify-center w-full min-h-[380px]">
+      <!-- Overlapping image - right, lower, behind -->
+      <img src="https://websitedemos.net/daycare-02/wp-content/uploads/sites/1041/2022/03/day-care-hero-image-2.jpg"
+        class="absolute left-56 top-28 w-64 h-[350px] object-cover rounded-2xl z-20" alt="Child 2" />
+      <!-- Main image - top, larger, foreground -->
+      <img src="https://websitedemos.net/daycare-02/wp-content/uploads/sites/1041/2022/03/day-care-hero-image-back.jpg"
+        class="absolute left-12 top-0 w-80 h-[400px] object-cover rounded-2xl z-15" alt="Child 1" />
+    </div>
+  </div>
+</section>

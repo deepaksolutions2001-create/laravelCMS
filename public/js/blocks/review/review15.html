@@ -1,0 +1,194 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+
+<section id="client-testimonial-v4" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+ <!-- Top heading -->
+ <div class="mb-12">
+  <div class="sub_heading">
+   <span class="block pb-3 text-lg underline text-orange-600">Clients Testimonial</span>
+  </div>
+  <div class="main_heading">
+   <h2 class="text-3xl sm:text-4xl font-semibold max-w-xl text-slate-900">
+    Check what's our clients say about us
+   </h2>
+  </div>
+ </div>
+
+ <!-- Testimonial slider -->
+ <div class="testimonial_boxes" id="slider-container">
+  <div class="overflow-hidden">
+   <div class="under_boxes flex flex-nowrap [--index:0] transition-transform duration-500 ease-in-out"
+    id="slides-container" style="transform: translateX(var(--index));">
+
+    <!-- Slide 1 -->
+    <div class="box shrink-0 basis-full">
+     <div class="under_detail grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- First testimonial -->
+      <div class="quotaion_heading">
+       <div class="quote_and-some-text flex items-start gap-4">
+        <div class="quotaion_icon shrink-0 pt-5">
+         <i class="fa-solid fa-quote-right text-3xl text-orange-600 -scale-x-100 -scale-y-100"></i>
+        </div>
+        <div class="client_heading flex-1">
+         <div class="client_says">
+          <p class="text-lg leading-9 italic pb-5 text-slate-700">
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cupiditate laborum nobis rerum ipsa dolor
+           sit amet consectetur adipisicing elit.
+          </p>
+         </div>
+         <div class="name">
+          <h3 class="text-xl font-medium text-slate-900">Thomas Johnson</h3>
+         </div>
+         <div class="to_blong">
+          <span class="block text-base text-slate-600">Executive Director, themefisher</span>
+         </div>
+        </div>
+       </div>
+      </div>
+
+      <!-- Second testimonial -->
+      <div class="quotaion_heading">
+       <div class="quote_and-some-text flex items-start gap-4">
+        <div class="quotaion_icon shrink-0 pt-5">
+         <i class="fa-solid fa-quote-right text-3xl text-orange-600 -scale-x-100 -scale-y-100"></i>
+        </div>
+        <div class="client_heading flex-1">
+         <div class="client_says">
+          <p class="text-lg leading-9 italic pb-5 text-slate-700">
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cupiditate laborum nobis rerum ipsa dolor
+           sit amet consectetur adipisicing elit.
+          </p>
+         </div>
+         <div class="name">
+          <h3 class="text-xl font-medium text-slate-900">Mickel Hussy</h3>
+         </div>
+         <div class="to_blong">
+          <span class="block text-base text-slate-600">Executive Director, themefisher</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="box shrink-0 basis-full">
+     <div class="under_detail grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- First testimonial -->
+      <div class="quotaion_heading">
+       <div class="quote_and-some-text flex items-start gap-4">
+        <div class="quotaion_icon shrink-0 pt-5">
+         <i class="fa-solid fa-quote-right text-3xl text-orange-600 -scale-x-100 -scale-y-100"></i>
+        </div>
+        <div class="client_heading flex-1">
+         <div class="client_says">
+          <p class="text-lg leading-9 italic pb-5 text-slate-700">
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cupiditate laborum nobis rerum ipsa dolor
+           sit amet consectetur adipisicing elit.
+          </p>
+         </div>
+         <div class="name">
+          <h3 class="text-xl font-medium text-slate-900">Thomas Johnson</h3>
+         </div>
+         <div class="to_blong">
+          <span class="block text-base text-slate-600">Executive Director, themefisher</span>
+         </div>
+        </div>
+       </div>
+      </div>
+
+      <!-- Second testimonial -->
+      <div class="quotaion_heading">
+       <div class="quote_and-some-text flex items-start gap-4">
+        <div class="quotaion_icon shrink-0 pt-5">
+         <i class="fa-solid fa-quote-right text-3xl text-orange-600 -scale-x-100 -scale-y-100"></i>
+        </div>
+        <div class="client_heading flex-1">
+         <div class="client_says">
+          <p class="text-lg leading-9 italic pb-5 text-slate-700">
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cupiditate laborum nobis rerum ipsa dolor
+           sit amet consectetur adipisicing elit.
+          </p>
+         </div>
+         <div class="name">
+          <h3 class="text-xl font-medium text-slate-900">Thomas Johnson</h3>
+         </div>
+         <div class="to_blong">
+          <span class="block text-base text-slate-600">Executive Director, themefisher</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+  <!-- Bottom dots -->
+  <div class="bottom-slide-trigger-container flex items-center justify-center gap-1 mt-8">
+   <span
+    class="dot flex h-2.5 w-2.5 rounded-full border border-slate-300 bg-slate-100 cursor-pointer transition-colors duration-500 data-[active=true]:border-transparent data-[active=true]:bg-orange-600"
+    data-index="0"></span>
+   <span
+    class="dot flex h-2.5 w-2.5 rounded-full border border-slate-300 bg-slate-100 cursor-pointer transition-colors duration-500 data-[active=true]:border-transparent data-[active=true]:bg-orange-600"
+    data-index="1"></span>
+  </div>
+ </div>
+
+ <!-- Scoped JS -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#client-testimonial-v4');
+   if (!root) return;
+
+   const container = root.querySelector('#slider-container');
+   const track = root.querySelector('#slides-container');
+   const slides = Array.from(track.querySelectorAll('.box'));
+   const dots = Array.from(root.querySelectorAll('.dot'));
+
+   let index = 0;
+   let timer = null;
+   const delaySec = 8;
+
+   function setActive(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+
+    // Update dots
+    dots.forEach((d, di) => d.setAttribute('data-active', di === index ? 'true' : 'false'));
+   }
+
+   function next() { setActive(index + 1); }
+
+   function start() {
+    stop();
+    timer = setInterval(next, delaySec * 1000);
+   }
+   function stop() { if (timer) clearInterval(timer); }
+
+   // Init
+   setActive(0);
+   dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => setActive(i));
+   });
+
+   // Autoplay + pause on hover/focus
+   start();
+   container.addEventListener('mouseenter', stop);
+   container.addEventListener('mouseleave', start);
+   container.addEventListener('focusin', stop);
+   container.addEventListener('focusout', start);
+  })();
+ </script>
+</section>

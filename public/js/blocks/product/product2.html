@@ -1,0 +1,116 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<section class="w-full bg-slate-50 py-14">
+ <div class="max-w-7xl mx-auto px-6">
+  <h2 class="text-4xl md:text-5xl font-extrabold text-gray-700 text-center mb-12 tracking-tight animate-fadeInD">
+   New Properties for Sale
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
+   <!-- Card 1 -->
+   <div
+    class="w-full max-w-xs bg-white rounded-lg shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fadeInUp">
+    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80"
+     alt="property1"
+     class="rounded-t-lg w-full h-48 object-cover object-center transition group-hover:scale-105 duration-400" />
+    <div class="px-7 py-6 flex flex-col items-center text-center">
+     <h3 class="font-bold text-lg text-gray-700 leading-tight mb-1">39 East Houston St,<br>New York</h3>
+     <div class="text-gray-500 text-sm mb-2 font-medium">1 Bedroom, 1 Bathroom</div>
+     <div class="font-extrabold text-xl text-blue-600 mb-3">$500,000</div>
+     <a class="text-gray-700 underline font-semibold text-sm mb-1" href="#">Learn more</a>
+    </div>
+   </div>
+   <!-- Card 2 -->
+   <div
+    class="w-full max-w-xs bg-white rounded-lg shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fadeInUp"
+    style="animation-delay:.08s;">
+    <img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80"
+     alt="property2"
+     class="rounded-t-lg w-full h-48 object-cover object-center transition group-hover:scale-105 duration-400" />
+    <div class="px-7 py-6 flex flex-col items-center text-center">
+     <h3 class="font-bold text-lg text-gray-700 leading-tight mb-1">254 W 53rd St,<br>New York</h3>
+     <div class="text-gray-500 text-sm mb-2 font-medium">2 Bedrooms, 2 Bathrooms</div>
+     <div class="font-extrabold text-xl text-blue-600 mb-3">$890,000</div>
+     <a class="text-gray-700 underline font-semibold text-sm mb-1" href="#">Learn more</a>
+    </div>
+   </div>
+   <!-- Card 3 -->
+   <div
+    class="w-full max-w-xs bg-white rounded-lg shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fadeInUp"
+    style="animation-delay:.16s;">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+     alt="property3"
+     class="rounded-t-lg w-full h-48 object-cover object-center transition group-hover:scale-105 duration-400" />
+    <div class="px-7 py-6 flex flex-col items-center text-center">
+     <h3 class="font-bold text-lg text-gray-700 leading-tight mb-1">1579 2nd Ave,<br>New York</h3>
+     <div class="text-gray-500 text-sm mb-2 font-medium">2 Bedrooms, 1 Bathroom</div>
+     <div class="font-extrabold text-xl text-blue-600 mb-3">$600,000</div>
+     <a class="text-gray-700 underline font-semibold text-sm mb-1" href="#">Learn more</a>
+    </div>
+   </div>
+   <!-- Card 4 -->
+   <div
+    class="w-full max-w-xs bg-white rounded-lg shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fadeInUp"
+    style="animation-delay:.24s;">
+    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+     alt="property4"
+     class="rounded-t-lg w-full h-48 object-cover object-center transition group-hover:scale-105 duration-400" />
+    <div class="px-7 py-6 flex flex-col items-center text-center">
+     <h3 class="font-bold text-lg text-gray-700 leading-tight mb-1">1320 Fulton St,<br>Brooklyn</h3>
+     <div class="text-gray-500 text-sm mb-2 font-medium">2 Bedrooms, 1 Bathroom</div>
+     <div class="font-extrabold text-xl text-blue-600 mb-3">$380,000</div>
+     <a class="text-gray-700 underline font-semibold text-sm mb-1" href="#">Learn more</a>
+    </div>
+   </div>
+  </div>
+ </div>
+ <style>
+  @keyframes fadeInD {
+   from {
+    opacity: 0;
+    transform: translateY(-28px);
+   }
+
+   to {
+    opacity: 1;
+    transform: none;
+   }
+  }
+
+  @keyframes fadeInUp {
+   from {
+    opacity: 0;
+    transform: translateY(36px);
+   }
+
+   to {
+    opacity: 1;
+    transform: none;
+   }
+  }
+
+  .animate-fadeInUp {
+   animation: fadeInUp 0.7s both;
+  }
+
+  .animate-fadeInD {
+   animation: fadeInD 0.8s both;
+  }
+ </style>
+ <script>
+  // Animate each card on scroll using IntersectionObserver for extra pop
+  const cards = document.querySelectorAll('.animate-fadeInUp');
+  if ('IntersectionObserver' in window) {
+   const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+     if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+     }
+    });
+   }, { threshold: 0.22 });
+   cards.forEach(card => {
+    card.style.animationPlayState = 'paused';
+    observer.observe(card);
+   });
+  }
+ </script>
+</section>

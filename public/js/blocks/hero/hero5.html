@@ -1,0 +1,58 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<!-- Google Font (kept) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<section class="relative w-full min-h-[700px] h-[92vh] flex items-stretch bg-neutral-900">
+  <!-- Background image with overlay/darken -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://websitedemos.net/travel-agency-04/wp-content/uploads/sites/1521/2025/03/home-hero.jpg"
+      class="w-full h-full object-cover brightness-[.55] select-none pointer-events-none" alt="Hero" />
+  </div>
+
+  <!-- Hero Content: text and buttons -->
+  <div class="relative z-10 w-full max-w-[1570px] mx-auto">
+    <div
+      class="absolute left-[6%] top-[17%] md:top-[23%] max-w-2xl flex flex-col items-start md:left-[6%] md:max-w-[700px] lg:max-w-[750px] xl:max-w-[800px]">
+      <span
+        class="uppercase text-base tracking-[.14em] font-semibold text-white bg-white/20 rounded-full px-6 py-2 mb-6"
+        style="letter-spacing:0.19em;">
+        EXPERIENCE LUXURY TRAVEL
+      </span>
+
+      <h1
+        class="font-bold text-white text-[2.5rem] xs:text-[2.9rem] sm:text-[3.6rem] md:text-[4.1rem] xl:text-[4.8rem] 2xl:text-[5.1rem] leading-[1.07] mb-6"
+        style="font-family:'Playfair Display',serif;">
+        Explore the World<br> Like Never Before
+      </h1>
+
+      <p class="text-white text-lg sm:text-xl font-medium mb-8 max-w-2xl">
+        Curated journeys to the world's most extraordinary destinations. Let us transform your travel dreams into
+        unforgettable memories.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 w-full">
+        <a href="#"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow transition-all duration-200 border-2 border-transparent text-center min-w-[165px]">
+          Start Planning
+        </a>
+
+        <a href="#"
+          class="flex items-center gap-2 border-2 border-white text-white px-7 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition text-center min-w-[155px]">
+          <i class="fa-solid fa-circle-play text-xl"></i>
+          Watch Video
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

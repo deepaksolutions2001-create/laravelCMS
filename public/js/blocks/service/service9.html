@@ -1,0 +1,112 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Add Font Awesome CDN in your HTML <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Services (3 cards with big top illustrations + rounded CTA) -->
+<section class="w-full bg-white py-16 md:py-20">
+  <div class="mx-auto w-[92%] max-w-6xl">
+    <!-- Heading -->
+    <h2 class="text-center text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+      Services
+    </h2>
+    <p class="mt-3 text-center text-lg md:text-xl text-blue-500">
+      We love &amp; know what we do!
+    </p>
+
+    <!-- 3 columns -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12 items-start">
+      <!-- Card 1 -->
+      <article data-reveal class="flex flex-col items-center text-center">
+        <!-- Illustration container to mimic circle plate -->
+        <div class="relative h-56 w-56">
+          <img src="https://the7.io/elementor-company/wp-content/uploads/sites/98/2022/07/art-space006.svg"
+            alt="Brand identity" class="h-full w-full object-contain" />
+        </div>
+
+        <h3 class="mt-6 text-2xl font-semibold text-slate-900">Brand identity</h3>
+        <p class="mt-3 max-w-md text-slate-600 leading-relaxed">
+          Suspendisse malesuada consectetur nibh, sit amet semper erat venenatis vitae.
+          Nam a fringilla nulla, sit amet pretium suscipit ultricies finibus.
+        </p>
+
+        <a href="#"
+          class="mt-5 inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-500 active:scale-[0.98] transition">
+          Details &amp; prices
+        </a>
+      </article>
+
+      <!-- Card 2 -->
+      <article data-reveal class="flex flex-col items-center text-center">
+        <div class="relative h-56 w-56">
+          <img src="https://the7.io/elementor-company/wp-content/uploads/sites/98/2022/07/art-marketing-002.svg"
+            alt="Social media marketing" class="h-full w-full object-contain" />
+        </div>
+
+        <h3 class="mt-6 text-2xl font-semibold text-slate-900">Social media marketing</h3>
+        <p class="mt-3 max-w-md text-slate-600 leading-relaxed">
+          Nulla a velit quis ex ornare rhoncus. Donec imperdiet risus justo, vel malesuada erat
+          fermentum at. Morbi at laoreet mauris. Mauris lorem felis, gravida et vehicula congue,
+          tempus vel justo.
+        </p>
+
+        <a href="#"
+          class="mt-5 inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-500 active:scale-[0.98] transition">
+          Details &amp; prices
+        </a>
+      </article>
+
+      <!-- Card 3 -->
+      <article data-reveal class="flex flex-col items-center text-center">
+        <div class="relative h-56 w-56">
+          <img src="https://the7.io/elementor-company/wp-content/uploads/sites/98/2022/07/art-process-002.svg"
+            alt="Project management" class="h-full w-full object-contain" />
+        </div>
+
+        <h3 class="mt-6 text-2xl font-semibold text-slate-900">Project management</h3>
+        <p class="mt-3 max-w-md text-slate-600 leading-relaxed">
+          Nam a fringilla nulla, sit amet pretium libero. Fusce sed iaculis nunc. Suspendisse suscipit
+          ultricies finibus. Sed eleifend augue est, quis lobortis lectus ornare.
+        </p>
+
+        <a href="#"
+          class="mt-5 inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-500 active:scale-[0.98] transition">
+          Details &amp; prices
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Subtle entrance animation -->
+<style>
+  @keyframes floatIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-reveal].is-visible {
+    animation: floatIn .7s cubic-bezier(.2, .8, .2, 1) both;
+  }
+</style>
+<script>
+  // Reveal on scroll for cards
+  (() => {
+    const items = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.15 });
+    items.forEach(i => io.observe(i));
+  })();
+</script>

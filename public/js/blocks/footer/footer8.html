@@ -1,0 +1,181 @@
+<!-- Font Awesome + Tailwind CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Colorlib-style Footer Component -->
+<section id="footer-colorlib-v4" class="relative w-full bg-slate-900 text-slate-300">
+ <!-- decorative blob/shape -->
+ <div aria-hidden="true"
+  class="pointer-events-none absolute -top-28 -left-40 h-[30rem] w-[30rem] rounded-full bg-indigo-800/20 blur-2xl">
+ </div>
+
+ <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+
+   <!-- Brand / Intro -->
+   <div class="lg:col-span-4">
+    <div>
+     <h4 class="text-slate-100 text-lg font-semibold">Colorlib</h4>
+     <span class="mt-1 block h-0.5 w-14 bg-indigo-400"></span>
+    </div>
+
+    <p class="mt-4 text-sm leading-relaxed text-slate-300/80">
+     A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic
+     country, in which roasted parts of sentences fly into your mouth.
+    </p>
+
+    <!-- Social horizontal -->
+    <div class="mt-6 flex items-center gap-4">
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white shadow hover:translate-y-[2px] hover:bg-indigo-700 transition">
+      <i class="fa-brands fa-x-twitter"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white shadow hover:translate-y-[2px] hover:bg-indigo-700 transition">
+      <i class="fa-brands fa-facebook-f"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-white shadow hover:translate-y-[2px] hover:bg-indigo-700 transition">
+      <i class="fa-brands fa-instagram"></i>
+     </a>
+    </div>
+   </div>
+
+   <!-- Latest News -->
+   <div class="lg:col-span-4">
+    <div>
+     <h4 class="text-slate-100 text-lg font-semibold">Latest News</h4>
+     <span class="mt-1 block h-0.5 w-16 bg-indigo-400"></span>
+    </div>
+
+    <!-- mobile slider viewport -->
+    <div id="news-viewport" class="mt-4 md:mt-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none">
+     <div id="news-track" class="flex md:block gap-5 w-max md:w-auto">
+      <!-- Item -->
+      <article class="snap-start md:snap-none flex items-start gap-3 min-w-[19rem] md:min-w-0">
+       <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400&auto=format&fit=crop"
+        alt="news 1" class="h-16 w-16 rounded object-cover ring-1 ring-slate-700" />
+       <div>
+        <a href="#" class="text-slate-100 hover:text-white text-sm font-medium leading-snug">
+         Even the all‑powerful Pointing has no control about
+        </a>
+        <div class="mt-1 text-[12px] text-indigo-300">
+         Oct 16, 2019 <span class="mx-1">•</span> Admin <span class="mx-1">•</span> 19
+        </div>
+       </div>
+      </article>
+
+      <!-- Item -->
+      <article class="snap-start md:snap-none flex items-start gap-3 min-w-[19rem] md:min-w-0">
+       <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=400&auto=format&fit=crop"
+        alt="news 2" class="h-16 w-16 rounded object-cover ring-1 ring-slate-700" />
+       <div>
+        <a href="#" class="text-slate-100 hover:text-white text-sm font-medium leading-snug">
+         Even the all‑powerful Pointing has no control about
+        </a>
+        <div class="mt-1 text-[12px] text-indigo-300">
+         Oct 16, 2019 <span class="mx-1">•</span> Admin <span class="mx-1">•</span> 19
+        </div>
+       </div>
+      </article>
+     </div>
+    </div>
+   </div>
+
+   <!-- Quick Links -->
+   <div class="lg:col-span-2">
+    <div>
+     <h4 class="text-slate-100 text-lg font-semibold">Quick Links</h4>
+     <span class="mt-1 block h-0.5 w-14 bg-indigo-400"></span>
+    </div>
+
+    <ul class="mt-4 space-y-3 text-sm">
+     <li><a href="#" class="hover:text-white transition">Home</a></li>
+     <li><a href="#" class="hover:text-white transition">About</a></li>
+     <li><a href="#" class="hover:text-white transition">Services</a></li>
+     <li><a href="#" class="hover:text-white transition">Works</a></li>
+     <li><a href="#" class="hover:text-white transition">Blog</a></li>
+     <li><a href="#" class="hover:text-white transition">Contact</a></li>
+    </ul>
+   </div>
+
+   <!-- Questions / Contact -->
+   <div class="lg:col-span-2">
+    <div>
+     <h4 class="text-slate-100 text-lg font-semibold">Have a Questions?</h4>
+     <span class="mt-1 block h-0.5 w-24 bg-indigo-400"></span>
+    </div>
+
+    <ul class="mt-4 space-y-4 text-sm">
+     <li class="flex items-start gap-3">
+      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-indigo-300">
+       <i class="fa-solid fa-location-dot"></i>
+      </span>
+      <span class="text-slate-300/90">203 Fake St. Mountain View, San Francisco, California, USA</span>
+     </li>
+     <li class="flex items-center gap-3">
+      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-indigo-300">
+       <i class="fa-solid fa-phone"></i>
+      </span>
+      <a href="#" class="hover:text-white">+2 392 3929 210</a>
+     </li>
+     <li class="flex items-center gap-3 break-all">
+      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-indigo-300">
+       <i class="fa-solid fa-envelope"></i>
+      </span>
+      <a href="#" class="hover:text-white">info@yourdomain.com</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+
+  <!-- bottom -->
+  <div class="mt-10 text-center text-xs text-slate-400">
+   Copyright ©2025 All rights reserved | This template is made with
+   <i class="fa-solid fa-heart text-rose-400 mx-1"></i>
+   by <a href="#" class="text-indigo-300 hover:text-indigo-200">Me</a>
+  </div>
+ </div>
+</section>
+
+<!-- Animations: reveal + mobile news auto-scroll -->
+<script>
+ // Reveal on scroll
+ (function () {
+  const root = document.getElementById('footer-colorlib-v4');
+  const els = root.querySelectorAll('h4, p, li, a, img, .text-center');
+  els.forEach(el => el.classList.add('opacity-0', 'translate-y-1'));
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) {
+     e.target.classList.remove('opacity-0', 'translate-y-1');
+     e.target.classList.add('opacity-100', 'translate-y-0', 'transition', 'duration-700', 'ease-out');
+     io.unobserve(e.target);
+    }
+   });
+  }, { threshold: 0.15 });
+  els.forEach(el => io.observe(el));
+ })();
+
+ // Mobile slider for Latest News (auto scroll, pause on hover)
+ (function () {
+  const vp = document.getElementById('news-viewport');
+  const track = document.getElementById('news-track');
+  if (!vp || !track) return;
+  let timer;
+  function start() {
+   stop();
+   timer = setInterval(() => {
+    const max = track.scrollWidth - vp.clientWidth;
+    const next = vp.scrollLeft + vp.clientWidth;
+    vp.scrollTo({ left: next >= max ? 0 : next, behavior: 'smooth' });
+   }, 2800);
+  }
+  function stop() { if (timer) clearInterval(timer); }
+  vp.addEventListener('mouseenter', stop);
+  vp.addEventListener('mouseleave', start);
+  start();
+  window.addEventListener('resize', start);
+ })();
+</script>

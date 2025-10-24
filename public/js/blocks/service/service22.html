@@ -1,0 +1,156 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="service-var-9" class="py-12 sm:py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
+      <!-- Left: headings, details, counters -->
+      <div>
+        <!-- Top headings -->
+        <div>
+          <span class="block text-lg text-gray-600">Best Service</span>
+          <h2 class="mt-1 text-3xl sm:text-4xl font-semibold text-gray-900">Service We Provide</h2>
+          <div class="relative mt-3 w-28 h-1 bg-red-600">
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 grid place-items-center w-5 h-5 rounded-full bg-white">
+              <span class="w-2.5 h-2.5 rounded-full border-2 border-red-600"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mt-6 space-y-3 text-gray-600">
+          <p class="text-base">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint a quod tempore itaque molestias ipsam praesentium dolor, fugiat impedit,
+          </p>
+          <p class="text-base">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, eum culpa labore rerum cum atque ab modi voluptas, ipsa voluptatum hic iste omnis enim rem. ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt natus praesentium non?
+          </p>
+        </div>
+
+        <!-- Counters -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Item -->
+          <div class="flex items-center gap-3 p-3">
+            <div class="grid place-items-center w-12 h-12 rounded-full bg-white text-red-600 border border-gray-200">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <div>
+              <h3 class="text-3xl font-semibold text-gray-900" data-counter data-target="230">0</h3>
+              <span class="block text-sm text-gray-500">Projects Done</span>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="flex items-center gap-3 p-3">
+            <div class="grid place-items-center w-12 h-12 rounded-full bg-white text-red-600 border border-gray-200">
+              <i class="fa-regular fa-face-smile"></i>
+            </div>
+            <div>
+              <h3 class="text-3xl font-semibold text-gray-900" data-counter data-target="150">0</h3>
+              <span class="block text-sm text-gray-500">Projects Done</span>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="flex items-center gap-3 p-3">
+            <div class="grid place-items-center w-12 h-12 rounded-full bg-white text-red-600 border border-gray-200">
+              <i class="fa-solid fa-thumbs-up"></i>
+            </div>
+            <div>
+              <h3 class="text-3xl font-semibold text-gray-900" data-counter data-target="80">0</h3>
+              <span class="block text-sm text-gray-500">Projects Done</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: progress bars -->
+      <div class="pb-6">
+        <!-- Bar -->
+        <div class="py-2 pl-2">
+          <span class="block text-lg text-gray-800">Branding</span>
+          <div class="mt-2 h-3 w-full max-w-md rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-full bg-gray-800 rounded-full w-0" data-bar data-width="90"></div>
+          </div>
+        </div>
+        <!-- Bar -->
+        <div class="py-2 pl-2">
+          <span class="block text-lg text-gray-800">Consulting</span>
+          <div class="mt-2 h-3 w-full max-w-md rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-full bg-gray-800 rounded-full w-0" data-bar data-width="78"></div>
+          </div>
+        </div>
+        <!-- Bar -->
+        <div class="py-2 pl-2">
+          <span class="block text-lg text-gray-800">Business</span>
+          <div class="mt-2 h-3 w-full max-w-md rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-full bg-gray-800 rounded-full w-0" data-bar data-width="65"></div>
+          </div>
+        </div>
+        <!-- Bar -->
+        <div class="py-2 pl-2">
+          <span class="block text-lg text-gray-800">Promotion</span>
+          <div class="mt-2 h-3 w-full max-w-md rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-full bg-gray-800 rounded-full w-0" data-bar data-width="94"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimal JS: trigger once on view -->
+  <script>
+    (function () {
+      const root = document.querySelector('#service-var-9');
+      if (!root) return;
+
+      let done = false;
+      const bars = Array.from(root.querySelectorAll('[data-bar]'));
+      const counters = Array.from(root.querySelectorAll('[data-counter]'));
+
+      function animate() {
+        // Bars
+        bars.forEach(el => {
+          const pct = parseInt(el.getAttribute('data-width'), 10) || 0;
+          el.style.transition = 'width 800ms ease-in-out';
+          el.style.width = pct + '%';
+        });
+        // Counters
+        counters.forEach(el => {
+          const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+          let val = 0;
+          const step = Math.max(1, Math.ceil(target / 90));
+          const tick = () => {
+            val = Math.min(target, val + step);
+            el.textContent = val;
+            if (val < target) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }
+
+      const io = 'IntersectionObserver' in window
+        ? new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting && !done) {
+                done = true;
+                animate();
+                io.disconnect();
+              }
+            });
+          }, { threshold: 0.25 })
+        : null;
+
+      if (io) io.observe(root); else animate();
+    })();
+  </script>
+</section>

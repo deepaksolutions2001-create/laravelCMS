@@ -1,0 +1,133 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins, optional) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<section class="w-full bg-stone-50 py-10 px-4 sm:px-6 md:px-10">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-10 md:gap-8">
+
+    <!-- Image Side -->
+    <div class="flex-shrink-0 flex items-center justify-center w-full md:w-1/2 relative">
+      <div
+        class="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-[480px] h-[320px] sm:h-[420px] md:h-[500px] rounded-2xl overflow-hidden bg-gray-200 relative flex items-center shadow-md">
+        <!-- Old (current) image -->
+        <img id="service-img-current"
+          src="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img01.jpg" alt="Service"
+          class="w-full h-full object-cover object-center absolute inset-0 z-10 transition-all duration-300" />
+        <!-- New image -->
+        <img id="service-img-next" src="" alt=""
+          class="w-full h-full object-cover object-center absolute inset-0 z-20 pointer-events-none opacity-0"
+          style="transform:translateX(-100%);" />
+      </div>
+    </div>
+
+    <!-- Text Content -->
+    <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+      <div class="text-xs font-sans uppercase tracking-[0.15em] text-gray-400 mb-3">Our Services</div>
+      <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-neutral-900 leading-snug mb-6">
+        MAKING LIVING SPACES<br />AFFORDABLE
+      </h2>
+
+      <!-- Service List -->
+      <ul class="space-y-3 w-full sm:w-[85%] md:w-full service-list">
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img01.jpg">
+          HIGH QUALITY PRODUCTS
+        </li>
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img02.jpg">
+          GREEN ENVIRONMENT
+        </li>
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img03.jpg">
+          COMPREHENSIVE AMENITIES
+        </li>
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img04.jpg">
+          PROFESSIONAL SERVICES
+        </li>
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img01.jpg">
+          HUMANITARIAN COMMUNITY
+        </li>
+        <li
+          class="text-base sm:text-lg md:text-xl font-serif text-neutral-900 hover:underline hover:text-amber-600 transition-colors duration-200 cursor-pointer font-bold"
+          data-img="https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img02.jpg">
+          ABSOLUTE SECURITY
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    .animate-slide-in {
+      transition: transform 0.55s cubic-bezier(.57, .1, .59, .98), opacity 0.5s cubic-bezier(.57, .1, .59, .98);
+      transform: translateX(0) !important;
+      opacity: 1 !important;
+    }
+
+    /* Additional responsiveness for very small devices */
+    @media (max-width: 480px) {
+      .service-list li {
+        font-size: 0.95rem !important;
+      }
+
+      h2 {
+        line-height: 1.3 !important;
+      }
+    }
+  </style>
+
+  <script>
+    const serviceList = document.querySelectorAll(".service-list li");
+    const imgCurrent = document.getElementById("service-img-current");
+    const imgNext = document.getElementById("service-img-next");
+    let animating = false, currentIdx = 0;
+
+    const imgs = [
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img01.jpg",
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img02.jpg",
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img03.jpg",
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img04.jpg",
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img01.jpg",
+      "https://themeadapt.com/tf/reland-html/assets/img/new-images/residences_img02.jpg"
+    ];
+
+    serviceList.forEach((item, idx) => {
+      item.addEventListener("mouseenter", () => {
+        if (animating || currentIdx === idx) return;
+        animating = true;
+        imgNext.src = imgs[idx];
+        imgNext.style.transform = 'translateX(-100%)';
+        imgNext.style.opacity = '1';
+        imgNext.classList.add('animate-slide-in');
+        setTimeout(() => {
+          imgCurrent.src = imgs[idx];
+          imgNext.style.opacity = '0';
+          imgNext.classList.remove('animate-slide-in');
+          animating = false;
+          currentIdx = idx;
+        }, 550);
+      });
+    });
+
+    document.querySelector(".service-list").addEventListener("mouseleave", () => {
+      if (currentIdx === 0) return;
+      imgNext.src = imgs[0];
+      imgNext.style.transform = 'translateX(-100%)';
+      imgNext.style.opacity = '1';
+      imgNext.classList.add('animate-slide-in');
+      setTimeout(() => {
+        imgCurrent.src = imgs[0];
+        imgNext.style.opacity = '0';
+        imgNext.classList.remove('animate-slide-in');
+        currentIdx = 0;
+      }, 550);
+    });
+  </script>
+</section>

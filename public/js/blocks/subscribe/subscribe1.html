@@ -1,0 +1,50 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section class="relative w-full min-h-[400px] flex items-center justify-center">
+ <!-- Background Image -->
+ <div class="absolute inset-0 z-0">
+  <img src="https://websitedemos.net/yoga-studio-04/wp-content/uploads/sites/707/2020/09/yoga-studio-cta-section-bg.jpg"
+   alt="Newsletter Yoga" class="w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-black/40"></div>
+ </div>
+
+ <!-- Main Content -->
+ <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 pt-14 pb-12">
+  <!-- Icon badge -->
+  <span class="mb-8 inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-400 shadow-xl">
+   <i class="fa-solid fa-envelope-open text-white text-2xl" aria-hidden="true"></i>
+  </span>
+
+  <!-- Heading -->
+  <h2 class="text-white text-4xl md:text-5xl font-serif font-semibold mb-5 text-center"
+   style="font-family:'Playfair Display',serif;">
+   Subscribe To Our Newsletter
+  </h2>
+
+  <div class="max-w-xl mx-auto">
+   <p class="text-white text-lg text-center mb-8 font-normal">
+    Morbi lobortis morbi dignissim sodales eget mauris turpis interdum sagittis sed cursus nunc nulla congue quis.
+   </p>
+  </div>
+
+  <!-- Form -->
+  <form class="w-full max-w-xl flex flex-col md:flex-row items-center gap-3 mt-6">
+   <input type="email" placeholder="Email address"
+    class="w-full md:flex-1 px-6 py-4 rounded-full text-lg font-medium border-none shadow focus:outline-none focus:ring-2 focus:ring-amber-400 bg-white" />
+   <button type="submit"
+    class="mt-0 md:mt-0 px-8 py-4 rounded-full bg-amber-400 text-white font-bold text-lg transition hover:bg-amber-500 shadow ml-0 md:ml-3">
+    Subscribe
+   </button>
+  </form>
+ </div>
+</section>

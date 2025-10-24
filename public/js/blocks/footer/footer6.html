@@ -1,0 +1,216 @@
+<!-- Font Awesome + Tailwind CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Pressable-style Footer Component -->
+<section id="pressable-footer" class="w-full bg-slate-900 text-slate-300">
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+
+  <!-- MOBILE: horizontal snap slider (Contact + 3 columns + Social) -->
+  <div class="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory flex gap-4 pb-6">
+   <!-- Slide: Contact -->
+   <div class="snap-start shrink-0 basis-[88%] rounded-xl bg-slate-800/40 p-6 ring-1 ring-slate-700">
+    <div class="flex items-center gap-4">
+     <span
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-teal-400 ring-1 ring-slate-700"><i
+       class="fa-solid fa-comments"></i></span>
+     <p class="text-lg text-slate-100">Chat With Sales</p>
+    </div>
+    <div class="mt-5 flex items-center gap-4">
+     <span
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-teal-400 ring-1 ring-slate-700"><i
+       class="fa-solid fa-phone"></i></span>
+     <p class="text-lg text-slate-100">1 (888) 602-6756</p>
+    </div>
+    <div class="mt-5 flex items-center gap-4">
+     <span
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-teal-400 ring-1 ring-slate-700"><i
+       class="fa-solid fa-envelope"></i></span>
+     <p class="text-lg text-slate-100">sales@pressable.com</p>
+    </div>
+   </div>
+
+   <!-- Slide: Solutions -->
+   <div class="snap-start shrink-0 basis-[80%] rounded-xl bg-slate-800/40 p-6 ring-1 ring-slate-700">
+    <h4 class="text-teal-400 font-semibold">Solutions</h4>
+    <ul class="mt-4 space-y-3 text-base">
+     <li><a href="#" class="hover:text-white transition">Managed WordPress Hosting</a></li>
+     <li><a href="#" class="hover:text-white transition">Agencies</a></li>
+     <li><a href="#" class="hover:text-white transition">Small &amp; Medium‑Sized Businesses</a></li>
+     <li><a href="#" class="hover:text-white transition">Freelancers</a></li>
+     <li><a href="#" class="hover:text-white transition">High‑Traffic Websites</a></li>
+     <li><a href="#" class="hover:text-white transition">WooCommerce</a></li>
+    </ul>
+   </div>
+
+   <!-- Slide: Company -->
+   <div class="snap-start shrink-0 basis-[80%] rounded-xl bg-slate-800/40 p-6 ring-1 ring-slate-700">
+    <h4 class="text-teal-400 font-semibold">Company</h4>
+    <ul class="mt-4 space-y-3 text-base">
+     <li><a href="#" class="hover:text-white transition">About Us</a></li>
+     <li><a href="#" class="hover:text-white transition">Careers</a></li>
+     <li><a href="#" class="hover:text-white transition">Customer Stories</a></li>
+     <li><a href="#" class="hover:text-white transition">Contact</a></li>
+     <li><a href="#" class="hover:text-white transition">Legal</a></li>
+     <li><a href="#" class="hover:text-white transition">Press Kit</a></li>
+    </ul>
+   </div>
+
+   <!-- Slide: Resources -->
+   <div class="snap-start shrink-0 basis-[80%] rounded-xl bg-slate-800/40 p-6 ring-1 ring-slate-700">
+    <h4 class="text-teal-400 font-semibold">Resources</h4>
+    <ul class="mt-4 space-y-3 text-base">
+     <li><a href="#" class="hover:text-white transition">Blog</a></li>
+     <li><a href="#" class="hover:text-white transition">eBooks</a></li>
+     <li><a href="#" class="hover:text-white transition">Knowledge Base</a></li>
+     <li><a href="#" class="hover:text-white transition">Customer Reviews</a></li>
+     <li><a href="#" class="hover:text-white transition">Affiliate Program</a></li>
+     <li><a href="#" class="hover:text-white transition">Strategic Partners</a></li>
+    </ul>
+   </div>
+
+   <!-- Slide: Social -->
+   <div class="snap-start shrink-0 basis-[68%] rounded-xl bg-slate-800/40 p-6 ring-1 ring-slate-700">
+    <h4 class="text-teal-400 font-semibold">Follow</h4>
+    <div class="mt-4 grid grid-cols-5 gap-3">
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 transition"><i
+       class="fa-brands fa-facebook-f"></i></a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 transition"><i
+       class="fa-brands fa-linkedin-in"></i></a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 transition"><i
+       class="fa-brands fa-x-twitter"></i></a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 transition"><i
+       class="fa-brands fa-instagram"></i></a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 transition"><i
+       class="fa-brands fa-youtube"></i></a>
+    </div>
+   </div>
+  </div>
+
+  <!-- DESKTOP/TABLET: exact multi-column layout -->
+  <div class="hidden md:grid md:grid-cols-12 md:gap-10 lg:gap-14">
+   <!-- Contact column -->
+   <div class="md:col-span-4 space-y-6">
+    <div class="flex items-center gap-4">
+     <span class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-teal-400"><i
+       class="fa-solid fa-comments"></i></span>
+     <p class="text-xl text-slate-100">Chat With Sales</p>
+    </div>
+    <div class="flex items-center gap-4">
+     <span class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-teal-400"><i
+       class="fa-solid fa-phone"></i></span>
+     <p class="text-xl text-slate-100">1 (888) 602-6756</p>
+    </div>
+    <div class="flex items-center gap-4">
+     <span class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-teal-400"><i
+       class="fa-solid fa-envelope"></i></span>
+     <p class="text-xl text-slate-100">sales@pressable.com</p>
+    </div>
+   </div>
+
+   <!-- Solutions -->
+   <div class="md:col-span-3 lg:col-span-3">
+    <h4 class="text-teal-400 font-semibold">Solutions</h4>
+    <ul class="mt-5 space-y-4 text-base">
+     <li><a href="#" class="hover:text-white transition">Managed WordPress Hosting</a></li>
+     <li><a href="#" class="hover:text-white transition">Agencies</a></li>
+     <li><a href="#" class="hover:text-white transition">Small &amp; Medium‑Sized Businesses</a></li>
+     <li><a href="#" class="hover:text-white transition">Freelancers</a></li>
+     <li><a href="#" class="hover:text-white transition">High‑Traffic Websites</a></li>
+     <li><a href="#" class="hover:text-white transition">WooCommerce</a></li>
+    </ul>
+   </div>
+
+   <!-- Company -->
+   <div class="md:col-span-3 lg:col-span-3">
+    <h4 class="text-teal-400 font-semibold">Company</h4>
+    <ul class="mt-5 space-y-4 text-base">
+     <li><a href="#" class="hover:text-white transition">About Us</a></li>
+     <li><a href="#" class="hover:text-white transition">Careers</a></li>
+     <li><a href="#" class="hover:text-white transition">Customer Stories</a></li>
+     <li><a href="#" class="hover:text-white transition">Contact</a></li>
+     <li><a href="#" class="hover:text-white transition">Legal</a></li>
+     <li><a href="#" class="hover:text-white transition">Press Kit</a></li>
+    </ul>
+   </div>
+
+   <!-- Resources -->
+   <div class="md:col-span-2 lg:col-span-2">
+    <h4 class="text-teal-400 font-semibold">Resources</h4>
+    <ul class="mt-5 space-y-4 text-base">
+     <li><a href="#" class="hover:text-white transition">Blog</a></li>
+     <li><a href="#" class="hover:text-white transition">eBooks</a></li>
+     <li><a href="#" class="hover:text-white transition">Knowledge Base</a></li>
+     <li><a href="#" class="hover:text-white transition">Customer Reviews</a></li>
+     <li><a href="#" class="hover:text-white transition">Affiliate Program</a></li>
+     <li><a href="#" class="hover:text-white transition">Strategic Partners</a></li>
+    </ul>
+   </div>
+
+   <!-- Social (vertical icon stack) -->
+   <!-- Social (horizontal row) -->
+   <div class="md:col-span-12">
+    <div class="mt-6 flex items-center justify-end gap-3">
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 hover:translate-y-0.5 transition">
+      <i class="fa-brands fa-facebook-f"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 hover:translate-y-0.5 transition">
+      <i class="fa-brands fa-linkedin-in"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 hover:translate-y-0.5 transition">
+      <i class="fa-brands fa-x-twitter"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 hover:translate-y-0.5 transition">
+      <i class="fa-brands fa-instagram"></i>
+     </a>
+     <a href="#"
+      class="flex h-10 w-10 items-center justify-center rounded-md border border-slate-600 text-slate-100 hover:bg-slate-700 hover:translate-y-0.5 transition">
+      <i class="fa-brands fa-youtube"></i>
+     </a>
+    </div>
+   </div>
+  </div>
+
+  <!-- Divider line (matches screenshot) -->
+  <div class="mt-10 h-px w-full bg-slate-700/60"></div>
+ </div>
+</section>
+
+<!-- Animations: subtle reveal + focus ripple for icons -->
+<script>
+ (function () {
+  const root = document.getElementById('pressable-footer');
+  if (!root) return;
+
+  const targets = root.querySelectorAll('h4, li, p, .h-10.w-10, .h-px');
+  targets.forEach(el => el.classList.add('opacity-0', 'translate-y-1'));
+
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) {
+     e.target.classList.remove('opacity-0', 'translate-y-1');
+     e.target.classList.add('opacity-100', 'translate-y-0', 'transition', 'duration-700', 'ease-out');
+     io.unobserve(e.target);
+    }
+   });
+  }, { threshold: 0.15 });
+  targets.forEach(el => io.observe(el));
+
+  // Keyboard focus pulse for social buttons
+  root.querySelectorAll('a .fa-brands, a .fa-solid').forEach(icon => {
+   const btn = icon.closest('a');
+   btn.addEventListener('focus', () => btn.classList.add('ring-2', 'ring-teal-400'));
+   btn.addEventListener('blur', () => btn.classList.remove('ring-2', 'ring-teal-400'));
+  });
+ })();
+</script>

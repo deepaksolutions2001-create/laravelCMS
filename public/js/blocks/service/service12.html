@@ -1,0 +1,130 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Add Font Awesome CDN in your HTML <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Our Services — exact image icons + 4 bottom tiles -->
+<section class="w-full bg-slate-50 py-16 md:py-24">
+ <!-- Heading + intro -->
+ <div class="grid grid-cols-1 lg:grid-cols-2 g items-start">
+  <div>
+   <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-indigo-950">
+    Our Services
+   </h2>
+   <p class="mt-4 max-w-2xl text-lg text-slate-600">
+    Lorem ipsurm dolor sit amet consectetur adipiscing elit sed do eiusmod tempor.
+   </p>
+  </div>
+
+  <!-- Top-right: 2 services -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+   <!-- Leasing Advisory -->
+   <article class="flex items-start gap-4" data-reveal>
+    <span class="grid h-14 w-14 place-items-center rounded-lg bg-indigo-100 ring-1 ring-indigo-200">
+     <i class="fa-solid fa-building text-indigo-600 text-xl"></i>
+    </span>
+    <div>
+     <h3 class="text-xl font-semibold text-indigo-950">Leasing Advisory</h3>
+     <p class="mt-2 text-slate-600">
+      There are many variations of passages of lorem ipsum available.
+     </p>
+    </div>
+   </article>
+
+   <!-- Strategy & Consulting -->
+   <article class="flex items-start gap-4" data-reveal>
+    <span class="grid h-14 w-14 place-items-center rounded-lg bg-amber-100 ring-1 ring-amber-200">
+     <i class="fa-solid fa-user-tie text-amber-700 text-xl"></i>
+    </span>
+    <div>
+     <h3 class="text-xl font-semibold text-indigo-950">Strategy & Consulting</h3>
+     <p class="mt-2 text-slate-600">
+      There are many variations of passages of lorem ipsum available.
+     </p>
+    </div>
+   </article>
+  </div>
+ </div>
+
+ <!-- Bottom row: 4 services -->
+ <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
+  <!-- Space Enablement -->
+  <article class="flex items-start gap-4" data-reveal>
+   <span class="grid h-14 w-14 place-items-center rounded-lg bg-emerald-100 ring-1 ring-emerald-200">
+    <i class="fa-solid fa-person-shelter text-emerald-700 text-xl"></i>
+   </span>
+   <div>
+    <h3 class="text-xl font-semibold text-indigo-950">Space Enablement</h3>
+    <p class="mt-2 text-slate-600">There are many variations of passages of lorem ipsum available.</p>
+   </div>
+  </article>
+
+  <!-- Portfolio Services -->
+  <article class="flex items-start gap-4" data-reveal>
+   <span class="grid h-14 w-14 place-items-center rounded-lg bg-fuchsia-100 ring-1 ring-fuchsia-200">
+    <i class="fa-solid fa-shapes text-fuchsia-600 text-xl"></i>
+   </span>
+   <div>
+    <h3 class="text-xl font-semibold text-indigo-950">Portfolio Services</h3>
+    <p class="mt-2 text-slate-600">There are many variations of passages of lorem ipsum available.</p>
+   </div>
+  </article>
+
+  <!-- Facilities Management -->
+  <article class="flex items-start gap-4" data-reveal>
+   <span class="grid h-14 w-14 place-items-center rounded-lg bg-orange-100 ring-1 ring-orange-200">
+    <i class="fa-solid fa-gears text-orange-600 text-xl"></i>
+   </span>
+   <div>
+    <h3 class="text-xl font-semibold text-indigo-950">Facilities Management</h3>
+    <p class="mt-2 text-slate-600">There are many variations of passages of lorem ipsum available.</p>
+   </div>
+  </article>
+
+  <!-- Workplace Solutions -->
+  <article class="flex items-start gap-4" data-reveal>
+   <span class="grid h-14 w-14 place-items-center rounded-lg bg-sky-100 ring-1 ring-sky-200">
+    <i class="fa-solid fa-briefcase text-sky-600 text-xl"></i>
+   </span>
+   <div>
+    <h3 class="text-xl font-semibold text-indigo-950">Workplace Solutions</h3>
+    <p class="mt-2 text-slate-600">There are many variations of passages of lorem ipsum available.</p>
+   </div>
+  </article>
+
+ </div>
+</section>
+
+<!-- Smooth reveal -->
+<style>
+ @keyframes floatIn {
+  from {
+   opacity: 0;
+   transform: translateY(16px);
+  }
+
+  to {
+   opacity: 1;
+   transform: none;
+  }
+ }
+
+ [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+ }
+
+ [data-reveal].is-visible {
+  animation: floatIn .55s cubic-bezier(.2, .8, .2, 1) both;
+ }
+</style>
+<script>
+ // Reveal on scroll
+ (() => {
+  const items = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.15 });
+  items.forEach(i => io.observe(i));
+ })();
+</script>

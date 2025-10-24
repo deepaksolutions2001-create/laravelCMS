@@ -1,0 +1,111 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section class="relative w-full min-h-[90%] flex items-center justify-center">
+ <!-- Background car image -->
+ <div class="absolute inset-0 z-0">
+  <img src="https://rentacar.modeltheme.com/wp-content/uploads/2017/04/theme_rentacar_slider1.jpg?id=7145"
+   alt="Find the Best Cars" class="w-full h-full object-cover object-right" />
+  <div class="absolute inset-0 bg-black/40"></div>
+ </div>
+
+ <!-- Main hero content -->
+ <div
+  class="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-4 pt-20 pb-16">
+  <h1 class="text-white text-[3.5rem] md:text-[4.5rem] font-extrabold mb-8 drop-shadow-lg animate-fadein-down"
+   style="font-family:'Inter',sans-serif;">
+   Find the Best Cars
+  </h1>
+  <div class="animate-fadein text-white text-xl font-medium mb-7 max-w-2xl mx-auto">
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do diam eiusmod tempor magna aliqua sed ut enim ad minim
+   veniam, quis nostrud.
+  </div>
+  <div class="w-full flex justify-center mb-8">
+   <div class="border-t-4 border-yellow-300 w-[450px]"></div>
+  </div>
+  <form class="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-5xl animate-fadein-up">
+   <select
+    class="w-full md:w-56 px-4 py-2 rounded text-gray-800 font-medium text-base border border-gray-300 focus:outline-none focus:border-yellow-400 bg-white shadow-sm">
+    <option>Choose Car Make</option>
+    <option>Toyota</option>
+    <option>Honda</option>
+    <option>Ford</option>
+    <option>BMW</option>
+   </select>
+   <select
+    class="w-full md:w-56 px-4 py-2 rounded text-gray-800 font-medium text-base border border-gray-300 focus:outline-none focus:border-yellow-400 bg-white shadow-sm">
+    <option>Choose Car Type</option>
+    <option>Sedan</option>
+    <option>SUV</option>
+    <option>Truck</option>
+    <option>Coupe</option>
+   </select>
+   <input
+    class="w-full md:w-64 px-4 py-2 rounded text-gray-800 font-medium text-base border border-gray-300 focus:outline-none focus:border-yellow-400 bg-white shadow-sm"
+    type="text" placeholder="Search ..." />
+   <button
+    class="w-full md:w-40 px-4 py-2 rounded font-bold text-lg bg-yellow-300 text-black shadow hover:bg-yellow-400 transition-all"
+    style="font-family:'Inter',sans-serif;">
+    FIND NOW
+   </button>
+  </form>
+ </div>
+
+ <!-- Animations CSS -->
+ <style>
+  @keyframes fadein-down {
+   from {
+    opacity: 0;
+    transform: translateY(-32px);
+   }
+
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
+
+  @keyframes fadein {
+   from {
+    opacity: 0;
+   }
+
+   to {
+    opacity: 1;
+   }
+  }
+
+  @keyframes fadein-up {
+   from {
+    opacity: 0;
+    transform: translateY(32px);
+   }
+
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
+
+  .animate-fadein-down {
+   animation: fadein-down 0.7s both;
+  }
+
+  .animate-fadein {
+   animation: fadein 1s both .1s;
+  }
+
+  .animate-fadein-up {
+   animation: fadein-up 0.7s both .2s;
+  }
+ </style>
+</section>

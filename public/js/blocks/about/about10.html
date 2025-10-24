@@ -1,0 +1,91 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+
+
+<section id="about-v2" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+ <div class="flex flex-col lg:flex-row items-stretch gap-0">
+  <!-- Image -->
+  <div class="lg:w-[42%] w-full relative overflow-hidden">
+   <img src="https://picsum.photos/900/900?random=45" alt="Team working" class="h-full w-full object-cover"
+    loading="lazy" />
+  </div>
+
+  <!-- Text panel -->
+  <div class="lg:w-[58%] w-full bg-slate-800 text-slate-100 px-8 sm:px-10 lg:px-16 py-10">
+   <!-- Heading + HR bar with dot -->
+   <div class="max-w-xl">
+    <h2 class="text-3xl sm:text-4xl font-semibold leading-tight">
+     We are efficient to make your business rise
+    </h2>
+
+    <!-- HR line with circle -->
+    <div class="relative mt-5 h-0.5 w-20 bg-slate-200">
+     <div class="absolute -bottom-2 left-0 grid h-5 w-5 place-items-center rounded-full bg-slate-700">
+      <span class="block h-2 w-2 rounded-full ring-2 ring-slate-200 bg-transparent"></span>
+     </div>
+    </div>
+   </div>
+
+   <!-- Description -->
+   <div class="mt-6 text-slate-200">
+    <p class="text-base sm:text-lg leading-8">
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quas quos nobis natus harum earum numquam
+     inventore, ullam iusto quo perferendis culpa labore voluptates sapiente rerum unde eaque tempore optio, itaque
+     necessitatibus. Beatae exercitationem aliquam corporis, hic ut maxime. Minus?
+    </p>
+
+    <!-- Signature -->
+    <div class="mt-6">
+     <span class="block text-4xl italic text-slate-100">Jone Deo</span>
+    </div>
+
+    <!-- After signature -->
+    <div class="mt-2 flex items-center gap-3 text-slate-200">
+     <div class="under_name">
+      <span class="text-xl">Jone Deo</span>
+     </div>
+     <div class="on_work">
+      <p class="text-lg text-slate-300">CEO</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!-- Optional scoped JS: simple reveal on scroll for the text panel -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#about-v2');
+   if (!root) return;
+   const targets = [root.querySelector('.bg-slate-800')].filter(Boolean);
+   const show = (el) => {
+    el.classList.add('opacity-100', 'translate-y-0');
+    el.classList.remove('opacity-0', 'translate-y-4');
+   };
+   targets.forEach((el) => el.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700', 'ease-out'));
+   if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+     entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+       show(entry.target);
+       io.unobserve(entry.target);
+      }
+     });
+    }, { threshold: 0.15 });
+    targets.forEach((el) => io.observe(el));
+   } else {
+    targets.forEach(show);
+   }
+  })();
+ </script>
+</section>

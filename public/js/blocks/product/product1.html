@@ -1,0 +1,231 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="bg-white py-6 px-2 w-full">
+  <!-- Section title -->
+  <h2 class="w-full text-center text-[3rem] md:text-[3.5rem] font-bold tracking-tight text-neutral-900 mb-8"
+    style="font-family:'Pacifico',cursive;">
+    Featured Ginger Hotels
+    <span class="inline-block align-middle ml-2">
+      <span class="w-2 h-2 inline-block bg-amber-400 rounded-full"></span>
+      <span class="w-2 h-2 inline-block bg-rose-500 rounded-full ml-1"></span>
+      <span class="w-2 h-2 inline-block bg-amber-300 rounded-full ml-1"></span>
+    </span>
+  </h2>
+
+  <!-- Horizontal scroll cards for property tiles -->
+  <div class="flex gap-6 overflow-x-auto pb-6">
+    <!-- Hotel Card -->
+    <div
+      class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none">
+      <div class="relative">
+        <img src="https://cdn.sanity.io/images/ocl5w36p/prod5/6e9bd7c16a79078b573c25f8ffca8b33cb2c12a9-1140x746.jpg"
+          alt="Hotel" class="w-full h-48 object-cover" />
+        <span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span>
+        <span
+          class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white">
+          <i class="fa-solid fa-user text-[18px]" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="px-5 py-4">
+        <h3 class="text-2xl font-bold text-neutral-900 mb-2" style="font-family:'Inter',sans-serif;">Ginger Ekta Nagar
+        </h3>
+        <p class="text-[1rem] text-gray-700 mb-4 flex items-start">
+          <i class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1" aria-hidden="true"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p>
+        <div class="flex flex-col gap-2">
+          <!-- Airport -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-plane-departure w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Airport:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">99</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <!-- Railway -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-train w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Railway Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <!-- Bus -->
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-bus w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Bus Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a>
+          <button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Hotel Card -->
+    <div
+      class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none">
+      <div class="relative">
+        <img src="https://cdn.sanity.io/images/ocl5w36p/prod5/0b0b684b6ca1473647b6c6f3c77da2291c302861-1140x746.jpg"
+          alt="Hotel" class="w-full h-48 object-cover" />
+        <span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span>
+        <span
+          class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white">
+          <i class="fa-solid fa-user text-[18px]" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="px-5 py-4">
+        <h3 class="text-2xl font-bold text-neutral-900 mb-2" style="font-family:'Inter',sans-serif;">Ginger Ekta Nagar
+        </h3>
+        <p class="text-[1rem] text-gray-700 mb-4 flex items-start">
+          <i class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1" aria-hidden="true"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-plane-departure w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Airport:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">99</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-train w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Railway Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-bus w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Bus Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a>
+          <button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3rd Hotel Card -->
+    <div
+      class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none">
+      <div class="relative">
+        <img src="https://cdn.sanity.io/images/ocl5w36p/prod5/3d90b62771281502095e78196b10e4fae1d050aa-1140x746.jpg"
+          alt="Hotel" class="w-full h-48 object-cover" />
+        <span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span>
+        <span
+          class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white">
+          <i class="fa-solid fa-user text-[18px]" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="px-5 py-4">
+        <h3 class="text-2xl font-bold text-neutral-900 mb-2" style="font-family:'Inter',sans-serif;">Ginger Ekta Nagar
+        </h3>
+        <p class="text-[1rem] text-gray-700 mb-4 flex items-start">
+          <i class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1" aria-hidden="true"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-plane-departure w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Airport:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">99</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-train w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Railway Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-bus w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Bus Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a>
+          <button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4th Hotel Card -->
+    <div
+      class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none">
+      <div class="relative">
+        <img src="https://cdn.sanity.io/images/ocl5w36p/prod5/56c321eefa252e341efeb5e3b23966e186c77c29-1140x746.jpg"
+          alt="Hotel" class="w-full h-48 object-cover" />
+        <span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span>
+        <span
+          class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white">
+          <i class="fa-solid fa-user text-[18px]" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="px-5 py-4">
+        <h3 class="text-2xl font-bold text-neutral-900 mb-2" style="font-family:'Inter',sans-serif;">Ginger Ekta Nagar
+        </h3>
+        <p class="text-[1rem] text-gray-700 mb-4 flex items-start">
+          <i class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1" aria-hidden="true"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-plane-departure w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Airport:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">99</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-train w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Railway Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-bus w-7 h-7 text-gray-700" aria-hidden="true"></i>
+            <span class="text-gray-400 font-medium mr-1">Bus Station:</span>
+            <span class="font-bold text-neutral-900 text-xl mr-1">3</span>
+            <span class="text-gray-400 font-medium">km</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a>
+          <button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button>
+        </div>
+      </div>
+    </div>
+    <!-- Add more cards as needed -->
+  </div>
+</section>

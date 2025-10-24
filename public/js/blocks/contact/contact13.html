@@ -1,0 +1,71 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section id="contact-v3" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+ <!-- Heading -->
+ <div class="text-center mb-8">
+  <h4 class="inline-grid place-items-center text-3xl font-semibold text-slate-900 bg-white px-1 relative">
+   Contact us
+  </h4>
+  <hr class="mx-auto mt-2 h-1 w-48 bg-lime-500 border-0" />
+  <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg leading-7 text-slate-600">
+   Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit dolore enim amet unde quia dolores laborum.
+   Repellendus, dolorum?
+  </p>
+ </div>
+
+ <!-- Two columns -->
+ <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
+  <!-- Map (left on desktop, below on mobile) -->
+  <div class="order-2 lg:order-1 p-2">
+   <div class="w-full h-80 sm:h-[28rem] lg:h-full">
+    <iframe name="location" title="check location" id="gmap_canvas"
+     src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+     class="h-full w-full rounded-md ring-1 ring-slate-200" loading="lazy"></iframe>
+   </div>
+  </div>
+
+  <!-- Form (right on desktop, above on mobile) -->
+  <div class="order-1 lg:order-2 p-2">
+   <form action="#" class="rounded-md bg-white p-4 sm:p-6 shadow-sm ring-1 ring-slate-200">
+    <!-- Name -->
+    <div class="p-2">
+     <label for="name" class="sr-only">Name</label>
+     <input type="text" name="name" id="name" placeholder="Name"
+      class="w-full rounded-md border border-lime-500 px-4 py-3 text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500" />
+    </div>
+
+    <!-- Email -->
+    <div class="p-2">
+     <label for="email" class="sr-only">Email</label>
+     <input type="email" name="email" id="email" placeholder="Email"
+      class="w-full rounded-md border border-lime-500 px-4 py-3 text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500" />
+    </div>
+
+    <!-- Message -->
+    <div class="p-2">
+     <label for="message" class="sr-only">Message</label>
+     <textarea name="message" id="message" rows="6" placeholder="Message"
+      class="w-full rounded-md border border-lime-500 px-4 py-3 text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-500"></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="p-2 pt-4 text-right">
+     <button type="button"
+      class="relative inline-flex items-center justify-center rounded-full border border-lime-600 px-8 py-3 font-semibold text-lime-600 transition hover:bg-lime-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-lime-500">
+      SEND
+     </button>
+    </div>
+   </form>
+  </div>
+ </div>
+</section>

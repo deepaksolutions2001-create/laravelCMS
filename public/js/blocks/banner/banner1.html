@@ -1,0 +1,189 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="banner-v1" class="relative w-full">
+  <!-- Slider -->
+  <div class="slider-container relative w-full h-screen overflow-hidden">
+    <!-- Slides track -->
+    <div class="slides-container flex w-full h-full transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+      <!-- Slide 1 -->
+      <div class="box relative w-full shrink-0">
+        <div class="absolute inset-0">
+          <img src="https://picsum.photos/1600/900?random=202" alt="Seasonal collection" class="h-full w-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 h-full">
+          <div class="wrapper mx-auto max-w-6xl h-full grid place-items-center justify-items-end px-6">
+            <div class="under_main_cn w-full max-w-xl overflow-hidden p-6 pr-20 opacity-0 -translate-x-full transition-all duration-500 ease-out">
+              <div class="undre_text_cn text-right">
+                <div class="sub_heading">
+                  <span class="text-lg text-slate-200">Winter Collection Sale</span>
+                </div>
+                <div class="main_heading">
+                  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-50 pb-6">
+                    <span class="text-orange-500">70% off</span> to everything
+                  </h1>
+                </div>
+                <div class="under_button relative inline-block">
+                  <button type="button" class="relative z-[1] bg-orange-500 text-white font-semibold px-10 py-4 text-base hover:bg-orange-600 transition">
+                    Shop Now
+                  </button>
+                  <span class="pointer-events-none absolute inset-0 -translate-x-2.5 -translate-y-2.5 border border-orange-500 transition-transform duration-500 ease-in-out group-hover:translate-x-2.5 group-hover:translate-y-2.5"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="box relative w-full shrink-0">
+        <div class="absolute inset-0">
+          <img src="https://picsum.photos/1600/900?random=202" alt="Winter fashion" class="h-full w-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 h-full">
+          <div class="wrapper mx-auto max-w-6xl h-full grid place-items-center justify-items-end px-6">
+            <div class="under_main_cn w-full max-w-xl overflow-hidden p-6 pr-20 opacity-0 -translate-x-full transition-all duration-500 ease-out">
+              <div class="undre_text_cn text-right">
+                <div class="sub_heading">
+                  <span class="text-lg text-slate-200">Winter Collection Sale</span>
+                </div>
+                <div class="main_heading">
+                  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-50 pb-6">
+                    <span class="text-orange-500">70% off</span> to everything
+                  </h1>
+                </div>
+                <div class="under_button relative inline-block">
+                  <button type="button" class="relative z-[1] bg-orange-500 text-white font-semibold px-10 py-4 text-base hover:bg-orange-600 transition">
+                    Shop Now
+                  </button>
+                  <span class="pointer-events-none absolute inset-0 -translate-x-2.5 -translate-y-2.5 border border-orange-500 transition-transform duration-500 ease-in-out"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="box relative w-full shrink-0">
+        <div class="absolute inset-0">
+          <img src="https://picsum.photos/1600/900?random=70" alt="Lookbook highlights" class="h-full w-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 h-full">
+          <div class="wrapper mx-auto max-w-6xl h-full grid place-items-center justify-items-end px-6">
+            <div class="under_main_cn w-full max-w-xl overflow-hidden p-6 pr-20 opacity-0 -translate-x-full transition-all duration-500 ease-out">
+              <div class="undre_text_cn text-right">
+                <div class="sub_heading">
+                  <span class="text-lg text-slate-200">Winter Collection Sale</span>
+                </div>
+                <div class="main_heading">
+                  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-50 pb-6">
+                    <span class="text-orange-500">70% off</span> to everything
+                  </h1>
+                </div>
+                <div class="under_button relative inline-block">
+                  <button type="button" class="relative z-[1] bg-orange-500 text-white font-semibold px-10 py-4 text-base hover:bg-orange-600 transition">
+                    Shop Now
+                  </button>
+                  <span class="pointer-events-none absolute inset-0 -translate-x-2.5 -translate-y-2.5 border border-orange-500 transition-transform duration-500 ease-in-out"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="buttons_con pointer-events-none absolute inset-0">
+      <button id="slider-button-prev" type="button" class="pointer-events-auto grid place-items-center h-12 w-12 rounded-full bg-orange-500 text-white hover:bg-white hover:text-slate-900 transition absolute top-1/2 -translate-y-1/2 left-3">
+        <i class="fa-solid fa-chevron-left text-lg"></i>
+      </button>
+      <button id="slider-button-next" type="button" class="pointer-events-auto grid place-items-center h-12 w-12 rounded-full bg-orange-500 text-white hover:bg-white hover:text-slate-900 transition absolute top-1/2 -translate-y-1/2 right-3">
+        <i class="fa-solid fa-chevron-right text-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scoped slider JS (no globals) -->
+  <script>
+    (function () {
+      const root = document.currentScript.closest('#banner-v1');
+      if (!root) return;
+      const container = root.querySelector('.slider-container');
+      const track = container.querySelector('.slides-container');
+      const slides = Array.from(track.querySelectorAll('.box'));
+      const nextBtn = container.querySelector('#slider-button-next');
+      const prevBtn = container.querySelector('#slider-button-prev');
+
+      let index = 0;
+      let timer = null;
+      const delaySec = 8;
+
+      function setActive(i) {
+        index = (i + slides.length) % slides.length;
+        const offset = -index * 100;
+        track.style.transform = 'translateX(' + offset + '%)';
+        slides.forEach((s, si) => {
+          const inner = s.querySelector('.under_main_cn');
+          if (!inner) return;
+          if (si === index) {
+            requestAnimationFrame(() => {
+              inner.classList.remove('opacity-0', '-translate-x-full');
+              inner.classList.add('opacity-100', 'translate-x-0');
+            });
+          } else {
+            inner.classList.add('opacity-0', '-translate-x-full');
+            inner.classList.remove('opacity-100', 'translate-x-0');
+          }
+        });
+      }
+
+      function next() { setActive(index + 1); }
+      function prev() { setActive(index - 1); }
+
+      function start() {
+        stop();
+        timer = setInterval(() => {
+          // advance in the direction of the last clicked button; default next
+          if (nextBtn.classList.contains('active')) next();
+          else if (prevBtn.classList.contains('active')) prev();
+          else next();
+        }, delaySec * 1000);
+      }
+      function stop() { if (timer) clearInterval(timer); }
+
+      // Init
+      setActive(0);
+      nextBtn?.addEventListener('click', () => {
+        nextBtn.classList.add('active');
+        prevBtn.classList.remove('active');
+        next();
+      });
+      prevBtn?.addEventListener('click', () => {
+        prevBtn.classList.add('active');
+        nextBtn.classList.remove('active');
+        prev();
+      });
+      start();
+
+      // Pause on hover/focus for accessibility
+      container.addEventListener('mouseenter', stop);
+      container.addEventListener('mouseleave', start);
+      container.addEventListener('focusin', stop);
+      container.addEventListener('focusout', start);
+    })();
+  </script>
+</section>

@@ -1,0 +1,157 @@
+<!-- Tailwind CDN (include once) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome 6 (include once) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section id="gallery-block" class="relative w-full bg-white text-slate-900">
+ <div class="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10 py-10 sm:py-12 lg:py-16">
+  <!-- Header row -->
+  <div class="flex items-center justify-between">
+   <h2 class="text-4xl sm:text-5xl font-semibold tracking-tight text-slate-800">Gallery</h2>
+
+   <!-- Arrows -->
+   <div class="flex items-center gap-8">
+    <button id="g-prev" class="group p-2 text-slate-500 hover:text-slate-800 rounded-full transition">
+     <span class="sr-only">Previous</span>
+     <i class="fa-solid fa-arrow-left-long text-lg sm:text-xl"></i>
+    </button>
+    <button id="g-next" class="group p-2 text-slate-700 hover:text-slate-900 rounded-full transition">
+     <span class="sr-only">Next</span>
+     <i class="fa-solid fa-arrow-right-long text-lg sm:text-xl"></i>
+    </button>
+   </div>
+  </div>
+
+  <!-- Slider viewport -->
+  <div class="mt-8 sm:mt-10 overflow-hidden">
+   <!-- Track -->
+   <div id="g-track" class="flex w-full transition-transform duration-500 ease-out will-change-transform">
+    <!-- Slide 1 (the layout in the image) -->
+    <div class="shrink-0 w-full">
+     <div class="grid grid-cols-3 gap-6 items-start">
+      <!-- Left tall image -->
+      <figure class="col-span-1 aspect-[3/4] rounded bg-slate-100 overflow-hidden shadow-sm">
+       <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop" alt=""
+        class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+      </figure>
+
+      <!-- Middle column (top wide, two small below) -->
+      <div class="col-span-1 grid grid-rows-2 gap-6">
+       <figure class="row-span-1 aspect-[4/3] rounded bg-slate-100 overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt=""
+         class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+       </figure>
+       <div class="grid grid-cols-2 gap-6">
+        <figure class="aspect-square rounded bg-slate-100 overflow-hidden shadow-sm">
+         <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop" alt=""
+          class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+        </figure>
+        <figure class="aspect-square rounded bg-slate-100 overflow-hidden shadow-sm">
+         <img src="https://images.unsplash.com/photo-1519741497674-df6d0fa98d06?q=80&w=1200&auto=format&fit=crop" alt=""
+          class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+        </figure>
+       </div>
+      </div>
+
+      <!-- Right tall image -->
+      <figure class="col-span-1 aspect-[3/4] rounded bg-slate-100 overflow-hidden shadow-sm">
+       <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop" alt=""
+        class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+      </figure>
+     </div>
+    </div>
+
+    <!-- Slide 2 (duplicate structure; replace images as needed) -->
+    <div class="shrink-0 w-full">
+     <div class="grid grid-cols-3 gap-6 items-start">
+      <figure class="col-span-1 aspect-[3/4] rounded bg-slate-100 overflow-hidden shadow-sm">
+       <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" alt=""
+        class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+      </figure>
+      <div class="col-span-1 grid grid-rows-2 gap-6">
+       <figure class="row-span-1 aspect-[4/3] rounded bg-slate-100 overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt=""
+         class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+       </figure>
+       <div class="grid grid-cols-2 gap-6">
+        <figure class="aspect-square rounded bg-slate-100 overflow-hidden shadow-sm">
+         <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?q=80&w=1200&auto=format&fit=crop" alt=""
+          class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+        </figure>
+        <figure class="aspect-square rounded bg-slate-100 overflow-hidden shadow-sm">
+         <img src="https://images.unsplash.com/photo-1520975937720-6a1f1a4a837d?q=80&w=1200&auto=format&fit=crop" alt=""
+          class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+        </figure>
+       </div>
+      </div>
+      <figure class="col-span-1 aspect-[3/4] rounded bg-slate-100 overflow-hidden shadow-sm">
+       <img src="https://images.unsplash.com/photo-1520975922284-7b35d4f34a09?q=80&w=1200&auto=format&fit=crop" alt=""
+        class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500">
+      </figure>
+     </div>
+    </div>
+
+    <!-- Add more slides by duplicating the block above -->
+   </div>
+  </div>
+
+  <!-- Pagination bars -->
+  <div class="mt-8 flex justify-center gap-2" id="g-dots">
+   <span class="h-0.5 w-6 rounded-full bg-slate-800"></span>
+   <span class="h-0.5 w-6 rounded-full bg-slate-300"></span>
+   <span class="h-0.5 w-6 rounded-full bg-slate-300"></span>
+   <span class="h-0.5 w-6 rounded-full bg-slate-300"></span>
+   <span class="h-0.5 w-6 rounded-full bg-slate-300"></span>
+  </div>
+ </div>
+
+ <!-- Component script (scoped) -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#gallery-block');
+   const track = root.querySelector('#g-track');
+   const slides = Array.from(track.children);
+   const prev = root.querySelector('#g-prev');
+   const next = root.querySelector('#g-next');
+   const dots = Array.from(root.querySelectorAll('#g-dots > span'));
+   let index = 0;
+
+   // Entrance animation
+   const cards = root.querySelectorAll('figure');
+   cards.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px) scale(0.98)';
+    el.style.transition = 'opacity 500ms ease, transform 600ms cubic-bezier(.2,.8,.2,1)';
+    setTimeout(() => {
+     el.style.opacity = '1';
+     el.style.transform = 'translateY(0) scale(1)';
+    }, 80 * i + 120);
+   });
+
+   function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.className = `h-0.5 w-6 rounded-full ${i === index ? 'bg-slate-800' : 'bg-slate-300'}`);
+   }
+
+   function step(dir) {
+    index = (index + dir + slides.length) % slides.length;
+    render();
+   }
+
+   prev.addEventListener('click', () => step(-1));
+   next.addEventListener('click', () => step(1));
+   window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+   });
+
+   // Swipe support
+   let startX = 0, dragging = false;
+   track.addEventListener('pointerdown', (e) => { dragging = true; startX = e.clientX; track.setPointerCapture(e.pointerId); });
+   track.addEventListener('pointerup', (e) => { if (!dragging) return; dragging = false; const dx = e.clientX - startX; if (Math.abs(dx) > 30) step(dx < 0 ? 1 : -1); });
+
+   render();
+  })();
+ </script>
+</section>

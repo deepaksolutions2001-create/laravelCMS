@@ -30,7 +30,7 @@ class PageController extends Controller
             'title' => 'Untitled Page',
             'html' => '',
             'css' => '',
-            'slug'=>'Untitled Page',
+            'slug' => 'Untitled Page',
             'status' => 'draft', // Default status
         ]);
 
@@ -68,14 +68,15 @@ class PageController extends Controller
         $page->meta_title = $request->input('meta_title', $page->title);
         $page->meta_description = $request->input('meta_description', $page->meta_description);
         $page->meta_keywords = $request->input('meta_keywords', $page->meta_keywords);
+        $page->meta_fokus_keyword = $request->input('meta_fokus_keyword',$page->meta_fokus_keyword);
         $page->meta_og_image = $request->input('meta_og_image', $page->meta_og_image);
         $page->meta_custom = $request->input('meta_custom', $page->meta_custom);
 
-        
+
 
         // Generate clean filename using slug of page title
         $page->slug = Str::slug($page->title ?: 'untitled') . '.html';
-        
+
         // Save all changes to the database
         $page->save();
 
@@ -113,6 +114,7 @@ class PageController extends Controller
         $page->meta_title = $request->input('meta_title', $page->title);
         $page->meta_description = $request->input('meta_description', $page->meta_description);
         $page->meta_keywords = $request->input('meta_keywords', $page->meta_keywords);
+        $page->meta_fokus_keyword = $request->input('meta_fokus_keywords',$page->meta_fokus_keyword);
         $page->meta_og_image = $request->input('meta_og_image', $page->meta_og_image);
         $page->meta_custom = $request->input('meta_custom', $page->meta_custom);
 
@@ -144,8 +146,22 @@ class PageController extends Controller
                     <title>" . e($page->meta_title ?: $page->title) . "</title>
                     <meta name=\"description\" content=\"" . e($page->meta_description) . "\">
                     <meta name=\"keywords\" content=\"" . e($page->meta_keywords) . "\">
+                      <meta name=\"fokus keywords\" content=\"" . e($page->fokus_keyword) . "\">
                     <meta property=\"og:image\" content=\"" . e($page->meta_og_image) . "\">
                     <style>{$page->css}</style>
+                  
+<script src'https://cdn.tailwindcss.com'></script>
+
+<script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
+  crossorigin=anonymous>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css'
+  crossorigin='anonymous'>
+
+<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap'
+  rel='stylesheet'>
                     </head>
                     <body>{$page->html}</body>
                     </html>";
@@ -161,8 +177,3 @@ class PageController extends Controller
         ]);
     }
 }
-
-
-
-
-

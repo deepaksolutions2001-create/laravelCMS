@@ -1,0 +1,174 @@
+<!-- Tailwind CSS and Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Blog/Insights Feature Grid Component -->
+<section id="insights-feature-grid" class="relative w-full bg-white" aria-label="Insights and articles">
+ <!-- Decorative top accent -->
+ <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-slate-200"></div>
+
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+  <!-- Intro row -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+   <!-- Left: Kicker + Headline -->
+   <div class="md:col-span-7 space-y-3">
+    <span class="inline-block text-xs tracking-widest uppercase text-slate-500">Blog</span>
+    <h1 class="text-slate-900 font-semibold leading-tight text-3xl sm:text-4xl md:text-5xl">
+     Expert advice, proven strategies, <br class="hidden sm:block" />
+     and real-world lessons
+    </h1>
+   </div>
+
+   <!-- Right: Supporting copy -->
+   <div class="md:col-span-5">
+    <p class="text-slate-600 leading-relaxed text-base md:text-[15px]">
+     Whether you’re navigating growth, optimizing your operations, or refining your mindset, these articles deliver
+     value you can apply immediately.
+    </p>
+    <a href="#" class="group mt-3 inline-flex items-center gap-2 text-teal-700 hover:text-teal-800 transition">
+     <span class="underline underline-offset-4 decoration-teal-400 group-hover:decoration-teal-600">
+      Browse topics on strategy, success stories, productivity, and more
+     </span>
+     <i class="fa-solid fa-arrow-right-long translate-x-0 group-hover:translate-x-1 transition"></i>
+    </a>
+   </div>
+  </div>
+
+  <!-- Cards grid -->
+  <div class="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+   <!-- Card 1 -->
+   <article
+    class="group relative overflow-hidden rounded-xl ring-1 ring-slate-200 bg-white shadow-sm hover:shadow-md transition">
+    <a href="#" class="absolute inset-0 z-10" aria-label="3 Growth Roadblocks Most Solo Professionals Don’t See"></a>
+    <div class="relative aspect-[4/3] overflow-hidden">
+     <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1400&auto=format&fit=crop"
+      alt="Strategy cover"
+      class="h-full w-full object-cover transition duration-500 ease-out scale-100 group-hover:scale-105"
+      loading="lazy" />
+     <!-- gradient overlay -->
+     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent"></div>
+
+     <!-- badge -->
+     <span
+      class="absolute left-4 top-4 z-10 inline-flex items-center rounded-full bg-sky-600 px-2.5 py-1 text-xs font-medium text-white shadow">
+      Strategy
+     </span>
+
+     <!-- text block -->
+     <div class="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+      <h3 class="text-white text-lg sm:text-xl font-semibold leading-snug">
+       3 Growth Roadblocks<br class="hidden sm:block" />
+       Most Solo Professionals Don’t See
+      </h3>
+
+      <!-- meta -->
+      <div class="mt-3 flex items-center gap-4 text-slate-200/90 text-xs">
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-user"></i> Alex
+       </span>
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-calendar"></i> September 15, 2025
+       </span>
+      </div>
+     </div>
+    </div>
+   </article>
+
+   <!-- Card 2 -->
+   <article
+    class="group relative overflow-hidden rounded-xl ring-1 ring-slate-200 bg-white shadow-sm hover:shadow-md transition">
+    <a href="#" class="absolute inset-0 z-10" aria-label="Trends Every Consultant Should Know"></a>
+    <div class="relative aspect-[4/3] overflow-hidden">
+     <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop"
+      alt="Consulting insights cover"
+      class="h-full w-full object-cover transition duration-500 ease-out scale-100 group-hover:scale-105"
+      loading="lazy" />
+     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent"></div>
+
+     <span
+      class="absolute left-4 top-4 z-10 inline-flex items-center rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-medium text-white shadow">
+      Consulting Insights
+     </span>
+
+     <div class="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+      <h3 class="text-white text-lg sm:text-xl font-semibold leading-snug">
+       Trends Every Consultant Should Know
+      </h3>
+      <div class="mt-3 flex items-center gap-4 text-slate-200/90 text-xs">
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-user"></i> Alex
+       </span>
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-calendar"></i> September 15, 2025
+       </span>
+      </div>
+     </div>
+    </div>
+   </article>
+
+   <!-- Card 3 -->
+   <article
+    class="group relative overflow-hidden rounded-xl ring-1 ring-slate-200 bg-white shadow-sm hover:shadow-md transition">
+    <a href="#" class="absolute inset-0 z-10"
+     aria-label="Why Your To-Do List Is Costing You Clients (And What to Do)"></a>
+    <div class="relative aspect-[4/3] overflow-hidden">
+     <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop"
+      alt="Mindset cover"
+      class="h-full w-full object-cover transition duration-500 ease-out scale-100 group-hover:scale-105"
+      loading="lazy" />
+     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent"></div>
+
+     <span
+      class="absolute left-4 top-4 z-10 inline-flex items-center rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white shadow">
+      Mindset
+     </span>
+
+     <div class="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+      <h3 class="text-white text-lg sm:text-xl font-semibold leading-snug">
+       Why Your To-Do List Is Costing You Clients<br class="hidden sm:block" />
+       (And What to Do)
+      </h3>
+      <div class="mt-3 flex items-center gap-4 text-slate-200/90 text-xs">
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-user"></i> Alex
+       </span>
+       <span class="inline-flex items-center gap-1">
+        <i class="fa-regular fa-calendar"></i> September 15, 2025
+       </span>
+      </div>
+     </div>
+    </div>
+   </article>
+  </div>
+ </div>
+
+ <!-- subtle bottom accent -->
+ <div class="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-slate-200"></div>
+</section>
+
+<!-- Animations: reveal on scroll + hover polish -->
+<script>
+ // Reveal on scroll
+ (function () {
+  const root = document.getElementById('insights-feature-grid');
+  if (!root) return;
+
+  // start hidden
+  root.querySelectorAll('h1, [aria-label], p, a[href]').forEach(el => {
+   el.classList.add('opacity-0', 'translate-y-4');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(entry => {
+    if (entry.isIntersecting) {
+     entry.target.classList.remove('opacity-0', 'translate-y-4');
+     entry.target.classList.add('opacity-100', 'translate-y-0', 'transition', 'duration-700', 'ease-out');
+     io.unobserve(entry.target);
+    }
+   });
+  }, { threshold: 0.15 });
+
+  root.querySelectorAll('h1, [aria-label], p, a[href]').forEach(el => io.observe(el));
+ })();
+</script>

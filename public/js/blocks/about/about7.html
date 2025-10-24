@@ -1,0 +1,179 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+     crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+     crossorigin="anonymous">
+
+<section class="relative w-full bg-orange-50 py-20 px-20 overflow-hidden p-20">
+     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start relative">
+          <!-- Animated Orange swirl + User (animated) -->
+          <div class="w-full md:w-5/12 flex flex-col items-center relative z-10 min-h-[425px]">
+               <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-orange-500 w-[330px] h-[430px] md:w-[340px] md:h-[450px] rounded-full md:rounded-[50%] scale-100 shadow-lg"
+                    style="opacity:.12;"></div>
+               <img id="aboutUserImg"
+                    src="https://i.ibb.co/NdFTVVQp/64904d4d54be25000f64c4e6-optimized-removebg-preview.png"
+                    class="relative  w-[350px] h-[480px] object-contain animate-fadeIn" alt="User" />
+          </div>
+          <!-- Text + stat column -->
+          <div class="w-full md:w-7/12 pt-10 md:pt-0 md:pl-10 flex flex-col gap-3">
+               <h3 class="uppercase text-orange-500 font-bold tracking-widest text-[1rem] mb-1 animate-fadeIn">About us
+               </h3>
+               <h2 class="font-black text-3xl md:text-5xl text-neutral-900 mb-2 animate-fadeIn">About <span
+                         id="aboutUserName">Cilantro Travel Agency</span></h2>
+               <div class="w-24 h-1 bg-amber-400 rounded-full mb-4 animate-underline"></div>
+               <h4 class="font-semibold text-neutral-600 mb-3 animate-fadeIn leading-tight">For many years, we have been
+                    working to
+                    give our customers the most vivid emotions from their trips.</h4>
+               <p class="text-neutral-600 text-base mb-1 animate-fadeIn" id="aboutUserText">
+                    Cilantro travel agency is a travel expert providing 5-star small group & private tours in Europe and
+                    Asia. We know
+                    everything about classic and exotic destinations. Our experienced guides offer delightful programs
+                    that suit the
+                    tastes and expectations of each of our clients.<br>
+                    <br>In addition to the group tours we offer, you can also order an individual tour to any country.
+                    We will pick the
+                    most convenient flights and hotels and plan an individual route based on your preferences.
+               </p>
+               <button
+                    class="mt-4 mb-2 w-fit bg-amber-400 hover:bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold shadow transition animate-fadeIn">More
+                    About Cilantro</button>
+          </div>
+     </div>
+     <!-- Stats Row (animated below) -->
+     <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-y-6 text-center max-w-4xl mx-auto z-20 relative">
+          <div>
+               <div id="aboutStat0" class="text-4xl font-black text-amber-400 animate-fadeIn">44</div>
+               <div class="mt-2 uppercase text-neutral-600 text-xs font-semibold tracking-wide">Group Tours In 2022
+               </div>
+          </div>
+          <div>
+               <div id="aboutStat1" class="text-4xl font-black text-amber-400 animate-fadeIn">8,255</div>
+               <div class="mt-2 uppercase text-neutral-600 text-xs font-semibold tracking-wide">Clients Worldwide</div>
+          </div>
+          <div>
+               <div id="aboutStat2" class="text-4xl font-black text-amber-400 animate-fadeIn">25</div>
+               <div class="mt-2 uppercase text-neutral-600 text-xs font-semibold tracking-wide">Qualified Employees
+               </div>
+          </div>
+          <div>
+               <div id="aboutStat3" class="text-4xl font-black text-amber-400 animate-fadeIn">200+</div>
+               <div class="mt-2 uppercase text-neutral-600 text-xs font-semibold tracking-wide">Destinations</div>
+          </div>
+     </div>
+     <!-- Decorative SVGs (kept as design shapes) -->
+     <svg class="absolute left-0 top-2 w-20 h-20 opacity-70" fill="none" stroke="#ffad33" stroke-width="3"
+          viewBox="0 0 48 48">
+          <path d="M8 33L38 7l-5 37-8-16L8 33z" />
+          <path d="M14 23l8 3" />
+     </svg>
+     <svg class="absolute right-10 top-5 w-24 h-24 opacity-70" fill="none" stroke="#e7e0cf" stroke-width="3"
+          viewBox="0 0 54 54">
+          <rect x="2" y="8" width="50" height="35" rx="5" />
+          ircle cx="20" cy="25"5" r="7" />
+          <path d="M6 45c6-5 32-5 38 0" />
+     </svg>
+     <svg class="absolute left-8 bottom-10 w-24 h-24 opacity-60" fill="none" stroke="#d9b895" stroke-width="2"
+          viewBox="0 0 40 40">
+          ircle cx="20" cy="="20" r="15" />
+          <path d="M5 20h30M20 5v30" />
+     </svg>
+     <svg class="absolute right-8 -bottom-8 w-28 h-28 opacity-40" fill="none" stroke="#d6a15e" stroke-width="2"
+          viewBox="0 0 60 60">
+          <rect x="7" y="12" width="40" height="28" rx="7" />
+          <rect x="22" y="7" width="12" height="12" rx="2" />
+          <path d="M26 15v7" />
+          <path d="M34 15v9" />
+     </svg>
+
+     <style>
+          @keyframes fadeIn {
+               from {
+                    opacity: 0;
+               }
+
+               to {
+                    opacity: 1;
+               }
+          }
+
+          .animate-fadeIn {
+               animation: fadeIn .85s both;
+          }
+
+          @keyframes underline {
+               0% {
+                    width: 0
+               }
+
+               100% {
+                    width: 100%
+               }
+          }
+
+          .animate-underline {
+               animation: underline .7s linear;
+          }
+     </style>
+
+     <script>
+          // Rotator (photo, name, desc, stats)
+          const aboutData = [{
+               img: "https://i.ibb.co/NdFTVVQp/64904d4d54be25000f64c4e6-optimized-removebg-preview.png",
+               name: "Cilantro Travel Agency",
+               text: `Cilantro travel agency is a travel expert providing 5-star small group & private tours in Europe and Asia. We know everything about classic and exotic destinations. Our experienced guides offer delightful programs that suit the tastes and expectations of each of our clients.<br>
+            <br>In addition to the group tours we offer, you can also order an individual tour to any country. We will pick the most convenient flights and hotels and plan an individual route based on your preferences.`,
+               stats: ["44", "8,255", "25", "200+"]
+          },
+          {
+               img: "https://i.ibb.co/NdFTVVQp/64904d4d54be25000f64c4e6-optimized-removebg-preview.png",
+               name: "Olga Petrovna",
+               text: `We create joyful memories for world travelers. Olga, our chief guide, personally plans private group tours for families, couples, and business trips. Every destination is special, and your wishes are top priority.<br><br>
+            Join us in discovering traditions, culture, and magical places!`,
+               stats: ["32", "5,540", "15", "120+"]
+          },
+          {
+               img: "https://i.ibb.co/NdFTVVQp/64904d4d54be25000f64c4e6-optimized-removebg-preview.png",
+               name: "Ivan Dobrov",
+               text: `Ivan's passion is tailoring exclusive itineraries. He speaks 5 languages and brings deep knowledge of European hidden gems. Our team specializes in authentic, safe, and vibrant adventures.<br><br>
+            Start a journey that matches your dreams with Cilantro!`,
+               stats: ["56", "10,011", "33", "320+"]
+          }];
+          let cur = 0;
+
+          function updateAbout() {
+               // Animate fadeIn
+               aboutUserImg.classList.remove("animate-fadeIn");
+               aboutUserName.classList.remove("animate-fadeIn");
+               aboutUserText.classList.remove("animate-fadeIn");
+               aboutStat0.classList.remove("animate-fadeIn");
+               aboutStat1.classList.remove("animate-fadeIn");
+               aboutStat2.classList.remove("animate-fadeIn");
+               aboutStat3.classList.remove("animate-fadeIn");
+               setTimeout(() => {
+                    aboutUserImg.src = aboutData[cur].img;
+                    aboutUserName.innerHTML = aboutData[cur].name;
+                    aboutUserText.innerHTML = aboutData[cur].text;
+                    aboutStat0.textContent = aboutData[cur].stats[0];
+                    aboutStat1.textContent = aboutData[cur].stats[1];
+                    aboutStat2.textContent = aboutData[cur].stats[2];
+                    aboutStat3.textContent = aboutData[cur].stats[3];
+                    aboutUserImg.classList.add("animate-fadeIn");
+                    aboutUserName.classList.add("animate-fadeIn");
+                    aboutUserText.classList.add("animate-fadeIn");
+                    aboutStat0.classList.add("animate-fadeIn");
+                    aboutStat1.classList.add("animate-fadeIn");
+                    aboutStat2.classList.add("animate-fadeIn");
+                    aboutStat3.classList.add("animate-fadeIn");
+               }, 100);
+               cur = (cur + 1) % aboutData.length;
+          }
+          updateAbout();
+          setInterval(updateAbout, 5000);
+     </script>
+</section>

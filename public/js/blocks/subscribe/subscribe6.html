@@ -1,0 +1,90 @@
+<!-- CTA: Are you a Home Owner? (dark hero with building image and email form) -->
+<!-- Requires Tailwind CSS and Font Awesome (for optional icons if needed) -->
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section class="relative w-full overflow-hidden bg-slate-900">
+ <!-- Dark teal overlay background -->
+ <div class="absolute inset-0 bg-slate-900/95"></div>
+
+ <!-- Right building image (clipped on small screens, full height) -->
+ <div class="absolute right-0 top-0 h-full w-[52%] hidden md:block">
+  <img src="https://template.hasthemes.com/bery/bery/assets/images/newsletter/bg-1.png" alt="Apartment building"
+   class="h-full w-full object-cover object-center brightness-100" />
+ </div>
+
+ <!-- Content container -->
+ <div class="relative mx-auto w-[92%] max-w-7xl py-16 md:py-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 items-center">
+   <!-- Left copy -->
+   <div class="pr-0 md:pr-10">
+    <h2 class="text-[28px] md:text-[40px] leading-tight font-extrabold text-white">
+     Are you a Home Owner?
+    </h2>
+    <p class="mt-3 text-slate-300">
+     Put your email address and get listed.
+    </p>
+
+    <!-- Email form -->
+    <form class="mt-8"
+     onsubmit="event.preventDefault(); document.getElementById('ctaBtn').classList.add('scale-95'); setTimeout(()=>document.getElementById('ctaBtn').classList.remove('scale-95'),150);">
+     <div class="relative flex w-full max-w-2xl">
+      <input type="email" required
+       class="w-full rounded-l-xl border border-slate-600 bg-slate-800/60 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent px-5 py-4 md:py-5 text-sm md:text-base"
+       placeholder="Enter your email here..." />
+      <button id="ctaBtn" type="submit"
+       class="rounded-r-xl bg-amber-600 hover:bg-amber-500 active:bg-amber-700 text-white font-semibold px-6 md:px-8 py-4 md:py-5 transition-transform duration-150">
+       Get Listed
+      </button>
+     </div>
+    </form>
+   </div>
+
+   <!-- Spacer on small screens; image sits absolutely on right for md+ -->
+   <div class="mt-10 md:mt-0"></div>
+  </div>
+ </div>
+
+ <!-- Soft top and bottom fades for cinematic look -->
+ <div class="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/20 to-transparent"></div>
+ <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/20 to-transparent"></div>
+</section>
+
+<!-- Optional: minimal entrance animation -->
+<style>
+ @keyframes slideFade {
+  from {
+   opacity: 0;
+   transform: translateY(10px);
+  }
+
+  to {
+   opacity: 1;
+   transform: none;
+  }
+ }
+
+ section .animate-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slideFade .6s cubic-bezier(.2, .8, .2, 1) .15s both;
+ }
+</style>
+<script>
+ // Add animate-in class to form and heading for subtle entrance
+ (() => {s
+  const sel = document.currentScript.previousElementSibling?.previousElementSibling; // <section>
+  if (!sel || sel.tagName.toLowerCase() !== 'section') return;
+  const h2 = sel.querySelector('h2'); const p = sel.querySelector('p'); const form = sel.querySelector('form');
+  [h2, p, form].forEach(el => el && el.classList.add('animate-in'));
+ })();
+</script>

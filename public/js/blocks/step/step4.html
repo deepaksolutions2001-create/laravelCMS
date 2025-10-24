@@ -1,0 +1,93 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section id="working-process" class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+ <!-- Heading -->
+ <div class="text-center">
+  <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Our Working Process</h2>
+  <p class="mx-auto mt-3 max-w-xl text-base font-light leading-7 text-slate-600">
+   Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quia est incidunt quaerat, corrupti distinctio ex
+   quibusdam error?
+  </p>
+ </div>
+
+ <!-- Cards grid; columns auto-adjust via script below -->
+ <div id="wp-grid" class="mt-10 grid grid-cols-1 gap-6 md:gap-8">
+  <!-- 1: Project Research -->
+  <article data-card class="group rounded-2xl bg-white p-4 ring-1 ring-slate-200 shadow-sm transition">
+   <div class="overflow-hidden rounded-xl">
+    <div class="flex h-40 w-full items-center justify-center rounded-xl bg-slate-200 text-slate-400">
+     <i class="fa-solid fa-image text-2xl"></i>
+    </div>
+   </div>
+   <div class="px-1 pt-4 text-center">
+    <div class="mx-auto grid h-10 w-10 place-items-center rounded-full bg-sky-600 text-white">
+     <i class="fa-solid fa-clipboard-list text-sm"></i>
+    </div>
+    <h3 class="mt-3 text-xl font-semibold text-slate-900">Project Research</h3>
+    <span class="mx-auto mt-1 block h-0.5 w-0 bg-slate-800 transition-all duration-300 group-hover:w-4/5"></span>
+    <p class="mt-3 text-sm leading-7 text-slate-600">
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos error exercitationem dignissimos amet
+    </p>
+   </div>
+  </article>
+
+  <!-- 2: Project demonstration -->
+  <article data-card class="group rounded-2xl bg-white p-4 ring-1 ring-slate-200 shadow-sm transition">
+   <div class="overflow-hidden rounded-xl">
+    <div class="flex h-40 w-full items-center justify-center rounded-xl bg-slate-200 text-slate-400">
+     <i class="fa-solid fa-image text-2xl"></i>
+    </div>
+   </div>
+   <div class="px-1 pt-4 text-center">
+    <div class="mx-auto grid h-10 w-10 place-items-center rounded-full bg-amber-600 text-white">
+     <i class="fa-solid fa-play text-sm"></i>
+    </div>
+    <h3 class="mt-3 text-xl font-semibold text-slate-900">Project demostation</h3>
+    <span class="mx-auto mt-1 block h-0.5 w-0 bg-slate-800 transition-all duration-300 group-hover:w-4/5"></span>
+    <p class="mt-3 text-sm leading-7 text-slate-600">
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos error exercitationem dignissimos amet
+    </p>
+   </div>
+  </article>
+
+  <!-- 3: Development & delivery -->
+  <article data-card class="group rounded-2xl bg-white p-4 ring-1 ring-slate-200 shadow-sm transition">
+   <div class="overflow-hidden rounded-xl">
+    <div class="flex h-40 w-full items-center justify-center rounded-xl bg-slate-200 text-slate-400">
+     <i class="fa-solid fa-image text-2xl"></i>
+    </div>
+   </div>
+   <div class="px-1 pt-4 text-center">
+    <div class="mx-auto grid h-10 w-10 place-items-center rounded-full bg-emerald-600 text-white">
+     <i class="fa-solid fa-truck text-sm"></i>
+    </div>
+    <h3 class="mt-3 text-xl font-semibold text-slate-900">Development &amp; delivery</h3>
+    <span class="mx-auto mt-1 block h-0.5 w-0 bg-slate-800 transition-all duration-300 group-hover:w-4/5"></span>
+    <p class="mt-3 text-sm leading-7 text-slate-600">
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos error exercitationem dignissimos amet
+    </p>
+   </div>
+  </article>
+ </div>
+
+ <!-- Local behavior: auto 2 or 3 columns at md based on card count -->
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+   const grid = document.getElementById('wp-grid');
+   if (!grid) return;
+   const count = grid.querySelectorAll('[data-card]').length;
+   grid.classList.remove('md:grid-cols-2', 'md:grid-cols-3');
+   grid.classList.add(count % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-3');
+  });
+ </script>
+</section>

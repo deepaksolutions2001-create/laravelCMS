@@ -1,0 +1,89 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section
+  class="relative w-full min-h-[520px] flex items-center justify-center bg-neutral-800 overflow-hidden px-4 py-20">
+  <!-- Background decoration bubbles (optional) -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- You can add bubble animations or SVGs here matching the faint bubble effect -->
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+    <!-- Left: Image block with experience count -->
+    <div class="relative flex-shrink-0 lg:w-[320px] w-full">
+      <img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/cms-02.jpg"
+        alt="Cleaning Service" class="rounded-xl border-4 border-white shadow-2xl" />
+      <!-- Small image top-left -->
+      <img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/cms-01.jpg"
+        alt="Cleaning small"
+        class="absolute top-0 left-[-48px] w-24 h-24 rounded-xl border-4 border-white shadow-md object-cover" />
+      <!-- Experience badge top-right -->
+      <div class="absolute top-0 right-0 flex items-center gap-2 rounded-lg bg-transparent">
+        <span class="text-green-700 font-extrabold text-5xl leading-none select-none">35+</span>
+        <span class="text-white font-semibold text-lg">Years of <br /> Experience</span>
+      </div>
+      <!-- Phone badge bottom-left -->
+      <div
+        class="absolute -bottom-[30px] left-[-18px]  rounded-xl bg-yellow-300 shadow-md py-3 px-6 font-bold text-black flex flex-col text-left leading-tight w-max">
+        <span>(+800)</span>
+        <span>123 456 7890</span>
+      </div>
+      <!-- Book an appointment button floating left -->
+      <!-- <button class="absolute left-[-120px] top-[60px] bg-green-800 hover:bg-green-900 text-white text-sm font-semibold px-4 py-3 rounded shadow transition-shadow">
+           Book An Appointment
+         </button> -->
+    </div>
+
+    <!-- Right: Content block -->
+    <div class="lg:w-3/5 w-full text-white font-sans">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="p-3 rounded-full bg-yellow-400 shadow-md">
+          <i class="fa-solid fa-broom text-green-900 text-xl"></i>
+        </div>
+        <span class="uppercase font-bold text-yellow-300 tracking-widest text-sm">About Cleaning Agency</span>
+      </div>
+      <h2 class="text-4xl font-extrabold mb-6 leading-tight">
+        We Provide Best Cleaning Service Provider
+      </h2>
+      <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl">
+        We provide a range of contract cleaning UK services across a variety of sectors including factory, laboratory,
+        educational and commercial. Home cleaning service options and continue by example......
+      </p>
+      <div class="max-w-xl space-y-6">
+        <div>
+          <h3 class="font-bold text-white text-xl mb-1">Customer Focused Reviews</h3>
+          <p class="text-gray-400 text-base leading-relaxed">
+            In order to manage each of our sites we follow and agree dates to ensure management is maintained in the
+            following--
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-white text-xl mb-1">Regular & Monthly Cleaning</h3>
+          <p class="text-gray-400 text-base leading-relaxed">
+            We continue to use leading technology, develop innovative ideas and are able to respond to any issues within
+            2
+            hours.
+          </p>
+        </div>
+      </div>
+      <button
+        class="mt-10 bg-green-700 hover:bg-green-900 text-white px-6 py-3 rounded font-semibold shadow transition">
+        Explore More →
+      </button>
+    </div>
+  </div>
+
+  <!-- Animation styles -->
+  <style>
+    /* Add fade in, slide etc animation styles if needed */
+  </style>
+</section>

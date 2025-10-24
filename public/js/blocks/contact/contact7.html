@@ -1,0 +1,153 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins as second include) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome (second include: solid/brands/etc.; solid used here) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+  crossorigin="anonymous">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<section class="max-w-6xl mx-auto px-6 py-12 lg:py-20">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <!-- Image / visual -->
+    <div class="relative rounded-2xl overflow-hidden shadow-lg">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop"
+        alt="Team collaborating"
+        class="w-full h-80 object-cover md:h-[520px] transform transition-transform duration-700 hover:scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+      <div class="absolute bottom-6 left-6 text-white">
+        <h3 class="text-2xl font-semibold tracking-tight">Get in touch</h3>
+        <p class="mt-1 text-sm text-white/90 max-w-xs">Tell us about your project — we'll respond within one business
+          day.</p>
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <form id="contact-form"
+      class="bg-white/95 dark:bg-slate-900/80 backdrop-blur-md shadow-xl rounded-2xl p-6 sm:p-8 lg:p-10"
+      action="/api/contact" method="POST" novalidate>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Contact us</h2>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-300">Describe your needs — or ask a question.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+          <i class="fa-solid fa-envelope w-6 h-6 text-indigo-500"></i>
+          <span>We reply within 24 hrs</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Name</span>
+          <input name="name" type="text" required
+            class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            placeholder="Your full name" />
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
+          <input name="email" type="email" required
+            class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            placeholder="you@company.com" />
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Project type</span>
+          <select name="topic"
+            class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300">
+            <option>General inquiry</option>
+            <option>New project</option>
+            <option>Partnership</option>
+            <option>Support</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Message</span>
+          <textarea name="message" rows="5" required
+            class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 resize-y focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            placeholder="Tell us what's on your mind..."></textarea>
+        </label>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="subscribe" name="subscribe"
+            class="w-4 h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500" />
+          <label for="subscribe" class="text-sm text-slate-600 dark:text-slate-300">Subscribe to updates</label>
+        </div>
+
+        <div class="text-sm text-slate-500 dark:text-slate-300">Or email: <a href="mailto:hello@example.com"
+            class="text-indigo-600 hover:underline">hello@example.com</a></div>
+      </div>
+
+      <div class="mt-6 flex items-center gap-3">
+        <button type="submit"
+          class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-300">
+          Send message
+          <i class="fa-solid fa-arrow-right text-sm"></i>
+        </button>
+
+        <button type="button" id="clearBtn"
+          class="ml-2 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800">
+          Clear
+        </button>
+
+        <div id="form-status" class="ml-auto text-sm text-emerald-600 hidden">Message sent ✓</div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Optional small script: basic validation + clear + fake submit -->
+<script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const clearBtn = document.getElementById('clearBtn');
+
+    clearBtn.addEventListener('click', () => form.reset());
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // simple client-side validation
+      const data = new FormData(form);
+      if (!data.get('name') || !data.get('email') || !data.get('message')) {
+        alert('Please fill name, email and message.');
+        return;
+      }
+
+      // show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const origText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending…';
+
+      try {
+        // Replace with real endpoint
+        await fetch(form.action, {
+          method: form.method || 'POST',
+          body: data,
+        });
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 4000);
+        form.reset();
+      } catch (err) {
+        alert('Error sending message. Try again later.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      }
+    });
+  })();
+</script>

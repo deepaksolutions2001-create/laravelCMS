@@ -1,0 +1,314 @@
+<!-- Font Awesome + Tailwind CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Latest News Slider Component -->
+<section id="latest-news-updates" class="w-full bg-white">
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+  <!-- Heading -->
+  <h2 class="text-slate-900 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-center">
+   Check Our Latest News and Updates<span class="text-blue-600">.</span>
+  </h2>
+
+  <!-- Slider -->
+  <div class="relative mt-10 md:mt-12">
+   <!-- Controls (desktop) -->
+   <button type="button" id="news-prev" aria-label="Previous"
+    class="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-white shadow ring-1 ring-slate-200 text-slate-600 hover:text-slate-800 hover:shadow-md transition">
+    <i class="fa-solid fa-chevron-left"></i>
+   </button>
+   <button type="button" id="news-next" aria-label="Next"
+    class="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-white shadow ring-1 ring-slate-200 text-slate-600 hover:text-slate-800 hover:shadow-md transition">
+    <i class="fa-solid fa-chevron-right"></i>
+   </button>
+
+   <!-- Viewport -->
+   <div id="news-viewport" class="overflow-hidden">
+    <!-- Track -->
+    <div id="news-track"
+     class="flex gap-6 md:gap-7 xl:gap-8 transition-transform duration-500 ease-out will-change-transform">
+     <!-- Slide -->
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1641931666826-5a8ed7a32a4a?q=80&w=1200&auto=format&fit=crop"
+         alt="Web 3.0 cover" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         How Web 3.0 Arrival Is Changing Business Models?
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <!-- Slide -->
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop"
+         alt="Developer at desk" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Dedicated Resource Model: A Cost‑Effective Way to High‑End Development Solution!
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <!-- Slide -->
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1200&auto=format&fit=crop"
+         alt="Mobile research" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Some useful tips for conducting mobile app market research!
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <!-- Slide -->
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1526761928364-3d8e5291f0f4?q=80&w=1200&auto=format&fit=crop"
+         alt="Taxi app" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Top Benefits of Creating a Taxi Booking App for Your Business!
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <!-- Extra slides for functional slider -->
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=1200&auto=format&fit=crop"
+         alt="Analytics" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Product analytics: measure what matters for growth.
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
+         alt="Cloud" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Cloud cost optimization in fast‑moving teams.
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1200&auto=format&fit=crop"
+         alt="Team work" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Five collaboration habits for productive teams.
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+
+     <article class="group shrink-0 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+      <div class="h-full rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-md transition">
+       <div class="relative overflow-hidden rounded-t-2xl">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+         alt="Coding laptop" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+         loading="lazy" />
+       </div>
+       <div class="p-6">
+        <h3 class="text-slate-900 text-lg leading-snug">
+         Choosing the right stack for your next app.
+        </h3>
+        <div class="mt-5">
+         <a href="#"
+          class="inline-flex items-center gap-3 rounded-lg bg-blue-600 px-5 py-2.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+          READ MORE <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+         </a>
+        </div>
+       </div>
+      </div>
+     </article>
+    </div>
+   </div>
+
+   <!-- Dots -->
+   <div id="news-dots" class="mt-8 flex items-center justify-center gap-3">
+    <!-- JS injects dots -->
+   </div>
+  </div>
+
+  <!-- View All -->
+  <div class="mt-8 sm:mt-10 flex justify-center">
+   <a href="#"
+    class="inline-flex items-center gap-3 rounded-xl bg-blue-600 px-7 py-3 text-white text-sm sm:text-base font-semibold shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+    VIEW ALL <i class="fa-solid fa-arrow-right-long text-white/90"></i>
+   </a>
+  </div>
+ </div>
+</section>
+
+<script>
+ (function () {
+  const viewport = document.getElementById('news-viewport');
+  const track = document.getElementById('news-track');
+  const prevBtn = document.getElementById('news-prev');
+  const nextBtn = document.getElementById('news-next');
+  const dotsWrap = document.getElementById('news-dots');
+  const slides = Array.from(track.children);
+
+  let page = 0, pages = 1, perView = 1;
+
+  function getPerView() {
+   const w = window.innerWidth;
+   if (w >= 1280) return 4;
+   if (w >= 1024) return 3;
+   if (w >= 640) return 2;
+   return 1;
+  }
+
+  function computePages() {
+   perView = getPerView();
+   pages = Math.max(1, Math.ceil(slides.length / perView));
+   page = Math.min(page, pages - 1);
+  }
+
+  function renderDots() {
+   dotsWrap.innerHTML = '';
+   for (let i = 0; i < pages; i++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'h-2.5 w-2.5 rounded-full bg-slate-300 transition-all ' + (i === page ? 'w-5 bg-blue-600' : 'hover:bg-slate-400');
+    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    b.addEventListener('click', () => { page = i; update(); });
+    dotsWrap.appendChild(b);
+   }
+  }
+
+  function update() {
+   const offset = page * viewport.clientWidth;
+   track.style.transform = 'translateX(' + (-offset) + 'px)';
+   // update dots
+   Array.from(dotsWrap.children).forEach((d, i) => {
+    d.className = 'h-2.5 rounded-full transition-all ' + (i === page ? 'w-5 bg-blue-600' : 'w-2.5 bg-slate-300 hover:bg-slate-400');
+   });
+   // show/hide arrows
+   if (prevBtn && nextBtn) {
+    prevBtn.classList.toggle('hidden', pages <= 1);
+    nextBtn.classList.toggle('hidden', pages <= 1);
+   }
+  }
+
+  function onResize() {
+   computePages();
+   renderDots();
+   update();
+  }
+
+  // Arrow handlers
+  prevBtn && prevBtn.addEventListener('click', () => { page = Math.max(0, page - 1); update(); });
+  nextBtn && nextBtn.addEventListener('click', () => { page = Math.min(pages - 1, page + 1); update(); });
+
+  // Swipe support
+  let startX = 0;
+  viewport.addEventListener('pointerdown', e => { startX = e.clientX; });
+  viewport.addEventListener('pointerup', e => {
+   const dx = e.clientX - startX;
+   const threshold = 40;
+   if (dx > threshold) page = Math.max(0, page - 1);
+   if (dx < -threshold) page = Math.min(pages - 1, page + 1);
+   update();
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(entry => {
+    if (entry.isIntersecting) {
+     track.querySelectorAll('article').forEach((card, i) => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+       card.style.transition = 'opacity 500ms ease-out, transform 500ms ease-out';
+       card.style.opacity = 1;
+       card.style.transform = 'translateY(0)';
+      }, 80 * i);
+     });
+     io.disconnect();
+    }
+   });
+  }, { threshold: 0.2 });
+  io.observe(viewport);
+
+  window.addEventListener('resize', onResize);
+  onResize();
+ })();
+</script>

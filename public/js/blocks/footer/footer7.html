@@ -1,0 +1,209 @@
+<!-- Font Awesome + Tailwind CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- About + Tweet + Instagram Footer Component -->
+<section id="about-tweet-ig-footer" class="w-full bg-neutral-900 text-slate-300">
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+
+  <!-- Top 3-column area -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+   <!-- About Us -->
+   <div class="lg:col-span-5">
+    <h3 class="text-slate-100 text-lg font-semibold">About Us</h3>
+    <p class="mt-4 text-sm leading-relaxed text-slate-400">
+     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam itaque unde facere repellendus, odio et iste
+     voluptatem aspernatur ratione mollitia tempora eligendi maxime est, blanditiis accusamus. Incidunt, aut, quis!
+    </p>
+
+    <!-- Contacts -->
+    <div class="mt-5 space-y-4">
+     <div class="flex items-center gap-3">
+      <span
+       class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-800 text-orange-400 ring-1 ring-slate-700">
+       <i class="fa-solid fa-phone"></i>
+      </span>
+      <span class="text-slate-200 text-sm">+1 291 3912 329</span>
+     </div>
+     <div class="flex items-center gap-3">
+      <span
+       class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-800 text-orange-400 ring-1 ring-slate-700">
+       <i class="fa-solid fa-envelope"></i>
+      </span>
+      <span class="text-slate-200 text-sm">info@gmail.com</span>
+     </div>
+    </div>
+
+    <!-- Subscribe pill -->
+    <div class="mt-6">
+     <div class="relative w-full max-w-md">
+      <input type="email" placeholder="Enter your e-mail"
+       class="h-12 w-full rounded-full bg-neutral-800 text-slate-200 placeholder-slate-500 ring-1 ring-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-400 ps-5 pe-28 text-sm" />
+      <button id="sendBtn" type="button"
+       class="absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-orange-500 px-6 py-2 text-white text-sm font-semibold shadow hover:bg-orange-600 active:scale-[0.98] transition focus:outline-none focus:ring-2 focus:ring-orange-300">
+       Send
+      </button>
+     </div>
+    </div>
+   </div>
+
+   <!-- Latest Tweet -->
+   <div class="lg:col-span-4">
+    <h3 class="text-slate-100 text-lg font-semibold">Latest Tweet</h3>
+
+    <ul id="tweet-list" class="mt-4 space-y-5">
+     <li class="flex items-start gap-3">
+      <i class="fa-brands fa-x-twitter mt-1 text-slate-400"></i>
+      <p class="text-sm leading-relaxed text-slate-400">
+       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere unde omnis veniam porro excepturi.
+      </p>
+     </li>
+     <li class="flex items-start gap-3">
+      <i class="fa-brands fa-x-twitter mt-1 text-slate-400"></i>
+      <p class="text-sm leading-relaxed text-slate-400">
+       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere unde omnis veniam porro excepturi.
+      </p>
+     </li>
+     <li class="flex items-start gap-3">
+      <i class="fa-brands fa-x-twitter mt-1 text-slate-400"></i>
+      <p class="text-sm leading-relaxed text-slate-400">
+       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere unde omnis veniam porro excepturi.
+      </p>
+     </li>
+    </ul>
+   </div>
+
+   <!-- Instagram -->
+   <div class="lg:col-span-3">
+    <h3 class="text-slate-100 text-lg font-semibold">Instagram</h3>
+
+    <!-- Grid on desktop -->
+    <div class="mt-4 hidden sm:grid grid-cols-2 gap-3">
+     <a href="#" class="group relative block overflow-hidden rounded-md ring-1 ring-slate-700">
+      <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=600&auto=format&fit=crop"
+       alt="Camera" class="h-24 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+     </a>
+     <a href="#" class="group relative block overflow-hidden rounded-md ring-1 ring-slate-700">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop"
+       alt="Forest" class="h-24 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+     </a>
+     <a href="#" class="group relative block overflow-hidden rounded-md ring-1 ring-slate-700">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=600&auto=format&fit=crop" alt="Bike"
+       class="h-24 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+     </a>
+     <a href="#" class="group relative block overflow-hidden rounded-md ring-1 ring-slate-700">
+      <img src="https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=600&auto=format&fit=crop"
+       alt="Couple" class="h-24 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+     </a>
+    </div>
+
+    <!-- Slider on mobile -->
+    <div class="mt-4 sm:hidden">
+     <div id="ig-viewport" class="overflow-hidden rounded-md ring-1 ring-slate-700">
+      <div id="ig-track" class="flex w-max transition-transform duration-500 ease-out">
+       <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=600&auto=format&fit=crop"
+        class="h-28 w-28 object-cover" alt="Camera" />
+       <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop"
+        class="h-28 w-28 object-cover" alt="Forest" />
+       <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=600&auto=format&fit=crop"
+        class="h-28 w-28 object-cover" alt="Bike" />
+       <img src="https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=600&auto=format&fit=crop"
+        class="h-28 w-28 object-cover" alt="Couple" />
+      </div>
+     </div>
+     <!-- dots -->
+     <div id="ig-dots" class="mt-3 flex items-center gap-2"></div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="mt-10 h-px w-full bg-slate-700/60"></div>
+
+  <!-- Bottom nav -->
+  <div class="mt-6 flex flex-col-reverse items-center justify-between gap-4 sm:flex-row">
+   <nav class="text-sm text-slate-400">
+    <ul class="flex flex-wrap items-center gap-x-6 gap-y-3">
+     <li><a href="#" class="hover:text-white transition">Home</a></li>
+     <li><a href="#" class="hover:text-white transition">About</a></li>
+     <li><a href="#" class="hover:text-white transition">Our works</a></li>
+     <li><a href="#" class="hover:text-white transition">Services</a></li>
+     <li><a href="#" class="hover:text-white transition">Blog</a></li>
+     <li><a href="#" class="hover:text-white transition">Contacts</a></li>
+    </ul>
+   </nav>
+   <div class="text-sm text-slate-300">Colorlib</div>
+  </div>
+ </div>
+</section>
+
+<!-- Interactions: send feedback, reveal on scroll, mobile IG slider -->
+<script>
+ // Send feedback animation
+ document.getElementById('sendBtn')?.addEventListener('click', () => {
+  const btn = document.getElementById('sendBtn');
+  btn.textContent = 'Sent';
+  btn.classList.add('bg-emerald-600');
+  setTimeout(() => {
+   btn.textContent = 'Send';
+   btn.classList.remove('bg-emerald-600');
+  }, 1200);
+ });
+
+ // Reveal on scroll
+ (function () {
+  const root = document.getElementById('about-tweet-ig-footer');
+  const targets = root.querySelectorAll('h3, p, li, img, nav, .h-px, .relative');
+  targets.forEach(el => el.classList.add('opacity-0', 'translate-y-1'));
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) {
+     e.target.classList.remove('opacity-0', 'translate-y-1');
+     e.target.classList.add('opacity-100', 'translate-y-0', 'transition', 'duration-700', 'ease-out');
+     io.unobserve(e.target);
+    }
+   });
+  }, { threshold: 0.15 });
+  targets.forEach(el => io.observe(el));
+ })();
+
+ // Mobile Instagram slider with dots + auto-play
+ (function () {
+  const vp = document.getElementById('ig-viewport');
+  const track = document.getElementById('ig-track');
+  const dotsWrap = document.getElementById('ig-dots');
+  if (!vp || !track || !dotsWrap) return;
+
+  const slides = Array.from(track.children);
+  let index = 0;
+  const slideW = 112; // 28 * 4 (tailwind h-28 w-28 => 7rem ~ 112px)
+  const visible = Math.floor(vp.clientWidth / slideW) || 1;
+  const pages = Math.max(1, Math.ceil(slides.length / visible));
+
+  function renderDots() {
+   dotsWrap.innerHTML = '';
+   for (let i = 0; i < pages; i++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'h-2.5 w-2.5 rounded-full bg-slate-400/50 ' + (i === index ? 'bg-orange-500 w-5' : 'hover:bg-slate-400');
+    b.addEventListener('click', () => { index = i; update(); });
+    dotsWrap.appendChild(b);
+   }
+  }
+  function update() {
+   const offset = index * vp.clientWidth;
+   track.style.transform = 'translateX(' + (-offset) + 'px)';
+   Array.from(dotsWrap.children).forEach((d, i) => {
+    d.className = 'h-2.5 rounded-full transition-all ' + (i === index ? 'bg-orange-500 w-5' : 'bg-slate-400/50 w-2.5 hover:bg-slate-400');
+   });
+  }
+  renderDots(); update();
+
+  let timer = setInterval(() => { index = (index + 1) % pages; update(); }, 2500);
+  vp.addEventListener('mouseenter', () => clearInterval(timer));
+  vp.addEventListener('mouseleave', () => { timer = setInterval(() => { index = (index + 1) % pages; update(); }, 2500); });
+  window.addEventListener('resize', () => { index = 0; update(); });
+ })();
+</script>

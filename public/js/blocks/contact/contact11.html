@@ -1,0 +1,115 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="contact-v1" class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
+    <!-- Left: Contact details -->
+    <div class="lg:col-span-5">
+      <h4 class="text-2xl font-bold text-slate-900">Contact Us</h4>
+
+      <div class="mt-8 space-y-6">
+        <!-- Phone -->
+        <div class="flex items-center gap-4">
+          <div class="grid h-16 w-16 place-items-center rounded-full border border-slate-200 text-rose-600">
+            <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-slate-700">+88 0123 456 789</p>
+            <p class="text-slate-700">+88 0123 456 789</p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-center gap-4">
+          <div class="grid h-16 w-16 place-items-center rounded-full border border-slate-200 text-rose-600">
+            <i class="fa-solid fa-envelope text-2xl"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-slate-700">info@gmail.com</p>
+            <p class="text-slate-700">Support@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="flex items-center gap-4">
+          <div class="grid h-16 w-16 place-items-center rounded-full border border-slate-200 text-rose-600">
+            <i class="fa-solid fa-location-dot text-2xl"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-slate-700">24/B Grand Street.</p>
+            <p class="text-slate-700">Northambia, Weals, UK</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="lg:col-span-7">
+      <div class="rounded-xl bg-white p-8 shadow-md ring-1 ring-slate-200">
+        <h4 class="text-2xl font-bold text-slate-900">Contact Form</h4>
+
+        <form class="mt-6">
+          <!-- Row -->
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-600 outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-200"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-600 outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-200"
+              />
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Subject"
+              class="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-600 outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-200"
+            />
+          </div>
+
+          <div class="mt-4">
+            <textarea
+              id="message"
+              name="message"
+              rows="7"
+              placeholder="Your Message Here..."
+              class="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-600 outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-200"
+            ></textarea>
+          </div>
+
+          <div class="mt-6">
+            <button
+              type="button"
+              class="inline-flex items-center rounded-full bg-rose-600 px-7 py-3 text-white shadow-sm transition hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500"
+            >
+              Submit Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

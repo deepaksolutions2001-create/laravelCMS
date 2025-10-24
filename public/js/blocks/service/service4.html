@@ -1,0 +1,206 @@
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<section class="w-full min-h-screen bg-slate-50 py-14 px-3">
+  <!-- Header -->
+  <div class="flex flex-col items-center mb-6">
+    <span class="text-violet-600 font-bold text-lg mb-1 tracking-wide">Boosting</span>
+    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-center mb-6">
+      <span class="text-neutral-800">Outstanding</span>
+      <span class="text-rose-500">Experience</span>
+    </h2>
+  </div>
+
+  <!-- Service Tabs -->
+  <div id="serviceTabs" class="flex flex-col md:flex-row justify-center gap-6 mb-14 w-full max-w-5xl mx-auto"></div>
+
+  <!-- Main Service Card -->
+  <div id="serviceMain" class="max-w-5xl mx-auto w-full mt-2 py-6 animate-fadein-down"></div>
+
+  <style>
+    @keyframes fadein-down {
+      from {
+        opacity: 0;
+        transform: translateY(-32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .animate-fadein-down {
+      animation: fadein-down .7s both;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        filter: brightness(1);
+      }
+
+      50% {
+        filter: brightness(1.12);
+      }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+  <script>
+    const services = [
+      {
+        title: "Real Time Analytics",
+        desc: "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, Europe uses the same vocabulary.",
+        feature1: { icon: "fa-chart-bar", iconClass: "text-blue-600", text: "Far far away, behind the word mountains, far" },
+        feature2: { icon: "fa-bookmark", iconClass: "text-rose-500", text: "Bookmarks grove right at the coast of Semantics" },
+        // Tailwind-only color classes (no hex)
+        mainBgClass: "bg-gradient-to-br from-rose-50 to-white",
+        tabBgClass: "bg-gradient-to-br from-rose-500 to-rose-300",
+        tabTextClass: "text-white",
+        tabIconActiveClass: "text-white",
+        ringActiveClass: "ring-rose-400",
+        accentBgClass: "bg-rose-500",
+        bigIcon: "fa-chart-line",
+        bigIconClass: "text-white",
+        buttonGradientClass: "bg-gradient-to-r from-rose-500 to-rose-300",
+        buttonTextClass: "text-white",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Online Marketing",
+        desc: "Online outreach drives brand growth. Combine reach, creative content, and targeted campaigns for dynamic results. Let’s boost your online presence.",
+        feature1: { icon: "fa-bullhorn", iconClass: "text-green-500", text: "Promote brand across channels" },
+        feature2: { icon: "fa-globe", iconClass: "text-green-300", text: "Expand with engaging content" },
+        mainBgClass: "bg-gradient-to-br from-emerald-50 to-white",
+        tabBgClass: "bg-emerald-50",
+        tabTextClass: "text-emerald-600",
+        tabIconActiveClass: "text-emerald-600",
+        ringActiveClass: "ring-emerald-400",
+        accentBgClass: "bg-emerald-500",
+        bigIcon: "fa-bullhorn",
+        bigIconClass: "text-emerald-600",
+        buttonGradientClass: "bg-gradient-to-r from-emerald-500 to-emerald-200",
+        buttonTextClass: "text-emerald-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Pay Per Click",
+        desc: "Drive traffic instantly with PPC. Reach your ideal audience, maximize ROI, and monitor results in real-time for optimal impact.",
+        feature1: { icon: "fa-mouse-pointer", iconClass: "text-amber-400", text: "Pay only for clicks that matter" },
+        feature2: { icon: "fa-balance-scale-right", iconClass: "text-amber-400", text: "Get the best value for every dollar" },
+        mainBgClass: "bg-gradient-to-br from-amber-50 to-white",
+        tabBgClass: "bg-amber-50",
+        tabTextClass: "text-amber-500",
+        tabIconActiveClass: "text-amber-500",
+        ringActiveClass: "ring-amber-400",
+        accentBgClass: "bg-amber-500",
+        bigIcon: "fa-hand-point-up",
+        bigIconClass: "text-amber-500",
+        buttonGradientClass: "bg-gradient-to-r from-amber-400 to-amber-200",
+        buttonTextClass: "text-amber-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Email Marketing",
+        desc: "Nurture leads and convert with targeted campaigns. Email delivers personalized offers right to your customer’s inbox.",
+        feature1: { icon: "fa-envelope-open-text", iconClass: "text-teal-600", text: "Automate and personalize follow-up" },
+        feature2: { icon: "fa-paper-plane", iconClass: "text-teal-400", text: "Boost conversion with creative messages" },
+        mainBgClass: "bg-gradient-to-br from-teal-50 to-white",
+        tabBgClass: "bg-teal-50",
+        tabTextClass: "text-teal-600",
+        tabIconActiveClass: "text-teal-600",
+        ringActiveClass: "ring-teal-400",
+        accentBgClass: "bg-teal-500",
+        bigIcon: "fa-envelope-open-text",
+        bigIconClass: "text-teal-600",
+        buttonGradientClass: "bg-gradient-to-r from-teal-500 to-teal-200",
+        buttonTextClass: "text-teal-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Social Marketing",
+        desc: "Build connections, spark engagement. We position your brand where your audience spends time—on social platforms.",
+        feature1: { icon: "fa-share-alt", iconClass: "text-indigo-400", text: "Share content across key networks" },
+        feature2: { icon: "fa-users", iconClass: "text-violet-300", text: "Grow your follower base with trends" },
+        mainBgClass: "bg-gradient-to-br from-violet-50 to-white",
+        tabBgClass: "bg-indigo-50",
+        tabTextClass: "text-indigo-500",
+        tabIconActiveClass: "text-indigo-500",
+        ringActiveClass: "ring-indigo-400",
+        accentBgClass: "bg-indigo-500",
+        bigIcon: "fa-share-alt",
+        bigIconClass: "text-indigo-500",
+        buttonGradientClass: "bg-gradient-to-r from-indigo-500 to-indigo-300",
+        buttonTextClass: "text-indigo-950",
+        cardAccentShadow: "shadow-2xl"
+      }
+    ];
+
+    let active = 0;
+
+    function renderTabs() {
+      serviceTabs.innerHTML = services.map((item, i) => `
+        <div onclick="selectTab(${i})"
+          class="group transition-all duration-300 min-w-[200px] max-w-[210px] rounded-[18px] flex flex-col items-center justify-center px-7 py-8 relative cursor-pointer
+            ${item.tabBgClass}
+            ${i === active ? `ring-2 ring-offset-2 ${item.ringActiveClass} z-10 scale-105 shadow-2xl` : `hover:ring-2 hover:ring-offset-1 hover:scale-105 hover:z-10 hover:shadow-2xl`}">
+            ${i === active ? `
+              <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 ${item.accentBgClass}"
+                    style="clip-path:polygon(0% 0%,100% 0%,50% 100%);"></span>
+            ` : ``}
+            <span class="text-[2rem] mb-2 ${i === active ? item.tabIconActiveClass : 'text-slate-400'}">
+              <i class="fas ${item.bigIcon}"></i>
+            </span>
+            <span class="font-semibold text-[1.06rem] mt-1 tracking-wide ${i === active ? item.tabTextClass : 'text-slate-700'}">${item.title}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderMain() {
+      const item = services[active];
+      serviceMain.innerHTML = `
+        <div class="rounded-3xl ${item.cardAccentShadow} w-full flex flex-col md:flex-row items-center px-8 py-12 gap-8 relative overflow-hidden ${item.mainBgClass}">
+          <div class="w-full md:w-2/5 flex items-center justify-center mb-8 md:mb-0 animate-fadein">
+            <img src="${item.img}" alt="${item.title}" class="w-[220px] h-[160px] object-contain rounded-xl shadow-md"/>
+          </div>
+          <div class="w-full md:w-3/5 px-2">
+            <h3 class="text-2xl font-extrabold mb-3 flex items-center gap-2 text-neutral-800">
+              <i class="fas ${item.bigIcon} text-lg md:text-2xl ${item.bigIconClass}"></i>
+              ${item.title}
+            </h3>
+            <p class="text-slate-600 text-base mb-5">${item.desc}</p>
+            <div class="flex gap-6 mb-8 flex-wrap">
+              <div class="flex items-center gap-3">
+                <span class="text-2xl ${item.feature1.iconClass}"><i class="fas ${item.feature1.icon}"></i></span>
+                <span class="text-neutral-800 text-base font-medium">${item.feature1.text}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-2xl ${item.feature2.iconClass}"><i class="fas ${item.feature2.icon}"></i></span>
+                <span class="text-neutral-800 text-base font-medium">${item.feature2.text}</span>
+              </div>
+            </div>
+            <button class="rounded-full px-8 py-2.5 mt-2 font-semibold text-lg shadow transition-transform duration-300 hover:scale-105 pulse ${item.buttonTextClass} ${item.buttonGradientClass} shadow-lg">
+              Learn more
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectTab(idx) {
+      active = idx;
+      renderTabs();
+      renderMain();
+    }
+    // INITIAL RENDER
+    renderTabs();
+    renderMain();
+    window.selectTab = selectTab;
+  </script>
+</section>

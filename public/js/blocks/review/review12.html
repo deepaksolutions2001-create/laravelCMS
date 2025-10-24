@@ -1,0 +1,191 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section id="client-testimonial-v1" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+ <!-- Top headings -->
+ <div class="text-center mb-10">
+  <div class="sub_heading">
+   <span class="text-base text-slate-600">Clients</span>
+  </div>
+  <div class="main_heading">
+   <h2 class="text-3xl sm:text-4xl font-semibold text-slate-900">What Client Say</h2>
+   <div class="relative mx-auto mt-3 h-1 w-40 bg-emerald-500">
+    <div class="absolute inset-0 grid place-items-center">
+     <div class="relative grid place-items-center h-5 w-5 rounded-full bg-white">
+      <span class="absolute h-2.5 w-2.5 rounded-full bg-white ring-2 ring-emerald-500"></span>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!-- Two columns -->
+ <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+  <!-- Image column -->
+  <div class="lg:col-span-2 relative overflow-hidden rounded-xl bg-slate-100 h-[360px] sm:h-[440px] lg:h-[520px]">
+   <img src="https://cdn-icons-png.freepik.com/512/15755/15755360.png" alt="Happy client"
+    class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+  </div>
+
+  <!-- Testimonials column -->
+  <div class="lg:col-span-3">
+   <div class="rounded-xl bg-white shadow-lg ring-1 ring-slate-200 p-6 sm:p-8">
+    <!-- Top row with quote icon and controls -->
+    <div class="flex items-center justify-between pb-6">
+     <div class="text-emerald-600 bg-emerald-50 rounded-full p-4">
+      <i class="fa-solid fa-quote-right text-2xl -scale-x-100 -scale-y-100"></i>
+     </div>
+     <div class="flex items-center gap-2">
+      <button id="slider-button-prev" type="button"
+       class="grid place-items-center h-10 w-10 rounded-full ring-1 ring-slate-200 text-slate-300 hover:text-emerald-600 transition">
+       <i class="fa-solid fa-chevron-left text-lg"></i>
+      </button>
+      <button id="slider-button-next" type="button"
+       class="grid place-items-center h-10 w-10 rounded-full ring-1 ring-slate-200 text-slate-300 hover:text-emerald-600 transition">
+       <i class="fa-solid fa-chevron-right text-lg"></i>
+      </button>
+     </div>
+    </div>
+
+    <!-- Slider -->
+    <div class="overflow-hidden">
+     <div id="slides-container" class="flex w-full [--index:0] transition-transform duration-500 ease-in-out"
+      style="transform: translateX(var(--index));">
+      <!-- Slide 1 -->
+      <div class="box shrink-0 basis-full">
+       <div class="client_details">
+        <p class="text-base leading-7 text-slate-600 pb-4">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis in distinctio voluptatibus error ut, non
+         quisquam quo iure nisi neque. dolor sit, amet consectetur adipisicing elit. In, omnis.
+        </p>
+       </div>
+       <div class="client_name">
+        <h3 class="text-xl font-medium text-slate-900">Julia Robertson</h3>
+       </div>
+       <div class="to_belong">
+        <span class="text-slate-500">Happy Clients</span>
+       </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="box shrink-0 basis-full">
+       <div class="client_details">
+        <p class="text-base leading-7 text-slate-600 pb-4">
+         2Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis in distinctio voluptatibus error ut, non
+         quisquam quo iure nisi neque. dolor sit, amet consectetur adipisicing elit. In, omnis.
+        </p>
+       </div>
+       <div class="client_name">
+        <h3 class="text-xl font-medium text-slate-900">Julia Robertson</h3>
+       </div>
+       <div class="to_belong">
+        <span class="text-slate-500">Happy Clients</span>
+       </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="box shrink-0 basis-full">
+       <div class="client_details">
+        <p class="text-base leading-7 text-slate-600 pb-4">
+         3Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis in distinctio voluptatibus error ut, non
+         quisquam quo iure nisi neque. dolor sit, amet consectetur adipisicing elit. In, omnis.
+        </p>
+       </div>
+       <div class="client_name">
+        <h3 class="text-xl font-medium text-slate-900">Julia Robertson</h3>
+       </div>
+       <div class="to_belong">
+        <span class="text-slate-500">Happy Clients</span>
+       </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="box shrink-0 basis-full">
+       <div class="client_details">
+        <p class="text-base leading-7 text-slate-600 pb-4">
+         4Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quis in distinctio voluptatibus error ut, non
+         quisquam quo iure nisi neque. dolor sit, amet consectetur adipisicing elit. In, omnis.
+        </p>
+       </div>
+       <div class="client_name">
+        <h3 class="text-xl font-medium text-slate-900">Julia Robertson</h3>
+       </div>
+       <div class="to_belong">
+        <span class="text-slate-500">Happy Clients</span>
+       </div>
+      </div>
+     </div>
+    </div>
+
+   </div>
+
+   <!-- Optional bottom progress dots -->
+   <div class="mt-4 flex items-center gap-2 justify-center">
+    <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 data-[active=true]:bg-emerald-600" data-index="0"
+     aria-label="Slide 1"></button>
+    <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 data-[active=true]:bg-emerald-600" data-index="1"
+     aria-label="Slide 2"></button>
+    <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 data-[active=true]:bg-emerald-600" data-index="2"
+     aria-label="Slide 3"></button>
+    <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 data-[active=true]:bg-emerald-600" data-index="3"
+     aria-label="Slide 4"></button>
+   </div>
+  </div>
+ </div>
+
+ <!-- Scoped JS -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#client-testimonial-v1');
+   if (!root) return;
+
+   const track = root.querySelector('#slides-container');
+   const slides = Array.from(track.querySelectorAll('.box'));
+   const prevBtn = root.querySelector('#slider-button-prev');
+   const nextBtn = root.querySelector('#slider-button-next');
+   const dots = Array.from(root.querySelectorAll('.dot'));
+
+   let index = 0;
+   let timer = null;
+   const delaySec = 4;
+
+   function setActive(i) {
+    index = (i + slides.length) % slides.length;
+    // translate in percentages like original (--index)
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    // update dots
+    dots.forEach((d, di) => d.setAttribute('data-active', di === index ? 'true' : 'false'));
+   }
+
+   function next() { setActive(index + 1); }
+   function prev() { setActive(index - 1); }
+
+   function start() { stop(); timer = setInterval(next, delaySec * 1000); }
+   function stop() { if (timer) clearInterval(timer); }
+
+   // init
+   setActive(0);
+   nextBtn?.addEventListener('click', () => { next(); });
+   prevBtn?.addEventListener('click', () => { prev(); });
+   dots.forEach(btn => btn.addEventListener('click', () => setActive(Number(btn.dataset.index || 0))));
+
+   // autoplay pause on hover/focus
+   const hoverArea = root;
+   hoverArea.addEventListener('mouseenter', stop);
+   hoverArea.addEventListener('mouseleave', start);
+   hoverArea.addEventListener('focusin', stop);
+   hoverArea.addEventListener('focusout', start);
+
+   start();
+  })();
+ </script>
+</section>

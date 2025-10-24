@@ -1,0 +1,130 @@
+<script src="https://cdn.tailwindcss.com"></script>
+
+<section class="relative w-full min-h-[60%] flex items-center justify-center bg-black overflow-hidden  p-20px">
+ <!-- Background Image with dark overlay -->
+ <div class="absolute inset-0 z-0">
+  <img src="https://webcomsystem.net/wp-content/uploads/whychooseus-1.jpg?id=11164" alt="Why Choose Us"
+   class="w-full h-full object-cover object-center opacity-70" />
+  <div class="absolute inset-0 "></div>
+ </div>
+
+ <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-8 py-20">
+  <!-- Left: headline, text, stats -->
+  <div class="lg:w-[50%] w-full mb-12 lg:mb-0 text-left">
+   <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-8 leading-tight animate-fadein-down"
+    style="font-family:'Inter', sans-serif;">
+    Why Choose Us
+   </h2>
+   <p class="text-gray-200 text-lg mb-10 leading-relaxed animate-fadein">
+    We have the expertise to handle complex blockchain projects. We have successfully delivered multiple blockchain
+    projects, gaining valuable industry experience along the way. This experience allows us to understand the unique
+    challenges and requirements of different industries, ensuring that our solutions are tailored to your specific
+    industry needs.
+   </p>
+   <div class="flex gap-7 md:gap-12 mt-6 animate-fadein-up">
+    <div class="text-left">
+     <div class="flex items-center">
+      <span class="text-white text-4xl font-extrabold counter" data-target="150">0</span>
+      <span class="text-cyan-400 text-4xl font-extrabold ml-2">+</span>
+     </div>
+     <div class="text-gray-300 text-sm mt-1 uppercase tracking-widest font-semibold">Total Employees</div>
+    </div>
+    <div class="text-left">
+     <div class="text-white text-4xl font-extrabold counter" data-target="929">0</div>
+     <div class="text-gray-300 text-sm mt-1 uppercase tracking-widest font-semibold">Project Completed</div>
+    </div>
+    <div class="text-left">
+     <div class="text-white text-4xl font-extrabold counter" data-target="620">0</div>
+     <div class="text-gray-300 text-sm mt-1 uppercase tracking-widest font-semibold">Global Clients</div>
+    </div>
+   </div>
+  </div>
+  <!-- Right: Feature image, only on lg and up -->
+ </div>
+
+ <!-- Animations -->
+ <style>
+  @keyframes fadein-down {
+   from {
+    opacity: 0;
+    transform: translateY(-32px);
+   }
+
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
+
+  @keyframes fadein {
+   from {
+    opacity: 0;
+   }
+
+   to {
+    opacity: 1;
+   }
+  }
+
+  @keyframes fadein-up {
+   from {
+    opacity: 0;
+    transform: translateY(32px);
+   }
+
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
+
+  @keyframes fadein-right {
+   from {
+    opacity: 0;
+    transform: translateX(60px);
+   }
+
+   to {
+    opacity: 1;
+    transform: translateX(0);
+   }
+  }
+
+  .animate-fadein-down {
+   animation: fadein-down 0.7s both;
+  }
+
+  .animate-fadein {
+   animation: fadein 1s both;
+  }
+
+  .animate-fadein-up {
+   animation: fadein-up 0.7s both .2s;
+  }
+
+  .animate-fadein-right {
+   animation: fadein-right 1s both .2s;
+  }
+ </style>
+ <script>
+  // Animated Counter
+  document.addEventListener('DOMContentLoaded', function () {
+   document.querySelectorAll('.counter').forEach(counter => {
+    let target = +counter.getAttribute('data-target');
+    let duration = 3000; // ms
+    let start = 0;
+    let step = Math.ceil(target / (duration / 16));
+    let count = () => {
+     start += step;
+     if (start < target) {
+      counter.textContent = start;
+      requestAnimationFrame(count);
+     } else {
+      counter.textContent = target;
+     }
+    };
+    count();
+   });
+  });
+ </script>
+</section>

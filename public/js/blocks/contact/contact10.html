@@ -1,0 +1,124 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+<section class="relative w-full px-4 py-16 overflow-hidden bg-pin">
+  <!-- Wavy Background (decorative SVG kept) -->
+  <svg class="absolute top-0 left-0 w-full h-[120%] opacity-90 -z-10" viewBox="0 0 1600 900"
+    xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,80 Q800,260 1600,80 L1600,900 L0,900 Z" fill="#ff6fa4" />
+  </svg>
+
+  <!-- Main Card -->
+  <div
+    class="relative max-w-6xl mx-auto bg-slate-800 shadow-2xl rounded-b-[3rem] md:rounded-b-[5rem] grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16">
+
+    <!-- Left: Form -->
+    <div>
+      <h2 class="text-pink-400 text-2xl md:text-3xl font-bold mb-2">Just say Hello !</h2>
+      <p class="text-gray-300 mb-6">Let us know more about you !</p>
+
+      <form class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" placeholder="First Name"
+            class="bg-slate-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder-gray-400 transition" />
+          <input type="text" placeholder="Last Name"
+            class="bg-slate-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder-gray-400 transition" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="email" placeholder="Mail"
+            class="bg-slate-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder-gray-400 transition" />
+          <input type="tel" placeholder="Phone"
+            class="bg-slate-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder-gray-400 transition" />
+        </div>
+        <textarea placeholder="Message" rows="4"
+          class="w-full bg-slate-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 placeholder-gray-400 transition resize-none"></textarea>
+        <button type="submit"
+          class="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          SUBMIT
+        </button>
+      </form>
+    </div>
+
+    <!-- Right: Info -->
+    <div class="flex flex-col justify-center text-white space-y-4 md:space-y-6">
+      <h3 class="text-pink-400 text-xl md:text-2xl font-bold">Contact Information</h3>
+      <p class="text-gray-200 leading-relaxed">
+        77 Baker Street<br>
+        Bondowoso. 87655<br>
+        Indonesia
+      </p>
+
+      <div>
+        <p class="text-gray-300 flex items-center gap-2">
+          <i class="fa-solid fa-phone text-lg"></i> +62 81 334 61 00
+        </p>
+        <p class="text-gray-300 mt-1 flex items-center gap-2">
+          <i class="fa-solid fa-clock text-lg"></i> Monday - Friday<br>08.00 am – 05.00 pm
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-pink-400 font-semibold mt-4">Follow Us</h4>
+        <div class="flex gap-5 mt-2">
+          <a href="#" class="text-white hover:text-pink-500 transition flex items-center gap-1" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="#" class="text-white hover:text-pink-500 transition flex items-center gap-1" title="Twitter">
+            <i class="fa-brands fa-x-twitter"></i> Twitter
+          </a>
+          <a href="#" class="text-white hover:text-pink-500 transition flex items-center gap-1" title="Instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+          <a href="#" class="text-white hover:text-pink-500 transition flex items-center gap-1" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info cards (white, float above) -->
+  <div class="relative z-10 flex flex-col md:flex-row gap-5 px-2 md:px-0 pt-9 mb-2 shadow-md">
+    <!-- Card 1 -->
+    <div class="flex-1 bg-white rounded-xl shadow-md px-7 py-6 flex flex-col items-center min-w-[170px]">
+      <span class="mb-2">
+        <i class="fa-solid fa-location-dot text-pink-500 text-2xl"></i>
+      </span>
+      <h3 class="font-bold text-base text-gray-800 mb-1 text-center">OUR MAIN OFFICE</h3>
+      <p class="text-sm text-gray-600 text-center">SoHo 94 Broadway St<br>New York, NY 1001</p>
+    </div>
+    <!-- Card 2 -->
+    <div class="flex-1 bg-white rounded-xl shadow-xl px-7 py-6 flex flex-col items-center min-w-[170px]">
+      <span class="mb-2">
+        <i class="fa-solid fa-phone text-pink-500 text-2xl"></i>
+      </span>
+      <h3 class="font-bold text-base text-gray-800 mb-1 text-center">PHONE NUMBER</h3>
+      <p class="text-sm text-gray-600 text-center leading-tight">234-9876-5400<br>888-0123-4567 (Toll Free)</p>
+    </div>
+    <!-- Card 3 -->
+    <div class="flex-1 bg-white rounded-xl shadow-xl px-7 py-6 flex flex-col items-center min-w-[170px]">
+      <span class="mb-2">
+        <i class="fa-solid fa-fax text-pink-500 text-2xl"></i>
+      </span>
+      <h3 class="font-bold text-base text-gray-800 mb-1 text-center">FAX</h3>
+      <p class="text-sm text-gray-600 text-center">1-234-567-8900</p>
+    </div>
+    <!-- Card 4 -->
+    <div class="flex-1 bg-white rounded-xl shadow-xl px-7 py-6 flex flex-col items-center min-w-[170px]">
+      <span class="mb-2">
+        <i class="fa-solid fa-envelope text-pink-500 text-2xl"></i>
+      </span>
+      <h3 class="font-bold text-base text-gray-800 mb-1 text-center">EMAIL</h3>
+      <a href="mailto:hello@theme.com" class="text-sm text-pink-500 underline">hello@theme.com</a>
+    </div>
+  </div>
+</section>

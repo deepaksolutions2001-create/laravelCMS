@@ -1,0 +1,102 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+
+
+<!-- Newsletter Subscription Banner -->
+<section class="relative w-full overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src="https://the7.io/fse-brewery/wp-content/uploads/sites/139/2025/03/Slide-3_2-_-16-1536x1024.webp"
+      alt="Leaves" class="h-full w-full object-cover" />
+    <!-- Dark overlay for readability -->
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
+
+  <div class="relative mx-auto w-[92%] max-w-6xl py-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+      <!-- Left copy -->
+      <div class="md:col-span-7 lg:col-span-7" data-rise>
+        <p class="text-sm md:text-base text-emerald-300 mb-1">
+          Newsletter Subscription
+        </p>
+        <h2 class="text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          Want to Know First About New Releases<br class="hidden md:block" />
+          and Events? Sign up!
+        </h2>
+      </div>
+
+      <!-- Right form -->
+      <div class="md:col-span-5 lg:col-span-5" data-rise>
+        <form class="flex items-center w-full" onsubmit="event.preventDefault(); nls_submit();">
+          <label class="sr-only" for="nls_email">Enter your email</label>
+          <div class="flex-1">
+            <p class="text-white/90 text-sm mb-2">Enter your email</p>
+            <div class="flex items-center w-full">
+              <!-- Input with long underline look -->
+              <input id="nls_email" type="email" required placeholder="example@gmail.com"
+                class="peer flex-1 bg-transparent text-white placeholder-white/70 outline-none border-b border-white/30 focus:border-white/70 transition-colors px-0 py-2" />
+              <!-- Submit button pill -->
+              <button type="submit"
+                class="ml-4 shrink-0 px-6 py-2.5 rounded-full bg-emerald-600 text-white font-semibold hover:bg-emerald-500 active:scale-[0.98] transition-all">
+                Sign up
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Animation styles -->
+<style>
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-rise] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  [data-rise].in-view {
+    animation: rise .6s cubic-bezier(.2, .8, .2, 1) both;
+  }
+</style>
+<script>
+  // Reveal on scroll
+  (() => {
+    const els = document.querySelectorAll('[data-rise]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.15 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // Lightweight submit animation
+  function nls_submit() {
+    const btn = document.querySelector('button[type="submit"]');
+    btn.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.04)' }, { transform: 'scale(1)' }],
+      { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' }
+    );
+  }
+</script>

@@ -1,0 +1,146 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+<section class="bg-white py-12 px-2 w-full">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-stretch gap-12">
+    <!-- Left: Service Info -->
+    <div class="flex-1 max-w-xl w-full mb-12 lg:mb-0 flex flex-col justify-between">
+      <div>
+        <div class="text-emerald-500 text-lg font-semibold mb-8 animate-fadeIn">
+          Why choose us our service
+        </div>
+
+        <h2 class="font-bold text-slate-800 text-3xl sm:text-4xl xl:text-5xl leading-relaxed mb-12 animate-fadeIn">
+          Accurate to 99% of a<br>
+          <span class="inline-block relative">
+            <span class="border-b-8 border-emerald-400 pb-1 font-bold z-10 relative">property's</span>
+          </span>
+          details.
+        </h2>
+
+        <!-- Features -->
+        <ul class="flex flex-col gap-12 mb-14">
+          <li class="flex items-start gap-6 animate-slideInUp">
+            <!-- Icon 1 (replaced SVG with FA) -->
+            <span class="flex-shrink-0 w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center">
+              <i class="fa-solid fa-percent text-emerald-600 text-4xl"></i>
+            </span>
+            <div>
+              <div class="font-bold text-xl sm:text-2xl text-slate-800 mb-2 leading-relaxed">
+                Most appreciated projects
+              </div>
+              <div class="text-slate-500 text-lg leading-relaxed">
+                Browse millions of properties in your city save your favorites.
+              </div>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-6 animate-slideInUp" style="animation-delay:.15s">
+            <!-- Icon 2 (replaced SVG with FA) -->
+            <span class="flex-shrink-0 w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center">
+              <i class="fa-solid fa-chart-line text-emerald-600 text-4xl"></i>
+            </span>
+            <div>
+              <div class="font-bold text-xl sm:text-2xl text-slate-800 mb-2 leading-relaxed">
+                Highest rental income projects
+              </div>
+              <div class="text-slate-500 text-lg leading-relaxed">
+                Browse millions of properties in your city save your favorites.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Buttons (bottom aligned for match) -->
+      <div class="flex flex-row gap-5 mt-auto">
+        <a href="#"
+          class="bg-slate-800 text-white font-semibold px-10 py-4 rounded-lg shadow hover:bg-emerald-500 transition-colors duration-200 animate-fadeIn">ABOUT
+          MORE</a>
+        <a href="#"
+          class="bg-white text-slate-800 font-semibold px-10 py-4 rounded-lg shadow border-2 border-zinc-200 hover:border-emerald-500 transition-colors duration-200 animate-fadeIn">TRUSTED
+          AGENTS</a>
+      </div>
+    </div>
+
+    <!-- Right: Image/Video + Rating -->
+    <div class="flex-1 w-full flex justify-center items-stretch">
+      <div
+        class="relative w-full h-full flex flex-col justify-between max-w-l rounded-3xl overflow-hidden shadow-xl animate-fadeIn">
+        <img src="https://craftohtml.themezaa.com/images/demo-real-estate-02.jpg" alt="Property"
+          class="w-full h-full min-h-[570px] object-cover rounded-3xl" />
+
+        <!-- Play Button Overlay (replaced SVG with FA) -->
+        <button
+          class="absolute inset-0 m-auto w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition duration-300 cursor-pointer"
+          style="top:0;bottom:0;left:0;right:0;width:80px;height:80px;">
+          <i class="fa-solid fa-play text-slate-800 text-2xl"></i>
+        </button>
+
+        <!-- Score badge -->
+        <div
+          class="absolute right-8 bottom-9 bg-white rounded-xl shadow-lg px-10 py-8 flex flex-col items-center animate-ratingPop">
+          <span class="text-slate-800 font-bold text-5xl mb-2">4.9</span>
+          <span class="flex gap-2 mb-2">
+            <i class="fa-solid fa-star text-emerald-500"></i>
+            <i class="fa-solid fa-star text-emerald-500"></i>
+            <i class="fa-solid fa-star text-emerald-500"></i>
+            <i class="fa-solid fa-star text-emerald-500"></i>
+            <i class="fa-solid fa-star text-emerald-500"></i>
+          </span>
+          <span class="text-lg text-slate-500 font-medium tracking-wide">TRUSTSCORE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+
+    @keyframes slideInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(70px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .animate-slideInUp {
+      animation: slideInUp 1.2s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+
+    @keyframes ratingPop {
+      0% {
+        transform: scale(.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .animate-ratingPop {
+      animation: ratingPop 1.1s cubic-bezier(.77, -0.44, .37, 1.17);
+    }
+  </style>
+</section>

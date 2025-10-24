@@ -1,0 +1,111 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+
+<!-- We handle everything - 3 features (headline + icons + text) -->
+<section class="w-full bg-slate-50 py-16 md:py-24">
+ <div class="mx-auto w-[92%] max-w-7xl">
+
+  <!-- Header -->
+  <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+   We handle everything
+  </h2>
+  <p class="mt-4 max-w-4xl text-lg md:text-xl text-slate-600">
+   Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
+   incididunt soluta nobis assumenda labore quod maxime.
+  </p>
+
+  <!-- Feature grid -->
+  <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+
+   <!-- Item 1 -->
+   <article data-reveal class="group">
+    <i
+     class="fa-solid fa-house-circle-check text-slate-900 text-[7rem] md:text-[8rem] leading-none select-none pointer-events-none"
+     aria-hidden="true"></i>
+    <h3 class="mt-6 text-2xl md:text-3xl font-semibold text-slate-900">
+     Home Appraisal
+    </h3>
+    <p class="mt-4 text-slate-600 leading-relaxed">
+     Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+     eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum
+     ultrices.
+    </p>
+   </article>
+
+   <!-- Item 2 -->
+   <article data-reveal class="group">
+    <i
+     class="fa-solid fa-handshake text-slate-900 text-[7rem] md:text-[8rem] leading-none select-none pointer-events-none"
+     aria-hidden="true"></i>
+    <h3 class="mt-6 text-2xl md:text-3xl font-semibold text-slate-900">
+     Price Negotiation
+    </h3>
+    <p class="mt-4 text-slate-600 leading-relaxed">
+     Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+     eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum
+     ultrices.
+    </p>
+   </article>
+
+   <!-- Item 3 -->
+   <article data-reveal class="group">
+    <i
+     class="fa-solid fa-file-signature text-slate-900 text-[7rem] md:text-[8rem] leading-none select-none pointer-events-none"
+     aria-hidden="true"></i>
+    <h3 class="mt-6 text-2xl md:text-3xl font-semibold text-slate-900">
+     Paperwork Handling
+    </h3>
+    <p class="mt-4 text-slate-600 leading-relaxed">
+     Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+     eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum
+     ultrices.
+    </p>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- Reveal animation -->
+<style>
+ @keyframes rise {
+  from {
+   opacity: 0;
+   transform: translateY(14px);
+  }
+
+  to {
+   opacity: 1;
+   transform: translateY(0);
+  }
+ }
+
+ [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+ }
+
+ [data-reveal].is-visible {
+  animation: rise .6s cubic-bezier(.2, .8, .2, 1) both;
+ }
+</style>
+<script>
+ // Observer for subtle reveal
+ (() => {
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.2 });
+  els.forEach(el => io.observe(el));
+ })();
+</script>

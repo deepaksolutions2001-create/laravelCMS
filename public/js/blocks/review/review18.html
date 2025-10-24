@@ -1,0 +1,200 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+<section id="testimonial-v7" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+ <!-- Top heading -->
+ <div class="text-center mb-10">
+  <h2 class="text-3xl sm:text-4xl font-semibold text-slate-900 inline-block">
+   Our Testimonial
+  </h2>
+  <div class="h-1 w-60 bg-orange-500 rounded-full mx-auto mt-3"></div>
+ </div>
+
+ <!-- Slider wrapper -->
+ <div id="slider-container" class="relative">
+  <!-- Slides track -->
+  <div id="slides-container" class="flex flex-nowrap transition-transform duration-500 ease-in-out"
+   style="transform: translateX(0%);">
+   <!-- Slide 1 -->
+   <div class="box shrink-0 basis-full">
+    <div
+     class="under_two_sections grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch bg-slate-50 rounded-xl p-6 sm:p-8">
+     <!-- Left: content -->
+     <div class="fist_section">
+      <div class="icon_and-text flex gap-4 opacity-0 translate-x-8 transition-all duration-500 ease-out">
+       <div class="icon_cn pt-1">
+        <i class="fa-solid fa-quote-right text-3xl text-emerald-600 -scale-x-100 -scale-y-100"></i>
+       </div>
+       <div class="text_cn">
+        <p class="text-lg sm:text-xl leading-8 text-slate-700 italic">
+         1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque recusandae dolorum voluptates modi, quae
+         animi omnis ex ullam nam rem sapiente soluta enim ut voluptas amet tempore culpa nostrum!
+        </p>
+       </div>
+      </div>
+
+      <div
+       class="bottom_pic-and-some-text flex items-center gap-4 pt-6 opacity-0 translate-y-6 transition-all duration-500 ease-out delay-150">
+       <div class="pic h-16 w-16 rounded-full overflow-hidden bg-slate-200">
+        <img src="https://picsum.photos/120/120?random=701" alt="Client avatar" class="h-full w-full object-cover"
+         loading="lazy" />
+       </div>
+       <div class="sometext">
+        <div class="name">
+         <h3 class="text-lg font-semibold text-slate-900">Ronald Richards</h3>
+        </div>
+        <div class="to_belong">
+         <span class="text-slate-500 text-sm">CEO, Themeexpert Limited</span>
+        </div>
+       </div>
+      </div>
+     </div>
+
+     <!-- Right: image -->
+     <div class="second_section">
+      <div
+       class="img relative min-h-[300px] h-full rounded-lg overflow-hidden opacity-0 -translate-x-8 transition-all duration-500 ease-out delay-200">
+       <img src="https://picsum.photos/900/700?random=711" alt="Context image"
+        class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- Slide 2 -->
+   <div class="box shrink-0 basis-full">
+    <div
+     class="under_two_sections grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch bg-slate-50 rounded-xl p-6 sm:p-8">
+     <!-- Left: content -->
+     <div class="fist_section">
+      <div class="icon_and-text flex gap-4 opacity-0 translate-x-8 transition-all duration-500 ease-out">
+       <div class="icon_cn pt-1">
+        <i class="fa-solid fa-quote-right text-3xl text-emerald-600 -scale-x-100 -scale-y-100"></i>
+       </div>
+       <div class="text_cn">
+        <p class="text-lg sm:text-xl leading-8 text-slate-700 italic">
+         2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque recusandae dolorum voluptates modi, quae
+         animi omnis ex ullam nam rem sapiente soluta enim ut voluptas amet tempore culpa nostrum!
+        </p>
+       </div>
+      </div>
+
+      <div
+       class="bottom_pic-and-some-text flex items-center gap-4 pt-6 opacity-0 translate-y-6 transition-all duration-500 ease-out delay-150">
+       <div class="pic h-16 w-16 rounded-full overflow-hidden bg-slate-200">
+        <img src="https://picsum.photos/120/120?random=702" alt="Client avatar" class="h-full w-full object-cover"
+         loading="lazy" />
+       </div>
+       <div class="sometext">
+        <div class="name">
+         <h3 class="text-lg font-semibold text-slate-900">Ronald Richards</h3>
+        </div>
+        <div class="to_belong">
+         <span class="text-slate-500 text-sm">CEO, Themeexpert Limited</span>
+        </div>
+       </div>
+      </div>
+     </div>
+
+     <!-- Right: image -->
+     <div class="second_section">
+      <div
+       class="img relative min-h-[300px] h-full rounded-lg overflow-hidden opacity-0 -translate-x-8 transition-all duration-500 ease-out delay-200">
+       <img
+        src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000"
+        alt="Context image" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="next_prev-button flex gap-3 pt-6">
+   <button id="slider-button-prev" type="button"
+    class="grid place-items-center h-10 w-10 rounded-full bg-slate-100 ring-1 ring-slate-200 text-slate-500 hover:bg-white hover:text-slate-900 transition">
+    <i class="fa-solid fa-chevron-left text-base"></i>
+   </button>
+   <button id="slider-button-next" type="button"
+    class="grid place-items-center h-10 w-10 rounded-full bg-slate-100 ring-1 ring-slate-200 text-slate-500 hover:bg-white hover:text-slate-900 transition">
+    <i class="fa-solid fa-chevron-right text-base"></i>
+   </button>
+  </div>
+ </div>
+
+ <!-- Scoped JS -->
+ <script>
+  (function () {
+   const root = document.currentScript.closest('#testimonial-v7');
+   if (!root) return;
+   const container = root.querySelector('#slider-container');
+   const track = root.querySelector('#slides-container');
+   const slides = Array.from(track.querySelectorAll('.box'));
+   const prevBtn = root.querySelector('#slider-button-prev');
+   const nextBtn = root.querySelector('#slider-button-next');
+
+   let index = 0;
+   let timer = null;
+   const delaySec = 18;
+
+   function animateSlide(si, active) {
+    const s = slides[si];
+    const lead = s.querySelector('.icon_and-text');
+    const avatarRow = s.querySelector('.bottom_pic-and-some-text');
+    const img = s.querySelector('.img');
+    if (!lead || !avatarRow || !img) return;
+    if (active) {
+     lead.classList.remove('opacity-0', 'translate-x-8');
+     lead.classList.add('opacity-100', 'translate-x-0');
+     avatarRow.classList.remove('opacity-0', 'translate-y-6');
+     avatarRow.classList.add('opacity-100', 'translate-y-0');
+     img.classList.remove('opacity-0', '-translate-x-8');
+     img.classList.add('opacity-100', 'translate-x-0');
+    } else {
+     lead.classList.add('opacity-0', 'translate-x-8');
+     lead.classList.remove('opacity-100', 'translate-x-0');
+     avatarRow.classList.add('opacity-0', 'translate-y-6');
+     avatarRow.classList.remove('opacity-100', 'translate-y-0');
+     img.classList.add('opacity-0', '-translate-x-8');
+     img.classList.remove('opacity-100', 'translate-x-0');
+    }
+   }
+
+   function setActive(i) {
+    const prev = index;
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    slides.forEach((_, si) => animateSlide(si, si === index));
+   }
+
+   function next() { setActive(index + 1); }
+   function prev() { setActive(index - 1); }
+
+   function start() { stop(); timer = setInterval(next, delaySec * 1000); }
+   function stop() { if (timer) clearInterval(timer); }
+
+   // init states
+   slides.forEach((_, si) => animateSlide(si, si === 0));
+   setActive(0);
+
+   nextBtn?.addEventListener('click', next);
+   prevBtn?.addEventListener('click', prev);
+
+   // autoplay with hover/focus pause
+   start();
+   container.addEventListener('mouseenter', stop);
+   container.addEventListener('mouseleave', start);
+   container.addEventListener('focusin', stop);
+   container.addEventListener('focusout', start);
+  })();
+ </script>
+</section>

@@ -1,0 +1,166 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<section class="bg-gray-50 px-4 py-12 w-full">
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto flex items-center justify-between mb-8">
+    <span class="text-4xl md:text-5xl font-semibold text-slate-800">
+      Property for <span class="font-bold border-b-4 border-emerald-500 px-2 text-slate-800">sell and rent</span>
+    </span>
+    <a href="#"
+       class="flex items-center gap-2 text-slate-800 text-lg font-semibold transition hover:text-emerald-500 group">
+      View all property
+      <span
+        class="inline-flex items-center justify-center bg-neutral-800 group-hover:bg-emerald-500 transition rounded-full w-9 h-9 ml-2">
+        <i class="fa-solid fa-arrow-right text-white text-base"></i>
+      </span>
+    </a>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto animate-fadeIn">
+    <!-- Card 1 -->
+    <div
+      class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl animate-cardReveal">
+      <div class="relative w-full h-[240px] overflow-hidden">
+        <img src="https://craftohtml.themezaa.com/images/demo-real-estate-property-04.jpg" alt="Luxury villa in Texas"
+             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+        <span
+          class="absolute top-4 left-4 bg-emerald-500 text-white text-sm font-bold px-5 py-1 rounded-full shadow-lg animate-badgeFade">SELL</span>
+      </div>
+      <div class="p-6 flex-1 flex flex-col">
+        <div class="font-bold text-xl md:text-2xl text-slate-800 mb-2">Luxury villa in Texas</div>
+        <div class="text-slate-400 text-base md:text-lg mb-4">982 Monroe ave, rochester</div>
+        <div class="flex justify-between mb-4">
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bed text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">04</span>
+            <span class="text-xs text-slate-400 mt-1">Bedrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bath text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">05</span>
+            <span class="text-xs text-slate-400 mt-1">Bathrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-ruler-combined text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">360m<sup>2</sup></span>
+            <span class="text-xs text-slate-400 mt-1">Living area</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between px-6 pb-6 pt-2">
+        <button
+          class="px-6 py-2 bg-slate-800 rounded-lg text-white text-base font-semibold shadow hover:bg-emerald-500 transition-colors duration-200 animate-detailBtn">
+          VIEW DETAILS
+        </button>
+        <span class="font-bold text-2xl text-slate-800">$6,89,000</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div
+      class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl animate-cardReveal">
+      <div class="relative w-full h-[240px] overflow-hidden">
+        <img src="https://craftohtml.themezaa.com/images/demo-real-estate-property-05.jpg" alt="Modern villa in Oregon"
+             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+        <span
+          class="absolute top-4 left-4 bg-amber-300 text-white text-sm font-bold px-5 py-1 rounded-full shadow-lg animate-badgeFade">RENT</span>
+      </div>
+      <div class="p-6 flex-1 flex flex-col">
+        <div class="font-bold text-xl md:text-2xl text-slate-800 mb-2">Modern villa in Oregon</div>
+        <div class="text-slate-400 text-base md:text-lg mb-4">1261 Sampson street senver</div>
+        <div class="flex justify-between mb-4">
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bed text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">05</span>
+            <span class="text-xs text-slate-400 mt-1">Bedrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bath text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">05</span>
+            <span class="text-xs text-slate-400 mt-1">Bathrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-ruler-combined text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">780m<sup>2</sup></span>
+            <span class="text-xs text-slate-400 mt-1">Living area</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between px-6 pb-6 pt-2">
+        <button
+          class="px-6 py-2 bg-slate-800 rounded-lg text-white text-base font-semibold shadow hover:bg-emerald-500 transition-colors duration-200 animate-detailBtn">
+          VIEW DETAILS
+        </button>
+        <span class="font-bold text-2xl text-slate-800">$8,50,000</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div
+      class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl animate-cardReveal">
+      <div class="relative w-full h-[240px] overflow-hidden">
+        <img src="https://craftohtml.themezaa.com/images/demo-real-estate-property-06.jpg" alt="Ranch style in Florida"
+             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+        <span
+          class="absolute top-4 left-4 bg-emerald-500 text-white text-sm font-bold px-5 py-1 rounded-full shadow-lg animate-badgeFade">SELL</span>
+      </div>
+      <div class="p-6 flex-1 flex flex-col">
+        <div class="font-bold text-xl md:text-2xl text-slate-800 mb-2">Ranch style in Florida</div>
+        <div class="text-slate-400 text-base md:text-lg mb-4">2814 Hampton meadows</div>
+        <div class="flex justify-between mb-4">
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bed text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">04</span>
+            <span class="text-xs text-slate-400 mt-1">Bedrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-bath text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">04</span>
+            <span class="text-xs text-slate-400 mt-1">Bathrooms</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fa-solid fa-ruler-combined text-slate-800 mb-1 text-[28px]"></i>
+            <span class="text-base font-semibold text-slate-800">260m<sup>2</sup></span>
+            <span class="text-xs text-slate-400 mt-1">Living area</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between px-6 pb-6 pt-2">
+        <button
+          class="px-6 py-2 bg-slate-800 rounded-lg text-white text-base font-semibold shadow hover:bg-emerald-500 transition-colors duration-200 animate-detailBtn">
+          VIEW DETAILS
+        </button>
+        <span class="font-bold text-2xl text-slate-800">$6,50,000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animations (unchanged) -->
+  <style>
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(50px) }
+      100% { opacity: 1; transform: translateY(0) }
+    }
+    .animate-fadeIn { animation: fadeIn 1.1s cubic-bezier(.77, -0.44, .37, 1.17); }
+
+    @keyframes cardReveal {
+      0% { opacity: 0; transform: scale(.97) }
+      100% { opacity: 1; transform: scale(1) }
+    }
+    .animate-cardReveal { animation: cardReveal 1s cubic-bezier(.77, -0.44, .37, 1.17); }
+
+    @keyframes badgeFade {
+      0% { opacity: 0; transform: scale(.7) }
+      100% { opacity: 1; transform: scale(1) }
+    }
+    .animate-badgeFade { animation: badgeFade .7s cubic-bezier(.77, -0.44, .37, 1.17); }
+
+    @keyframes detailBtn {
+      0% { opacity: 0; transform: translateY(12px) }
+      100% { opacity: 1; transform: translateY(0) }
+    }
+    .animate-detailBtn { animation: detailBtn .8s cubic-bezier(.77, -0.44, .37, 1.17); }
+  </style>
+</section>

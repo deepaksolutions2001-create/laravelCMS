@@ -1,0 +1,127 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+  crossorigin="anonymous">
+
+
+<!-- Why Choose Us - split layout with layered images and feature list (Font Awesome) -->
+<!-- Ensure Tailwind CSS and Font Awesome are loaded in your project -->
+
+<section class="w-full bg-white py-16 md:py-24">
+  <div class="mx-auto w-[92%] max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Left: Heading + layered images -->
+    <div>
+      <p class="text-slate-500 font-semibold tracking-wide">Why Choose us</p>
+      <h2 class="mt-2 text-[34px] md:text-[44px] leading-tight font-extrabold text-slate-800">
+        We Provide Latest Properties<br />
+        For Our Valuable Clients<span class="text-amber-500">.</span>
+      </h2>
+
+      <!-- Layered image cluster -->
+      <div class="relative mt-10">
+        <!-- base large rounded card -->
+        <div class="relative overflow-hidden w-[100%] max-w-[640px]">
+          <img src="https://template.hasthemes.com/bery/bery/assets/images/about/about1.png" alt="Property exterior"
+            class="w-full h-[320px] md:h-[360px] object-cover" />
+          <!-- top subtle accent line -->
+          <span class="absolute -top-2 left-1/2 -translate-x-1/2 h-1 w-40 bg-amber-300/60 rounded-full"></span>
+          <!-- corner arcs (pure CSS shapes) -->
+          <span
+            class="absolute -left-8 -top-8 h-32 w-32 rounded-full border-[6px] border-slate-300/70 border-b-transparent border-r-transparent"></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: Text block + features list -->
+    <div>
+      <p class="text-slate-600">
+        Huge number of properties available here for buy, sell and Rent. Also you find here co‑living property so lots
+        opportunity you have to choose here and enjoy huge discount.
+      </p>
+
+      <div class="mt-10 space-y-8">
+        <!-- item -->
+        <div class="flex items-start gap-4">
+          <div class="mt-1 grid h-12 w-12 place-items-center rounded-full bg-amber-100 text-amber-700">
+            <i class="fa-solid fa-sack-dollar text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-slate-800">Budget Friendly</h3>
+            <p class="mt-2 text-slate-600 max-w-[520px]">
+              Properties are most budget friendly so you have opportunity to find the best one.
+            </p>
+          </div>
+        </div>
+
+        <!-- item -->
+        <div class="flex items-start gap-4">
+          <div class="mt-1 grid h-12 w-12 place-items-center rounded-full bg-amber-100 text-amber-700">
+            <i class="fa-solid fa-location-dot text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-slate-800">Prime Location</h3>
+            <p class="mt-2 text-slate-600 max-w-[520px]">
+              Properties are most budget friendly so you have opportunity to find the best one.
+            </p>
+          </div>
+        </div>
+
+        <!-- item -->
+        <div class="flex items-start gap-4">
+          <div class="mt-1 grid h-12 w-12 place-items-center rounded-full bg-amber-100 text-amber-700">
+            <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-slate-800">Trusted By Thousand</h3>
+            <p class="mt-2 text-slate-600 max-w-[520px]">
+              Properties are most budget friendly so you have opportunity to find the best one.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Animation: gentle rise-in on scroll -->
+<style>
+  @keyframes riseIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-reveal].show {
+    animation: riseIn .6s cubic-bezier(.2, .8, .2, 1) both;
+  }
+</style>
+<script>
+  // Optional: reveal effect if you add data-reveal attribute to blocks
+  (() => {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  })();
+</script>

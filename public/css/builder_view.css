@@ -664,3 +664,5 @@ html {
  width: 100%;
  border-radius: 6px;
 }
+
+.gjs-blocks-c, .gjs-block { pointer-events: auto !important; }

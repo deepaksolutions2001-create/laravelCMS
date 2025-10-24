@@ -1,0 +1,122 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="product-v2" class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <!-- Heading -->
+  <div class="text-center">
+    <h2 class="text-3xl font-bold text-slate-900 md:text-4xl">Checkout Some Amazing Shorts</h2>
+  </div>
+
+  <!-- Thumbnails -->
+  <div id="pv2-grid" class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+    <button class="group relative aspect-[4/3] overflow-hidden rounded-md ring-1 ring-slate-200">
+      <img src="https://picsum.photos/800/600?random=403" alt="Gallery item" class="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.03]" />
+    </button>
+    <button class="group relative aspect-[4/3] overflow-hidden rounded-md ring-1 ring-slate-200">
+      <img src="https://picsum.photos/800/600?random=403" alt="Gallery item" class="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.03]" />
+    </button>
+    <button class="group relative aspect-[4/3] overflow-hidden rounded-md ring-1 ring-slate-200">
+      <img src="https://picsum.photos/800/600?random=403" alt="Gallery item" class="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.03]" />
+    </button>
+    <button class="group relative aspect-[4/3] overflow-hidden rounded-md ring-1 ring-slate-200">
+      <img src="https://picsum.photos/800/600?random=403" alt="Gallery item" class="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.03]" />
+    </button>
+    <button class="group relative aspect-[4/3] overflow-hidden rounded-md ring-1 ring-slate-200">
+      <img src="https://picsum.photos/800/600?random=403" alt="Gallery item" class="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.03]" />
+    </button>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="pv2-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
+    <!-- Close -->
+    <button id="pv2-close" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-emerald-600 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Image -->
+    <div class="max-h-[85vh] max-w-5xl">
+      <img id="pv2-large" src="https://picsum.photos/800/600?random=403" alt="Preview" class="mx-auto max-h-[85vh] w-auto rounded-md ring-1 ring-white/30" />
+    </div>
+
+    <!-- Prev -->
+    <button id="pv2-prev" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-emerald-600 p-3 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <!-- Next -->
+    <button id="pv2-next" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-emerald-600 p-3 text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- JS scoped to this section -->
+  <script>
+    (() => {
+      const section = document.getElementById('product-v2');
+      const grid = section.querySelector('#pv2-grid');
+      const items = Array.from(grid.querySelectorAll('img'));
+      const lightbox = section.querySelector('#pv2-lightbox');
+      const large = section.querySelector('#pv2-large');
+      const closeBtn = section.querySelector('#pv2-close');
+      const nextBtn = section.querySelector('#pv2-next');
+      const prevBtn = section.querySelector('#pv2-prev');
+
+      let idx = 0;
+
+      function openAt(i) {
+        idx = i;
+        large.src = items[idx].src;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+      }
+
+      function close() {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+      }
+
+      function next() {
+        idx = (idx + 1) % items.length;
+        large.src = items[idx].src;
+      }
+
+      function prev() {
+        idx = (idx - 1 + items.length) % items.length;
+        large.src = items[idx].src;
+      }
+
+      grid.addEventListener('click', (e) => {
+        const img = e.target.closest('img');
+        if (!img) return;
+        const i = items.indexOf(img);
+        if (i > -1) openAt(i);
+      });
+
+      closeBtn.addEventListener('click', close);
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+
+      // Close on backdrop click
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+
+      // ESC to close
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+    })();
+  </script>
+</section>

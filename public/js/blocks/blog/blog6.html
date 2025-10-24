@@ -1,0 +1,98 @@
+<!-- Place CDNs directly above the section -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<section id="latestReviews" class="w-full bg-zinc-50 text-zinc-900">
+ <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+  <!-- Header row -->
+  <div class="flex items-center justify-between gap-6">
+   <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
+    Latest Reviews
+   </h2>
+   <a href="#"
+    class="inline-flex items-center gap-3 rounded px-5 py-2.5 text-sm tracking-wide uppercase border border-orange-300 text-orange-700 hover:bg-orange-50 active:scale-95 transition">
+    View All
+    <i class="fa-solid fa-arrow-right-long"></i>
+   </a>
+  </div>
+
+  <!-- Grid -->
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+   <!-- Card 1 -->
+   <article class="group" data-animate>
+    <div class="overflow-hidden rounded-md shadow-sm ring-1 ring-zinc-200 bg-white">
+     <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200" alt="Grilled steak"
+      class="h-64 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+    </div>
+    <h3 class="mt-6 font-serif text-3xl leading-snug">
+     Grilled Flank Steak with Chimichurri
+    </h3>
+    <p class="mt-4 text-zinc-600">
+     Potenti tincidunt arcu euismod curabitur iaculis ut aliquet facilisis pharetra, pharetra dolor scelerisque.
+    </p>
+    <a href="#"
+     class="mt-6 inline-flex items-center gap-2 text-sm tracking-wide uppercase text-zinc-700 hover:text-zinc-900">
+     Read More <i class="fa-solid fa-arrow-right-long text-zinc-700"></i>
+    </a>
+   </article>
+
+   <!-- Card 2 -->
+   <article class="group" data-animate>
+    <div class="overflow-hidden rounded-md shadow-sm ring-1 ring-zinc-200 bg-white">
+     <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200" alt="Mushroom penne"
+      class="h-64 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+    </div>
+    <h3 class="mt-6 font-serif text-3xl leading-snug">
+     Mushroom Penne with Walnut Pesto
+    </h3>
+    <p class="mt-4 text-zinc-600">
+     Ipsum amet ultrices suscipit eget tortor, tincidunt urna, mattis aliquam duis eget luctus.
+    </p>
+    <a href="#"
+     class="mt-6 inline-flex items-center gap-2 text-sm tracking-wide uppercase text-zinc-700 hover:text-zinc-900">
+     Read More <i class="fa-solid fa-arrow-right-long text-zinc-700"></i>
+    </a>
+   </article>
+
+   <!-- Card 3 -->
+   <article class="group" data-animate>
+    <div class="overflow-hidden rounded-md shadow-sm ring-1 ring-zinc-200 bg-white">
+     <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200" alt="Shrimp linguine"
+      class="h-64 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+    </div>
+    <h3 class="mt-6 font-serif text-3xl leading-snug">
+     Garlic Butter White Wine Shrimp Linguine
+    </h3>
+    <p class="mt-4 text-zinc-600">
+     Non faucibus tincidunt commodo erat nunc purus erat sem leo fames facilisis.
+    </p>
+    <a href="#"
+     class="mt-6 inline-flex items-center gap-2 text-sm tracking-wide uppercase text-zinc-700 hover:text-zinc-900">
+     Read More <i class="fa-solid fa-arrow-right-long text-zinc-700"></i>
+    </a>
+   </article>
+  </div>
+ </div>
+
+ <!-- JS: scroll‑reveal + subtle lift on hover already in CSS -->
+ <script>
+  (function () {
+   const root = document.getElementById('latestReviews');
+   const cards = root.querySelectorAll('[data-animate]');
+   const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+     if (entry.isIntersecting) {
+      const el = entry.target;
+      el.classList.add('translate-y-0', 'opacity-100');
+      el.classList.remove('translate-y-4', 'opacity-0');
+      io.unobserve(el);
+     }
+    });
+   }, { threshold: 0.2 });
+   cards.forEach((c) => {
+    c.classList.add('opacity-0', 'translate-y-4', 'transition', 'duration-700', 'ease-out');
+    io.observe(c);
+   });
+  })();
+ </script>
+</section>

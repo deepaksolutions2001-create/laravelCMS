@@ -1,0 +1,122 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+
+ <section id="stats-v1" class="relative">
+  <!-- Background -->
+  <div class="absolute inset-0">
+    <img
+      src="https://picsum.photos/1600/900?random=1501"
+      alt="Background"
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-black/70"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <!-- Card -->
+      <div class="flex items-center justify-center gap-4">
+        <div class="shrink-0 grid place-items-center rounded-full bg-white text-rose-600 h-14 w-14">
+          <i class="fa-solid fa-database text-2xl"></i>
+        </div>
+        <div class="text-left">
+          <div class="main_heading text-4xl font-bold text-white">
+            <span class="counter" data-target="230">0</span>
+          </div>
+          <p class="text-slate-100 text-sm">Project Done</p>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="flex items-center justify-center gap-4">
+        <div class="shrink-0 grid place-items-center rounded-full bg-white text-rose-600 h-14 w-14">
+          <i class="fa-solid fa-face-smile text-2xl"></i>
+        </div>
+        <div class="text-left">
+          <div class="main_heading text-4xl font-bold text-white">
+            <span class="counter" data-target="789">0</span>
+          </div>
+          <p class="text-slate-100 text-sm">Satisfied Client</p>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="flex items-center justify-center gap-4">
+        <div class="shrink-0 grid place-items-center rounded-full bg-white text-rose-600 h-14 w-14">
+          <i class="fa-solid fa-thumbs-up text-2xl"></i>
+        </div>
+        <div class="text-left">
+          <div class="main_heading text-4xl font-bold text-white">
+            <span class="counter" data-target="580">0</span>
+          </div>
+          <p class="text-slate-100 text-sm">Cup Of Coffee</p>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="flex items-center justify-center gap-4">
+        <div class="shrink-0 grid place-items-center rounded-full bg-white text-rose-600 h-14 w-14">
+          <i class="fa-solid fa-trophy text-2xl"></i>
+        </div>
+        <div class="text-left">
+          <div class="main_heading text-4xl font-bold text-white">
+            <span class="counter" data-target="130">0</span>
+          </div>
+          <p class="text-slate-100 text-sm">Awards Win</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scoped JS: starts counters when section enters viewport -->
+  <script>
+    (function () {
+      const root = document.currentScript.closest('#stats-v1');
+      if (!root) return;
+
+      const counters = Array.from(root.querySelectorAll('.counter'));
+      let started = false;
+
+      function animateCounter(el) {
+        const target = Number(el.getAttribute('data-target') || 0);
+        const duration = 1200; // ms
+        const fps = 60;
+        const steps = Math.max(1, Math.round((duration / 1000) * fps));
+        const inc = target / steps;
+        let current = 0;
+        let tick = 0;
+
+        function step() {
+          tick++;
+          current = Math.min(target, Math.round(inc * tick));
+          el.textContent = current.toString();
+          if (current < target) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            counters.forEach(animateCounter);
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      io.observe(root);
+    })();
+  </script>
+</section>

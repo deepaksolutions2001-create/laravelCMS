@@ -1,0 +1,78 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+ crossorigin="anonymous">
+<!-- Font Awesome Brands (second include) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+ crossorigin="anonymous">
+<section id="stats-var-3" class="py-16 bg-white">
+ <div class="max-w-6xl mx-auto px-4 sm:px-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+   <!-- 1 -->
+   <div class="p-4">
+    <span class="block text-5xl font-extrabold text-gray-900" data-counter data-target="1730">0</span>
+    <p class="mt-2 text-gray-600">Project Done</p>
+   </div>
+   <!-- 2 -->
+   <div class="p-4">
+    <span class="block text-5xl font-extrabold text-gray-900" data-counter data-target="125">0</span>
+    <p class="mt-2 text-gray-600">User Worldwide</p>
+   </div>
+   <!-- 3 -->
+   <div class="p-4">
+    <span class="block text-5xl font-extrabold text-gray-900" data-counter data-target="39">0</span>
+    <p class="mt-2 text-gray-600">Availble Country</p>
+   </div>
+   <!-- 4 -->
+   <div class="p-4">
+    <span class="block text-5xl font-extrabold text-gray-900" data-counter data-target="14">0</span>
+    <p class="mt-2 text-gray-600">Award Winner</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- Minimal JS: animate once when visible -->
+ <script>
+  (function () {
+   const root = document.querySelector('#stats-var-3');
+   if (!root) return;
+
+   const counters = Array.from(root.querySelectorAll('[data-counter]'));
+   let done = false;
+
+   function animateCounters() {
+    counters.forEach(el => {
+     const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+     let val = 0;
+     const step = Math.max(1, Math.ceil(target / 90));
+     const tick = () => {
+      val = Math.min(target, val + step);
+      el.textContent = val;
+      if (val < target) requestAnimationFrame(tick);
+     };
+     requestAnimationFrame(tick);
+    });
+   }
+
+   if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+     entries.forEach(e => {
+      if (e.isIntersecting && !done) {
+       done = true;
+       animateCounters();
+       io.disconnect();
+      }
+     });
+    }, { threshold: 0.25 });
+
+    io.observe(root);
+   } else {
+    animateCounters();
+   }
+  })();
+ </script>
+</section>

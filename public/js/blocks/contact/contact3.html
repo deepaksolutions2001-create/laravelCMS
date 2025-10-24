@@ -1,0 +1,91 @@
+<!-- Font Awesome Free (brands) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<section class="relative flex items-center justify-center py-24 px-6 bg-slate-900 overflow-hidden">
+  <!-- Background Gradient Blobs -->
+  <div class="absolute inset-0 -z-10">
+    <div
+      class="absolute top-20 left-20 w-96 h-96 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full blur-[120px] opacity-30 animate-pulse">
+    </div>
+    <div
+      class="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-tr from-indigo-500 to-cyan-400 rounded-full blur-[120px] opacity-30 animate-pulse">
+    </div>
+  </div>
+
+  <!-- Main Contact Card -->
+  <div
+    class="relative w-full max-w-6xl grid md:grid-cols-2 rounded-3xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-xl bg-white/5 transition-all duration-500 hover:shadow-purple-500/20 hover:scale-[1.01]">
+
+    <!-- Left Side: Image -->
+    <div class="relative">
+      <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367e?auto=format&fit=crop&w=900&q=80"
+        alt="Team communication workspace"
+        class="object-cover w-full h-full brightness-90 hover:brightness-100 transition duration-500" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent"></div>
+      <div class="absolute bottom-6 left-6 text-white">
+        <h3 class="text-2xl font-semibold mb-1">We’d love to hear from you</h3>
+        <p class="text-sm text-white/70">Our team usually replies within 24 hours 🚀</p>
+      </div>
+    </div>
+
+    <!-- Right Side: Form -->
+    <div class="p-10 md:p-14 text-white flex flex-col justify-center space-y-6">
+      <div>
+        <h2
+          class="text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
+        <p class="text-white/70 leading-relaxed">
+          Fill out the form below or email us directly — we’ll make sure your message lands with the right team.
+        </p>
+      </div>
+
+      <form class="space-y-6">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
+            <input type="text" id="name" placeholder="Jane Doe"
+              class="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/50 border border-white/20 focus:ring-2 focus:ring-pink-500 outline-none hover:bg-white/20 transition-all duration-300">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+            <input type="email" id="email" placeholder="you@example.com"
+              class="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/50 border border-white/20 focus:ring-2 focus:ring-pink-500 outline-none hover:bg-white/20 transition-all duration-300">
+          </div>
+        </div>
+
+        <div>
+          <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
+          <input type="text" id="subject" placeholder="Project inquiry"
+            class="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/50 border border-white/20 focus:ring-2 focus:ring-pink-500 outline-none hover:bg-white/20 transition-all duration-300">
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium mb-2">Message</label>
+          <textarea id="message" rows="4" placeholder="Tell us a bit about your project..."
+            class="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/50 border border-white/20 focus:ring-2 focus:ring-pink-500 outline-none hover:bg-white/20 transition-all duration-300"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full py-3 font-semibold text-lg bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-xl shadow-lg hover:shadow-pink-500/50 hover:scale-[1.02] transition-all duration-300">
+          Send Message ✉️
+        </button>
+      </form>
+
+      <div class="flex items-center space-x-5 pt-4 border-t border-white/10">
+        <a href="#" class="hover:scale-110 transition-transform duration-300">
+          <i class="fa-brands fa-instagram text-white/70 hover:text-white text-2xl"></i>
+        </a>
+        <a href="#" class="hover:scale-110 transition-transform duration-300">
+          <i class="fa-brands fa-github text-white/70 hover:text-white text-2xl"></i>
+        </a>
+        <a href="#" class="hover:scale-110 transition-transform duration-300">
+          <i class="fa-brands fa-linkedin-in text-white/70 hover:text-white text-2xl"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

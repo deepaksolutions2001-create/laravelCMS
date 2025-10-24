@@ -1,0 +1,161 @@
+<!-- Tailwind CSS (Play CDN core) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Play CDN with plugins) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<!-- Font Awesome Free (all styles) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+<!-- Font Awesome Brands (second include, future‑proof) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css" crossorigin="anonymous">
+
+<section class="w-full bg-white py-16 md:py-20" id="featured-properties">
+  <div class="mx-auto w-[92%] max-w-7xl">
+    <p class="text-center text-sm text-slate-500">Our latest properties details list</p>
+    <h2 class="mt-1 text-center text-3xl md:text-5xl font-extrabold tracking-tight text-neutral-900">
+      FEATURED PROPERTIES
+    </h2>
+    <p class="mx-auto mt-3 max-w-3xl text-center text-slate-600">
+      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+      dolores eos qui ratione voluptatem sequi nesciunt
+    </p>
+
+    <div class="mt-6 flex justify-center">
+      <div class="h-px w-28 bg-slate-300 relative">
+        <span class="absolute -top-[3px] left-1/2 -translate-x-1/2 h-[6px] w-[6px] rounded-full bg-orange-500"></span>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="mt-8 flex items-center justify-center gap-3 text-sm" id="filters">
+      <button data-filter="all"
+        class="px-3 py-1 rounded bg-orange-500 text-white font-medium focus:outline-none focus:ring-2 focus:ring-orange-400">All</button>
+      <button data-filter="Residential"
+        class="px-3 py-1 rounded text-slate-700 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400">Residential</button>
+      <button data-filter="Villa"
+        class="px-3 py-1 rounded text-slate-700 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400">Villa</button>
+      <button data-filter="Land/Plot"
+        class="px-3 py-1 rounded text-slate-700 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400">Land/Plot</button>
+      <button data-filter="Apartments"
+        class="px-3 py-1 rounded text-slate-700 hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400">Apartments</button>
+    </div>
+
+    <!-- Cards container -->
+    <div id="cardsWrap" class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes floatUp { from { opacity: 0; transform: translateY(22px);} to { opacity: 1; transform: none; } }
+  .reveal { opacity: 0; transform: translateY(22px); }
+  .reveal.show { animation: floatUp .6s cubic-bezier(.2, .8, .2, 1) both; }
+  .active-tab { background-color: rgb(249 115 22); color: white; } /* Tailwind orange-500 */
+</style>
+
+<script>
+  // Data — replace with your real images/data
+  const PROPERTIES = [
+    { id: 1, title: "Lorem voluptate velit esse qu…", price: "$16,000", category: "Residential",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/2.jpg",
+      desc: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit Sed ut perspiciatis unde omnis iste",
+      specs: { beds: 6, baths: 5, area: 210 }, address: "1200 Anastasia Area Coral Gables, FL" },
+    { id: 2, title: "Lorem voluptate velit esse qu…", price: "$18,000", category: "Villa",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/1.jpg",
+      desc: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit Sed ut perspiciatis unde omnis iste",
+      specs: { beds: 6, baths: 5, area: 210 }, address: "1200 Anastasia Area Coral Gables, FL" },
+    { id: 3, title: "Lorem voluptate velit esse qu…", price: "$19,000", category: "Apartments",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/3.jpg",
+      desc: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit Sed ut perspiciatis unde omnis iste",
+      specs: { beds: 6, baths: 5, area: 210 }, address: "1200 Anastasia Area Coral Gables, FL" },
+    { id: 4, title: "Cozy land parcel near lake", price: "$9,500", category: "Land/Plot",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/4.jpg",
+      desc: "Atque perspiciatis eaque magni. Ducimus illum velit animi eligendi iste.",
+      specs: { beds: 0, baths: 0, area: 350 }, address: "49 Countryside View, AZ" },
+    { id: 5, title: "Modern apartment downtown", price: "$22,000", category: "Apartments",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/5.jpg",
+      desc: "Quibusdam facilis aspernatur repellat dolores nulla iste voluptates.",
+      specs: { beds: 3, baths: 2, area: 140 }, address: "18 Central Ave, NY" },
+    { id: 6, title: "Large family villa with pool", price: "$35,000", category: "Villa",
+      img: "https://themazine.com/thewp/landestate/wp-content/uploads/2017/04/6.jpg",
+      desc: "Vero voluptate minima magni esse adipisci sed temporibus numquam.",
+      specs: { beds: 7, baths: 6, area: 520 }, address: "Via Lago 22, Miami, FL" },
+  ];
+
+  // Font Awesome icon snippets (v6 solids) sized with Tailwind utilities
+  const iconBed  = `<i class="fa-solid fa-bed text-slate-400 text-[16px]" aria-hidden="true"></i>`;
+  const iconBath = `<i class="fa-solid fa-bath text-slate-400 text-[16px]" aria-hidden="true"></i>`;
+  const iconSqft = `<i class="fa-solid fa-ruler-combined text-slate-400 text-[16px]" aria-hidden="true"></i>`;
+  const iconLoc  = `<i class="fa-solid fa-location-dot text-slate-400 text-[16px]" aria-hidden="true"></i>`;
+
+  // Card template — exact structure matching the reference
+  function cardTemplate(p) {
+    return `
+      <article class="reveal max-w-[480px] mx-auto rounded-md overflow-hidden border border-slate-200 shadow-sm bg-white">
+        <!-- image -->
+        <div class="overflow-hidden">
+          <img src="${p.img}" alt="${p.title}" class="block h-[300px] md:h-[340px] w-full object-cover transition-transform duration-700 hover:scale-[1.04]" />
+        </div>
+
+        <!-- orange ribbon + price -->
+        <div class="flex items-stretch">
+          <div class="flex-1 bg-orange-500 text-white px-4 py-3 text-sm md:text-[15px] font-semibold truncate">
+            ${p.title}
+          </div>
+          <div class="bg-orange-600 text-white px-4 py-3 text-sm md:text-[15px] font-semibold shrink-0">
+            ${p.price}
+          </div>
+        </div>
+
+        <!-- description -->
+        <div class="px-5 py-5 text-slate-600 text-[15px] leading-relaxed">
+          ${p.desc}
+        </div>
+
+        <!-- specs row -->
+        <div class="grid grid-cols-3 border-y border-slate-200 bg-slate-50 text-slate-700 text-sm">
+          <div class="flex items-center justify-center gap-2 py-3">
+            ${iconBed}<span class="text-slate-600"><span class="font-medium">${p.specs.beds}</span> bedroom</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 py-3 border-l border-slate-200">
+            ${iconBath}<span class="text-slate-600"><span class="font-medium">${p.specs.baths}</span> bathroom</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 py-3 border-l border-slate-200">
+            ${iconSqft}<span class="text-slate-600"><span class="font-medium">${p.specs.area}</span> sqft</span>
+          </div>
+        </div>
+
+        <!-- address -->
+        <div class="px-5 py-4 text-slate-500 text-sm flex items-center gap-2">
+          ${iconLoc}<span>${p.address}</span>
+        </div>
+      </article>`;
+  }
+
+  // Mount/render
+  const cardsWrap = document.getElementById("cardsWrap");
+  const filters = document.getElementById("filters");
+  const filterBtns = [...filters.querySelectorAll("button")];
+
+  function setActive(btn) {
+    filterBtns.forEach(b => b.classList.remove("active-tab"));
+    btn.classList.add("active-tab");
+  }
+
+  function render(category = "all") {
+    const list = category === "all" ? PROPERTIES : PROPERTIES.filter(p => p.category === category);
+    cardsWrap.innerHTML = list.map(cardTemplate).join("");
+    requestAnimationFrame(() => {
+      cardsWrap.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
+    });
+  }
+
+  filters.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-filter]");
+    if (!btn) return;
+    const cat = btn.dataset.filter;
+    setActive(btn);
+    render(cat);
+  });
+
+  // Init
+  render("all");
+</script>
