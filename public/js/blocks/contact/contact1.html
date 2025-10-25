@@ -1,9 +1,3 @@
-<!-- Add Font Awesome CDN in your HTML <head> section -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-
 <!-- Outer Gradient Background -->
 <div class="bg-gradient-to-br from-black via-indigo-900 to-indigo-800 py-20 px-6">
 
@@ -25,24 +19,67 @@
             <p class="text-white/70 mb-8">Let's align our constellations! Reach out and let the magic of collaboration
                 illuminate our skies.</p>
 
-            <form class="space-y-5">
+            <form class="space-y-5" action="" method="">
+                <input type="hidden" name="_token" value="">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="First Name"
+                    <input type="text" name="name" placeholder="First Name"
                         class="bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                    <input type="text" placeholder="Last Name"
+                    <input type="text" placeholder="Last Name" name="lname"
                         class="bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500" />
                 </div>
-                <input type="email" placeholder="Email"
+                <input type="email" placeholder="Email" name="email"
                     class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                <input type="tel" placeholder="Phone Number"
+                <input type="tel" placeholder="Phone Number" name="phone"
                     class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                <textarea rows="4" placeholder="Message"
+                <textarea rows="4" placeholder="Message" name="msg"
                     class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
 
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition px-6 py-3 rounded-md text-white font-semibold shadow-md">
                     Send it to the moon ➤
                 </button>
+                <script>
+                    (async function (s) {
+                        try {
+                            var f = s.closest('form');
+                            if (!f) return;
+
+                            // Respect Traits; only inject for non-GET
+                            var m = (f.getAttribute('method') || 'post').toLowerCase();
+                            if (m === 'get') return;
+
+                            // 1) Try meta
+                            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+                            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+                            if (!token) {
+                                var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+                                if (r.ok) token = (await r.json()).token;
+                            }
+
+                            if (!token) return;
+
+                            // Write meta for other scripts
+                            var meta = document.querySelector('meta[name="csrf-token"]');
+                            if (!meta) {
+                                meta = document.createElement('meta');
+                                meta.setAttribute('name', 'csrf-token');
+                                document.head.appendChild(meta);
+                            }
+                            meta.setAttribute('content', token);
+
+                            // Ensure hidden _token exists and is filled
+                            var t = f.querySelector('input[name="_token"]');
+                            if (!t) {
+                                t = document.createElement('input');
+                                t.type = 'hidden';
+                                t.name = '_token';
+                                f.appendChild(t);
+                            }
+                            t.value = token;
+                        } catch (e) { }
+                    })(document.currentScript);
+                </script>
             </form>
         </div>
 

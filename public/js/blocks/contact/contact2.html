@@ -37,20 +37,21 @@
 
         <form class="space-y-6">
           <div>
+            <input type="hidden" name="_token" value="">
             <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
-            <input type="text" id="name" placeholder="John Doe"
+            <input type="text" id="name" placeholder="John Doe" name="name"
               class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:ring-2 focus:ring-pink-400 outline-none transition duration-300 hover:bg-white/30">
           </div>
 
           <div>
             <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-            <input type="email" id="email" placeholder="you@example.com"
+            <input type="email" id="email" placeholder="you@example.com" name="email"
               class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:ring-2 focus:ring-pink-400 outline-none transition duration-300 hover:bg-white/30">
           </div>
 
           <div>
             <label for="message" class="block text-sm font-medium mb-2">Message</label>
-            <textarea id="message" rows="4" placeholder="Write your message..."
+            <textarea id="message" rows="4" placeholder="Write your message..." name="msg"
               class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border border-white/30 focus:ring-2 focus:ring-pink-400 outline-none transition duration-300 hover:bg-white/30"></textarea>
           </div>
 
@@ -58,6 +59,48 @@
             class="w-full py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-xl font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-pink-500/50 hover:scale-105">
             Send Message
           </button>
+          <script>
+            (async function (s) {
+              try {
+                var f = s.closest('form');
+                if (!f) return;
+
+                // Respect Traits; only inject for non-GET
+                var m = (f.getAttribute('method') || 'post').toLowerCase();
+                if (m === 'get') return;
+
+                // 1) Try meta
+                var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+                // 2) If absent (static publish), fetch from Laravel to initialize session+token
+                if (!token) {
+                  var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+                  if (r.ok) token = (await r.json()).token;
+                }
+
+                if (!token) return;
+
+                // Write meta for other scripts
+                var meta = document.querySelector('meta[name="csrf-token"]');
+                if (!meta) {
+                  meta = document.createElement('meta');
+                  meta.setAttribute('name', 'csrf-token');
+                  document.head.appendChild(meta);
+                }
+                meta.setAttribute('content', token);
+
+                // Ensure hidden _token exists and is filled
+                var t = f.querySelector('input[name="_token"]');
+                if (!t) {
+                  t = document.createElement('input');
+                  t.type = 'hidden';
+                  t.name = '_token';
+                  f.appendChild(t);
+                }
+                t.value = token;
+              } catch (e) { }
+            })(document.currentScript);
+          </script>
         </form>
 
         <div class="pt-4 border-t border-white/20 flex items-center space-x-5">

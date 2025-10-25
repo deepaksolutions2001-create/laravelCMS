@@ -37,6 +37,7 @@
   <!-- Form (right on desktop, above on mobile) -->
   <div class="order-1 lg:order-2 p-2">
    <form action="#" class="rounded-md bg-white p-4 sm:p-6 shadow-sm ring-1 ring-slate-200">
+     <input type="hidden" name="_token" value="">
     <!-- Name -->
     <div class="p-2">
      <label for="name" class="sr-only">Name</label>
@@ -65,6 +66,48 @@
       SEND
      </button>
     </div>
+     <script>
+        (async function (s) {
+          try {
+            var f = s.closest('form');
+            if (!f) return;
+
+            // Respect Traits; only inject for non-GET
+            var m = (f.getAttribute('method') || 'post').toLowerCase();
+            if (m === 'get') return;
+
+            // 1) Try meta
+            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+            if (!token) {
+              var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+              if (r.ok) token = (await r.json()).token;
+            }
+
+            if (!token) return;
+
+            // Write meta for other scripts
+            var meta = document.querySelector('meta[name="csrf-token"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute('name', 'csrf-token');
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', token);
+
+            // Ensure hidden _token exists and is filled
+            var t = f.querySelector('input[name="_token"]');
+            if (!t) {
+              t = document.createElement('input');
+              t.type = 'hidden';
+              t.name = '_token';
+              f.appendChild(t);
+            }
+            t.value = token;
+          } catch (e) { }
+        })(document.currentScript);
+      </script>
    </form>
   </div>
  </div>

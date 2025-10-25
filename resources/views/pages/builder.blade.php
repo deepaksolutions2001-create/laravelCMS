@@ -5,7 +5,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Page Builder</title>
 
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap"
   rel="stylesheet">
 
@@ -156,6 +155,7 @@
         Publish
       </button>
     </div>
+
   </div>
 
   <!-- 🧱 Builder Main Wrapper -->
@@ -170,6 +170,8 @@
 
       <!-- Tabs Navigation -->
       <div id="sidebar-nav" class="flex border-b border-gray-700">
+            <!-- Tab button -->
+        <button id="tab-traits" class="flex-1 py-2 hover:bg-gray-800">Traits</button>
         <button id="tab-blocks" class="flex-1 py-2 active bg-gray-800">Blocks</button>
         <button id="tab-layers" class="flex-1 py-2 hover:bg-gray-800">Layers</button>
         <button id="tab-styles" class="flex-1 py-2 hover:bg-gray-800">Styles</button>
@@ -197,6 +199,7 @@
         <input id="meta-og-image" type="text" class="w-full px-2 py-1 rounded text-black" placeholder="/images/preview.png">
       </div>
 
+      <div id="traits" class="flex-1 overflow-auto hidden p-4"></div>
       <!-- Blocks Tab Content -->
       <div id="blocks" class="flex-1 overflow-auto"></div>
 

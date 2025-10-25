@@ -306,6 +306,48 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
       .catch(err => console.error('❌ Error loading page components:', err));
   }
+  // builder.js — define BEFORE grapesjs.init
+  function NameTraitPlugin(editor) {
+    const dc = editor.DomComponents;
+
+    function patch(type) {
+      const base = dc.getType(type);
+      if (!base || !base.model) return;
+
+      const Base = base.model;
+      const defs = (Base.prototype && Base.prototype.defaults) ? Base.prototype.defaults : {};
+      const baseTraits = Array.isArray(defs.traits) ? defs.traits : [];
+
+      // Remove Id trait if present
+      const kept = baseTraits.filter(tr => {
+        const n = tr && (tr.name || tr.get?.('name'));
+        return n !== 'id';
+      });
+
+      // Insert Name trait first if missing
+      const hasName = kept.some(tr => (tr && (tr.name || tr.get?.('name')) === 'name'));
+      const traits = hasName ? kept.slice() : [{ type: 'text', name: 'name', label: 'Name (field)' }, ...kept];
+
+      // Re-register preserving behavior (prevents blank blocks)
+      dc.addType(type, {
+        model: Base.extend({
+          defaults: { ...defs, traits }
+        }, { isComponent: base.isComponent }),
+        view: base.view
+      });
+    }
+
+    // Patch common controls (add more if you use custom input types)
+    ['input', 'textarea', 'select'].forEach(patch);
+
+    // Auto-create name from id on selection if missing (helps old blocks)
+    editor.on('component:selected', c => {
+      if (!c) return;
+      if (!['input', 'textarea', 'select'].some(t => c.is(t))) return;
+      const a = c.getAttributes?.() || {};
+      if (!a.name && (a.id || c.getId?.())) c.addAttributes({ name: a.id || c.getId?.() });
+    });
+  }
 
   // Init editor with Vite Tailwind in iframe
   const editor = grapesjs.init({
@@ -317,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     blockManager: { appendTo: '#blocks' },
     layerManager: { appendTo: '#layers' },
     styleManager: { appendTo: '#styles' },
-    traitManager: { appendTo: '.traits-container' },
+    traitManager: { appendTo: '#traits' },
     selectorManager: { appendTo: '.classes-container' },
     canvas: {
       styles: [
@@ -329,9 +371,132 @@ document.addEventListener("DOMContentLoaded", async function () {
     parser: { optionsHtml: { allowScripts: true } }, // enable only if you keep inline scripts in blocks
     plugins: ['grapesjs-plugin-code-editor'],
     pluginsOpts: { 'grapesjs-plugin-code-editor': {} },
+    plugins: [NameTraitPlugin],
   });
   window.editor = editor;
   enableBlockHoverPreview(editor);
+  // Safe UI-only: show "Name (field)" for inputs without touching component types
+  (function mountNameTraitUI(editor) {
+    const tm = editor.TraitManager;
+
+    function ensureNameTrait(comp) {
+      try {
+        if (!comp || !['input', 'textarea', 'select'].some(t => comp.is(t))) return;
+
+        const traits = comp.get('traits'); // Traits collection
+        // If no "name" trait, add it (binds to element's name attribute automatically)
+        const hasName = traits?.models?.some(m => m.get('name') === 'name');
+        if (!hasName) comp.addTrait({ type: 'text', name: 'name', label: 'Name (field)' });
+
+        // Optionally hide the Id trait to reduce confusion
+        const idTrait = traits?.models?.find(m => m.get('name') === 'id');
+        if (idTrait) traits.remove(idTrait);
+
+        // Refresh the panel now
+        tm.render(comp);
+      } catch (e) {
+        // If anything unexpected happens, fail silently so blocks never break
+        console.warn('Name trait UI error:', e);
+      }
+    }
+
+    // On selection, inject trait UI for that component only
+    editor.on('component:selected', comp => ensureNameTrait(comp));
+
+    // After editor load, also fix current canvas controls once
+    editor.on('load', () => {
+      editor.getWrapper().find('input,textarea,select').forEach(c => ensureNameTrait(c));
+    });
+  })(editor);
+
+  function registerFormTraits(ed) {
+    try {
+      const dc = ed.DomComponents;
+      const t = dc.getType && dc.getType('form');
+      if (!t || !t.model) return;
+      if (registerFormTraits._done) return;
+
+      const Base = t.model;
+      const baseDefs = Base.prototype.defaults || {};
+      const existing = Array.isArray(baseDefs.traits) ? baseDefs.traits : [];
+      const need = ['action', 'method', 'enctype', 'data-ajax'];
+      const already = new Set(existing.map(tr => tr.name || (tr.get && tr.get('name'))));
+
+      const mergedTraits = [
+        ...existing,
+        ...[
+          { type: 'text', name: 'action', label: 'Action (URL)' },
+          {
+            type: 'select', name: 'method', label: 'Method',
+            options: [{ id: 'post', name: 'POST' }, { id: 'get', name: 'GET' }]
+          },
+          {
+            type: 'select', name: 'enctype', label: 'Enctype',
+            options: [
+              { id: '', name: 'Default' },
+              { id: 'multipart/form-data', name: 'multipart/form-data' },
+              { id: 'application/x-www-form-urlencoded', name: 'x-www-form-urlencoded' },
+              { id: 'text/plain', name: 'text/plain' },
+            ]
+          },
+          { type: 'checkbox', name: 'data-ajax', label: 'AJAX submit' }
+        ].filter(tr => !already.has(tr.name))
+      ];
+
+      dc.addType('form', {
+        model: Base.extend({
+          defaults: {
+            ...baseDefs,
+            traits: mergedTraits
+          }
+        }, { isComponent: t.isComponent })
+      });
+
+      registerFormTraits._done = true;
+    } catch (e) {
+      console.error('Form traits registration failed:', e);
+    }
+  }
+  registerFormTraits(editor);
+  editor.on('load', () => registerFormTraits(editor));
+
+
+
+
+  // Ensure the selected component is the <form> and has the traits
+  editor.on('component:selected', (c) => {
+    if (!c) return;
+    const form = c.is('form') ? c : c.find('form')[0];
+    if (!form) return;
+
+    // If traits are missing (only id/title), inject them once into this instance
+    const tm = editor.TraitManager;
+    const current = form.get('traits') || [];
+    const hasAction = !!current.find?.(t => (t.get ? t.get('name') : t.name) === 'action');
+    if (!hasAction) {
+      form.set('traits', [
+        { type: 'text', name: 'action', label: 'Action (URL)' },
+        {
+          type: 'select', name: 'method', label: 'Method',
+          options: [{ id: 'post', name: 'POST' }, { id: 'get', name: 'GET' }]
+        },
+        {
+          type: 'select', name: 'enctype', label: 'Enctype',
+          options: [
+            { id: '', name: 'Default' },
+            { id: 'multipart/form-data', name: 'multipart/form-data' },
+            { id: 'application/x-www-form-urlencoded', name: 'x-www-form-urlencoded' },
+            { id: 'text/plain', name: 'text/plain' },
+          ]
+        },
+        { type: 'checkbox', name: 'data-ajax', label: 'AJAX submit' }
+      ]);
+    }
+
+    // Make sure the traits panel is visible
+    document.getElementById('tab-traits')?.click();
+  });
+
 
   // Helper: code modal (unchanged)
   function openCodeModal(title, code, mode) {
@@ -510,6 +675,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
   });
 
+
   // Register blocks
   // Register blocks (adds data-bid so tiles are reliably identifiable)
   blocks.forEach(b => {
@@ -531,9 +697,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     });
 
-
-
-
+  editor.on('block:drag:stop', () => {
+    const sel = editor.getSelected();
+    const form = sel?.is('form') ? sel : sel?.find('form')[0];
+    if (form) { editor.select(form); document.getElementById('tab-traits')?.click(); }
+  });
 
   editor.on('load', () => {
     const uiCat = bm.getCategories().find(cat => cat.id === 'UI');
@@ -548,12 +716,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Tabs (unchanged)
   const tabs = {
+    traits: document.getElementById('traits'),
     blocks: document.getElementById('blocks'),
     layers: document.getElementById('layers'),
     styles: document.getElementById('styles'),
     meta: document.getElementById('meta'),
   };
   const tabButtons = {
+    traits: document.getElementById('tab-traits'),
     blocks: document.getElementById('tab-blocks'),
     layers: document.getElementById('tab-layers'),
     styles: document.getElementById('tab-styles'),
@@ -883,5 +1053,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     mo.observe(panel, { childList: true, subtree: true }); // [web:29]
   }
+
+  // === C) Toolbar: quick focus button for the inner <form> ===
+  editor.on('component:selected', (c) => {
+    if (!c) return;
+    const form = c.is('form') ? c : c.find('form')[0];
+    if (!form) return;
+    const tb = form.get('toolbar') || [];
+    if (!tb.some(t => t.command === 'select-self')) {
+      tb.push({ command: 'select-self', label: 'Form', attributes: { class: 'fa fa-list-alt' } });
+      form.set('toolbar', tb);
+      editor.Commands.add('select-self', (ed) => ed.select(form));
+    }
+  });
 
 });

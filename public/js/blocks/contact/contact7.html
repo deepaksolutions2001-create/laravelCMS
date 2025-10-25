@@ -29,8 +29,9 @@
 
     <!-- Form card -->
     <form id="contact-form"
-      class="bg-white/95 dark:bg-slate-900/80 backdrop-blur-md shadow-xl rounded-2xl p-6 sm:p-8 lg:p-10"
-      action="/api/contact" method="POST" novalidate>
+      class="bg-white/95 dark:bg-slate-900/80 backdrop-blur-md shadow-xl rounded-2xl p-6 sm:p-8 lg:p-10" action=""
+      method="" novalidate>
+      <input type="hidden" name="_token" value="">
       <div class="flex items-center justify-between mb-4">
         <div>
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Contact us</h2>
@@ -105,49 +106,48 @@
 
         <div id="form-status" class="ml-auto text-sm text-emerald-600 hidden">Message sent ✓</div>
       </div>
+      <script>
+        (async function (s) {
+          try {
+            var f = s.closest('form');
+            if (!f) return;
+
+            // Respect Traits; only inject for non-GET
+            var m = (f.getAttribute('method') || 'post').toLowerCase();
+            if (m === 'get') return;
+
+            // 1) Try meta
+            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+            if (!token) {
+              var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+              if (r.ok) token = (await r.json()).token;
+            }
+
+            if (!token) return;
+
+            // Write meta for other scripts
+            var meta = document.querySelector('meta[name="csrf-token"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute('name', 'csrf-token');
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', token);
+
+            // Ensure hidden _token exists and is filled
+            var t = f.querySelector('input[name="_token"]');
+            if (!t) {
+              t = document.createElement('input');
+              t.type = 'hidden';
+              t.name = '_token';
+              f.appendChild(t);
+            }
+            t.value = token;
+          } catch (e) { }
+        })(document.currentScript);
+      </script>
     </form>
   </div>
 </section>
-
-<!-- Optional small script: basic validation + clear + fake submit -->
-<script>
-  (function () {
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    const clearBtn = document.getElementById('clearBtn');
-
-    clearBtn.addEventListener('click', () => form.reset());
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      // simple client-side validation
-      const data = new FormData(form);
-      if (!data.get('name') || !data.get('email') || !data.get('message')) {
-        alert('Please fill name, email and message.');
-        return;
-      }
-
-      // show loading state
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const origText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending…';
-
-      try {
-        // Replace with real endpoint
-        await fetch(form.action, {
-          method: form.method || 'POST',
-          body: data,
-        });
-        status.classList.remove('hidden');
-        setTimeout(() => status.classList.add('hidden'), 4000);
-        form.reset();
-      } catch (err) {
-        alert('Error sending message. Try again later.');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = origText;
-      }
-    });
-  })();
-</script>

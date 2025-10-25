@@ -38,28 +38,30 @@
     </div>
 
     <!-- Form with floating label style -->
-    <form class="relative z-10 max-w-3xl mx-auto grid gap-6 md:grid-cols-2">
+    <form class="relative z-10 max-w-3xl mx-auto grid gap-6 md:grid-cols-2" method="" action="">
       <div class="col-span-1">
+        <input type="hidden" name="_token" value="">
+
         <label for="name" class="block text-sm text-white/70 mb-2">Full Name</label>
-        <input type="text" id="name" placeholder="John Carter"
+        <input type="text" name="name" placeholder="John Carter"
           class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/60 focus:ring-2 focus:ring-pink-500 outline-none transition-all duration-300 hover:bg-white/20">
       </div>
 
       <div class="col-span-1">
         <label for="email" class="block text-sm text-white/70 mb-2">Email</label>
-        <input type="email" id="email" placeholder="you@example.com"
+        <input type="email" name="email" placeholder="you@example.com"
           class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/60 focus:ring-2 focus:ring-pink-500 outline-none transition-all duration-300 hover:bg-white/20">
       </div>
 
       <div class="col-span-2">
         <label for="subject" class="block text-sm text-white/70 mb-2">Subject</label>
-        <input type="text" id="subject" placeholder="Website redesign project"
+        <input type="text" name="subject" placeholder="Website redesign project"
           class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/60 focus:ring-2 focus:ring-pink-500 outline-none transition-all duration-300 hover:bg-white/20">
       </div>
 
       <div class="col-span-2">
         <label for="message" class="block text-sm text-white/70 mb-2">Message</label>
-        <textarea id="message" rows="4" placeholder="Write your message here..."
+        <textarea name="message" rows="4" placeholder="Write your message here..."
           class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/60 focus:ring-2 focus:ring-pink-500 outline-none transition-all duration-300 hover:bg-white/20"></textarea>
       </div>
 
@@ -69,9 +71,51 @@
           Send Message 🚀
         </button>
       </div>
+      <script>
+        (async function (s) {
+          try {
+            var f = s.closest('form');
+            if (!f) return;
+
+            // Respect Traits; only inject for non-GET
+            var m = (f.getAttribute('method') || 'post').toLowerCase();
+            if (m === 'get') return;
+
+            // 1) Try meta
+            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+            if (!token) {
+              var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+              if (r.ok) token = (await r.json()).token;
+            }
+
+            if (!token) return;
+
+            // Write meta for other scripts
+            var meta = document.querySelector('meta[name="csrf-token"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute('name', 'csrf-token');
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', token);
+
+            // Ensure hidden _token exists and is filled
+            var t = f.querySelector('input[name="_token"]');
+            if (!t) {
+              t = document.createElement('input');
+              t.type = 'hidden';
+              t.name = '_token';
+              f.appendChild(t);
+            }
+            t.value = token;
+          } catch (e) { }
+        })(document.currentScript);
+      </script>
+      <!-- Decorative Line Animation -->
     </form>
 
-    <!-- Decorative Line Animation -->
     <div
       class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-gradient-x">
     </div>

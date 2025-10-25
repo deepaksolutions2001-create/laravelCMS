@@ -1,108 +1,578 @@
 <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Untitled Page</title>
-                    <meta name="description" content="">
-                    <meta name="keywords" content="">
-                      <meta name="fokus keywords" content="">
-                    <meta property="og:image" content="">
-                    <style>* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}</style>
-                  
-<script src'https://cdn.tailwindcss.com'></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untitled Page</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta property="og:image" content="">
+  <meta name="csrf-token" content="">
+  <style>* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#imrny{font-family:Montserrat, sans-serif;}#isqz6{font-family:Pacifico, cursive;}#imygc{font-family:Inter, sans-serif;}#iwo4w{font-family:Inter, sans-serif;}#i92eq6{font-family:Inter, sans-serif;}#i3ulzt{font-family:Inter, sans-serif;}.animate-fadein-down{animation-duration:0.7s;animation-timing-function:ease;animation-delay:0s;animation-iteration-count:1;animation-direction:normal;animation-fill-mode:both;animation-play-state:running;animation-name:fadein-down;animation-timeline:auto;animation-range-start:normal;animation-range-end:normal;}#i3lwqn{backdrop-filter:blur(10px);}#ixoiw4{font-family:Inter, sans-serif;}#i0c261{font-family:"Playfair Display", serif;}@keyframes fadein-down{0%{opacity:0;transform:translateY(-32px);}100%{opacity:1;transform:none;}}@keyframes pulse{0%, 100%{filter:brightness(1);}50%{filter:brightness(1.12);}}</style>
 
-<script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css' crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css' crossorigin='anonymous'>
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
-  crossorigin=anonymous>
+  <script>
+  (async function(){
+    try {
+      // 1) Get a fresh CSRF token and start a session
+      const r = await fetch('/csrf-token', { credentials: 'same-origin' });
+      const data = await r.json();
+      const token = data && data.token;
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css'
-  crossorigin='anonymous'>
+      // 2) Update meta for other scripts to read
+      var meta = document.querySelector('meta[name="csrf-token"]');
+      if (meta && token) meta.setAttribute('content', token);
 
-<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap'
-  rel='stylesheet'>
-                    </head>
-                    <body><body><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><script>
-  (function(){
-    var root = this;
-    var key = root.getAttribute('data-comp-css-key');
-    var css = decodeURIComponent(root.getAttribute('data-comp-css')||'');
-    if (!css || !key) return;
-    var doc = document;
-    if (!doc.getElementById('gjs-css-' + key)) {
-      var style = doc.createElement('style');
-      style.id = 'gjs-css-' + key;
-      style.type = 'text/css';
-      style.appendChild(doc.createTextNode(css));
-      doc.head.appendChild(style);
+      // 3) Ensure every non-GET form has _token
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('form').forEach(function(f){
+          var m = (f.getAttribute('method') || 'post').toLowerCase();
+          if (m === 'get' || !token) return;
+          var t = f.querySelector('input[name="_token"]');
+          if (!t) {
+            t = document.createElement('input');
+            t.type = 'hidden';
+            t.name = '_token';
+            f.appendChild(t);
+          }
+          t.value = token;
+        });
+      });
+    } catch(e) { /* no-op */ }
+  })();
+  </script>
+</head>
+<body><body><section class="relative w-full h-[90vh] min-h-[520px] flex items-center overflow-hidden"><!-- Background image --><div class="absolute inset-0 w-full h-full -z-10"><img src="https://websitedemos.net/gardening-and-landscape-02/wp-content/uploads/sites/1520/2025/03/hero-bg.jpg" alt="Garden background" class="w-full h-full object-cover object-center"/><div class="absolute inset-0 bg-black opacity-25"></div></div><div class="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-stretch px-5 md:px-20 pt-10 pb-5 md:pt-20 md:pb-14 h-full"><!-- Left text block --><div class="flex-1 flex flex-col justify-center md:pt-10 md:pb-20"><h1 id="imrny" class="text-white text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-5">
+        Create Stunning<br/>
+        outdoor Gardens<br/>
+        with Expert Care
+      </h1><div class="text-white/85 text-base md:text-[1.11rem] font-medium mb-8 pl-1">
+        Discover the Art of Sustainable and Beautiful Landscapes
+      </div><div class="flex gap-4 items-center mt-1"><a href="#" class="bg-yellow-300 hover:bg-yellow-400 text-stone-700 font-semibold text-base py-3 px-7 rounded-full shadow-lg transition-all focus:outline-none outline-none">
+          Get a Free Quote
+        </a><a href="#" class="border border-white/60 text-white font-semibold text-base py-3 px-8 rounded-full transition-all hover:bg-white/10">
+          Call Us Now
+        </a></div></div><!-- Right: Stretch person image (optional, currently commented) --><!-- <div class="flex-1 flex items-end justify-end md:pt-8 pb-0 h-full">
+      <img src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=600&q=80"
+        alt="Gardener"
+        class="h-full max-h-[90vh] w-auto max-w-[460px] min-w-[210px] object-cover object-center rounded-[2.3rem] shadow-2xl hidden md:block"
+        style="min-height:320px;" />
+    </div> --></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section class="bg-white py-6 px-2 w-full"><!-- Section title --><h2 id="isqz6" class="w-full text-center text-[3rem] md:text-[3.5rem] font-bold tracking-tight text-neutral-900 mb-8">
+    Featured Ginger Hotels
+    <span class="inline-block align-middle ml-2"><span class="w-2 h-2 inline-block bg-amber-400 rounded-full"></span><span class="w-2 h-2 inline-block bg-rose-500 rounded-full ml-1"></span><span class="w-2 h-2 inline-block bg-amber-300 rounded-full ml-1"></span></span></h2><!-- Horizontal scroll cards for property tiles --><div class="flex gap-6 overflow-x-auto pb-6"><!-- Hotel Card --><div class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none"><div class="relative"><img src="https://cdn.sanity.io/images/ocl5w36p/prod5/6e9bd7c16a79078b573c25f8ffca8b33cb2c12a9-1140x746.jpg" alt="Hotel" class="w-full h-48 object-cover"/><span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span><span class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white"><i aria-hidden="true" class="fa-solid fa-user text-[18px]"></i></span></div><div class="px-5 py-4"><h3 id="imygc" class="text-2xl font-bold text-neutral-900 mb-2">Ginger Ekta Nagar
+        </h3><p class="text-[1rem] text-gray-700 mb-4 flex items-start"><i aria-hidden="true" class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p><div class="flex flex-col gap-2"><!-- Airport --><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-plane-departure w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Airport:</span><span class="font-bold text-neutral-900 text-xl mr-1">99</span><span class="text-gray-400 font-medium">km</span></div><!-- Railway --><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-train w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Railway Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div><!-- Bus --><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-bus w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Bus Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div></div><div class="flex justify-between items-center mt-4"><a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a><button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button></div></div></div><!-- 2nd Hotel Card --><div class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none"><div class="relative"><img src="https://cdn.sanity.io/images/ocl5w36p/prod5/0b0b684b6ca1473647b6c6f3c77da2291c302861-1140x746.jpg" alt="Hotel" class="w-full h-48 object-cover"/><span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span><span class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white"><i aria-hidden="true" class="fa-solid fa-user text-[18px]"></i></span></div><div class="px-5 py-4"><h3 id="iwo4w" class="text-2xl font-bold text-neutral-900 mb-2">Ginger Ekta Nagar
+        </h3><p class="text-[1rem] text-gray-700 mb-4 flex items-start"><i aria-hidden="true" class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p><div class="flex flex-col gap-2"><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-plane-departure w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Airport:</span><span class="font-bold text-neutral-900 text-xl mr-1">99</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-train w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Railway Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-bus w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Bus Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div></div><div class="flex justify-between items-center mt-4"><a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a><button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button></div></div></div><!-- 3rd Hotel Card --><div class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none"><div class="relative"><img src="https://cdn.sanity.io/images/ocl5w36p/prod5/3d90b62771281502095e78196b10e4fae1d050aa-1140x746.jpg" alt="Hotel" class="w-full h-48 object-cover"/><span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span><span class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white"><i aria-hidden="true" class="fa-solid fa-user text-[18px]"></i></span></div><div class="px-5 py-4"><h3 id="i92eq6" class="text-2xl font-bold text-neutral-900 mb-2">Ginger Ekta Nagar
+        </h3><p class="text-[1rem] text-gray-700 mb-4 flex items-start"><i aria-hidden="true" class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p><div class="flex flex-col gap-2"><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-plane-departure w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Airport:</span><span class="font-bold text-neutral-900 text-xl mr-1">99</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-train w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Railway Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-bus w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Bus Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div></div><div class="flex justify-between items-center mt-4"><a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a><button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button></div></div></div><!-- 4th Hotel Card --><div class="bg-white rounded-2xl shadow-xl max-w-[400px] w-full overflow-hidden flex flex-col justify-between border-none"><div class="relative"><img src="https://cdn.sanity.io/images/ocl5w36p/prod5/56c321eefa252e341efeb5e3b23966e186c77c29-1140x746.jpg" alt="Hotel" class="w-full h-48 object-cover"/><span class="absolute top-4 left-4 bg-green-500 text-white text-[0.95rem] font-bold px-4 py-1 rounded-full">New
+          Launch</span><span class="absolute bottom-0 left-0 mb-[-23px] ml-6 flex items-center bg-amber-400 text-white rounded-full w-11 h-11 justify-center shadow-lg border-4 border-white"><i aria-hidden="true" class="fa-solid fa-user text-[18px]"></i></span></div><div class="px-5 py-4"><h3 id="i3ulzt" class="text-2xl font-bold text-neutral-900 mb-2">Ginger Ekta Nagar
+        </h3><p class="text-[1rem] text-gray-700 mb-4 flex items-start"><i aria-hidden="true" class="fa-solid fa-location-dot w-4 h-4 mr-2 text-gray-500 mt-1"></i>
+          Thesil Gurudeshwar, Old Survey No. 17, 18 &amp; 25, Opposite GMR Skill Development Center, Vagadia Narmada,
+          Gujarat – 393155
+        </p><div class="flex flex-col gap-2"><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-plane-departure w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Airport:</span><span class="font-bold text-neutral-900 text-xl mr-1">99</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-train w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Railway Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div><div class="flex items-center gap-3"><i aria-hidden="true" class="fa-solid fa-bus w-7 h-7 text-gray-700"></i><span class="text-gray-400 font-medium mr-1">Bus Station:</span><span class="font-bold text-neutral-900 text-xl mr-1">3</span><span class="text-gray-400 font-medium">km</span></div></div><div class="flex justify-between items-center mt-4"><a href="#" class="text-rose-500 hover:text-rose-600 underline font-semibold text-base transition-colors">View
+            Hotel</a><button class="bg-amber-400 text-white font-bold px-8 py-2 rounded-full transition hover:bg-amber-500">Book
+            Your Stay</button></div></div></div><!-- Add more cards as needed --></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section class="w-full min-h-screen bg-slate-50 py-14 px-3"><!-- Header --><div class="flex flex-col items-center mb-6"><span class="text-violet-600 font-bold text-lg mb-1 tracking-wide">Boosting</span><h2 class="text-3xl md:text-4xl font-black tracking-tight text-center mb-6"><span class="text-neutral-800">Outstanding</span><span class="text-rose-500">Experience</span></h2></div><!-- Service Tabs --><div id="serviceTabs" class="flex flex-col md:flex-row justify-center gap-6 mb-14 w-full max-w-5xl mx-auto"></div><!-- Main Service Card --><div id="serviceMain" class="max-w-5xl mx-auto w-full mt-2 py-6 animate-fadein-down"></div><script>
+    const services = [
+      {
+        title: "Real Time Analytics",
+        desc: "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, Europe uses the same vocabulary.",
+        feature1: { icon: "fa-chart-bar", iconClass: "text-blue-600", text: "Far far away, behind the word mountains, far" },
+        feature2: { icon: "fa-bookmark", iconClass: "text-rose-500", text: "Bookmarks grove right at the coast of Semantics" },
+        // Tailwind-only color classes (no hex)
+        mainBgClass: "bg-gradient-to-br from-rose-50 to-white",
+        tabBgClass: "bg-gradient-to-br from-rose-500 to-rose-300",
+        tabTextClass: "text-white",
+        tabIconActiveClass: "text-white",
+        ringActiveClass: "ring-rose-400",
+        accentBgClass: "bg-rose-500",
+        bigIcon: "fa-chart-line",
+        bigIconClass: "text-white",
+        buttonGradientClass: "bg-gradient-to-r from-rose-500 to-rose-300",
+        buttonTextClass: "text-white",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Online Marketing",
+        desc: "Online outreach drives brand growth. Combine reach, creative content, and targeted campaigns for dynamic results. Let’s boost your online presence.",
+        feature1: { icon: "fa-bullhorn", iconClass: "text-green-500", text: "Promote brand across channels" },
+        feature2: { icon: "fa-globe", iconClass: "text-green-300", text: "Expand with engaging content" },
+        mainBgClass: "bg-gradient-to-br from-emerald-50 to-white",
+        tabBgClass: "bg-emerald-50",
+        tabTextClass: "text-emerald-600",
+        tabIconActiveClass: "text-emerald-600",
+        ringActiveClass: "ring-emerald-400",
+        accentBgClass: "bg-emerald-500",
+        bigIcon: "fa-bullhorn",
+        bigIconClass: "text-emerald-600",
+        buttonGradientClass: "bg-gradient-to-r from-emerald-500 to-emerald-200",
+        buttonTextClass: "text-emerald-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Pay Per Click",
+        desc: "Drive traffic instantly with PPC. Reach your ideal audience, maximize ROI, and monitor results in real-time for optimal impact.",
+        feature1: { icon: "fa-mouse-pointer", iconClass: "text-amber-400", text: "Pay only for clicks that matter" },
+        feature2: { icon: "fa-balance-scale-right", iconClass: "text-amber-400", text: "Get the best value for every dollar" },
+        mainBgClass: "bg-gradient-to-br from-amber-50 to-white",
+        tabBgClass: "bg-amber-50",
+        tabTextClass: "text-amber-500",
+        tabIconActiveClass: "text-amber-500",
+        ringActiveClass: "ring-amber-400",
+        accentBgClass: "bg-amber-500",
+        bigIcon: "fa-hand-point-up",
+        bigIconClass: "text-amber-500",
+        buttonGradientClass: "bg-gradient-to-r from-amber-400 to-amber-200",
+        buttonTextClass: "text-amber-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Email Marketing",
+        desc: "Nurture leads and convert with targeted campaigns. Email delivers personalized offers right to your customer’s inbox.",
+        feature1: { icon: "fa-envelope-open-text", iconClass: "text-teal-600", text: "Automate and personalize follow-up" },
+        feature2: { icon: "fa-paper-plane", iconClass: "text-teal-400", text: "Boost conversion with creative messages" },
+        mainBgClass: "bg-gradient-to-br from-teal-50 to-white",
+        tabBgClass: "bg-teal-50",
+        tabTextClass: "text-teal-600",
+        tabIconActiveClass: "text-teal-600",
+        ringActiveClass: "ring-teal-400",
+        accentBgClass: "bg-teal-500",
+        bigIcon: "fa-envelope-open-text",
+        bigIconClass: "text-teal-600",
+        buttonGradientClass: "bg-gradient-to-r from-teal-500 to-teal-200",
+        buttonTextClass: "text-teal-950",
+        cardAccentShadow: "shadow-2xl"
+      },
+      {
+        title: "Social Marketing",
+        desc: "Build connections, spark engagement. We position your brand where your audience spends time—on social platforms.",
+        feature1: { icon: "fa-share-alt", iconClass: "text-indigo-400", text: "Share content across key networks" },
+        feature2: { icon: "fa-users", iconClass: "text-violet-300", text: "Grow your follower base with trends" },
+        mainBgClass: "bg-gradient-to-br from-violet-50 to-white",
+        tabBgClass: "bg-indigo-50",
+        tabTextClass: "text-indigo-500",
+        tabIconActiveClass: "text-indigo-500",
+        ringActiveClass: "ring-indigo-400",
+        accentBgClass: "bg-indigo-500",
+        bigIcon: "fa-share-alt",
+        bigIconClass: "text-indigo-500",
+        buttonGradientClass: "bg-gradient-to-r from-indigo-500 to-indigo-300",
+        buttonTextClass: "text-indigo-950",
+        cardAccentShadow: "shadow-2xl"
+      }
+    ];
+
+    let active = 0;
+
+    function renderTabs() {
+      serviceTabs.innerHTML = services.map((item, i) => `
+        <div onclick="selectTab(${i})"
+          class="group transition-all duration-300 min-w-[200px] max-w-[210px] rounded-[18px] flex flex-col items-center justify-center px-7 py-8 relative cursor-pointer
+            ${item.tabBgClass}
+            ${i === active ? `ring-2 ring-offset-2 ${item.ringActiveClass} z-10 scale-105 shadow-2xl` : `hover:ring-2 hover:ring-offset-1 hover:scale-105 hover:z-10 hover:shadow-2xl`}">
+            ${i === active ? `
+              <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 ${item.accentBgClass}"
+                    style="clip-path:polygon(0% 0%,100% 0%,50% 100%);"></span>
+            ` : ``}
+            <span class="text-[2rem] mb-2 ${i === active ? item.tabIconActiveClass : 'text-slate-400'}">
+              <i class="fas ${item.bigIcon}"></i>
+            </span>
+            <span class="font-semibold text-[1.06rem] mt-1 tracking-wide ${i === active ? item.tabTextClass : 'text-slate-700'}">${item.title}</span>
+        </div>
+      `).join('');
     }
-  }).call(this);
-</script><div data-db-id="116" data-comp-css-key="page-116" data-comp-css="%20.cmp-scope%20*%7B%20box-sizing%3A%20border-box%3B%20%7D%20.cmp-scope%20body%7Bmargin%3A%200%3B%7D*%7Bbox-sizing%3Aborder-box%3B%7D%20.cmp-scope%20body%7Bmargin-top%3A0px%3Bmargin-right%3A0px%3Bmargin-bottom%3A0px%3Bmargin-left%3A0px%3B%7D*%7Bbox-sizing%3Aborder-box%3B%7D%20.cmp-scope%20body%7Bmargin-top%3A0px%3Bmargin-right%3A0px%3Bmargin-bottom%3A0px%3Bmargin-left%3A0px%3B%7D" cname="Untitled component" class="page-component-wrapper cmp-scope"><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><script>
-  (function(){
-    var root = this;
-    var key = root.getAttribute('data-comp-css-key');
-    var css = decodeURIComponent(root.getAttribute('data-comp-css')||'');
-    if (!css || !key) return;
-    var doc = document;
-    if (!doc.getElementById('gjs-css-' + key)) {
-      var style = doc.createElement('style');
-      style.id = 'gjs-css-' + key;
-      style.type = 'text/css';
-      style.appendChild(doc.createTextNode(css));
-      doc.head.appendChild(style);
+
+    function renderMain() {
+      const item = services[active];
+      serviceMain.innerHTML = `
+        <div class="rounded-3xl ${item.cardAccentShadow} w-full flex flex-col md:flex-row items-center px-8 py-12 gap-8 relative overflow-hidden ${item.mainBgClass}">
+          <div class="w-full md:w-2/5 flex items-center justify-center mb-8 md:mb-0 animate-fadein">
+            <img src="${item.img}" alt="${item.title}" class="w-[220px] h-[160px] object-contain rounded-xl shadow-md"/>
+          </div>
+          <div class="w-full md:w-3/5 px-2">
+            <h3 class="text-2xl font-extrabold mb-3 flex items-center gap-2 text-neutral-800">
+              <i class="fas ${item.bigIcon} text-lg md:text-2xl ${item.bigIconClass}"></i>
+              ${item.title}
+            </h3>
+            <p class="text-slate-600 text-base mb-5">${item.desc}</p>
+            <div class="flex gap-6 mb-8 flex-wrap">
+              <div class="flex items-center gap-3">
+                <span class="text-2xl ${item.feature1.iconClass}"><i class="fas ${item.feature1.icon}"></i></span>
+                <span class="text-neutral-800 text-base font-medium">${item.feature1.text}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-2xl ${item.feature2.iconClass}"><i class="fas ${item.feature2.icon}"></i></span>
+                <span class="text-neutral-800 text-base font-medium">${item.feature2.text}</span>
+              </div>
+            </div>
+            <button class="rounded-full px-8 py-2.5 mt-2 font-semibold text-lg shadow transition-transform duration-300 hover:scale-105 pulse ${item.buttonTextClass} ${item.buttonGradientClass} shadow-lg">
+              Learn more
+            </button>
+          </div>
+        </div>
+      `;
     }
-  }).call(this);
-</script><section class="max-w-5xl mx-auto px-6 py-16"><div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-3"><!-- Left: Accent panel --><!-- Left: Dummy company details --><div class="lg:col-span-1 p-8 bg-[url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&amp;w=1200&amp;auto=format&amp;fit=crop')] bg-cover bg-center relative"><div class="absolute inset-0 bg-indigo-700/60 mix-blend-multiply"></div><div class="relative text-white space-y-4"><h3 class="text-2xl font-extrabold">Nimbus Studio</h3><p class="text-sm opacity-90">Digital product studio — design, web &amp; mobile.</p><div class="mt-6 space-y-3 text-sm"><div class="flex items-start gap-3"><div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center"><i class="fa-solid fa-location-dot text-white text-lg"></i></div><div><div class="text-1xl font-extrabold">Headquarters</div><div class="opacity-80">120 Harbor Way, Suite 400<br/>San Francisco, CA 94105</div></div></div><div class="flex items-start gap-3"><div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center"><i class="fa-solid fa-phone text-white text-lg"></i></div><div><div class="font-medium">Phone</div><div class="opacity-80">+1 (415) 555-0198</div></div></div><div class="flex items-start gap-3"><div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center"><i class="fa-solid fa-envelope text-white text-lg"></i></div><div><div class="font-medium">Email</div><div class="opacity-80">contact@nimbus.studio</div></div></div><div class="mt-4"><div class="text-xs bg-white/10 px-3 py-1 rounded-full inline-block">Open Mon–Fri · 9am–6pm PT</div></div><div class="mt-4 flex gap-3"><a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><i class="fa-brands fa-linkedin-in text-white"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><i class="fa-brands fa-x-twitter text-white"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center"><i class="fa-brands fa-dribbble text-white"></i></a></div></div></div></div><!-- Right: Form area --><form id="contact-form-2" action="/api/contact" method="POST" class="lg:col-span-2 p-8 sm:p-10 bg-white dark:bg-slate-900"><div class="flex items-center justify-between mb-6"><div><h2 class="text-2xl font-bold text-slate-900 dark:text-white">Project Inquiry</h2><p class="text-sm text-slate-500 dark:text-slate-300">Tell us the essentials — we'll follow up with a plan and
-            estimate.</p></div><div class="flex items-center gap-3"><div class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Pro</div><div class="text-sm text-slate-500 dark:text-slate-300">Secure form</div></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><input name="fullName" type="text" required placeholder="Full name" class="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-300"/><input name="email" type="email" required placeholder="Email address" class="px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-300"/></div><div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4"><select name="budget" class="col-span-1 md:col-span-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none"><option value="">Budget</option><option>$1k–5k</option><option>$5k–20k</option><option>$20k+</option></select><select name="timeline" class="col-span-1 md:col-span-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none"><option value="">Timeline</option><option>1–4 weeks</option><option>1–3 months</option><option>3+ months</option></select><input name="phone" type="tel" placeholder="Phone (optional)" class="col-span-1 md:col-span-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none"/></div><div class="mt-4"><textarea name="description" rows="6" required placeholder="Brief project description" class="w-full px-4 py-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-transparent focus:outline-none"></textarea></div><div class="mt-4 flex items-center gap-4"><label class="flex items-center gap-3 text-sm"><input type="checkbox" name="newsletter" class="w-4 h-4 rounded-md"/><span class="text-slate-600 dark:text-slate-300">Send occasional updates</span></label><div class="ml-auto flex items-center gap-3"><button type="submit" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-2xl shadow">Request
-            estimate</button><button type="button" id="reset-2" class="px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-700">Reset</button></div></div><div id="cf-msg-2" class="mt-4 text-sm text-emerald-600 hidden">Thanks — we'll be in touch soon.</div></form></div></section><script>
+
+    function selectTab(idx) {
+      active = idx;
+      renderTabs();
+      renderMain();
+    }
+    // INITIAL RENDER
+    renderTabs();
+    renderMain();
+    window.selectTab = selectTab;
+  </script><section id="three-steps" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 text-slate-800"><!-- Heading --><span class="block text-base font-medium text-slate-600">Know About</span><h2 class="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">
+   How We Do This
+  </h2><!-- HR with center dot --><div class="relative mx-auto mt-4 h-1 w-40 bg-red-500/90"><div class="absolute inset-0 grid place-items-center"><div class="relative grid place-items-center h-5 w-5 rounded-full bg-white"><span class="absolute h-2.5 w-2.5 rounded-full bg-white ring-2 ring-slate-300"></span></div></div></div><!-- Top Arrow (dummy inline SVG) --><div class="px-20 md:px-24 mb-4"><div class="w-2/5 sm:w-1/2 max-h-20"><svg viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-auto text-indigo-500"><path d="M5 50 C60 10, 120 10, 180 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path><path d="M180 50 L165 40 M180 50 L165 60" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path></svg></div></div><!-- Steps --><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- Step 1 --><article class="group relative"><div class="reveal rounded-md border border-slate-200 bg-white p-8 pt-10 shadow-sm transition-all duration-700 ease-out"><!-- Number badge --><div class="absolute -left-5 -top-5 grid h-16 w-16 place-items-center rounded-full bg-white text-slate-800 shadow-md ring-1 ring-slate-200 transition-colors group-hover:bg-red-500 group-hover:text-white sm:h-14 sm:w-14"><span class="text-3xl font-semibold leading-none sm:text-2xl">1</span></div><!-- Content --><div class="pl-2"><div class="flex items-center gap-2"><i class="fa-solid fa-comments text-indigo-600"></i><h3 class="text-lg font-medium text-red-600">Consultation</h3></div><p class="mt-2 text-sm leading-6 text-slate-600">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim doloremque nihil ipsa vel.
+     </p></div></div></article><!-- Step 2 --><article class="group relative"><div class="reveal rounded-md border border-slate-200 bg-white p-8 pt-10 shadow-sm transition-all duration-700 ease-out"><!-- Number badge --><div class="absolute -left-5 -top-5 grid h-16 w-16 place-items-center rounded-full bg-white text-slate-800 shadow-md ring-1 ring-slate-200 transition-colors group-hover:bg-red-500 group-hover:text-white sm:h-14 sm:w-14"><span class="text-3xl font-semibold leading-none sm:text-2xl">2</span></div><!-- Content --><div class="pl-2"><div class="flex items-center gap-2"><i class="fa-solid fa-bullhorn text-indigo-600"></i><h3 class="text-lg font-medium text-red-600">Campaign</h3></div><p class="mt-2 text-sm leading-6 text-slate-600">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim doloremque nihil ipsa vel.
+     </p></div></div></article><!-- Step 3 --><article class="group relative"><div class="reveal rounded-md border border-slate-200 bg-white p-8 pt-10 shadow-sm transition-all duration-700 ease-out"><!-- Number badge --><div class="absolute -left-5 -top-5 grid h-16 w-16 place-items-center rounded-full bg-white text-slate-800 shadow-md ring-1 ring-slate-200 transition-colors group-hover:bg-red-500 group-hover:text-white sm:h-14 sm:w-14"><span class="text-3xl font-semibold leading-none sm:text-2xl">3</span></div><!-- Content --><div class="pl-2"><div class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-indigo-600"></i><h3 class="text-lg font-medium text-red-600">Progress</h3></div><p class="mt-2 text-sm leading-6 text-slate-600">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim doloremque nihil ipsa vel.
+     </p></div></div></article></div><!-- Bottom Arrow (dummy inline SVG flipped) --><div class="px-20 md:px-24 mt-4 text-right"><div class="ml-auto w-2/5 sm:w-1/2 max-h-20 -scale-y-100"><svg viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-auto text-indigo-500"><path d="M5 50 C60 10, 120 10, 180 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path><path d="M180 50 L165 40 M180 50 L165 60" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path></svg></div></div><!-- Scoped JS: reveal-on-scroll just for this section --><script>
   (function () {
-    const form = document.getElementById('contact-form-2');
-    const resetBtn = document.getElementById('reset-2');
-    const msg = document.getElementById('cf-msg-2');
+   const root = document.currentScript.closest('#three-steps');
+   if (!root) return;
+   const els = root.querySelectorAll(".reveal");
+   const show = (el) => {
+    el.classList.add("opacity-100", "translate-y-0");
+    el.classList.remove("opacity-0", "translate-y-4");
+   };
+   els.forEach((el) => {
+    el.classList.add("opacity-0", "translate-y-4");
+   });
+   if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+     entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+       show(entry.target);
+       io.unobserve(entry.target);
+      }
+     });
+    }, { threshold: 0.15 });
+    els.forEach((el) => io.observe(el));
+   } else {
+    els.forEach(show);
+   }
+  })();
+ </script></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section class="w-full bg-stone-50 py-14 px-4 min-h-screen"><div class="flex flex-col items-center mb-10"><div class="flex items-center gap-2 mb-3"><span class="bg-yellow-300 p-2 rounded-full"><i aria-hidden="true" class="fa-solid fa-people-group text-green-700 text-xl"></i></span><span class="uppercase font-bold text-neutral-800 tracking-widest text-md">Team Members</span></div><h2 class="font-black text-3xl md:text-4xl text-neutral-800 text-center">Meet Our Team of Expert<br/>Cleaning Staff
+  </h2></div><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-20 justify-center max-w-6xl mx-auto"><!-- Card 1 --><div class="bg-white group relative rounded-2xl shadow-xl w-full max-w-[270px] pt-4 pb-7 flex flex-col items-center transition-all duration-300 cursor-pointer hover:bg-yellow-300"><div class="absolute left-6 top-10 flex flex-col gap-5 text-gray-600"><span class="hover:text-green-700 transition"><i class="fab fa-facebook-f"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-linkedin-in"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-instagram"></i></span><span class="hover:text-green-700 transition"><i class="fa fa-times"></i></span></div><img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/team-02.jpg" alt="Adam Joi" class="rounded-xl w-[250px] h-[350px] object-cover mb-2 mx-auto ml-12 shadow-lg group-hover:scale-105 transition-transform duration-300"/><div class="w-full ml-12 mt-3 text-left"><h3 class="font-bold text-neutral-800 mb-0.5">Adam Joi</h3><p class="text-green-700 text-sm font-semibold">Bright Cleaner</p></div></div><!-- Card 2 --><div class="bg-white group relative rounded-2xl shadow-xl w-full max-w-[270px] pt-4 pb-7 flex flex-col items-center transition-all duration-300 cursor-pointer hover:bg-yellow-300 m-[10px]"><div class="absolute left-6 top-10 flex flex-col gap-5 text-gray-600"><span class="hover:text-green-700 transition"><i class="fab fa-facebook-f"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-linkedin-in"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-instagram"></i></span><span class="hover:text-green-700 transition"><i class="fa fa-times"></i></span></div><img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/team-01.jpg" alt="Nashid Martin" class="rounded-xl w-[250px] h-[350px] object-cover mb-2 mx-auto ml-12 shadow-lg group-hover:scale-105 transition-transform duration-300"/><div class="w-full ml-12 mt-3 text-left"><h3 class="font-bold text-neutral-800 mb-0.5">Nashid Martin</h3><p class="text-green-700 text-sm font-semibold">garden cleaner</p></div></div><!-- Card 3 --><div class="bg-white group relative rounded-2xl shadow-xl w-full max-w-[270px] pt-4 pb-7 flex flex-col items-center transition-all duration-300 cursor-pointer hover:bg-yellow-300"><div class="absolute left-6 top-10 flex flex-col gap-5 text-gray-600"><span class="hover:text-green-700 transition"><i class="fab fa-facebook-f"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-linkedin-in"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-instagram"></i></span><span class="hover:text-green-700 transition"><i class="fa fa-times"></i></span></div><img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/team-03.jpg" alt="Jeck smith" class="rounded-xl w-[250px] h-[350px] object-cover mb-2 mx-auto ml-12 shadow-lg group-hover:scale-105 transition-transform duration-300"/><div class="w-full ml-12 mt-3 text-left"><h3 class="font-bold text-neutral-800 mb-0.5">Jeck smith</h3><p class="text-green-700 text-sm font-semibold">garden cleaner</p></div></div><!-- Card 4 --><div class="bg-white group relative rounded-2xl shadow-xl w-full max-w-[270px] pt-4 pb-7 flex flex-col items-center transition-all duration-300 cursor-pointer hover:bg-yellow-300"><div class="absolute left-6 top-10 flex flex-col gap-5 text-gray-600"><span class="hover:text-green-700 transition"><i class="fab fa-facebook-f"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-linkedin-in"></i></span><span class="hover:text-green-700 transition"><i class="fab fa-instagram"></i></span><span class="hover:text-green-700 transition"><i class="fa fa-times"></i></span></div><img src="https://wordpress.templatetrip.com/WPTM01/WPTM002_clifton/wp-content/uploads/2024/09/team-04.jpg" alt="Rock Lee" class="rounded-xl w-[250px] h-[350px] object-cover mb-2 mx-auto ml-12 shadow-lg group-hover:scale-105 transition-transform duration-300"/><div class="w-full ml-12 mt-3 text-left"><h3 class="font-bold text-neutral-800 mb-0.5">Rock lee</h3><p class="text-green-700 text-sm font-semibold">office cleaner</p></div></div></div><!-- Font Awesome CDN for icons --><section class="w-full min-h-[560px] bg-neutral-900 py-16 flex flex-col items-center px-0 font-['Montserrat',sans-serif] relative"><!-- Vision pill --><div class="flex justify-center w-full mb-3"><span id="i3lwqn" class="bg-gradient-to-r from-amber-950/80 via-stone-900/80 to-amber-900/90 border border-amber-200/30 text-amber-100 px-6 py-2 rounded-full font-semibold text-[1.08rem] shadow backdrop-blur-[2px] select-none z-10">
+      • Our vision
+    </span></div><!-- Titles --><div class="flex flex-col items-center mb-3"><div class="font-['Pacifico',cursive] text-[2.5rem] md:text-[3rem] text-amber-300 leading-tight tracking-normal mb-2 drop-shadow-sm">
+      The qualities behind
+    </div><h2 class="text-white text-center font-bold text-[2rem] md:text-[2.68rem] leading-[1.08]">
+      every perfect move
+    </h2></div><!-- Card grid --><div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 px-4"><!-- Card 1 --><div class="rounded-[32px] bg-gradient-to-br from-stone-900/80 via-stone-950/90 to-stone-900/90 shadow-[0_4px_32px_-10px_rgba(140,112,56,0.16)] border border-amber-200/40 px-7 pt-8 pb-8 min-h-[246px] flex flex-col items-start hover:scale-[1.025] transition-all duration-200"><span class="text-amber-400 text-3xl mb-6"><i class="fa-solid fa-location-dot text-3xl"></i></span><div class="font-semibold text-[1.32rem] mb-1 text-white tracking-wide whitespace-normal">Local market expertise
+      </div><div class="text-amber-100/90 font-medium text-[1.03rem]">
+        We provide in-depth knowledge of neighborhoods and market trends, helping clients make informed property
+        decisions.
+      </div></div><!-- Card 2 --><div class="rounded-[32px] bg-gradient-to-br from-stone-900/85 via-stone-950/90 to-stone-900/90 shadow-[0_4px_32px_-10px_rgba(140,112,56,0.14)] border border-amber-200/40 px-7 pt-8 pb-8 min-h-[246px] flex flex-col items-start hover:scale-[1.025] transition-all duration-200"><span class="text-amber-400 text-3xl mb-6"><i class="fa-solid fa-user-check text-3xl"></i></span><div class="font-semibold text-[1.32rem] mb-1 text-white tracking-wide whitespace-normal">Personalized service
+      </div><div class="text-amber-100/90 font-medium text-[1.03rem]">
+        Our team tailors every step of the buying or selling process to meet your unique needs and preferences.
+      </div></div><!-- Card 3 --><div class="rounded-[32px] bg-gradient-to-br from-stone-950/90 via-stone-900/90 to-stone-900/90 shadow-[0_4px_32px_-10px_rgba(140,112,56,0.12)] border border-amber-200/40 px-7 pt-8 pb-8 min-h-[246px] flex flex-col items-start hover:scale-[1.025] transition-all duration-200"><span class="text-amber-400 text-3xl mb-6"><i class="fa-solid fa-chart-line text-3xl"></i></span><div class="font-semibold text-[1.32rem] mb-1 text-white tracking-wide whitespace-normal">Proven track record
+      </div><div class="text-amber-100/90 font-medium text-[1.03rem]">
+        With years of successful transactions, we consistently deliver results that exceed our clients’ expectations.
+      </div></div><!-- Card 4 --><div class="rounded-[32px] bg-gradient-to-br from-stone-900/85 via-stone-950/90 to-stone-900/90 shadow-[0_4px_32px_-10px_rgba(140,112,56,0.11)] border border-amber-200/40 px-7 pt-8 pb-8 min-h-[246px] flex flex-col items-start hover:scale-[1.025] transition-all duration-200"><span class="text-amber-400 text-3xl mb-6"><i class="fa-solid fa-heart text-3xl"></i></span><div class="font-semibold text-[1.32rem] mb-1 text-white tracking-wide whitespace-normal">Always in the know</div><div class="text-amber-100/90 font-medium text-[1.03rem]">
+        We keep clients informed at every stage, ensuring clarity, trust, and confidence throughout the process.
+      </div></div></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script></section><script src="https://cdn.tailwindcss.com"></script></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com"></script><section class="w-full bg-sky-50 py-12"><div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center justify-center"><!-- Left content --><div class="flex-1 flex flex-col"><p class="text-base font-semibold text-gray-700 mb-4">Why us</p><h2 id="ixoiw4" class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+        The best early<br/>learning experience
+      </h2><p class="text-slate-600 mb-6 max-w-xl">
+        Fermentum nunc tortor, mauris lorem dignissim augue et vestibulum aliquet est ultrices mauris adipiscing.
+      </p><ul class="space-y-2 mb-8"><li class="flex items-center text-slate-600"><i aria-hidden="true" class="fa-solid fa-check text-orange-400 w-5 h-5 mr-2"></i>
+          Holistic approach
+        </li><li class="flex items-center text-slate-600"><i aria-hidden="true" class="fa-solid fa-check text-orange-400 w-5 h-5 mr-2"></i>
+          Passionate teachers
+        </li><li class="flex items-center text-slate-600"><i aria-hidden="true" class="fa-solid fa-check text-orange-400 w-5 h-5 mr-2"></i>
+          Supervision to keep children
+        </li></ul><button class="rounded-full border-2 border-slate-900 px-8 py-3 text-slate-900 font-semibold text-lg w-max transition hover:bg-slate-900 hover:text-white shadow-sm">
+        Know more
+      </button></div><!-- Right grid --><div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full"><!-- Card 1 --><div class="bg-white border border-sky-200 shadow-sm rounded-xl p-6 flex flex-col min-h-[170px]"><div class="flex items-center mb-2"><i aria-hidden="true" class="fa-solid fa-heart text-orange-400 w-7 h-7 mr-2 text-[28px]"></i><span class="font-bold text-lg text-slate-900">Kindness</span></div><p class="text-slate-600 text-base">
+          Nibh in sed venenatis, senectus fermentum nullam donec nulla quis ut facilisis
+        </p></div><!-- Card 2 --><div class="bg-white border border-sky-200 shadow-sm rounded-xl p-6 flex flex-col min-h-[170px]"><div class="flex items-center mb-2"><i aria-hidden="true" class="fa-solid fa-star text-orange-400 w-7 h-7 mr-2 text-[28px]"></i><span class="font-bold text-lg text-slate-900">Emotional</span></div><p class="text-slate-600 text-base">
+          Nibh in sed venenatis, senectus fermentum nullam donec nulla quis ut facilisis
+        </p></div><!-- Card 3 --><div class="bg-white border border-sky-200 shadow-sm rounded-xl p-6 flex flex-col min-h-[170px]"><div class="flex items-center mb-2"><i aria-hidden="true" class="fa-solid fa-lightbulb text-orange-400 w-7 h-7 mr-2 text-[28px]"></i><span class="font-bold text-lg text-slate-900">Creativity</span></div><p class="text-slate-600 text-base">
+          Nibh in sed venenatis, senectus fermentum nullam donec nulla quis ut facilisis
+        </p></div><!-- Card 4 --><div class="bg-white border border-sky-200 shadow-sm rounded-xl p-6 flex flex-col min-h-[170px]"><div class="flex items-center mb-2"><i aria-hidden="true" class="fa-solid fa-gears text-orange-400 w-7 h-7 mr-2 text-[28px]"></i><span class="font-bold text-lg text-slate-900">Innovation</span></div><p class="text-slate-600 text-base">
+          Nibh in sed venenatis, senectus fermentum nullam donec nulla quis ut facilisis
+        </p></div></div></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section class="w-full min-h-[660px] bg-slate-50 flex flex-col items-center py-14 px-2"><!-- Title --><div class="max-w-4xl w-full mx-auto text-center"><div class="text-xs font-semibold tracking-[0.22em] uppercase mb-2 text-emerald-900">WHAT WE DO</div><h2 class="text-4xl md:text-5xl font-extrabold text-emerald-900 mb-8 mt-3 leading-tight">
+      Our Full-Spectrum<br/>Construction Services
+    </h2></div><!-- Service Cards --><div class="w-full max-w-5xl flex flex-col md:flex-row gap-8 justify-center items-stretch mx-auto mt-20"><!-- Card 1 --><div class="flex-1 flex flex-col items-center"><div class="w-full flex justify-center"><img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&amp;fit=crop&amp;w=550&amp;q=80" alt="Residential Construction min-h-400px" class="rounded-xl shadow-lg object-cover aspect-[1.2]"/></div><div class="-mt-14 w-[95%] bg-white rounded-xl shadow-lg px-6 py-8 flex flex-col items-center border border-white"><div class="mb-4"><i aria-hidden="true" class="fa-solid fa-house-chimney text-emerald-800 text-[44px]"></i></div><h4 class="text-2xl font-bold text-emerald-800 mb-2 text-center">Residential Construction</h4><div class="text-gray-600 mb-3 text-center text-[1.05rem]">
+          Custom-built homes designed with care, quality, and Austin’s unique character in mind.
+        </div><a href="#" class="text-emerald-800 border-b border-emerald-800 font-semibold text-sm uppercase hover:text-emerald-900 duration-150">ENQUIRE
+          NOW</a></div></div><!-- Card 2 --><div class="flex-1 flex flex-col items-center"><div class="w-full flex justify-center"><img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&amp;fit=crop&amp;w=550&amp;q=80" alt="Residential Construction" class="rounded-xl shadow-lg object-cover aspect-[1.2]"/></div><div class="-mt-14 w-[95%] bg-white rounded-xl shadow-lg px-6 py-8 flex flex-col items-center border border-white"><div class="mb-4"><i aria-hidden="true" class="fa-solid fa-building text-emerald-800 text-[44px]"></i></div><h4 class="text-2xl font-bold text-emerald-800 mb-2 text-center">Commercial Buildings</h4><div class="text-gray-600 mb-3 text-center text-[1.05rem]">
+          Smart, scalable commercial spaces that support growth and reflect your business values.
+        </div><a href="#" class="text-emerald-800 border-b border-emerald-800 font-semibold text-sm uppercase hover:text-emerald-900 duration-150">ENQUIRE
+          NOW</a></div></div><!-- Card 3 --><div class="flex-1 flex flex-col items-center"><div class="w-full flex justify-center"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&amp;fit=crop&amp;w=550&amp;q=80" alt="Remodeling" class="rounded-xl shadow-lg object-cover aspect-[1.2]"/></div><div class="-mt-14 w-[95%] bg-white rounded-xl shadow-lg px-6 py-8 flex flex-col items-center border border-white"><div class="mb-4"><i aria-hidden="true" class="fa-solid fa-screwdriver-wrench text-emerald-800 text-[44px]"></i></div><h4 class="text-2xl font-bold text-emerald-800 mb-2 text-center">Renovation &amp; Remodeling</h4><div class="text-gray-600 mb-3 text-center text-[1.05rem]">
+          Transform existing spaces with modern upgrades, improved function, and fresh appeal.
+        </div><a href="#" class="text-emerald-800 border-b border-emerald-800 font-semibold text-sm uppercase hover:text-emerald-900 duration-150">ENQUIRE
+          NOW</a></div></div></div><section class="relative w-full min-h-[400px] flex items-center justify-center"><!-- Background Image --><div class="absolute inset-0 z-0"><img src="https://websitedemos.net/yoga-studio-04/wp-content/uploads/sites/707/2020/09/yoga-studio-cta-section-bg.jpg" alt="Newsletter Yoga" class="w-full h-full object-cover"/><div class="absolute inset-0 bg-black/40"></div></div><!-- Main Content --><div class="relative z-10 flex flex-col items-center justify-center w-full px-4 pt-14 pb-12"><!-- Icon badge --><span class="mb-8 inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-400 shadow-xl"><i aria-hidden="true" class="fa-solid fa-envelope-open text-white text-2xl"></i></span><!-- Heading --><h2 id="i0c261" class="text-white text-4xl md:text-5xl font-serif font-semibold mb-5 text-center">
+   Subscribe To Our Newsletter
+  </h2><div class="max-w-xl mx-auto"><p class="text-white text-lg text-center mb-8 font-normal">
+    Morbi lobortis morbi dignissim sodales eget mauris turpis interdum sagittis sed cursus nunc nulla congue quis.
+   </p></div><!-- Form --><form class="w-full max-w-xl flex flex-col md:flex-row items-center gap-3 mt-6"><input type="email" placeholder="Email address" class="w-full md:flex-1 px-6 py-4 rounded-full text-lg font-medium border-none shadow focus:outline-none focus:ring-2 focus:ring-amber-400 bg-white"/><button type="submit" class="mt-0 md:mt-0 px-8 py-4 rounded-full bg-amber-400 text-white font-bold text-lg transition hover:bg-amber-500 shadow ml-0 md:ml-3">
+    Subscribe
+   </button></form></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><!-- Optional small script: basic validation + clear + fake submit --><script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const clearBtn = document.getElementById('clearBtn');
 
-    resetBtn.addEventListener('click', () => form.reset());
+    clearBtn.addEventListener('click', () => form.reset());
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      // simple client-side validation
       const data = new FormData(form);
-      if (!data.get('fullName') || !data.get('email') || !data.get('description')) {
-        alert('Please complete required fields.');
+      if (!data.get('name') || !data.get('email') || !data.get('message')) {
+        alert('Please fill name, email and message.');
         return;
       }
 
-      const btn = form.querySelector('button[type="submit"]');
-      const old = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = 'Sending…';
+      // show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const origText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending…';
 
       try {
-        await fetch(form.action, { method: form.method || 'POST', body: data });
-        msg.classList.remove('hidden');
-        setTimeout(() => msg.classList.add('hidden'), 4000);
+        // Replace with real endpoint
+        await fetch(form.action, {
+          method: form.method || 'POST',
+          body: data,
+        });
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 4000);
         form.reset();
       } catch (err) {
-        alert('Submission failed.');
+        alert('Error sending message. Try again later.');
       } finally {
-        btn.disabled = false;
-        btn.innerHTML = old;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
       }
     });
   })();
-</script><script src="https://cdn.tailwindcss.com"></script></div><script>
-  (function(){
-    var root = this;
-    var key = root.getAttribute('data-comp-css-key');
-    var css = decodeURIComponent(root.getAttribute('data-comp-css')||'');
-    if (!css || !key) return;
-    var doc = document;
-    if (!doc.getElementById('gjs-css-' + key)) {
-      var style = doc.createElement('style');
-      style.id = 'gjs-css-' + key;
-      style.type = 'text/css';
-      style.appendChild(doc.createTextNode(css));
-      doc.head.appendChild(style);
-    }
-  }).call(this);
-</script></body></body>
-                    </html>
+</script><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><script src="https://cdn.tailwindcss.com"></script><!-- Optional small script: basic validation + clear + fake submit --><script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const clearBtn = document.getElementById('clearBtn');
+
+    clearBtn.addEventListener('click', () => form.reset());
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // simple client-side validation
+      const data = new FormData(form);
+      if (!data.get('name') || !data.get('email') || !data.get('message')) {
+        alert('Please fill name, email and message.');
+        return;
+      }
+
+      // show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const origText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending…';
+
+      try {
+        // Replace with real endpoint
+        await fetch(form.action, {
+          method: form.method || 'POST',
+          body: data,
+        });
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 4000);
+        form.reset();
+      } catch (err) {
+        alert('Error sending message. Try again later.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      }
+    });
+  })();
+</script><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><script src="https://cdn.tailwindcss.com"></script><section class="max-w-6xl mx-auto px-6 py-12 lg:py-20"><div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"><!-- Image / visual --><div class="relative rounded-2xl overflow-hidden shadow-lg"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Team collaborating" class="w-full h-80 object-cover md:h-[520px] transform transition-transform duration-700 hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div><div class="absolute bottom-6 left-6 text-white"><h3 class="text-2xl font-semibold tracking-tight">Get in touch</h3><p class="mt-1 text-sm text-white/90 max-w-xs">Tell us about your project — we'll respond within one business
+          day.</p></div></div><!-- Form card --><form id="contact-form" action="/form/save" method="post" novalidate="" class="bg-white/95 dark:bg-slate-900/80 backdrop-blur-md shadow-xl rounded-2xl p-6 sm:p-8 lg:p-10"><input type="hidden" name="_token" value=""/><div class="flex items-center justify-between mb-4"><div><h2 class="text-2xl font-bold text-slate-900 dark:text-white">Contact us</h2><p class="mt-1 text-sm text-slate-500 dark:text-slate-300">Describe your needs — or ask a question.</p></div><div class="hidden sm:flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300"><i class="fa-solid fa-envelope w-6 h-6 text-indigo-500"></i><span>We reply within 24 hrs</span></div></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Name</span><input name="name" type="text" required placeholder="Your full name" class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"/></label><label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span><input name="email" type="email" required placeholder="you@company.com" class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"/></label></div><div class="mt-4"><label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Project type</span><select name="topic" class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"><option>General inquiry</option><option>New project</option><option>Partnership</option><option>Support</option></select></label></div><div class="mt-4"><label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Message</span><textarea name="message" rows="5" required placeholder="Tell us what's on your mind..." class="mt-2 block w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 placeholder-slate-400 text-slate-900 dark:text-slate-100 resize-y focus:outline-none focus:ring-2 focus:ring-indigo-300"></textarea></label></div><div class="mt-4 flex items-center justify-between gap-4"><div class="flex items-center gap-3"><input type="checkbox" id="subscribe" name="subscribe" class="w-4 h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500"/><label for="subscribe" class="text-sm text-slate-600 dark:text-slate-300">Subscribe to updates</label></div><div class="text-sm text-slate-500 dark:text-slate-300">Or email: <a href="mailto:hello@example.com" class="text-indigo-600 hover:underline">hello@example.com</a></div></div><div class="mt-6 flex items-center gap-3"><button type="submit" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-300">
+          Send message
+          <i class="fa-solid fa-arrow-right text-sm"></i></button><button type="button" id="clearBtn" class="ml-2 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800">
+          Clear
+        </button><div id="form-status" class="ml-auto text-sm text-emerald-600 hidden">Message sent ✓</div></div><script>
+        (async function (s) {
+          try {
+            var f = s.closest('form');
+            if (!f) return;
+
+            // Respect Traits; only inject for non-GET
+            var m = (f.getAttribute('method') || 'post').toLowerCase();
+            if (m === 'get') return;
+
+            // 1) Try meta
+            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+            if (!token) {
+              var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+              if (r.ok) token = (await r.json()).token;
+            }
+
+            if (!token) return;
+
+            // Write meta for other scripts
+            var meta = document.querySelector('meta[name="csrf-token"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute('name', 'csrf-token');
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', token);
+
+            // Ensure hidden _token exists and is filled
+            var t = f.querySelector('input[name="_token"]');
+            if (!t) {
+              t = document.createElement('input');
+              t.type = 'hidden';
+              t.name = '_token';
+              f.appendChild(t);
+            }
+            t.value = token;
+          } catch (e) { }
+        })(document.currentScript);
+      </script></form></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><script src="https://cdn.tailwindcss.com"></script><section id="about-v8" class="mx-auto max-w-6xl px-4 py-12 md:py-16"><div class="grid items-center gap-10 lg:grid-cols-2"><!-- Image --><div class="w-full"><img src="https://picsum.photos/800/1000?random=9" alt="About image" class="h-80 w-full rounded-2xl object-cover md:h-[28rem] lg:h-[32rem]"/></div><!-- Text --><div class="w-full"><div class="flex items-center gap-2"><span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-lime-100 text-lime-600"><i class="fa-solid fa-circle-check text-xs"></i></span><span class="text-lg font-semibold text-slate-500">About Us</span></div><h2 class="mt-3 text-3xl font-bold leading-tight text-slate-900 md:text-4xl">
+    WE ARE DYNAMIC TEAM AND BUSINESS AGENCY
+   </h2><!-- Three small bars --><div class="mt-4 flex items-center gap-2"><span class="h-1 w-10 rounded-full bg-lime-500"></span><span class="h-1 w-5 rounded-full bg-lime-500"></span><span class="h-1 w-2.5 rounded-full bg-lime-500"></span></div><p class="mt-5 text-base leading-7 text-slate-600">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, quidem aliquam. Dolorem, ipsa voluptate. Soluta
+    adipisci aliquam magni tenetur modi vel mollitia ut, fugiat tempora.
+   </p><div class="mt-4"><button type="button" class="inline-flex items-center rounded-full bg-lime-600 px-6 py-3 text-white shadow-sm ring-1 ring-lime-600/90 transition hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500">
+     More Services
+    </button></div></div></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section id="barberCollage" class="w-full bg-black text-white"><div class="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16"><!-- Optional heading (hidden to mirror reference) --><h2 class="sr-only">Team Gallery</h2><!-- Canvas: grid by default, absolute collage on lg+ --><div class="relative mx-auto bg-black rounded-3xl lg:rounded-[1.75rem]"><!-- Flow layout for small screens --><div class="grid grid-cols-2 gap-3 sm:gap-4 lg:hidden"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Main cut close-up" class="rounded-xl aspect-[4/3] object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Salon corner" class="rounded-xl aspect-square object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Clipper detail" class="rounded-xl aspect-square object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Beard brush" class="rounded-xl aspect-[5/4] object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Drawer tools" class="rounded-xl aspect-[16/10] object-cover col-span-2"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Back taper" class="rounded-xl aspect-[16/10] object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Client portrait" class="rounded-xl aspect-[3/4] object-cover"/><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Shave reclined" class="rounded-xl aspect-[16/10] object-cover col-span-2"/></div><!-- Absolute mosaic for lg+ to match the reference --><div class="hidden lg:block relative w-full"><!-- Fixed aspect canvas to preserve collage proportions --><div class="relative aspect-[16/11] rounded-3xl"><!-- Large center-top --><figure data-animate="" class="group absolute top-[8%] left-[26%] w-[48%] h-[36%] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/5 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Main cut close-up" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"/></figure><!-- Left small square --><figure data-animate="" class="group absolute top-[21%] left-[10%] w-[16%] h-[22%] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/10 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Salon corner" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"/></figure><!-- Right top small square --><figure data-animate="" class="group absolute top-[16%] right-[12%] w-[14%] h-[20%] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/10 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Clipper detail" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"/></figure><!-- Right mid rectangle --><figure data-animate="" class="group absolute top-[41%] right-[9%] w-[22%] h-[23%] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/10 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Beard brush" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"/></figure><!-- Bottom-left wide --><figure data-animate="" class="group absolute left-[4%] bottom-[6%] w-[40%] h-[32%] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/5 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Drawer tools" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"/></figure><!-- Bottom center-left medium --><figure data-animate="" class="group absolute left-[31%] bottom-[6%] w-[27%] h-[20%] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/10 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Back taper" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"/></figure><!-- Bottom center portrait --><figure data-animate="" class="group absolute left-[60%] bottom-[6%] w-[18%] h-[32%] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/5 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Client portrait" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"/></figure><!-- Bottom-right wide small --><figure data-animate="" class="group absolute right-[9%] bottom-[8%] w-[24%] h-[18%] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/10 opacity-0 translate-y-4 scale-[0.99] transition-all duration-700 ease-out"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg" alt="Shave reclined" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"/></figure></div></div></div></div><!-- Scroll-reveal + gentle parallax --><script>
+  (function () {
+   const root = document.getElementById('barberCollage');
+   if (!root) return;
+   const cards = root.querySelectorAll('[data-animate]');
+   const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+     if (entry.isIntersecting) {
+      const el = entry.target;
+      setTimeout(() => {
+       el.classList.remove('opacity-0', 'translate-y-4', 'scale-[0.99]');
+       el.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+      }, i * 90);
+      io.unobserve(el);
+     }
+    });
+   }, { threshold: 0.2 });
+   cards.forEach((c) => io.observe(c));
+
+   // Subtle parallax on mouse move for lg+
+   const canvas = root.querySelector('.aspect-[16\\/11]');
+   if (canvas) {
+    canvas.addEventListener('mousemove', (e) => {
+     const r = canvas.getBoundingClientRect();
+     const cx = (e.clientX - r.left) / r.width - 0.5;
+     const cy = (e.clientY - r.top) / r.height - 0.5;
+     root.querySelectorAll('.group img').forEach((img, idx) => {
+      const depth = (idx % 3 + 1) * 2; // 2–6
+      img.style.transform = `translate(${cx * depth}px, ${cy * depth}px) scale(1.02)`;
+     });
+    });
+    canvas.addEventListener('mouseleave', () => {
+     root.querySelectorAll('.group img').forEach((img) => {
+      img.style.transform = '';
+     });
+    });
+   }
+  })();
+ </script></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script><section id="featured-blogs" class="w-full bg-white text-slate-900"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14"><!-- Small label --><p class="text-center text-xs font-medium tracking-[0.22em] text-slate-500 uppercase">Featured Blogs</p><!-- Main heading --><h2 class="mt-2 text-center text-4xl sm:text-5xl font-semibold tracking-tight text-slate-900">
+   Written for Your Growth
+  </h2><!-- Subhead --><p class="mx-auto mt-4 max-w-4xl text-center text-sm sm:text-base text-slate-600">
+   Explore our curated selection of featured content — insights and solutions to elevate your journey towards success.
+   Dive into the latest advancements, offerings, and exclusive perspectives that await your exploration.
+  </p><!-- Grid: Featured left, List right --><div class="mt-10 grid gap-10 lg:grid-cols-3"><!-- Left Featured (spans 2) --><article class="lg:col-span-2 fb-feature group overflow-hidden rounded-xl bg-white shadow ring-1 ring-slate-200"><figure class="relative overflow-hidden"><img id="fb-image" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="" class="h-72 sm:h-[22rem] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]"/><!-- subtle gradient for legibility if needed --><div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent">
+     </div></figure><div class="p-6 sm:p-8"><h3 id="fb-title" class="text-2xl sm:text-3xl font-semibold text-slate-900">
+      Branding vs Marketing: What Drives Business Growth?
+     </h3><p id="fb-excerpt" class="mt-3 text-slate-600 text-sm sm:text-base">
+      In today’s competitive market, many organizations confuse branding with marketing; while interconnected, they play
+      very different roles in creating momentum.
+     </p><div class="mt-5 flex items-center gap-4"><a id="fb-read" href="#" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold">
+       Read article <i class="fa-solid fa-arrow-right-long text-sm"></i></a></div></div></article><!-- Right List --><div class="space-y-8"><!-- Item --><article data-title="5 Signs You Need an IT Consultant—Before It’s Too Late" data-excerpt="From startups to enterprises, no organization can run smoothly without reliable IT systems." data-image="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" data-link="#" class="fb-item flex gap-4 p-2 rounded-lg hover:bg-slate-50 cursor-pointer"><img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="" class="h-20 w-36 rounded-md object-cover ring-1 ring-slate-200"/><div class="min-w-0"><h4 class="text-base sm:text-lg font-semibold text-slate-900">5 Signs You Need an IT Consultant—Before It’s Too
+       Late</h4><p class="mt-1 text-sm text-slate-600">Ensure reliability before it impacts growth.</p></div></article><!-- Item --><article data-title="The Ford Motor Company’s Reinvention: What Digital Consulting Taught a Century‑Old Brand" data-excerpt="Reinventing with strength, reliability, and history through modern consulting." data-image="https://images.unsplash.com/photo-1517976487492-576ea6b2936d?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" data-link="#" class="fb-item flex gap-4 p-2 rounded-lg hover:bg-slate-50 cursor-pointer"><img src="https://images.unsplash.com/photo-1517976487492-576ea6b2936d?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="" class="h-20 w-36 rounded-md object-cover ring-1 ring-slate-200"/><div class="min-w-0"><h4 class="text-base sm:text-lg font-semibold text-slate-900">The Ford Motor Company’s Reinvention: What Digital
+       Consulting Taught a Century‑Old Brand</h4><p class="mt-1 text-sm text-slate-600">Modernization lessons from legacy icons.</p></div></article><!-- Item --><article data-title="How GitHub Copilot Is Changing the Way Developers Write Code" data-excerpt="An AI‑powered code assistant that autocompletes code and even writes functions." data-image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" data-link="#" class="fb-item flex gap-4 p-2 rounded-lg hover:bg-slate-50 cursor-pointer"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="" class="h-20 w-36 rounded-md object-cover ring-1 ring-slate-200"/><div class="min-w-0"><h4 class="text-base sm:text-lg font-semibold text-slate-900">How GitHub Copilot Is Changing the Way Developers
+       Write Code</h4><p class="mt-1 text-sm text-slate-600">Boost delivery with AI assistance.</p></div></article></div></div></div><!-- Scoped JS: reveal + interactive swap --><script>
+  (function () {
+   const root = document.currentScript.closest('#featured-blogs');
+
+   // Staggered reveal
+   const revealTargets = root.querySelectorAll('.fb-feature, .fb-item');
+   revealTargets.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(14px)';
+    el.style.transition = 'opacity 600ms ease, transform 700ms cubic-bezier(.2,.8,.2,1)';
+    setTimeout(() => {
+     el.style.opacity = '1';
+     el.style.transform = 'translateY(0)';
+    }, 80 * i + 140);
+   });
+
+   // Swap featured content when clicking a side item
+   const img = root.querySelector('#fb-image');
+   const title = root.querySelector('#fb-title');
+   const excerpt = root.querySelector('#fb-excerpt');
+   const read = root.querySelector('#fb-read');
+
+   root.querySelectorAll('.fb-item').forEach(item => {
+    item.addEventListener('click', () => {
+     const newSrc = item.getAttribute('data-image');
+     const newTitle = item.getAttribute('data-title');
+     const newExcerpt = item.getAttribute('data-excerpt');
+     const newLink = item.getAttribute('data-link') || '#';
+
+     // quick image crossfade
+     img.style.opacity = '0';
+     title.style.opacity = '0';
+     excerpt.style.opacity = '0';
+
+     setTimeout(() => {
+      img.src = newSrc;
+      title.textContent = newTitle;
+      excerpt.textContent = newExcerpt;
+      read.href = newLink;
+
+      img.onload = () => {
+       img.style.opacity = '1';
+       title.style.opacity = '1';
+       excerpt.style.opacity = '1';
+      };
+     }, 180);
+
+     // active highlight
+     root.querySelectorAll('.fb-item').forEach(i => i.classList.remove('ring-1', 'ring-emerald-600/30', 'bg-emerald-50/40'));
+     item.classList.add('ring-1', 'ring-emerald-600/30', 'bg-emerald-50/40');
+    });
+   });
+  })();
+ </script></section><script src="https://cdn.tailwindcss.com"></script><section id="footer-v1" class="bg-neutral-900 text-slate-200"><div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16"><div class="grid grid-cols-1 md:grid-cols-3 gap-10"><!-- Column 1: Logo, description, socials --><div><div class="h-20 w-20 overflow-hidden rounded"><img src="https://picsum.photos/160/160?random=801" alt="Company logo" loading="lazy" class="h-full w-full object-cover"/></div><p class="mt-5 text-sm leading-7 text-slate-300">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dolorem minima beatae?
+        </p><div class="mt-5 flex items-center gap-4"><a href="#" aria-label="Facebook" class="group grid h-10 w-10 place-items-center rounded-full border border-white/90 text-white hover:bg-white hover:text-neutral-900 transition"><i class="fa-brands fa-facebook-f text-base"></i></a><a href="#" aria-label="Pinterest" class="group grid h-10 w-10 place-items-center rounded-full border border-white/90 text-white hover:bg-white hover:text-neutral-900 transition"><i class="fa-brands fa-pinterest-p text-base"></i></a><a href="#" aria-label="LinkedIn" class="group grid h-10 w-10 place-items-center rounded-full border border-white/90 text-white hover:bg-white hover:text-neutral-900 transition"><i class="fa-brands fa-linkedin-in text-base"></i></a><a href="#" aria-label="YouTube" class="group grid h-10 w-10 place-items-center rounded-full border border-white/90 text-white hover:bg-white hover:text-neutral-900 transition"><i class="fa-brands fa-youtube text-base"></i></a></div></div><!-- Column 2: Two lists --><div><div class="grid grid-cols-2 gap-6"><!-- Services --><div><span class="block text-lg font-semibold text-white">Services</span><ul class="mt-2 space-y-2"><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Company History</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>About Us</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Contact Us</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Services</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Privacy Policy</span></a></li></ul></div><!-- Quick Links --><div><span class="block text-lg font-semibold text-white">Quick Links</span><ul class="mt-2 space-y-2"><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Company History</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>About Us</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Contact Us</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Services</span></a></li><li><a href="#" class="flex items-center gap-2 text-slate-200 hover:text-orange-500 transition"><i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i><span>Privacy Policy</span></a></li></ul></div></div></div><!-- Column 3: Subscribe --><div><span class="block text-lg font-semibold text-white">Subscribe Us</span><p class="mt-2 text-sm leading-7 text-slate-300">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, officia!
+        </p><form action="#" class="mt-4 flex items-center rounded-full bg-white p-1 pl-3 ring-1 ring-slate-200"><label for="footer-email" class="sr-only">Email</label><input id="footer-email" type="email" placeholder="Enter your Email" class="w-full bg-transparent px-2 py-2 text-slate-800 placeholder-slate-600 focus:outline-none"/><button type="button" aria-label="Submit email" class="grid h-12 w-12 place-items-center rounded-full bg-orange-500 text-white hover:bg-neutral-800 transition"><i class="fa-solid fa-chevron-right"></i></button></form></div></div></div></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script></section><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script></body></body>
+</html>

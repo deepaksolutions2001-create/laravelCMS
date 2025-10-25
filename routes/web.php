@@ -35,3 +35,12 @@ Route::get('/admin/components/list/{id}', [ComponentController::class, 'listId']
 
 
 Route::view('/test', 'test2');
+
+
+
+
+Route::post('/form/save', [ComponentController::class, "saveForm"]);
+// routes/web.php (web middleware)
+Route::get('/csrf-token', function () {
+ return response()->json(['token' => csrf_token()]);
+});

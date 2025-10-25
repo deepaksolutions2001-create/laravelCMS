@@ -138,33 +138,56 @@ class PageController extends Controller
         $filePath = $path . '/' . $filename;
 
         // Build complete HTML structure with meta + CSS + content
-        $content = "<!DOCTYPE html>
-                    <html lang=\"en\">
-                    <head>
-                    <meta charset=\"UTF-8\">
-                    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-                    <title>" . e($page->meta_title ?: $page->title) . "</title>
-                    <meta name=\"description\" content=\"" . e($page->meta_description) . "\">
-                    <meta name=\"keywords\" content=\"" . e($page->meta_keywords) . "\">
-                      <meta name=\"fokus keywords\" content=\"" . e($page->fokus_keyword) . "\">
-                    <meta property=\"og:image\" content=\"" . e($page->meta_og_image) . "\">
-                    <style>{$page->css}</style>
-                  
-<script src'https://cdn.tailwindcss.com'></script>
+       $content = "<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>" . e($page->meta_title ?: $page->title) . "</title>
+  <meta name=\"description\" content=\"" . e($page->meta_description) . "\">
+  <meta name=\"keywords\" content=\"" . e($page->meta_keywords) . "\">
+  <meta property=\"og:image\" content=\"" . e($page->meta_og_image) . "\">
+  <meta name=\"csrf-token\" content=\"\">
+  <style>{$page->css}</style>
 
-<script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css' crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css' crossorigin='anonymous'>
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
-  crossorigin=anonymous>
+  <script>
+  (async function(){
+    try {
+      // 1) Get a fresh CSRF token and start a session
+      const r = await fetch('/csrf-token', { credentials: 'same-origin' });
+      const data = await r.json();
+      const token = data && data.token;
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css'
-  crossorigin='anonymous'>
+      // 2) Update meta for other scripts to read
+      var meta = document.querySelector('meta[name=\"csrf-token\"]');
+      if (meta && token) meta.setAttribute('content', token);
 
-<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap'
-  rel='stylesheet'>
-                    </head>
-                    <body>{$page->html}</body>
-                    </html>";
+      // 3) Ensure every non-GET form has _token
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('form').forEach(function(f){
+          var m = (f.getAttribute('method') || 'post').toLowerCase();
+          if (m === 'get' || !token) return;
+          var t = f.querySelector('input[name=\"_token\"]');
+          if (!t) {
+            t = document.createElement('input');
+            t.type = 'hidden';
+            t.name = '_token';
+            f.appendChild(t);
+          }
+          t.value = token;
+        });
+      });
+    } catch(e) { /* no-op */ }
+  })();
+  </script>
+</head>
+<body>{$page->html}</body>
+</html>";
 
         // Write the file to /public/pages directory
         file_put_contents($filePath, $content);

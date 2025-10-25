@@ -72,8 +72,8 @@
     </div>
 
     <!-- Right: Form area -->
-    <form id="contact-form-2" action="/api/contact" method="POST"
-      class="lg:col-span-2 p-8 sm:p-10 bg-white dark:bg-slate-900">
+    <form id="contact-form-2" action=" " method="POST" class="lg:col-span-2 p-8 sm:p-10 bg-white dark:bg-slate-900">
+       <input type="hidden" name="_token" value="">
       <div class="flex items-center justify-between mb-6">
         <div>
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Project Inquiry</h2>
@@ -135,42 +135,49 @@
       </div>
 
       <div id="cf-msg-2" class="mt-4 text-sm text-emerald-600 hidden">Thanks — we'll be in touch soon.</div>
+       <script>
+        (async function (s) {
+          try {
+            var f = s.closest('form');
+            if (!f) return;
+
+            // Respect Traits; only inject for non-GET
+            var m = (f.getAttribute('method') || 'post').toLowerCase();
+            if (m === 'get') return;
+
+            // 1) Try meta
+            var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+            // 2) If absent (static publish), fetch from Laravel to initialize session+token
+            if (!token) {
+              var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+              if (r.ok) token = (await r.json()).token;
+            }
+
+            if (!token) return;
+
+            // Write meta for other scripts
+            var meta = document.querySelector('meta[name="csrf-token"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute('name', 'csrf-token');
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', token);
+
+            // Ensure hidden _token exists and is filled
+            var t = f.querySelector('input[name="_token"]');
+            if (!t) {
+              t = document.createElement('input');
+              t.type = 'hidden';
+              t.name = '_token';
+              f.appendChild(t);
+            }
+            t.value = token;
+          } catch (e) { }
+        })(document.currentScript);
+      </script>
     </form>
   </div>
 </section>
 
-<script>
-  (function () {
-    const form = document.getElementById('contact-form-2');
-    const resetBtn = document.getElementById('reset-2');
-    const msg = document.getElementById('cf-msg-2');
-
-    resetBtn.addEventListener('click', () => form.reset());
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      if (!data.get('fullName') || !data.get('email') || !data.get('description')) {
-        alert('Please complete required fields.');
-        return;
-      }
-
-      const btn = form.querySelector('button[type="submit"]');
-      const old = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = 'Sending…';
-
-      try {
-        await fetch(form.action, { method: form.method || 'POST', body: data });
-        msg.classList.remove('hidden');
-        setTimeout(() => msg.classList.add('hidden'), 4000);
-        form.reset();
-      } catch (err) {
-        alert('Submission failed.');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = old;
-      }
-    });
-  })();
-</script>

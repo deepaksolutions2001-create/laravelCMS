@@ -76,35 +76,37 @@
       <!-- Right: Contact form -->
       <div class="rounded-2xl bg-white border border-gray-200 p-8 shadow-sm">
         <form class="space-y-4">
+          <input type="hidden" name="_token" value="">
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Full name</label>
-              <input type="text" required placeholder="Your name"
+              <input type="text" required placeholder="Your name" name="name"
                 class="w-full rounded-md border-gray-200 shadow-sm px-4 py-3 focus:ring-2 focus:ring-indigo-300 focus:outline-none" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-              <input type="email" required placeholder="you@example.com"
+              <input type="email" required placeholder="you@example.com" name="email"
                 class="w-full rounded-md border-gray-200 shadow-sm px-4 py-3 focus:ring-2 focus:ring-indigo-300 focus:outline-none" />
             </div>
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-            <input type="text" placeholder="Subject"
+            <input type="text" placeholder="Subject" name="subject"
               class="w-full rounded-md border-gray-200 shadow-sm px-4 py-3 focus:ring-2 focus:ring-indigo-300 focus:outline-none" />
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea rows="6" placeholder="Write your message..."
+            <textarea rows="6" placeholder="Write your message..." name="message"
               class="w-full rounded-md border-gray-200 shadow-sm px-4 py-3 focus:ring-2 focus:ring-indigo-300 focus:outline-none"></textarea>
           </div>
 
           <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
               <label class="inline-flex items-center">
-                <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  name="checkbox" />
                 <span class="ml-2 text-sm text-gray-600">Send me a copy</span>
               </label>
             </div>
@@ -119,6 +121,48 @@
           </div>
 
           <p class="text-xs text-gray-500">By sending, you agree to our terms and privacy policy.</p>
+          <script>
+            (async function (s) {
+              try {
+                var f = s.closest('form');
+                if (!f) return;
+
+                // Respect Traits; only inject for non-GET
+                var m = (f.getAttribute('method') || 'post').toLowerCase();
+                if (m === 'get') return;
+
+                // 1) Try meta
+                var token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+                // 2) If absent (static publish), fetch from Laravel to initialize session+token
+                if (!token) {
+                  var r = await fetch('/csrf-token', { credentials: 'same-origin' });
+                  if (r.ok) token = (await r.json()).token;
+                }
+
+                if (!token) return;
+
+                // Write meta for other scripts
+                var meta = document.querySelector('meta[name="csrf-token"]');
+                if (!meta) {
+                  meta = document.createElement('meta');
+                  meta.setAttribute('name', 'csrf-token');
+                  document.head.appendChild(meta);
+                }
+                meta.setAttribute('content', token);
+
+                // Ensure hidden _token exists and is filled
+                var t = f.querySelector('input[name="_token"]');
+                if (!t) {
+                  t = document.createElement('input');
+                  t.type = 'hidden';
+                  t.name = '_token';
+                  f.appendChild(t);
+                }
+                t.value = token;
+              } catch (e) { }
+            })(document.currentScript);
+          </script>
         </form>
       </div>
     </div>
