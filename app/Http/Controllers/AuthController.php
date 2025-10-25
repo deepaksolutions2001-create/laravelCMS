@@ -29,6 +29,7 @@ class AuthController extends Controller
             session(['user_name' => $userData->name]);
             session(['user_email' => $userData->email]);
             session(['user_id' => $userData->id]);
+            session(['user_phone'=>$userData->phone]);
             session(['user_created_at' => strtotime($userData->created_at)]);
             return redirect()->route('dashboard');
         } else {
@@ -61,22 +62,23 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
 
-        $request->session()->invalidate();//clear session
-        $request->session()->regenerateToken();//prevent reuse
+        $request->session()->invalidate(); //clear session
+        $request->session()->regenerateToken(); //prevent reuse
 
         //redirect to login page
 
-        return redirect()->route('login.form')->with('success','logout successfully');
-
+        return redirect()->route('login.form')->with('success', 'logout successfully');
     }
 
     public function dashboard()
     {
 
         // Fetch all pages from the database
-        $pages = Page::where('user_id', session('user_id'))->get();
+        // Get paginated pages (7 per page)
+        $pages = Page::where('user_id', session('user_id'))->orderBy('created_at', 'desc')->paginate(7);
 
         // Return the list view with all pages
         return view('dashboard', compact('pages'));

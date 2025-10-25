@@ -169,7 +169,7 @@
     <div id="sidebar" class="w-80 bg-gray-900 text-white flex flex-col">
 
       <!-- Tabs Navigation -->
-      <div id="sidebar-nav" class="flex border-b border-gray-700">
+     <div id="sidebar-nav" class="flex border-b border-gray-700 overflow-x-auto scrollbar-thin">
             <!-- Tab button -->
         <button id="tab-traits" class="flex-1 py-2 hover:bg-gray-800">Traits</button>
         <button id="tab-blocks" class="flex-1 py-2 active bg-gray-800">Blocks</button>

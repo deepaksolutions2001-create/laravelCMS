@@ -665,4 +665,14 @@ html {
  border-radius: 6px;
 }
 
-.gjs-blocks-c, .gjs-block { pointer-events: auto !important; }
+.gjs-blocks-c,
+.gjs-block {
+ pointer-events: auto !important;
+}
+
+#sidebar-nav button {
+ flex-shrink: 0;
+ padding-left: 1rem;
+ padding-right: 1rem;
+ white-space: nowrap;
+}

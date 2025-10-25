@@ -8,40 +8,32 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-  /**
-   * Display a listing of all pages in the CMS.
-   */
-  public function index()
-  {
-    // Fetch all pages from the database
-    $pages = Page::all();
-
-    // Return the list view with all pages
-    return view('pages.index', compact('pages'));
-  }
 
   /**
-   * Create a new blank page and redirect to the builder.
+   * Create a new blank page and redirect to the dashboard.
    */
-  public function create()
+  public function create(Request $request)
   {
     // Create a new draft page with default blank values
     $page = Page::create([
       'user_id' => session()->get('user_id'),
-      'title' => 'Untitled Page',
+      'title' => $request->title,
       'html' => '',
       'css' => '',
       'slug' => 'Untitled-Page',
       'status' => 'draft', // Default status
+      'meta_description' => $request->meta_description,
     ]);
 
     // Redirect to the edit (builder) view for the newly created page
-    return redirect()->route('pages.edit', ['id' => $page->id]);
+    // Redirect to dashboard with the edit URL
+    return redirect()->route('dashboard')
+      ->with('page_created', $page->id)
+      ->with('success', 'Page created successfully!');
   }
 
-  /**
-   * Show the GrapesJS builder UI for an existing page.
-   */
+
+  //open builder for edit page 
   public function edit($id)
   {
     // Find the page by its ID (or fail if not found)
@@ -126,78 +118,36 @@ class PageController extends Controller
     // Save updated data to the database
     $page->save();
 
-    // === ✅ Optional: Save as a static HTML file for frontend ===
-    $path = public_path('pages');
-
-    // Create "pages" directory if it doesn’t exist
-    if (!file_exists($path)) {
-      mkdir($path, 0777, true);
-    }
-
-    // Generate clean filename using slug of page title
-    $filename = Str::slug($page->title ?: 'untitled') . '.html';
-    $filePath = $path . '/' . $filename;
-
-    // Build complete HTML structure with meta + CSS + content
-    $content = "<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-  <meta charset=\"UTF-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-  <title>" . e($page->meta_title ?: $page->title) . "</title>
-  <meta name=\"description\" content=\"" . e($page->meta_description) . "\">
-  <meta name=\"keywords\" content=\"" . e($page->meta_keywords) . "\">
-  <meta property=\"og:image\" content=\"" . e($page->meta_og_image) . "\">
-  <meta name=\"csrf-token\" content=\"\">
-  <style>{$page->css}</style>
-
-  <script src='https://cdn.tailwindcss.com'></script>
-  <script src='https://cdn.tailwindcss.com?plugins=forms,typography'></script>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css' crossorigin='anonymous'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css' crossorigin='anonymous'>
-
-  <script>
-  (async function(){
-    try {
-      // 1) Get a fresh CSRF token and start a session
-      const r = await fetch('/csrf-token', { credentials: 'same-origin' });
-      const data = await r.json();
-      const token = data && data.token;
-
-      // 2) Update meta for other scripts to read
-      var meta = document.querySelector('meta[name=\"csrf-token\"]');
-      if (meta && token) meta.setAttribute('content', token);
-
-      // 3) Ensure every non-GET form has _token
-      document.addEventListener('DOMContentLoaded', function(){
-        document.querySelectorAll('form').forEach(function(f){
-          var m = (f.getAttribute('method') || 'post').toLowerCase();
-          if (m === 'get' || !token) return;
-          var t = f.querySelector('input[name=\"_token\"]');
-          if (!t) {
-            t = document.createElement('input');
-            t.type = 'hidden';
-            t.name = '_token';
-            f.appendChild(t);
-          }
-          t.value = token;
-        });
-      });
-    } catch(e) { /* no-op */ }
-  })();
-  </script>
-</head>
-<body>{$page->html}</body>
-</html>";
-
-    // Write the file to /public/pages directory
-    file_put_contents($filePath, $content);
-
     // Respond with success JSON and page URL
     return response()->json([
       'success' => true,
-      'url' => url('pages/' . $filename),
+      'url' => route('publish.pages', ['slug' => $page->slug]),
       'message' => 'Page published successfully!',
     ]);
+  }
+
+  public function slug($slug)
+  {
+    // Find page by slug instead of id
+    $page = Page::where('slug', $slug)->firstOrFail();
+
+    return view('pages.publish', compact('page'));
+  }
+
+
+
+  //funtion for delete page 
+
+  public function pageDelete($id)
+  {
+
+
+    $page = Page::find($id);
+    $page->delete();
+    // Redirect to the edit (builder) view for the newly created page
+    // Redirect to dashboard with the edit URL
+    return redirect()->route('dashboard')
+      ->with('page_created', $id)
+      ->with('success', 'Page Deleted Successfully');
   }
 }
