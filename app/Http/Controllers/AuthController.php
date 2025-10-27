@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Page;
 use App\Models\UserModel;
+use App\Models\Propertie;
+
 
 
 class AuthController extends Controller
@@ -29,7 +31,7 @@ class AuthController extends Controller
             session(['user_name' => $userData->name]);
             session(['user_email' => $userData->email]);
             session(['user_id' => $userData->id]);
-            session(['user_phone'=>$userData->phone]);
+            session(['user_phone' => $userData->phone]);
             session(['user_created_at' => strtotime($userData->created_at)]);
             return redirect()->route('dashboard');
         } else {
@@ -79,8 +81,10 @@ class AuthController extends Controller
         // Fetch all pages from the database
         // Get paginated pages (7 per page)
         $pages = Page::where('user_id', session('user_id'))->orderBy('created_at', 'desc')->paginate(7);
+        $properties = Propertie::orderBy('created_at', 'desc')->paginate(6);
+
 
         // Return the list view with all pages
-        return view('dashboard', compact('pages'));
+        return view('dashboard', compact('pages', 'properties'));
     }
 }

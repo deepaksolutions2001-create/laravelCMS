@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PropertiesController;
 
 
 
@@ -31,9 +32,9 @@ Route::middleware('ensure.authentic')->group(function () {
 
  //this help to create new page
  Route::post('/pages/create', [PageController::class, 'create'])->name('pages.create');
- 
+
  //this for delete page
- Route::delete('delete/{id}/page',[PageController::class,'pageDelete'])->name('pages.delete');
+ Route::delete('delete/{id}/page', action: [PageController::class, 'pageDelete'])->name('pages.delete');
 
 
  //this help to edit page   
@@ -68,4 +69,11 @@ Route::middleware('ensure.authentic')->group(function () {
  Route::get('/csrf-token', function () {
   return response()->json(['token' => csrf_token()]);
  });
+
+ //route for related to  property page
+ Route::view('properties/add', 'add.properties')->name('add.property');
+ Route::post('properties/save', [PropertiesController::class, 'addProperty'])->name('save.property');
+ Route::delete('properties/{id}/delete', action: [PropertiesController::class, 'deleteProperty'])->name('delete.property');
+ Route::get('properites/{id}/edit', [PropertiesController::class, 'editProperty'])->name('edit.property');
+ Route::put('properties/{id}/update', [PropertiesController::class, 'updateProperty'])->name('update.property');
 });

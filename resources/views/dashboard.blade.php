@@ -512,15 +512,15 @@
                         <h2 class="text-2xl font-bold text-gray-800">Properties</h2>
                         <p class="text-gray-600 mt-1">Manage your real estate listings</p>
                     </div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Add Property
-                    </button>
+                    <a href="{{ route('add.property') }}"> <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Add Property
+                        </button></a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
                         <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
                         <div class="p-4">
@@ -532,297 +532,338 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
 
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                        <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Modern Apartment</h3>
-                            <p class="text-gray-600 text-sm mb-3">2 bed • 2 bath • 1200 sq ft</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-blue-600">$650,000</span>
-                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">For Rent</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                        <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Beach House</h3>
-                            <p class="text-gray-600 text-sm mb-3">4 bed • 3 bath • 2800 sq ft</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-blue-600">$980,000</span>
-                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">For Sale</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Agents Tab -->
-            <div id="agents" class="tab-content">
-                <div class="mb-6 flex justify-between items-center">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Real Estate Agents</h2>
-                        <p class="text-gray-600 mt-1">Manage your agent team</p>
-                    </div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Add Agent
-                    </button>
-                </div>
-
+                <!-- NEW_STR -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">SJ</div>
-                        <h3 class="text-lg font-semibold text-gray-800">Sarah Johnson</h3>
-                        <p class="text-gray-600 text-sm mb-3">Senior Agent</p>
-                        <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                            <span>23 Properties</span>
-                            <span>•</span>
-                            <span>4.8 ★</span>
-                        </div>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
-                    </div>
+                    @foreach($properties as $p)
+                    @php
+                    $coverPath = ($p->images && count($p->images)) ? $p->images[0] : null;
+                    $coverUrl = $coverPath ? Storage::url($coverPath) : null; // public disk URL
 
-                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">MB</div>
-                        <h3 class="text-lg font-semibold text-gray-800">Michael Brown</h3>
-                        <p class="text-gray-600 text-sm mb-3">Property Specialist</p>
-                        <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                            <span>18 Properties</span>
-                            <span>•</span>
-                            <span>4.9 ★</span>
-                        </div>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
-                    </div>
+                    $facts = trim(
+                    ($p->bedrooms ? $p->bedrooms.' bed' : '')
+                    .' • '
+                    .($p->bathrooms ? $p->bathrooms.' bath' : '')
+                    .' • '
+                    .($p->land_size ? number_format($p->land_size).' '.($p->land_size_type ?? '') : ''),
+                    ' •'
+                    );
 
-                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">ED</div>
-                        <h3 class="text-lg font-semibold text-gray-800">Emily Davis</h3>
-                        <p class="text-gray-600 text-sm mb-3">Luxury Homes Expert</p>
-                        <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                            <span>31 Properties</span>
-                            <span>•</span>
-                            <span>5.0 ★</span>
+                    $price = ($p->min_price && $p->max_price)
+                    ? '$'.number_format($p->min_price).' - $'.number_format($p->max_price)
+                    : ($p->min_price ? '$'.number_format($p->min_price) : '—');
+                    @endphp
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="h-48 {{ $coverUrl ? '' : 'bg-gradient-to-br from-blue-400 to-blue-600' }}">
+                            @if($coverUrl)
+                            <img src="{{ $coverUrl }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
+                            @endif
                         </div>
-                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ $p->title }}</h3>
+                            <p class="text-gray-600 text-sm mb-3">{{ $facts ?: '—' }}</p>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xl font-bold text-blue-600">{{ $price }}</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">{{ $p->contract }}</span>
+                            </div>
+
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="{{ route('edit.property',['id'=>$p->id]) }}"
+                                    class="px-3 py-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+                                    Edit
+                                </a>
+
+                                <form action="{{ route('delete.property',['id'=>$p->id]) }}" method="POST"
+                                    onsubmit="return confirm('Delete this property?');" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="px-3 py-1.5 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-6">
+                {{ $properties->links() }}
+            </div>
+
+
+
+
+    </div>
+
+    <!-- Agents Tab -->
+    <div id="agents" class="tab-content">
+        <div class="mb-6 flex justify-between items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Real Estate Agents</h2>
+                <p class="text-gray-600 mt-1">Manage your agent team</p>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Add Agent
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">SJ</div>
+                <h3 class="text-lg font-semibold text-gray-800">Sarah Johnson</h3>
+                <p class="text-gray-600 text-sm mb-3">Senior Agent</p>
+                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
+                    <span>23 Properties</span>
+                    <span>•</span>
+                    <span>4.8 ★</span>
+                </div>
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">MB</div>
+                <h3 class="text-lg font-semibold text-gray-800">Michael Brown</h3>
+                <p class="text-gray-600 text-sm mb-3">Property Specialist</p>
+                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
+                    <span>18 Properties</span>
+                    <span>•</span>
+                    <span>4.9 ★</span>
+                </div>
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">ED</div>
+                <h3 class="text-lg font-semibold text-gray-800">Emily Davis</h3>
+                <p class="text-gray-600 text-sm mb-3">Luxury Homes Expert</p>
+                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
+                    <span>31 Properties</span>
+                    <span>•</span>
+                    <span>5.0 ★</span>
+                </div>
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscribers Tab -->
+    <div id="subscribers" class="tab-content">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Email Subscribers</h2>
+            <p class="text-gray-600 mt-1">Manage your newsletter subscribers</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm">Total Subscribers</p>
+                    <p class="text-3xl font-bold text-gray-800 mt-2">1,284</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm">Active</p>
+                    <p class="text-3xl font-bold text-green-600 mt-2">1,198</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm">Unsubscribed</p>
+                    <p class="text-3xl font-bold text-red-600 mt-2">86</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subscribed Date</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm text-gray-900">john.doe@example.com</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
+                            <td class="px-6 py-4 text-sm text-gray-500">20 Oct 2025</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-red-600 hover:text-red-800">Remove</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm text-gray-900">jane.smith@example.com</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
+                            <td class="px-6 py-4 text-sm text-gray-500">18 Oct 2025</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-red-600 hover:text-red-800">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Tab -->
+    <div id="reviews" class="tab-content">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Customer Reviews</h2>
+            <p class="text-gray-600 mt-1">Manage property and agent reviews</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-lg font-semibold text-gray-800">John Doe</h4>
+                            <div class="flex items-center text-yellow-500">
+                                <span class="mr-1">★★★★★</span>
+                                <span class="text-gray-600 text-sm">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">Amazing property! The location is perfect and the agent was very professional. Highly recommended!</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Luxury Villa Sydney</span>
+                            <span>2 days ago</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Subscribers Tab -->
-            <div id="subscribers" class="tab-content">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Email Subscribers</h2>
-                    <p class="text-gray-600 mt-1">Manage your newsletter subscribers</p>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="text-center">
-                            <p class="text-gray-500 text-sm">Total Subscribers</p>
-                            <p class="text-3xl font-bold text-gray-800 mt-2">1,284</p>
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">SK</div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-lg font-semibold text-gray-800">Sarah Kim</h4>
+                            <div class="flex items-center text-yellow-500">
+                                <span class="mr-1">★★★★☆</span>
+                                <span class="text-gray-600 text-sm">4.0</span>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <p class="text-gray-500 text-sm">Active</p>
-                            <p class="text-3xl font-bold text-green-600 mt-2">1,198</p>
+                        <p class="text-gray-600 mb-2">Great experience overall. The apartment is modern and well-maintained. Would definitely recommend to friends.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>Melbourne Apartment</span>
+                            <span>1 week ago</span>
                         </div>
-                        <div class="text-center">
-                            <p class="text-gray-500 text-sm">Unsubscribed</p>
-                            <p class="text-3xl font-bold text-red-600 mt-2">86</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subscribed Date</th>
-                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm text-gray-900">john.doe@example.com</td>
-                                    <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">20 Oct 2025</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-red-600 hover:text-red-800">Remove</button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm text-gray-900">jane.smith@example.com</td>
-                                    <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">18 Oct 2025</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-red-600 hover:text-red-800">Remove</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Reviews Tab -->
-            <div id="reviews" class="tab-content">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Customer Reviews</h2>
-                    <p class="text-gray-600 mt-1">Manage property and agent reviews</p>
-                </div>
+    <!-- Form Data Tab -->
+    <div id="formdata" class="tab-content">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
+            <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
+        </div>
 
-                <div class="space-y-4">
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">JD</div>
-                            <div class="flex-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h4 class="text-lg font-semibold text-gray-800">John Doe</h4>
-                                    <div class="flex items-center text-yellow-500">
-                                        <span class="mr-1">★★★★★</span>
-                                        <span class="text-gray-600 text-sm">5.0</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-2">Amazing property! The location is perfect and the agent was very professional. Highly recommended!</p>
-                                <div class="flex items-center justify-between text-sm text-gray-500">
-                                    <span>Luxury Villa Sydney</span>
-                                    <span>2 days ago</span>
-                                </div>
-                            </div>
-                        </div>
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">Robert Miller</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">robert.m@email.com</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">Luxury Villa</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">24 Oct 2025</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-blue-600 hover:text-blue-800">View</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">Lisa Anderson</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">lisa.a@email.com</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">Beach House</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">23 Oct 2025</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-blue-600 hover:text-blue-800">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Tab -->
+    <div id="blog" class="tab-content">
+        <div class="mb-6 flex justify-between items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
+                <p class="text-gray-600 mt-1">Manage your blog content</p>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                New Post
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                        <span>Real Estate Tips</span>
+                        <span>•</span>
+                        <span>5 min read</span>
                     </div>
-
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">SK</div>
-                            <div class="flex-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h4 class="text-lg font-semibold text-gray-800">Sarah Kim</h4>
-                                    <div class="flex items-center text-yellow-500">
-                                        <span class="mr-1">★★★★☆</span>
-                                        <span class="text-gray-600 text-sm">4.0</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-2">Great experience overall. The apartment is modern and well-maintained. Would definitely recommend to friends.</p>
-                                <div class="flex items-center justify-between text-sm text-gray-500">
-                                    <span>Melbourne Apartment</span>
-                                    <span>1 week ago</span>
-                                </div>
-                            </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">10 Tips for First-Time Home Buyers</h3>
+                    <p class="text-gray-600 mb-4">Essential advice for navigating your first property purchase in Australia...</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">20 Oct 2025</span>
+                        <div class="space-x-2">
+                            <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                            <button class="text-green-600 hover:text-green-800">View</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Form Data Tab -->
-            <div id="formdata" class="tab-content">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
-                    <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Robert Miller</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">robert.m@email.com</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Luxury Villa</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">24 Oct 2025</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-blue-600 hover:text-blue-800">View</button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Lisa Anderson</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">lisa.a@email.com</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Beach House</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">23 Oct 2025</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-blue-600 hover:text-blue-800">View</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                        <span>Market Trends</span>
+                        <span>•</span>
+                        <span>8 min read</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Blog Tab -->
-            <div id="blog" class="tab-content">
-                <div class="mb-6 flex justify-between items-center">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
-                        <p class="text-gray-600 mt-1">Manage your blog content</p>
-                    </div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        New Post
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                        <div class="p-6">
-                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                                <span>Real Estate Tips</span>
-                                <span>•</span>
-                                <span>5 min read</span>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">10 Tips for First-Time Home Buyers</h3>
-                            <p class="text-gray-600 mb-4">Essential advice for navigating your first property purchase in Australia...</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">20 Oct 2025</span>
-                                <div class="space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    <button class="text-green-600 hover:text-green-800">View</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-                        <div class="p-6">
-                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                                <span>Market Trends</span>
-                                <span>•</span>
-                                <span>8 min read</span>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Sydney Real Estate Market Report 2025</h3>
-                            <p class="text-gray-600 mb-4">Comprehensive analysis of current trends and future predictions...</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">18 Oct 2025</span>
-                                <div class="space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    <button class="text-green-600 hover:text-green-800">View</button>
-                                </div>
-                            </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sydney Real Estate Market Report 2025</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive analysis of current trends and future predictions...</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">18 Oct 2025</span>
+                        <div class="space-x-2">
+                            <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                            <button class="text-green-600 hover:text-green-800">View</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </div>
+    </main>
     </div>
 
     <!-- Create Page Modal -->
@@ -838,16 +879,17 @@
                 </button>
             </div>
 
-            <form>
+            <form action="{{ route('pages.create') }}" method="post">
+                @csrf
                 <div class="p-6 space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Page Title <span class="text-red-500">*</span></label>
-                        <input type="text" required placeholder="Enter page title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" name="title" required placeholder="Enter page title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Meta Description <span class="text-red-500">*</span></label>
-                        <textarea rows="4" required placeholder="Enter SEO description (150-160 characters)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
+                        <textarea rows="4" name="meta_description" required placeholder="Enter SEO description (150-160 characters)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
                         <p class="mt-1 text-xs text-gray-500">This appears in search results and can be edited later.</p>
                     </div>
                 </div>

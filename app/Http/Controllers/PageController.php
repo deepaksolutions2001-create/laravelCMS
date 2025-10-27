@@ -14,6 +14,7 @@ class PageController extends Controller
    */
   public function create(Request $request)
   {
+
     // Create a new draft page with default blank values
     $page = Page::create([
       'user_id' => session()->get('user_id'),
