@@ -5,6 +5,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertiesController;
+use App\Http\Controllers\AgentController;
+
 
 
 
@@ -71,9 +73,20 @@ Route::middleware('ensure.authentic')->group(function () {
  });
 
  //route for related to  property page
- Route::view('properties/add', 'add.properties')->name('add.property');
- Route::post('properties/save', [PropertiesController::class, 'addProperty'])->name('save.property');
+ Route::get('properties/add', [PropertiesController::class, 'addProperty'])->name('add.property');
+ Route::post('properties/save', [PropertiesController::class, 'saveProperty'])->name('save.property');
  Route::delete('properties/{id}/delete', action: [PropertiesController::class, 'deleteProperty'])->name('delete.property');
  Route::get('properites/{id}/edit', [PropertiesController::class, 'editProperty'])->name('edit.property');
  Route::put('properties/{id}/update', [PropertiesController::class, 'updateProperty'])->name('update.property');
+
+ //route for related to agents page
+ Route::view('agent/add', 'add.agents')->name('add.agent');
+ Route::post('agent/save', [AgentController::class, 'addAgent'])->name('save.agent');
+ Route::delete('agent/{id}/delete', [AgentController::class, 'deleteAgent'])->name('delete.agent');
+ Route::get('agent/{id}/edit', [AgentController::class, 'editAgent'])->name('edit.agent');
+ Route::put('agent/{id}/update', [AgentController::class, 'updateAgent'])->name('update.agent');
+
+
+ //routes for delete subcriber email
+ Route::delete('subcriber/{id}/delte', [PropertiesController::class, 'deleteSubcriber'])->name('delete.subcriber');
 });

@@ -520,19 +520,6 @@
                         </button></a>
                 </div>
 
-                <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                        <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Luxury Villa</h3>
-                            <p class="text-gray-600 text-sm mb-3">5 bed • 4 bath • 3500 sq ft</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-blue-600">$1,250,000</span>
-                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">For Sale</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
                 <!-- NEW_STR -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -588,282 +575,470 @@
                         </div>
                     </div>
                     @endforeach
-            </div>
-
-            <!-- Pagination -->
-            <div class="mt-6">
-                {{ $properties->links() }}
-            </div>
-
-
-
-
-    </div>
-
-    <!-- Agents Tab -->
-    <div id="agents" class="tab-content">
-        <div class="mb-6 flex justify-between items-center">
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">Real Estate Agents</h2>
-                <p class="text-gray-600 mt-1">Manage your agent team</p>
-            </div>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                </svg>
-                Add Agent
-            </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">SJ</div>
-                <h3 class="text-lg font-semibold text-gray-800">Sarah Johnson</h3>
-                <p class="text-gray-600 text-sm mb-3">Senior Agent</p>
-                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                    <span>23 Properties</span>
-                    <span>•</span>
-                    <span>4.8 ★</span>
                 </div>
-                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+
+                <!-- Pagination -->
+                <div class="mt-6">
+                    {{ $properties->links() }}
+                </div>
+
+
+
+
             </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">MB</div>
-                <h3 class="text-lg font-semibold text-gray-800">Michael Brown</h3>
-                <p class="text-gray-600 text-sm mb-3">Property Specialist</p>
-                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                    <span>18 Properties</span>
-                    <span>•</span>
-                    <span>4.9 ★</span>
+            <!-- Agents Tab -->
+            <div id="agents" class="tab-content">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Real Estate Agents</h2>
+                        <p class="text-gray-600 mt-1">Manage your agent team</p>
+                    </div>
+                    <a href="{{ route('add.agent') }}"><button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Add Agent
+                        </button></a>
                 </div>
-                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+
+                @php
+                use Illuminate\Support\Str;
+                @endphp
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @forelse($agent as $a)
+                    @php
+                    $initials = collect(explode(' ', trim($a->name ?? '')))->filter()->map(fn($w)=>Str::substr($w,0,1))->take(2)->implode('') ?: 'AG';
+                    $title = $a->title ?? 'Agent';
+                    $img = $a->image ?? null; // relative path like /storage/agents/xyz.jpg
+                    $props = (int)($a->listings_limit ?? 0);
+                    $canList = (bool)($a->can_property_list ?? false);
+                    $badgeCls = $canList ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700';
+                    $badgeTxt = $canList ? 'Can List' : 'Not list';
+                    @endphp
+
+                    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                        @if($img)
+                        <img src="{{ $img }}" alt="{{ $a->name }}" class="w-20 h-20 mx-auto rounded-full object-cover mb-4 border border-gray-200">
+                        @else
+                        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                            {{ $initials }}
+                        </div>
+                        @endif
+
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $a->name }}</h3>
+                        <p class="text-gray-600 text-sm mb-3">{{ $title }}</p>
+
+                        <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
+                            <span>{{ $props }} Properties</span>
+                            <span>•</span>
+                            <span class="px-2 py-0.5 rounded-full {{ $badgeCls }}">{{ $badgeTxt }}</span>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-2 mt-2">
+                            <a href="{{ route('edit.agent',['id'=>$a->id]) }}"
+                                class="px-3 py-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition inline-flex items-center">
+                                Edit
+                            </a>
+
+                            <form action="{{ route('delete.agent',['id'=>$a->id]) }}" method="POST"
+                                onsubmit="return confirm('Delete this agent?');" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="px-3 py-1.5 text-sm bg-red-500 hover:bg-red-600 text-white rounded-lg transition inline-flex items-center">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="col-span-full">
+                        <div class="bg-white rounded-xl shadow p-6 text-center text-gray-600">
+                            No agents found.
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+                <!-- Pagination -->
+                <div class="mt-6">
+                    {{ $agent->links() }}
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">ED</div>
-                <h3 class="text-lg font-semibold text-gray-800">Emily Davis</h3>
-                <p class="text-gray-600 text-sm mb-3">Luxury Homes Expert</p>
-                <div class="flex justify-center space-x-4 text-sm text-gray-600 mb-4">
-                    <span>31 Properties</span>
-                    <span>•</span>
-                    <span>5.0 ★</span>
+
+            <!-- Subscribers Tab -->
+            <div id="subscribers" class="tab-content">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Email Subscribers</h2>
+                    <p class="text-gray-600 mt-1">Manage your newsletter subscribers</p>
                 </div>
-                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">View Profile</button>
+
+                <!-- KPI cards -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <p class="text-gray-500 text-sm">Total Subscribers</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">{{ number_format($total) }}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-500 text-sm">Active</p>
+                            <p class="text-3xl font-bold text-green-600 mt-2">{{ number_format($active) }}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-500 text-sm">Unsubscribed</p>
+                            <p class="text-3xl font-bold text-red-600 mt-2">{{ number_format($unsub) }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Table -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subscribed Date</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                @forelse($subcriber as $s)
+                                @php
+                                $badge = $s->status === 'subscribed'
+                                ? 'bg-green-100 text-green-800'
+                                : ($s->status === 'unsubscribed'
+                                ? 'bg-red-100 text-red-700'
+                                : 'bg-yellow-100 text-yellow-800');
+                                @endphp
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 text-sm text-gray-900">{{ $s->email }}</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 {{ $badge }} text-xs rounded-full">{{ ucfirst($s->status) }}</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                        {{ \Illuminate\Support\Carbon::parse($s->created_at)->format('d M Y') }}
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <form action="{{ route('delete.subcriber',['id'=>$s->id]) }}" method="POST"
+                                            onsubmit="return confirm('Remove this subscriber?');" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-red-600 hover:text-red-800">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" class="px-6 py-8 text-center text-gray-500">No subscribers found.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="px-4 py-3 bg-white border-t border-gray-100">
+                        {{ $subcriber->links() }}
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Subscribers Tab -->
-    <div id="subscribers" class="tab-content">
-        <div class="mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Email Subscribers</h2>
-            <p class="text-gray-600 mt-1">Manage your newsletter subscribers</p>
-        </div>
 
-        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <p class="text-gray-500 text-sm">Total Subscribers</p>
-                    <p class="text-3xl font-bold text-gray-800 mt-2">1,284</p>
+            <!-- Alpine core (if not already included globally) -->
+            <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+            <!-- Reviews Tab -->
+            <div id="reviews" class="tab-content" x-data="{ tab: '{{ request('tab','service') }}' }">
+                <div class="mb-6 flex items-start justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Customer Reviews</h2>
+                        <p class="text-gray-600 mt-1">Manage property and agent reviews</p>
+                    </div>
+
+                    <!-- Right-aligned tabs -->
+                    <div class="flex items-center gap-2">
+                        <button
+                            type="button"
+                            @click="tab = 'service'"
+                            class="px-3 py-1.5 rounded-lg text-sm font-medium transition"
+                            :class="tab==='service' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'">
+                            Service
+                        </button>
+                        <button
+                            type="button"
+                            @click="tab = 'agent'"
+                            class="px-3 py-1.5 rounded-lg text-sm font-medium transition"
+                            :class="tab==='agent' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'">
+                            Agent
+                        </button>
+                        <button
+                            type="button"
+                            @click="tab = 'property'"
+                            class="px-3 py-1.5 rounded-lg text-sm font-medium transition"
+                            :class="tab==='property' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'">
+                            Property
+                        </button>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <p class="text-gray-500 text-sm">Active</p>
-                    <p class="text-3xl font-bold text-green-600 mt-2">1,198</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-gray-500 text-sm">Unsubscribed</p>
-                    <p class="text-3xl font-bold text-red-600 mt-2">86</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subscribed Date</th>
-                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm text-gray-900">john.doe@example.com</td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
-                            <td class="px-6 py-4 text-sm text-gray-500">20 Oct 2025</td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-red-600 hover:text-red-800">Remove</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm text-gray-900">jane.smith@example.com</td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Active</span></td>
-                            <td class="px-6 py-4 text-sm text-gray-500">18 Oct 2025</td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-red-600 hover:text-red-800">Remove</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                <!-- Service reviews -->
+                <div x-show="tab==='service'" x-cloak class="space-y-4">
+                    @forelse(($grouped['service'] ?? []) as $r)
+                    @php
+                    $d = is_array($r->data) ? $r->data : (json_decode($r->data, true) ?? []);
+                    $name = $d['name'] ?? 'Anonymous';
+                    $text = $d['review'] ?? '';
+                    $rating = (int)($d['rating'] ?? 0);
+                    $initials = collect(preg_split('/\s+/', trim($name)))
+                    ->filter()->map(fn($p)=>mb_substr($p,0,1))->take(2)->implode('');
+                    @endphp
 
-    <!-- Reviews Tab -->
-    <div id="reviews" class="tab-content">
-        <div class="mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Customer Reviews</h2>
-            <p class="text-gray-600 mt-1">Manage property and agent reviews</p>
-        </div>
-
-        <div class="space-y-4">
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex items-start space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">JD</div>
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-lg font-semibold text-gray-800">John Doe</h4>
-                            <div class="flex items-center text-yellow-500">
-                                <span class="mr-1">★★★★★</span>
-                                <span class="text-gray-600 text-sm">5.0</span>
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                {{ $initials ?: 'NA' }}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">{{ $name }}</h4>
+                                    <div class="flex items-center text-yellow-500">
+                                        <span class="mr-1">{!! str_repeat('★', max(0,min(5,$rating))) . str_repeat('☆', 5-max(0,min(5,$rating))) !!}</span>
+                                        <span class="text-gray-600 text-sm">{{ number_format($rating,1) }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">{{ $text }}</p>
+                                <div class="text-sm text-gray-500">
+                                    <span>{{ optional($r->created_at)->diffForHumans() }}</span>
+                                </div>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-2">Amazing property! The location is perfect and the agent was very professional. Highly recommended!</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
-                            <span>Luxury Villa Sydney</span>
-                            <span>2 days ago</span>
+
+                        <!-- Footer: button at bottom-left -->
+                        <div class="mt-4 pt-3 border-t">
+                            <a href=""
+                                class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+                                View details
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
+                    @empty
+                    <div class="text-sm text-gray-500">No service reviews yet.</div>
+                    @endforelse
 
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex items-start space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">SK</div>
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between mb-2">
-                            <h4 class="text-lg font-semibold text-gray-800">Sarah Kim</h4>
-                            <div class="flex items-center text-yellow-500">
-                                <span class="mr-1">★★★★☆</span>
-                                <span class="text-gray-600 text-sm">4.0</span>
+                    <!-- Pagination -->
+                    <div class="px-4 py-3 bg-white border-t border-gray-100">
+                        {{ $grouped['service']->appends(['tab'=>'service'])->links() }}
+                    </div>
+                </div>
+
+                <!-- Agent reviews -->
+                <div x-show="tab==='agent'" x-cloak class="space-y-4">
+                    @forelse(($grouped['agent'] ?? []) as $r)
+                    @php
+                    $d = is_array($r->data) ? $r->data : (json_decode($r->data, true) ?? []);
+                    $name = $d['name'] ?? 'Anonymous';
+                    $text = $d['review'] ?? '';
+                    $rating = (int)($d['rating'] ?? 0);
+                    $initials = collect(preg_split('/\s+/', trim($name)))
+                    ->filter()->map(fn($p)=>mb_substr($p,0,1))->take(2)->implode('');
+                    @endphp
+
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                                {{ $initials ?: 'NA' }}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">{{ $name }}</h4>
+                                    <div class="flex items-center text-yellow-500">
+                                        <span class="mr-1">{!! str_repeat('★', max(0,min(5,$rating))) . str_repeat('☆', 5-max(0,min(5,$rating))) !!}</span>
+                                        <span class="text-gray-600 text-sm">{{ number_format($rating,1) }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">{{ $text }}</p>
+                                <div class="text-sm text-gray-500">
+                                    <span>{{ optional($r->created_at)->diffForHumans() }}</span>
+                                </div>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-2">Great experience overall. The apartment is modern and well-maintained. Would definitely recommend to friends.</p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
-                            <span>Melbourne Apartment</span>
-                            <span>1 week ago</span>
+
+                        <!-- Footer: button at bottom-left -->
+                        <div class="mt-4 pt-3 border-t">
+                            <a href=""
+                                class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+                                View details
+                            </a>
                         </div>
+                    </div>
+                    @empty
+                    <div class="text-sm text-gray-500">No agent reviews yet.</div>
+                    @endforelse
+
+                    <!-- Pagination -->
+                    <div class="px-4 py-3 bg-white border-t border-gray-100">
+                        {{ $grouped['agent']->appends(['tab'=>'agent'])->links() }}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Form Data Tab -->
-    <div id="formdata" class="tab-content">
-        <div class="mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
-            <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
-        </div>
+                <!-- Property reviews -->
+                <div x-show="tab==='property'" x-cloak class="space-y-4">
+                    @forelse(($grouped['property'] ?? []) as $r)
+                    @php
+                    $d = is_array($r->data) ? $r->data : (json_decode($r->data, true) ?? []);
+                    $name = $d['name'] ?? 'Anonymous';
+                    $text = $d['review'] ?? '';
+                    $rating = (int)($d['rating'] ?? 0);
+                    $initials = collect(preg_split('/\s+/', trim($name)))
+                    ->filter()->map(fn($p)=>mb_substr($p,0,1))->take(2)->implode('');
+                    @endphp
 
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm font-medium text-gray-900">Robert Miller</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">robert.m@email.com</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">Luxury Villa</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">24 Oct 2025</td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-blue-600 hover:text-blue-800">View</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm font-medium text-gray-900">Lisa Anderson</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">lisa.a@email.com</td>
-                            <td class="px-6 py-4 text-sm text-gray-600">Beach House</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">23 Oct 2025</td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-blue-600 hover:text-blue-800">View</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Blog Tab -->
-    <div id="blog" class="tab-content">
-        <div class="mb-6 flex justify-between items-center">
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
-                <p class="text-gray-600 mt-1">Manage your blog content</p>
-            </div>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                </svg>
-                New Post
-            </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                <div class="p-6">
-                    <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                        <span>Real Estate Tips</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">10 Tips for First-Time Home Buyers</h3>
-                    <p class="text-gray-600 mb-4">Essential advice for navigating your first property purchase in Australia...</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">20 Oct 2025</span>
-                        <div class="space-x-2">
-                            <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                            <button class="text-green-600 hover:text-green-800">View</button>
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
+                                {{ $initials ?: 'NA' }}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-lg font-semibold text-gray-800">{{ $name }}</h4>
+                                    <div class="flex items-center text-yellow-500">
+                                        <span class="mr-1">{!! str_repeat('★', max(0,min(5,$rating))) . str_repeat('☆', 5-max(0,min(5,$rating))) !!}</span>
+                                        <span class="text-gray-600 text-sm">{{ number_format($rating,1) }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-2">{{ $text }}</p>
+                                <div class="text-sm text-gray-500">
+                                    <span>{{ optional($r->created_at)->diffForHumans() }}</span>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Footer: button at bottom-left -->
+                        <div class="mt-4 pt-3 border-t">
+                            <a href=""
+                                class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+                                View details
+                            </a>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="text-sm text-gray-500">No property reviews yet.</div>
+                    @endforelse
+
+                    <!-- Pagination -->
+                    <div class="px-4 py-3 bg-white border-t border-gray-100">
+                        {{ $grouped['property']->appends(['tab'=>'property'])->links() }}
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-                <div class="p-6">
-                    <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                        <span>Market Trends</span>
-                        <span>•</span>
-                        <span>8 min read</span>
+
+            <!-- Form Data Tab -->
+            <div id="formdata" class="tab-content">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
+                    <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Robert Miller</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">robert.m@email.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Luxury Villa</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">24 Oct 2025</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-blue-600 hover:text-blue-800">View</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Lisa Anderson</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">lisa.a@email.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Beach House</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">23 Oct 2025</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-blue-600 hover:text-blue-800">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sydney Real Estate Market Report 2025</h3>
-                    <p class="text-gray-600 mb-4">Comprehensive analysis of current trends and future predictions...</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">18 Oct 2025</span>
-                        <div class="space-x-2">
-                            <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                            <button class="text-green-600 hover:text-green-800">View</button>
+                </div>
+            </div>
+
+            <!-- Blog Tab -->
+            <div id="blog" class="tab-content">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
+                        <p class="text-gray-600 mt-1">Manage your blog content</p>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        New Post
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                                <span>Real Estate Tips</span>
+                                <span>•</span>
+                                <span>5 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">10 Tips for First-Time Home Buyers</h3>
+                            <p class="text-gray-600 mb-4">Essential advice for navigating your first property purchase in Australia...</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">20 Oct 2025</span>
+                                <div class="space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button class="text-green-600 hover:text-green-800">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                                <span>Market Trends</span>
+                                <span>•</span>
+                                <span>8 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Sydney Real Estate Market Report 2025</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive analysis of current trends and future predictions...</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">18 Oct 2025</span>
+                                <div class="space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    <button class="text-green-600 hover:text-green-800">View</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </main>
+        </main>
     </div>
 
     <!-- Create Page Modal -->

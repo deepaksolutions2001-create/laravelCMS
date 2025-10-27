@@ -368,16 +368,71 @@
                 </div>
 
                 {{-- Assignment --}}
+                @php
+                use Illuminate\Support\Str;
+                $selected = old('agent_ids', $preselect ?? []);
+                @endphp
                 <div class="glass-card rounded-2xl p-6 fade-in">
                     <h2 class="text-lg font-semibold text-gray-800 mb-4">Assignment</h2>
+
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Agents (comma separated)</label>
-                            <input type="text" name="prop_agents" value="{{ old('prop_agents', isset($property->agents) ? implode(', ', $property->agents) : '') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                        {{-- Assign Agents --}}
+                        <div class="space-y-3 md:col-span-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-medium text-gray-800">Assign Agents</h3>
+                                <span class="text-xs text-gray-500">Selected: {{ is_array($selected) ? count($selected) : 0 }}</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                @foreach($agent as $a)
+                                @php
+                                // Build avatar src: if relative (e.g. 'agents/xyz.jpg'), map to public URL; if already URL or '/storage/...', use as is
+                                $src = $a->image;
+                                if ($src && !Str::startsWith($src, ['http://','https://','/storage/'])) {
+                                $src = Storage::url($src);
+                                }
+                                // Initials fallback
+                                $initials = collect(explode(' ', trim($a->name ?? '')))
+                                ->filter()->map(fn($w)=>mb_substr($w,0,1))->take(2)->implode('') ?: 'AG';
+                                $checked = in_array($a->id, (array)$selected, true);
+                                @endphp
+
+                                <label class="group relative flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/40 transition">
+                                    <input type="checkbox" name="agent_ids[]" value="{{ $a->id }}"
+                                        class="size-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                        {{ $checked ? 'checked' : '' }}>
+
+                                    @if($src)
+                                    <img src="{{ $src }}" alt="{{ $a->name }}"
+                                        class="w-10 h-10 rounded-full object-cover ring-1 ring-white/70 shadow-sm">
+                                    @else
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-sm font-semibold ring-1 ring-white/70 shadow-sm">
+                                        {{ $initials }}
+                                    </div>
+                                    @endif
+
+                                    <div class="min-w-0">
+                                        <div class="text-sm font-medium text-gray-800 truncate">{{ $a->name }}</div>
+                                        @if(!empty($a->title))
+                                        <div class="text-xs text-gray-500 truncate">{{ $a->title }}</div>
+                                        @endif
+                                    </div>
+
+                                    {{-- subtle selected state accent --}}
+                                    <span class="absolute inset-0 pointer-events-none rounded-xl ring-2 ring-blue-500/0 group-has-[:checked]:ring-blue-500/30 transition"></span>
+                                </label>
+                                @endforeach
+                            </div>
                         </div>
+
+                        {{-- Inspection Times --}}
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Inspection Times (comma separated)</label>
-                            <input type="text" name="prop_inspection" value="{{ old('prop_inspection', isset($property->inspection) ? implode(', ', $property->inspection) : '') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <input type="text" name="prop_inspection"
+                                value="{{ old('prop_inspection', isset($property->inspection) ? implode(', ', (array)$property->inspection) : '') }}"
+                                placeholder="e.g. Sat 11:00, Sun 2:30"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <p class="mt-2 text-xs text-gray-500">Tip: keep to short labels for clean cards. [web:254]</p>
                         </div>
                     </div>
                 </div>

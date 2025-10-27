@@ -5,10 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Propertie;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use App\Models\Agent;
+use App\Models\Subcriber;
+
+
 
 class PropertiesController extends Controller
 {
-    public function addProperty(Request $request)
+
+    //return view of property
+    public function addProperty()
+    {
+        $agent = Agent::get();
+        return view('add/properties', compact('agent'));
+    }
+
+
+    public function saveProperty(Request $request)
     {
 
         $property = Propertie::create([
@@ -42,7 +56,7 @@ class PropertiesController extends Controller
             // Map/assignment
             'map_url'          => $request->input('prop_map_url', ''),
             'inspection'       => [],
-            'agents'           => [],
+            'agents'           => $request->input('agent_ids', ''),
 
             // Status/pricing defaults
             'status'           => $request->input('prop_status', 'archieved'),
@@ -102,13 +116,15 @@ class PropertiesController extends Controller
     {
 
 
-        $property = Propertie::findOrFail($id); // id-based fetch [web:178]
+        $property = Propertie::findOrFail($id); // id-based fetch 
         foreach (['images', 'videos', 'floor_plan_images', 'documents'] as $key) {
-            foreach (($property->{$key} ?? []) as $path) {
-                Storage::disk('public')->delete($path); // cleanup files on public disk [web:147]
+            foreach (($property->{$key} ?? []) as $val) {
+                $path = ltrim(parse_url($val, PHP_URL_PATH) ?? $val, '/');      // 'storage/agents/mmq...png' or 'agents/mmq...png'
+                $relative = Str::startsWith($path, 'storage/') ? Str::after($path, 'storage/') : $path; // 'agents/mmq...png'
+                Storage::disk('public')->delete($relative); // cleanup files on public disk 
             }
         }
-        $property->delete(); // remove row [web:178]
+        $property->delete(); // remove row 
         // Redirect to the edit (builder) view for the newly created page
         // Redirect to dashboard with the edit URL
         return redirect()->route('dashboard')
@@ -119,15 +135,19 @@ class PropertiesController extends Controller
     public function editProperty($id)
     {
         $property = Propertie::findOrFail($id);
+        // $ids = collect($property->agents ?? [])
+        //     ->map(fn($v) => (int)$v)->filter()->values()->all();//get all agent id from proeprty
         $vals = true;
-        return view('add/properties', compact('property', 'vals'));
+        $agent = Agent::get();
+
+        return view('add/properties', compact('property', 'vals', 'agent'));
     }
 
     public function updateproperty(Request $r, $id)
     {
 
         // Fetch by id
-        $property = Propertie::findOrFail($id); // id-based fetch [web:178]
+        $property = Propertie::findOrFail($id); // id-based fetc
 
         // Fill scalar fields from your prop_* inputs
         $property->fill([
@@ -159,12 +179,13 @@ class PropertiesController extends Controller
             'map_url'         => $r->input('prop_map_url', $property->map_url),
 
             // lists (comma-separated -> arrays)
-            'agents'          => array_filter(array_map('trim', explode(',', (string)$r->input('prop_agents', isset($property->agents) ? implode(',', $property->agents) : '')))),
+            'agents'           => $r->input('agent_ids', ''),
+
             'inspection'      => array_filter(array_map('trim', explode(',', (string)$r->input('prop_inspection', isset($property->inspection) ? implode(',', $property->inspection) : '')))),
 
             // docs label
             'documents_name'  => $r->input('documents_name', $property->documents_name),
-        ]); // mass assignment with $fillable on model [web:120]
+        ]); // mass assignment with $fillable on model
 
         // Ensure arrays exist when null
         $property->images            = $property->images            ?? [];
@@ -184,7 +205,7 @@ class PropertiesController extends Controller
             $current = $property->{$key} ?? [];
             foreach ($idxs as $i) {
                 if (isset($current[$i])) {
-                    Storage::disk('public')->delete($current[$i]); // remove file from storage/app/public [web:147]
+                    Storage::disk('public')->delete($current[$i]); // remove file from storage/app/public 
                     unset($current[$i]);
                 }
             }
@@ -203,7 +224,7 @@ class PropertiesController extends Controller
             if ($r->hasFile($key)) {
                 $add = [];
                 foreach ($r->file($key) as $file) {
-                    $add[] = $file->store($dir, 'public'); // returns relative path under public disk [web:147]
+                    $add[] = $file->store($dir, 'public'); // returns relative path under public disk 
                 }
                 $property->{$key} = array_merge($property->{$key} ?? [], $add);
             }
@@ -217,6 +238,21 @@ class PropertiesController extends Controller
         } else {
             return redirect()->route('dashboard')
                 ->with('failed', 'property update failed!');
+        }
+    }
+
+
+    public function deleteSubcriber($id)
+    {
+        $subcriber = Subcriber::findOrFail($id);
+        if ($subcriber->delete()) {
+            // Redirect to the edit (builder) view for the newly created page
+            // Redirect to dashboard with the edit URL
+            return redirect()->route('dashboard')
+                ->with('success', 'delete successfully!');
+        } else {
+            return redirect()->route('dashboard')
+                ->with('failed', 'delete failed!');
         }
     }
 }
