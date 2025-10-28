@@ -856,6 +856,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const modal = document.getElementById("saveOptionModal");
   const btnSave = document.getElementById("btn-save");
   const saveAsPageBtn = document.getElementById("saveAsPage");
+  let val = document.getElementById("saveAsPage").value;
   const saveAsComponentBtn = document.getElementById("saveAsComponent");
   const cancelSaveBtn = document.getElementById("cancelSave");
 
@@ -874,8 +875,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     saveAsPageBtn?.addEventListener("click", async () => {
       hideModal();
-      const result = await savePageData(`/pages/${PAGE_ID}/save`);
-      if (result.success) alert('✅ Page saved successfully!');
+      if (val === 'page') {
+        const result = await savePageData(`/pages/${PAGE_ID}/save`);
+        if (result.success) alert('✅ Page saved successfully!');
+      } else if(val === 'blog') {
+        const result = await savePageData(`/blog/${PAGE_ID}/save`);
+        if (result.success) alert('✅ blog saved successfully!');
+      }
+
     });
 
     saveAsComponentBtn?.addEventListener("click", async () => {

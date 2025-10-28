@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Component;
+use App\Models\FormSubmission;
 
 class ComponentController extends Controller
 {
@@ -130,7 +131,21 @@ class ComponentController extends Controller
 
     public function saveForm(Request $request)
     {
+        // ✅ 1. Get all request data except token
+        $data = $request->except('_token');
+        // Create a new draft page with default blank values
+        $form = FormSubmission::create([
+            'form_type' => "Form",
+            'name' => $request->name,
+            'source' => "website",
+            'data' => $data,
 
-        print_r($request->all());
+        ]);
+
+
+        // Redirect to the edit (builder) view for the newly created page
+        // Redirect to dashboard with the edit URL
+        return redirect()->route('dashboard')
+            ->with('success', 'form submit successfully!');
     }
 }

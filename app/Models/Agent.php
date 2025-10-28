@@ -49,7 +49,7 @@ class Agent extends Model
     'api_key',
     'api_secret',
     'accesses',
-  ]; // required for create() mass assignment [web:120]
+  ]; // required for create() mass assignment 
 
   protected function casts(): array
   {

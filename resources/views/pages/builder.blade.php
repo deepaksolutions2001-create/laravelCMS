@@ -227,7 +227,7 @@
     <h3>Save Options</h3>
     <p>How would you like to save this?</p>
     <div style="display:flex;gap:10px;margin-top:15px;">
-      <button id="saveAsPage" class="btn btn-primary">Save as Page</button>
+      <button id="saveAsPage" class="btn btn-primary" value="{{ $val }}">Save as Page</button>
       <button id="saveAsComponent" class="btn btn-secondary">Save as Component</button>
       <button id="cancelSave" class="btn btn-danger">Cancel</button>
     </div>

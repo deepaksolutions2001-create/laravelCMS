@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BlogController;
+
 
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -25,6 +27,8 @@ Route::post('register', [AuthController::class, 'register'])->name('register.sav
 // routes/web.php
 Route::middleware('ensure.authentic')->group(function () {
 
+ //route for profile update
+ Route::post('profile/{id}/save',[AuthController::class,'saveProfile'])->name('save.profile');
  //route for home page 
  Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
  Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
@@ -88,8 +92,15 @@ Route::middleware('ensure.authentic')->group(function () {
  Route::delete('subcriber/{id}/delete', [DashboardController::class, 'deleteSubcriber'])->name('delete.subcriber');
  //routes for review details 
  Route::get('review/{id}/{type}/detail', [DashboardController::class, 'reviewDetail'])->name('detail.review');
- 
+
  //route for form
- Route::get('form/{id}/detail',[DashboardController::class,'formDetail'])->name('detail.form');
- Route::delete('form/{id}/delete',[DashboardController::class,'formDelete'])->name('delete.form');
+ Route::get('form/{id}/detail', [DashboardController::class, 'formDetail'])->name('detail.form');
+ Route::delete('form/{id}/delete', [DashboardController::class, 'formDelete'])->name('delete.form');
+
+ //route for blog post handle
+ Route::post('blog/create', [BlogController::class, 'createBlog'])->name('create.blog');
+ Route::get('blog/{id}/edit', [BlogController::class, 'editBlog'])->name('edit.blog');
+ Route::post('blog/{id}/save', [BlogController::class, 'saveBlog'])->name('save.blog');
+ Route::get('blog/{id}/view', [BlogController::class, 'viewBlog'])->name('view.blog');
+ Route::delete('blog/{id}/delete',[BlogController::class,'deleteBlog'])->name('delete.blog');
 });

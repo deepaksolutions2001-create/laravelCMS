@@ -11,6 +11,8 @@ use App\Models\Subcriber;
 use App\Models\Review;
 use App\Models\FormSubmission;
 use Illuminate\Support\Str;
+use App\Models\Blog;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -24,7 +26,7 @@ class DashboardController extends Controller
     {
         // Fetch all pages from the database
         // Get paginated pages (7 per page)
-        $pages = Page::where('user_id', session('user_id'))->orderBy('created_at', 'desc')->paginate(7);
+        $pages = Page::orderBy('created_at', 'desc')->paginate(7);
         $properties = Propertie::orderBy('created_at', 'desc')->paginate(6);
         $agent = Agent::orderBy('created_at', 'desc')->paginate(6);
 
@@ -59,8 +61,11 @@ class DashboardController extends Controller
             ->paginate(10, ['*'], $pageName) // custom page name per tab
             ->withQueryString(); // keep ?type and filters in links 
 
+
+        //here we fetch blog data and show into dashboard view 
+        $blog = Blog::orderBy('created_at', 'desc')->paginate(8);
         // Return the list view with all pages
-        return view('dashboard', compact('pages', 'properties', 'agent', 'subcriber', 'total', 'active', 'unsub', 'grouped', 'types', 'activeType', 'submissions'));
+        return view('dashboard', compact('pages', 'properties', 'agent', 'subcriber', 'total', 'active', 'unsub', 'grouped', 'types', 'activeType', 'submissions', 'blog'));
     }
 
     //here we fetch data of review and also some detials of agent of proeprty and show into review detilas view

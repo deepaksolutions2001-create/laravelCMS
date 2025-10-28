@@ -291,7 +291,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500 text-sm">Agents</p>
-                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{  $agent->total()}}</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ $agent->total()}}</h3>
                             </div>
                             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -358,6 +358,7 @@
             </div>
 
             <!-- Profile Tab -->
+            {{-- resources/views/settings/profile.blade.php --}}
             <div id="profile" class="tab-content">
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Profile Settings</h2>
@@ -365,44 +366,78 @@
                 </div>
 
                 <div class="bg-white rounded-xl shadow-md p-6">
+                    {{-- Header: avatar + basics --}}
                     <div class="flex items-center space-x-6 mb-6 pb-6 border-b border-gray-200">
-                        <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
-                            DS
+                        @php
+                        $avatar = session('user_avatar') ? asset('storage/'.session('user_avatar')) : null;
+                        $initials = collect(explode(' ', session('user_name', 'User')))->map(fn($p)=>mb_substr($p,0,1))->take(2)->implode('');
+                        @endphp
+
+                        <div class="relative">
+                            @if($avatar)
+                            <img src="{{ $avatar }}" alt="Avatar"
+                                class="w-24 h-24 rounded-full object-cover ring-2 ring-blue-100">
+                            @else
+                            <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full
+                      flex items-center justify-center text-white text-3xl font-bold">
+                                {{ $initials }}
+                            </div>
+                            @endif
                         </div>
+
                         <div>
                             <h3 class="text-xl font-semibold text-gray-800">{{ session('user_name') }}</h3>
                             <p class="text-gray-600">{{ session('user_email') }}</p>
-                            <button class="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium">Change Photo</button>
+                            <button type="button" onclick="document.getElementById('avatar').click()"
+                                class="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                                Change Photo
+                            </button>
                         </div>
                     </div>
 
-                    <form class="space-y-6">
+                    {{-- Form --}}
+                    <form method="POST" action="{{ route('save.profile',['id'=>session('user_id')]) }}" enctype="multipart/form-data" class="space-y-6">
+                        @csrf
+
+                        {{-- Hidden file input for avatar --}}
+                        <input id="avatar" name="avatar" type="file" accept="image/*" class="hidden">
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">{{ session('user_name') }}</label>
-                                <input type="text" value="Dalbir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                <input name="user_name" type="text" value="{{ old('name', session('user_name')) }}"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                @error('name') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                             </div>
 
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input name="user_phone" type="tel" value="{{ old('phone', session('user_phone')) }}"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                @error('phone') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+                            </div>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" value="{{ session('user_email') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                            <input type="tel" value="{{  session('user_phone')}}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="user_email" value="{{ session('user_email') }}" readonly disabled
+                                class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg text-gray-600 cursor-not-allowed">
+                            <p class="text-xs text-gray-500 mt-1">Email can’t be changed from here.</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Tell us about yourself..."></textarea>
+                            <textarea name="user_bio" rows="4"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Tell us about yourself...">{{ old('bio', $user->bio ?? '') }}</textarea>
+                            @error('bio') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                         </div>
 
                         <div class="flex justify-end space-x-3">
-                            <button type="button" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Cancel</button>
-                            <button type="submit" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">Save Changes</button>
+                            <button type="submit"
+                                class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+                                Save Changes
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -1032,56 +1067,113 @@
                         <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
                         <p class="text-gray-600 mt-1">Manage your blog content</p>
                     </div>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        New Post
+                    <button x-data @click="$dispatch('open-blog-modal')"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition inline-flex items-center">
+                        <i class="fa-solid fa-plus mr-2"></i> New Post
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                        <div class="p-6">
-                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                                <span>Real Estate Tips</span>
-                                <span>•</span>
-                                <span>5 min read</span>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">10 Tips for First-Time Home Buyers</h3>
-                            <p class="text-gray-600 mb-4">Essential advice for navigating your first property purchase in Australia...</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">20 Oct 2025</span>
-                                <div class="space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    <button class="text-green-600 hover:text-green-800">View</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
 
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-                        <div class="p-6">
-                            <div class="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                                <span>Market Trends</span>
-                                <span>•</span>
-                                <span>8 min read</span>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Sydney Real Estate Market Report 2025</h3>
-                            <p class="text-gray-600 mb-4">Comprehensive analysis of current trends and future predictions...</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">18 Oct 2025</span>
-                                <div class="space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    <button class="text-green-600 hover:text-green-800">View</button>
-                                </div>
-                            </div>
+                            <tbody class="divide-y divide-gray-200">
+                                @foreach ($blog as $post)
+                                <tr class="hover:bg-gray-50">
+                                    <!-- Title + excerpt -->
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-medium text-gray-900">{{ $post->title }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            {{ $post->meta_description ?? \Illuminate\Support\Str::limit(strip_tags($post->html ?? ''), 120) }}
+                                        </div>
+                                    </td>
+
+                                    <!-- Category -->
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                            {{ $post->category }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Status -->
+                                    <td class="px-6 py-4">
+                                        @php
+                                        $isPub = (int)($post->is_published ?? 0);
+                                        $statusClass = $isPub ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+                                        $statusText = $post->status ?? ($isPub ? 'published' : 'draft');
+                                        @endphp
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                            {{ ucfirst($statusText) }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Created -->
+                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                        {{ $post->created_at?->format('d M Y') }}
+                                    </td>
+
+                                    <!-- Updated -->
+                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                        {{ $post->updated_at?->format('d M Y') }}
+                                    </td>
+
+                                    <!-- Actions -->
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center justify-end gap-3">
+                                            <!-- Edit -->
+                                            <a href="{{ route('edit.blog',['id'=>$post->id]) }}"
+                                                class="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                                                title="Edit Post">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                <span>Edit</span>
+                                            </a>
+
+                                            <!-- View -->
+                                            <a href="{{ route('view.blog',['id'=>$post->id]) }}"
+                                                class="text-green-600 hover:text-green-800 flex items-center gap-1"
+                                                title="View Post" target="_blank" rel="noopener">
+                                                <i class="fa-solid fa-eye"></i>
+                                                <span>View</span>
+                                            </a>
+
+                                            <!-- Delete -->
+                                            <form action="{{ route('delete.blog',['id'=>$post->id]) }}"
+                                                method="POST" class="inline"
+                                                onsubmit="return confirm('Delete this post?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-600 hover:text-red-800 flex items-center gap-1"
+                                                    title="Delete Post">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                    <span>Delete</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination -->
+                        <div class="px-4 py-3 bg-white border-t border-gray-100">
+                            {{ $blog->withQueryString()->links() }}
                         </div>
                     </div>
                 </div>
             </div>
+
         </main>
     </div>
 
@@ -1125,6 +1217,61 @@
             </form>
         </div>
     </div>
+
+    <div x-data="{ open:false }"
+        x-on:open-blog-modal.window="open=true"
+        x-show="open"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+        x-cloak>
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800">
+                    <i class="fa-solid fa-pen-to-square text-blue-600 mr-2"></i>
+                    New Blog Post
+                </h3>
+                <button class="text-gray-500 hover:text-gray-700" @click="open=false">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <form method="POST" action="{{ route('create.blog') }}" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-sm text-gray-700">Title</label>
+                    <input name="blog_title" type="text" class="mt-1 w-full border rounded-lg px-3 py-2" required>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-700">Category</label>
+                        <input name="blog_category_name" type="text" placeholder="e.g. Real Estate Tips"
+                            class="mt-1 w-full border rounded-lg px-3 py-2" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-700">Meta Title</label>
+                    <input name="blog_meta_title" type="text" class="mt-1 w-full border rounded-lg px-3 py-2" required>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-700">Meta Description</label>
+                    <textarea name="blog_meta_description" rows="2" class="mt-1 w-full border rounded-lg px-3 py-2" required></textarea>
+                </div>
+
+
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" @click="open=false" class="px-4 py-2 rounded-lg border">Cancel</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+                        <i class="fa-solid fa-floppy-disk mr-2"></i> Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
 
     <script>
         // Tab switching

@@ -39,9 +39,10 @@ class PageController extends Controller
   {
     // Find the page by its ID (or fail if not found)
     $page = Page::findOrFail($id);
+    $val = 'page';
 
     // Load the builder view with the page data
-    return view('pages.builder', compact('page'));
+    return view('pages.builder', compact('page', 'val'));
   }
 
   /**

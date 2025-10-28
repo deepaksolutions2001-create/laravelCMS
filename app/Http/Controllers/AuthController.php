@@ -78,4 +78,30 @@ class AuthController extends Controller
 
         return redirect()->route('login.form')->with('success', 'logout successfully');
     }
+
+    public function saveProfile(Request $request, $id)
+    {
+        $paths = null;
+        // Process avatar file if present
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public'); // e.g. avatars/xyz.png [web:275]
+            $paths = $path;
+        }
+        // make object for model 
+        $user = UserModel::findOrFail($id);
+
+        //get and save data into  model ovejct for save into db
+        $user->name = $request->user_name;
+        $user->image = $paths;
+        $user->phone = $request->user_phone;
+        $user->bio = $request->user_bio;
+        if ($user->save()) {
+            session(['user_name' => $user->name]);
+            session(['user_email' => $user->email]);
+            session(['user_id' => $user->id]);
+            session(['user_phone' => $user->phone]);
+            session(['user_created_at' => strtotime($user->created_at)]);
+            return redirect()->route('dashboard');
+        }
+    }
 }
