@@ -819,7 +819,7 @@
 
                         <!-- Footer: button at bottom-left -->
                         <div class="mt-4 pt-3 border-t">
-                            <a href=""
+                            <a href="{{ route('detail.review',['id'=>$r->id,'type'=>'service']) }}"
                                 class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
                                 View details
                             </a>
@@ -869,7 +869,7 @@
 
                         <!-- Footer: button at bottom-left -->
                         <div class="mt-4 pt-3 border-t">
-                            <a href=""
+                            <a href="{{ route('detail.review',['id'=>$r->id,'type'=>'agent']) }}"
                                 class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
                                 View details
                             </a>
@@ -919,7 +919,7 @@
 
                         <!-- Footer: button at bottom-left -->
                         <div class="mt-4 pt-3 border-t">
-                            <a href=""
+                            <a href="{{ route('detail.review',['id'=>$r->id,'type'=>'property']) }}"
                                 class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
                                 View details
                             </a>

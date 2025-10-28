@@ -88,5 +88,9 @@ Route::middleware('ensure.authentic')->group(function () {
 
 
  //routes for delete subcriber email
- Route::delete('subcriber/{id}/delte', [PropertiesController::class, 'deleteSubcriber'])->name('delete.subcriber');
+ Route::delete('subcriber/{id}/delete', [PropertiesController::class, 'deleteSubcriber'])->name('delete.subcriber');
+ //routes for review details 
+ Route::get('review/{id}/{type}/detail',[AgentController::class,'reviewDetail'])->name('detail.review');
+
+
 });

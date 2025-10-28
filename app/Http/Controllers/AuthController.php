@@ -11,6 +11,7 @@ use App\Models\Propertie;
 use App\Models\Agent;
 use App\Models\Subcriber;
 use App\Models\Review;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -100,11 +101,11 @@ class AuthController extends Controller
 
         //here we fetch data of review and make them in grouping
         $review = Review::get();
-       $grouped = [
-        'service'  => Review::where('type', 'service')->latest()->paginate(6, ['*'], 'service_page')->withQueryString(),
-        'agent'    => Review::where('type', 'agent')->latest()->paginate(6, ['*'], 'agent_page')->withQueryString(),
-        'property' => Review::where('type', 'property')->latest()->paginate(6, ['*'], 'property_page')->withQueryString(),
-    ];
+        $grouped = [
+            'service'  => Review::where('type', 'service')->latest()->paginate(6, ['*'], 'service_page')->withQueryString(),
+            'agent'    => Review::where('type', 'agent')->latest()->paginate(6, ['*'], 'agent_page')->withQueryString(),
+            'property' => Review::where('type', 'property')->latest()->paginate(6, ['*'], 'property_page')->withQueryString(),
+        ];
 
 
 

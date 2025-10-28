@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Agent;
+use App\Models\Review;
+use App\Models\Propertie;
+
+
 use Illuminate\Support\Str;
 
 class AgentController extends Controller
@@ -129,5 +133,20 @@ class AgentController extends Controller
                 ->with('agent_deleted', $id)
                 ->with('failed', 'agent Delete failed');
         }
+    }
+
+
+    public function  reviewDetail($id, $type)
+    {
+        $review = Review::findOrFail($id);
+        $data = null;
+        if ($type === 'agent') {
+            $id = data_get($review->data, 'agent_id'); // from JSON
+            $data = $id ? Agent::find($id) : null;
+        } elseif ($type === 'property') {
+            $id = data_get($review->data, 'property_id'); // from JSON
+            $data = $id ? Propertie::find($id) : null;
+        }
+        return view('add/review', compact('review', 'data', 'type'));
     }
 }
