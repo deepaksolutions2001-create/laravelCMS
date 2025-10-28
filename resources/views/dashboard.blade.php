@@ -263,7 +263,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500 text-sm">Total Pages</p>
-                                <h3 class="text-2xl font-bold text-gray-800 mt-1">24</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ $pages->total() }}</h3>
                             </div>
                             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500 text-sm">Properties</p>
-                                <h3 class="text-2xl font-bold text-gray-800 mt-1">156</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ $properties->total() }}</h3>
                             </div>
                             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -291,7 +291,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500 text-sm">Agents</p>
-                                <h3 class="text-2xl font-bold text-gray-800 mt-1">42</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{  $agent->total()}}</h3>
                             </div>
                             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,7 +305,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500 text-sm">Subscribers</p>
-                                <h3 class="text-2xl font-bold text-gray-800 mt-1">1,284</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ $subcriber->total() }}</h3>
                             </div>
                             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                                 <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -938,10 +938,42 @@
 
 
             <!-- Form Data Tab -->
+            {{-- resources/views/forms/index.blade.php --}}
+            @php
+            $icons = [
+            'contact' => 'fa-solid fa-envelope',
+            'enquiry' => 'fa-solid fa-circle-question',
+            'support' => 'fa-solid fa-life-ring',
+            'feedback' => 'fa-solid fa-comment-dots',
+            'property_interest' => 'fa-solid fa-house',
+            ];
+            @endphp
+
             <div id="formdata" class="tab-content">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
-                    <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
+                <div class="mb-6 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Form Submissions</h2>
+                        <p class="text-gray-600 mt-1">View contact and inquiry forms</p>
+                    </div>
+
+                    <div class="flex gap-2">
+                        @foreach ($types as $t)
+                        @php
+                        $isActive = $t === $activeType;
+                        $icon = $icons[$t] ?? 'fa-solid fa-folder';
+                        $count = $counts[$t] ?? null;
+                        @endphp
+                        <a href="{{ request()->fullUrlWithQuery(['type' => $t, Str::slug($t,'_').'_page' => 1]) }}"
+                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border transition
+                  {{ $isActive ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 border-gray-200 hover:border-blue-400' }}">
+                            <i class="{{ $icon }}"></i>
+                            <span class="capitalize">{{ str_replace('_',' ', $t) }}</span>
+                            @if($count)
+                            <span class="ml-1 text-xs {{ $isActive ? 'bg-white text-blue-700' : 'bg-gray-100 text-gray-700' }} px-2 py-0.5 rounded-full">{{ $count }}</span>
+                            @endif
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="bg-white rounded-xl shadow-md overflow-hidden">
@@ -951,32 +983,44 @@
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Message</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
                                     <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                @forelse ($submissions as $row)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Robert Miller</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">robert.m@email.com</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Luxury Villa</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">24 Oct 2025</td>
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                                        {{ $row->name ?? '-' }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">
+                                        {{ data_get($row->data, 'email', '-') }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">
+                                        {{ data_get($row->data, 'message') ?? data_get($row->data, 'subject') ?? '-' }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                        {{ $row->created_at->format('d M Y') }}
+                                    </td>
                                     <td class="px-6 py-4 text-right">
-                                        <button class="text-blue-600 hover:text-blue-800">View</button>
+                                        <a href="{{ route('detail.form',['id'=>$row->id]) }}"
+                                            class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800">
+                                            <i class="fa-solid fa-eye"></i> View
+                                        </a>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">Lisa Anderson</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">lisa.a@email.com</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Beach House</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">23 Oct 2025</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-blue-600 hover:text-blue-800">View</button>
-                                    </td>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-6 text-center text-gray-500">No submissions found</td>
                                 </tr>
+                                @endforelse
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="p-4">
+                        {{ $submissions->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

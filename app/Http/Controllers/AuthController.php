@@ -4,14 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Page;
 use App\Models\UserModel;
-use App\Models\Propertie;
 
-use App\Models\Agent;
-use App\Models\Subcriber;
-use App\Models\Review;
-use Illuminate\Support\Facades\DB;
 
 
 
@@ -19,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+    //here we login admin
     public function login(Request $request)
     {
         // Validate the incoming request
@@ -46,6 +41,7 @@ class AuthController extends Controller
         }
     }
 
+    //here we register adimn
     public function register(Request $request)
     {
         // Validate the incoming request
@@ -71,6 +67,7 @@ class AuthController extends Controller
         }
     }
 
+    //here we logout admin
     public function logout(Request $request)
     {
 
@@ -80,36 +77,5 @@ class AuthController extends Controller
         //redirect to login page
 
         return redirect()->route('login.form')->with('success', 'logout successfully');
-    }
-
-    public function dashboard()
-    {
-
-        // Fetch all pages from the database
-        // Get paginated pages (7 per page)
-        $pages = Page::where('user_id', session('user_id'))->orderBy('created_at', 'desc')->paginate(7);
-        $properties = Propertie::orderBy('created_at', 'desc')->paginate(6);
-        $agent = Agent::orderBy('created_at', 'desc')->paginate(6);
-
-
-        //for subscriber model
-        $subcriber = Subcriber::orderBy('created_at', 'desc')->paginate(12);
-
-        $total  = Subcriber::count();
-        $active = Subcriber::where('status', 'subscribed')->count();
-        $unsub  = Subcriber::where('status', 'unsubscribed')->count();
-
-        //here we fetch data of review and make them in grouping
-        $review = Review::get();
-        $grouped = [
-            'service'  => Review::where('type', 'service')->latest()->paginate(6, ['*'], 'service_page')->withQueryString(),
-            'agent'    => Review::where('type', 'agent')->latest()->paginate(6, ['*'], 'agent_page')->withQueryString(),
-            'property' => Review::where('type', 'property')->latest()->paginate(6, ['*'], 'property_page')->withQueryString(),
-        ];
-
-
-
-        // Return the list view with all pages
-        return view('dashboard', compact('pages', 'properties', 'agent', 'subcriber', 'total', 'active', 'unsub', 'grouped'));
     }
 }

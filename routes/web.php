@@ -6,12 +6,9 @@ use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\DashboardController;
 
-
-
-
-
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 //authincatio routes handle here 
 Route::view('login', 'admin/login')->name('login.form');
@@ -28,9 +25,9 @@ Route::post('register', [AuthController::class, 'register'])->name('register.sav
 // routes/web.php
 Route::middleware('ensure.authentic')->group(function () {
 
- //route for hoe page 
- Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard');
- Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+ //route for home page 
+ Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
  //this help to create new page
  Route::post('/pages/create', [PageController::class, 'create'])->name('pages.create');
@@ -88,9 +85,11 @@ Route::middleware('ensure.authentic')->group(function () {
 
 
  //routes for delete subcriber email
- Route::delete('subcriber/{id}/delete', [PropertiesController::class, 'deleteSubcriber'])->name('delete.subcriber');
+ Route::delete('subcriber/{id}/delete', [DashboardController::class, 'deleteSubcriber'])->name('delete.subcriber');
  //routes for review details 
- Route::get('review/{id}/{type}/detail',[AgentController::class,'reviewDetail'])->name('detail.review');
-
-
+ Route::get('review/{id}/{type}/detail', [DashboardController::class, 'reviewDetail'])->name('detail.review');
+ 
+ //route for form
+ Route::get('form/{id}/detail',[DashboardController::class,'formDetail'])->name('detail.form');
+ Route::delete('form/{id}/delete',[DashboardController::class,'formDelete'])->name('delete.form');
 });

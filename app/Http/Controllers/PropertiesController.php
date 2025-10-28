@@ -7,14 +7,13 @@ use App\Models\Propertie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Agent;
-use App\Models\Subcriber;
 
 
 
 class PropertiesController extends Controller
 {
 
-    //return view of property
+    //return view of property with agent data 
     public function addProperty()
     {
         $agent = Agent::get();
@@ -22,6 +21,8 @@ class PropertiesController extends Controller
     }
 
 
+
+    //here we save property data into db
     public function saveProperty(Request $request)
     {
 
@@ -112,26 +113,7 @@ class PropertiesController extends Controller
     }
 
 
-    public function deleteProperty($id)
-    {
-
-
-        $property = Propertie::findOrFail($id); // id-based fetch 
-        foreach (['images', 'videos', 'floor_plan_images', 'documents'] as $key) {
-            foreach (($property->{$key} ?? []) as $val) {
-                $path = ltrim(parse_url($val, PHP_URL_PATH) ?? $val, '/');      // 'storage/agents/mmq...png' or 'agents/mmq...png'
-                $relative = Str::startsWith($path, 'storage/') ? Str::after($path, 'storage/') : $path; // 'agents/mmq...png'
-                Storage::disk('public')->delete($relative); // cleanup files on public disk 
-            }
-        }
-        $property->delete(); // remove row 
-        // Redirect to the edit (builder) view for the newly created page
-        // Redirect to dashboard with the edit URL
-        return redirect()->route('dashboard')
-            ->with('property_deleted', $id)
-            ->with('success', 'property Deleted Successfully');
-    }
-
+    //here we edit proeprty
     public function editProperty($id)
     {
         $property = Propertie::findOrFail($id);
@@ -143,6 +125,7 @@ class PropertiesController extends Controller
         return view('add/properties', compact('property', 'vals', 'agent'));
     }
 
+    //here we update proeprty details
     public function updateproperty(Request $r, $id)
     {
 
@@ -241,18 +224,24 @@ class PropertiesController extends Controller
         }
     }
 
-
-    public function deleteSubcriber($id)
+    //here we delete property details
+    public function deleteProperty($id)
     {
-        $subcriber = Subcriber::findOrFail($id);
-        if ($subcriber->delete()) {
-            // Redirect to the edit (builder) view for the newly created page
-            // Redirect to dashboard with the edit URL
-            return redirect()->route('dashboard')
-                ->with('success', 'delete successfully!');
-        } else {
-            return redirect()->route('dashboard')
-                ->with('failed', 'delete failed!');
+
+
+        $property = Propertie::findOrFail($id); // id-based fetch 
+        foreach (['images', 'videos', 'floor_plan_images', 'documents'] as $key) {
+            foreach (($property->{$key} ?? []) as $val) {
+                $path = ltrim(parse_url($val, PHP_URL_PATH) ?? $val, '/');      // 'storage/agents/mmq...png' or 'agents/mmq...png'
+                $relative = Str::startsWith($path, 'storage/') ? Str::after($path, 'storage/') : $path; // 'agents/mmq...png'
+                Storage::disk('public')->delete($relative); // cleanup files on public disk 
+            }
         }
+        $property->delete(); // remove row 
+        // Redirect to the edit (builder) view for the newly created page
+        // Redirect to dashboard with the edit URL
+        return redirect()->route('dashboard')
+            ->with('property_deleted', $id)
+            ->with('success', 'property Deleted Successfully');
     }
 }

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Agent;
-use App\Models\Review;
-use App\Models\Propertie;
 
 
 use Illuminate\Support\Str;
@@ -16,6 +14,7 @@ class AgentController extends Controller
 
 
 
+    //here we create new agent
     public function addAgent(Request $request)
     {
         // Optional avatar upload -> public disk -> browser URL
@@ -58,6 +57,7 @@ class AgentController extends Controller
         }
     }
 
+    //here we edit agent details
     public function editAgent($id)
     {
         $agent = Agent::findOrFail($id);
@@ -65,6 +65,7 @@ class AgentController extends Controller
         return view('add/agents', compact('agent', 'isEdit'));
     }
 
+    //here we update agent data
     public function updateAgent(Request $request, $id)
     {
 
@@ -112,6 +113,7 @@ class AgentController extends Controller
         }
     }
 
+    //here we delete agent
     public function deleteAgent($id)
     {
 
@@ -133,20 +135,5 @@ class AgentController extends Controller
                 ->with('agent_deleted', $id)
                 ->with('failed', 'agent Delete failed');
         }
-    }
-
-
-    public function  reviewDetail($id, $type)
-    {
-        $review = Review::findOrFail($id);
-        $data = null;
-        if ($type === 'agent') {
-            $id = data_get($review->data, 'agent_id'); // from JSON
-            $data = $id ? Agent::find($id) : null;
-        } elseif ($type === 'property') {
-            $id = data_get($review->data, 'property_id'); // from JSON
-            $data = $id ? Propertie::find($id) : null;
-        }
-        return view('add/review', compact('review', 'data', 'type'));
     }
 }
